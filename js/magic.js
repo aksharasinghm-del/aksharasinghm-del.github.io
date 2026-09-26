@@ -66,6 +66,18 @@
     });
   });
 
+  // campaign tabs
+  var tabs = document.querySelectorAll('.tabs [role="tab"]');
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      tabs.forEach(function (x) {
+        var on = x === t;
+        x.setAttribute('aria-selected', on ? 'true' : 'false');
+        document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+      });
+    });
+  });
+
   // results: count up and draw the circles when the section comes into view
   function countUp(el) {
     var txt = el.textContent.trim(), m = txt.match(/^([\d.]+)(.*)$/);
