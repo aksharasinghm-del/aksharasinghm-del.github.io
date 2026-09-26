@@ -47,6 +47,25 @@
     });
   }
 
+  // price tags: flip to reveal, with a little burst of sparkles
+  document.querySelectorAll('.ptag').forEach(function (t) {
+    t.addEventListener('click', function () {
+      var open = t.classList.toggle('open');
+      t.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (!open || reduce) return;
+      for (var i = 0; i < 14; i++) {
+        var s = document.createElement('i');
+        s.className = 'spark';
+        s.textContent = ['✦', '✧', '$', '★'][i % 4];
+        s.style.setProperty('--tx', (Math.random() * 180 - 90) + 'px');
+        s.style.setProperty('--ty', (-Math.random() * 110 - 30) + 'px');
+        s.style.left = (30 + Math.random() * 40) + '%';
+        t.appendChild(s);
+        setTimeout(function (n) { n.remove(); }, 900, s);
+      }
+    });
+  });
+
   // results: count up and draw the circles when the section comes into view
   function countUp(el) {
     var txt = el.textContent.trim(), m = txt.match(/^([\d.]+)(.*)$/);
