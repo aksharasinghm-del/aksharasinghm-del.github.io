@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bata: Your Next Step, a brand refresh by Akshara Singh</title>
+<meta name="description" content="A concept brand refresh for Bata: diagnosis, brand platform, architecture, identity system, applications, rollout and the working brand files.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light dark;
+  --bg:#FFFFFF; --panel:#F3F3F4; --ink:#1E1E22; --muted:#66656A; --line:#E0DFE2;
+  --red:#D52B1E; --lime:#C8F04A; --stone:#9C9A94; --asphalt:#1E1E22; --chalk:#F7F5F2;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){ --bg:#121214; --panel:#1C1C1F; --ink:#F2F1EE; --muted:#A6A5AB; --line:#2E2E33; --red:#EF4336; }
+}
+:root[data-theme="dark"]{ --bg:#121214; --panel:#1C1C1F; --ink:#F2F1EE; --muted:#A6A5AB; --line:#2E2E33; --red:#EF4336; }
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:"Space Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size:16.5px; line-height:1.55}
+button{font:inherit; color:inherit}
+:focus-visible{outline:3px solid var(--lime); outline-offset:3px}
+a{color:var(--red)}
+.disp,h1,h2{font-family:"Anton","Arial Narrow",Impact,sans-serif; font-weight:400; letter-spacing:.005em; line-height:.95; text-transform:uppercase; margin:0}
+h2{font-size:clamp(2.4rem,6vw,4.6rem); margin-bottom:.3em}
+h3{font-size:1.2rem; margin:0 0 .35em; font-weight:700}
+p{margin:0 0 1em}
+.wrap{max-width:1180px; margin:0 auto; padding:0 clamp(16px,4vw,40px)}
+.lede{font-size:clamp(1.05rem,1.7vw,1.2rem); color:var(--muted); max-width:44rem}
+.sm{font-size:.88rem; color:var(--muted)}
+.note{font-size:.8rem; color:var(--muted); margin-top:10px}
+section{padding:clamp(60px,9vw,110px) 0}
+.pg{display:flex; gap:12px; align-items:baseline; font-weight:700; font-size:.82rem; letter-spacing:.08em; text-transform:uppercase; color:var(--red); margin-bottom:14px}
+.pg b{font-family:"Anton"; font-weight:400; font-size:1.5rem; color:var(--ink)}
+.g2{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px}
+.g3{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px}
+.g4{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px}
+.panel{background:var(--panel); border-radius:18px; padding:clamp(18px,2.6vw,28px)}
+.mt{margin-top:clamp(24px,3.5vw,40px)}
+.tw{overflow-x:auto}
+table{width:100%; border-collapse:collapse; font-size:.92rem}
+th,td{text-align:left; vertical-align:top; padding:10px 12px 10px 0; border-bottom:1px solid var(--line)}
+th{font-size:.74rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)}
+
+/* hero */
+.hero{background:#D52B1E; color:#F7F5F2; position:relative; overflow:hidden; padding:clamp(22px,4vw,40px) 0 clamp(50px,7vw,90px)}
+.hero .tread{position:absolute; inset:0; opacity:.14; pointer-events:none}
+.hero .top{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; font-size:.85rem; font-weight:600; position:relative}
+.hero h1{font-size:clamp(3.4rem,11vw,9rem); margin-top:clamp(26px,4vw,48px); position:relative}
+.hero h1 span{color:#1E1E22}
+.hero .lede{color:#FFE3E0; position:relative; margin-top:14px}
+.timeline{position:relative; margin-top:clamp(26px,4vw,44px); background:#1E1E22; border-radius:20px; padding:clamp(18px,3vw,28px); display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); gap:20px; align-items:center}
+.shoe-stage{position:relative; height:190px}
+.shoe-stage svg{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:min(320px,90%); transition:opacity .4s}
+.timeline .yr{font-family:"Anton"; font-size:clamp(3rem,7vw,5rem); color:#C8F04A; line-height:1}
+.timeline .cap{color:#F7F5F2; font-size:1.05rem; min-height:3em}
+.timeline input{width:100%; accent-color:#C8F04A}
+.timeline .ticks{display:flex; justify-content:space-between; font-size:.75rem; color:#A6A5AB}
+
+/* diagnosis */
+.stat .v{font-family:"Anton"; font-size:clamp(2.2rem,4vw,3rem); line-height:1; color:var(--red)}
+.pr{display:inline-flex; border:2px solid var(--ink); border-radius:999px; overflow:hidden; margin:10px 0 16px}
+.pr button{border:0; background:transparent; padding:.5em 1.1em; font-weight:700; cursor:pointer}
+.pr button[aria-pressed="true"]{background:var(--ink); color:var(--bg)}
+.prgrid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px}
+.prgrid div{border-radius:14px; padding:16px; min-height:120px; transition:background .3s,color .3s}
+.prgrid.think div{background:var(--panel)}
+.prgrid.true div{background:#C8F04A; color:#1E1E22}
+.prgrid b{display:block; font-size:1.05rem}
+
+/* platform */
+.pos{background:#1E1E22; color:#F7F5F2; border-radius:20px; padding:clamp(22px,4vw,40px)}
+.pos p{font-size:clamp(1.3rem,2.8vw,2rem); line-height:1.25; margin:0; font-weight:500}
+.pos p em{font-style:normal; color:#C8F04A}
+.val{border-top:6px solid var(--red)}
+.slider-row{display:grid; grid-template-columns:120px minmax(0,1fr) 120px; gap:12px; align-items:center; font-size:.9rem; font-weight:600; margin:12px 0}
+.slider-row .trk{height:8px; background:var(--line); border-radius:8px; position:relative}
+.slider-row .trk i{position:absolute; top:50%; width:20px; height:20px; border-radius:50%; background:var(--red); transform:translate(-50%,-50%); border:3px solid var(--bg)}
+.slider-row span:last-child{text-align:right}
+.say{padding:10px 0; border-bottom:1px solid var(--line)}
+.say.no{text-decoration:line-through; text-decoration-color:var(--red); color:var(--muted)}
+
+/* architecture */
+.arch{display:flex; flex-direction:column; align-items:center; gap:18px; padding:20px 0}
+.arch .mb{font-family:"Anton"; font-size:2.2rem; padding:10px 24px; border-radius:14px; background:#D52B1E; color:#F7F5F2}
+.arch .subs{display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
+.arch .sub{border-radius:12px; padding:12px 16px; min-width:150px; text-align:center; font-weight:700; border:2px solid var(--line); background:var(--bg); transition:all .3s}
+.arch .sub small{display:block; font-weight:500; color:var(--muted); font-size:.78rem}
+.arch.today .sub{border-style:dashed}
+.arch.next .sub{border-color:#D52B1E}
+.arch .lines{width:70%; height:2px; background:var(--line)}
+.arch.next .lines{background:#D52B1E}
+
+/* identity */
+.wm{display:flex; align-items:center; justify-content:center; border-radius:18px; min-height:170px; position:relative; overflow:hidden}
+.wm span{font-family:"Anton"; font-size:clamp(3.4rem,8vw,5.5rem); letter-spacing:.04em; line-height:1; position:relative}
+.wm span::after{content:""; position:absolute; left:0; right:0; bottom:-12px; height:10px; background:repeating-linear-gradient(90deg,currentColor 0 12px,transparent 12px 18px)}
+.sw{display:grid; grid-template-columns:50fr 25fr 15fr 5fr 5fr; border-radius:14px; overflow:hidden; height:120px}
+.sw div{padding:10px; font-size:.75rem; font-weight:700; display:flex; flex-direction:column; justify-content:flex-end; cursor:pointer; border:0}
+.gen{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.3fr); gap:18px; align-items:center}
+.gen svg{width:100%; height:auto; border-radius:16px; display:block}
+.opts{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px}
+.opts button{border:2px solid var(--line); background:var(--bg); border-radius:999px; padding:.4em .9em; font-weight:700; font-size:.86rem; cursor:pointer}
+.opts button[aria-pressed="true"]{border-color:var(--ink); background:var(--ink); color:var(--bg)}
+.type .h{font-family:"Anton"; font-size:3rem; line-height:1; text-transform:uppercase}
+
+/* applications */
+.app-stage{display:grid; place-items:center; min-height:360px; background:var(--panel); border-radius:20px; padding:24px; margin-top:14px}
+.box{width:min(420px,90%); aspect-ratio:1.8; background:#D52B1E; border-radius:8px; position:relative; box-shadow:0 30px 40px -25px rgba(0,0,0,.5); overflow:hidden}
+.box::before{content:""; position:absolute; left:0; right:0; top:0; height:26%; background:#B8231A}
+.box .lbl{position:absolute; left:8%; bottom:14%; font-family:"Anton"; color:#F7F5F2; font-size:2.6rem}
+.box .tr{position:absolute; right:0; top:26%; bottom:0; width:45%}
+.fascia{width:min(520px,95%); background:#1E1E22; border-radius:10px; overflow:hidden}
+.fascia .sign{background:#D52B1E; color:#F7F5F2; font-family:"Anton"; font-size:2.4rem; padding:12px 20px; display:flex; justify-content:space-between; align-items:center}
+.fascia .sign small{font-family:"Space Grotesk"; font-size:.8rem; color:#C8F04A}
+.fascia .win{display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; padding:14px; height:150px}
+.fascia .win div{background:#2A2A2F; border-radius:6px; position:relative}
+.fascia .win div::after{content:""; position:absolute; left:20%; right:20%; bottom:18%; height:18%; border-radius:40% 40% 10% 10%; background:#F7F5F2}
+.bag{width:210px; aspect-ratio:.85; background:#F7F5F2; border-radius:6px 6px 12px 12px; position:relative; box-shadow:0 30px 40px -25px rgba(0,0,0,.5); display:flex; align-items:flex-end; justify-content:center; padding-bottom:26px; overflow:hidden}
+.bag::before{content:""; position:absolute; top:-40px; left:50%; transform:translateX(-50%); width:90px; height:80px; border:8px solid #1E1E22; border-radius:50%}
+.bag b{font-family:"Anton"; font-size:2rem; color:#D52B1E; position:relative}
+.bag .tr{position:absolute; left:0; right:0; top:0; height:40%}
+.igp{width:280px; aspect-ratio:4/5; background:#D52B1E; color:#F7F5F2; border-radius:10px; padding:20px; display:flex; flex-direction:column; justify-content:space-between; font-family:"Anton"; font-size:1.9rem; line-height:1}
+.igp em{font-style:normal; color:#C8F04A}
+.igp small{font-family:"Space Grotesk"; font-size:.8rem}
+.tee{width:240px; aspect-ratio:1; background:#1E1E22; clip-path:polygon(25% 0,38% 6%,62% 6%,75% 0,100% 18%,88% 36%,78% 30%,78% 100%,22% 100%,22% 30%,12% 36%,0 18%); display:grid; place-items:center; color:#C8F04A; font-family:"Anton"; font-size:1.6rem; text-align:center; line-height:1}
+
+/* measurement + working files (shared class names) */
+.kpi .v{font-family:"Anton"; font-size:2.4rem; line-height:1; color:var(--red)}
+.tabs{display:flex; gap:6px; flex-wrap:wrap; margin:14px 0}
+.tabs button{border:2px solid var(--line); background:var(--bg); border-radius:999px; padding:.4em .95em; font-weight:700; font-size:.86rem; cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--red); color:#fff; border-color:var(--red)}
+.tp{display:none} .tp.show{display:block}
+.scroll{overflow-x:auto; border:1px solid var(--line); border-radius:12px; max-height:520px; overflow-y:auto; background:var(--bg)}
+.scroll table{min-width:720px}
+.scroll th{position:sticky; top:0; background:#1E1E22; color:#F7F5F2; padding:9px 10px; z-index:1}
+.scroll td{padding:9px 10px}
+.dl{display:none; margin-top:14px; border-radius:999px; background:var(--red); color:#fff; font-weight:700; padding:.65em 1.2em; text-decoration:none}
+.dl.on{display:inline-block}
+.gal{display:grid; grid-template-columns:1.5fr 1fr 1.5fr; gap:14px; margin-top:14px; align-items:start}
+.gal figure{margin:0; background:var(--bg); border:1px solid var(--line); border-radius:14px; overflow:hidden; display:flex; flex-direction:column}
+.gal .shot{aspect-ratio:4/5; display:flex; overflow:hidden}
+.gal .shot.wide{aspect-ratio:16/9}
+.gal .shot img{width:100%; height:100%; object-fit:cover; display:block}
+.gal .mock{flex:1; display:flex; flex-direction:column; justify-content:space-between; padding:16px; font-family:"Anton"; font-size:1.5rem; line-height:1; text-transform:uppercase}
+.gal .mock small{font-family:"Space Grotesk"; font-size:.72rem; text-transform:none; font-weight:700}
+.gal figcaption{padding:12px}
+.gal figcaption b{display:block}
+.gal figcaption span{font-size:.82rem; color:var(--muted); display:block; margin:2px 0 8px}
+.gal .cv{display:inline-block; border:2px solid var(--red); border-radius:999px; padding:.3em .85em; font-weight:700; font-size:.8rem; text-decoration:none; color:var(--ink)}
+.src{font-size:.82rem; color:var(--muted); padding-left:1.1rem}
+.src li{margin-bottom:.3rem; word-break:break-word}
+footer{padding:60px 0 50px; border-top:1px solid var(--line)}
+@media (max-width:900px){
+  .g2,.g3,.gen,.timeline,.gal{grid-template-columns:1fr}
+  .g4,.prgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .slider-row{grid-template-columns:90px minmax(0,1fr) 90px}
+}
+@media (max-width:520px){ .g4,.prgrid{grid-template-columns:1fr} }
+@media (prefers-reduced-motion:reduce){ *{transition:none!important} }
+</style>
+</head>
+<body>
+<header class="hero">
+  <svg class="tread" aria-hidden="true" width="100%" height="100%"><defs><pattern id="tp0" width="60" height="40" patternUnits="userSpaceOnUse"><path d="M0 20 L15 5 L30 20 L45 5 L60 20 M0 40 L15 25 L30 40 L45 25 L60 40" fill="none" stroke="#1E1E22" stroke-width="7"/></pattern></defs><rect width="100%" height="100%" fill="url(#tp0)"/></svg>
+  <div class="wrap">
+    <div class="top"><span>Akshara Singh · Brand refresh concept</span><span>Bata</span></div>
+    <h1>Bata was your first step.<br><span>Make it your next one.</span></h1>
+    <p class="lede">A brand refresh for one of India's best-known names: keep the memory everyone shares, and move it forward for a generation that thinks Bata stopped at school.</p>
+    <div class="timeline">
+      <div class="shoe-stage" aria-hidden="true">
+        <svg id="shoeA" viewBox="0 0 320 150"><path d="M20 110 Q20 70 70 66 L140 60 Q170 40 210 50 L260 70 Q300 82 300 110 Z" fill="#111"/><rect x="18" y="108" width="284" height="16" rx="6" fill="#3A3A3F"/><path d="M150 62 L200 56 M156 72 L206 66 M162 82 L212 76" stroke="#555" stroke-width="4"/></svg>
+        <svg id="shoeB" viewBox="0 0 320 150" style="opacity:0"><path d="M20 108 Q18 62 80 60 L150 52 Q185 30 225 44 L270 66 Q304 80 302 108 Z" fill="#F7F5F2"/><path d="M200 48 Q240 58 270 66" stroke="#C8F04A" stroke-width="10" fill="none"/><path d="M60 92 Q150 70 260 90" stroke="#D52B1E" stroke-width="8" fill="none"/><rect x="16" y="106" width="288" height="20" rx="8" fill="#C8F04A"/><path d="M30 126 L50 116 L70 126 L90 116 L110 126 L130 116 L150 126 L170 116 L190 126 L210 116 L230 126 L250 116 L270 126 L290 116" stroke="#1E1E22" stroke-width="3" fill="none"/></svg>
+      </div>
+      <div>
+        <div class="yr" id="yr">2006</div>
+        <p class="cap" id="cap" aria-live="polite">Age 6. Your first pair of school shoes. Bata, obviously.</p>
+        <label for="age" class="sm" style="color:#A6A5AB">Drag through the years</label>
+        <input type="range" id="age" min="0" max="3" step="1" value="0">
+        <div class="ticks" aria-hidden="true"><span>Age 6</span><span>Age 14</span><span>Age 21</span><span>Age 26</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section>
+    <div class="wrap">
+      <div class="pg"><b>01</b> Diagnosis</div>
+      <h2>The shoes changed. The memory didn't.</h2>
+      <div class="g4 mt">
+        <div class="panel stat"><div class="v">90%+</div><p class="sm" style="margin:0">of sales now come from non-school categories</p></div>
+        <div class="panel stat"><div class="v">~32</div><p class="sm" style="margin:0">average consumer age</p></div>
+        <div class="panel stat"><div class="v">~2,000</div><p class="sm" style="margin:0">exclusive stores, from metros to small towns</p></div>
+        <div class="panel stat"><div class="v">0.28%</div><p class="sm" style="margin:0">revenue growth in FY25, on ₹3,488 crore</p></div>
+      </div>
+      <p class="note">Source: Open Magazine, "Bata's long walk back to cool", April 2026, citing Bata India's FY2024–25 annual report and company interviews.</p>
+      <h3 class="mt">Perception vs reality</h3>
+      <div class="pr" role="group" aria-label="Switch view"><button type="button" id="pThink" aria-pressed="true">What people think</button><button type="button" id="pTrue" aria-pressed="false">What's true</button></div>
+      <div class="prgrid think" id="prgrid" aria-live="polite"></div>
+      <div class="panel mt"><h3>The real problem</h3><p style="margin:0">Bata's problem isn't product or reach. It's that the brand is still judged by a memory from school, and its best new products (Power, Floatz, Hush Puppies) live under separate names, so they don't change how people see Bata itself.</p></div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel)">
+    <div class="wrap">
+      <div class="pg"><b>02</b> Brand platform</div>
+      <h2>Own the memory. Point it forward.</h2>
+      <div class="pos mt"><span class="sm" style="color:#A6A5AB; font-weight:700">POSITIONING</span><p style="margin-top:8px">For young Indians building their own path, Bata is the shoe brand that has been there since your <em>first step</em>, and moves with <em>every next one.</em></p></div>
+      <div class="g3 mt">
+        <div class="panel val" style="background:var(--bg)"><h3>Honest comfort</h3><p class="sm" style="margin:0">Shoes that feel good all day, and say so plainly.</p></div>
+        <div class="panel val" style="background:var(--bg)"><h3>Everyday courage</h3><p class="sm" style="margin:0">For first jobs, first cities, first everything.</p></div>
+        <div class="panel val" style="background:var(--bg)"><h3>Everywhere</h3><p class="sm" style="margin:0">From metros to small towns: the store is always near you.</p></div>
+      </div>
+      <div class="g2 mt">
+        <div class="panel" style="background:var(--bg)"><h3>Personality</h3>
+          <div class="slider-row"><span>Heritage</span><span class="trk"><i style="left:70%"></i></span><span>Fresh</span></div>
+          <div class="slider-row"><span>Serious</span><span class="trk"><i style="left:55%"></i></span><span>Playful</span></div>
+          <div class="slider-row"><span>Exclusive</span><span class="trk"><i style="left:88%"></i></span><span>For everyone</span></div>
+          <div class="slider-row"><span>Loud</span><span class="trk"><i style="left:40%"></i></span><span>Confident</span></div>
+        </div>
+        <div class="panel" style="background:var(--bg)"><h3>Voice</h3>
+          <div class="say">"Your first job deserves better than your school shoes."</div>
+          <div class="say">"Walked in by India since forever. Still walking."</div>
+          <div class="say no">"Premium quality footwear at affordable prices!!"</div>
+          <div class="say no">"Bata: the trusted choice for the whole family."</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="pg"><b>03</b> Brand architecture</div>
+      <h2>One family name.</h2>
+      <p class="lede">Today, Bata's most youthful products sit under separate names, so their success doesn't rub off on Bata. The refresh brings them under one roof.</p>
+      <div class="pr" role="group" aria-label="Architecture view"><button type="button" id="aToday" aria-pressed="false">Today</button><button type="button" id="aNext" aria-pressed="true">Proposed</button></div>
+      <div class="arch next" id="arch" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel)">
+    <div class="wrap">
+      <div class="pg"><b>04</b> Identity system</div>
+      <h2>The tread.</h2>
+      <p class="lede">The signature graphic comes from the one part of a shoe that touches the ground: its tread. Every pattern is a real sole pattern, simplified. It works as a border, a background, a pattern on packaging, or a mask for photos.</p>
+      <div class="g2 mt">
+        <div class="wm" style="background:#D52B1E; color:#F7F5F2"><span>BATA</span></div>
+        <div class="wm" style="background:#1E1E22; color:#C8F04A"><span>BATA</span></div>
+      </div>
+      <p class="note">Wordmark concept only. The existing Bata logo is not reproduced.</p>
+      <h3 class="mt">Colour, by share of use</h3>
+      <div class="sw" role="img" aria-label="Palette: Chalk 50%, Asphalt 25%, Heritage Red 15%, Sneaker Lime 5%, Stone 5%">
+        <div style="background:#F7F5F2; color:#1E1E22">Chalk #F7F5F2 · 50%</div><div style="background:#1E1E22; color:#F7F5F2">Asphalt #1E1E22 · 25%</div><div style="background:#D52B1E; color:#F7F5F2">Heritage Red · 15%</div><div style="background:#C8F04A; color:#1E1E22">Lime</div><div style="background:#9C9A94; color:#1E1E22">Stone</div>
+      </div>
+      <h3 class="mt">Tread generator</h3>
+      <div class="gen">
+        <div>
+          <p class="sm">Choose a tread and a colourway. This is how the system stays consistent across hundreds of products and stores.</p>
+          <div class="opts" id="pat" role="group" aria-label="Tread pattern"></div>
+          <div class="opts" id="cw" role="group" aria-label="Colourway"></div>
+        </div>
+        <svg id="gen" viewBox="0 0 400 240" role="img" aria-label="Tread pattern preview"></svg>
+      </div>
+      <div class="g2 mt type">
+        <div class="panel" style="background:var(--bg)"><div class="h">Anton</div><p class="sm" style="margin:6px 0 0">Headlines. Condensed, loud, always uppercase.</p></div>
+        <div class="panel" style="background:var(--bg)"><div style="font-size:1.8rem; font-weight:700">Space Grotesk</div><p class="sm" style="margin:6px 0 0">Everything else. Friendly, modern, easy to read.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="pg"><b>05</b> Applications</div>
+      <h2>Where people meet the brand.</h2>
+      <div class="opts mt" id="apps" role="group" aria-label="Application"></div>
+      <div class="app-stage" id="appStage" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section style="background:var(--panel)">
+    <div class="wrap">
+      <div class="pg"><b>06</b> Launch and measurement</div>
+      <h2>Your next step.</h2>
+      <div class="g3 mt">
+        <div class="panel" style="background:#D52B1E; color:#F7F5F2"><div class="disp" style="font-size:1.8rem">"You took your first step in Bata. Take your next one."</div><p class="sm" style="color:#FFE3E0; margin:10px 0 0">Social launch</p></div>
+        <div class="panel" style="background:#1E1E22; color:#F7F5F2"><div class="disp" style="font-size:1.8rem">"Your parents bought your first pair. <span style="color:#C8F04A">This one's on you."</span></div><p class="sm" style="color:#A6A5AB; margin:10px 0 0">Billboards near colleges and offices</p></div>
+        <div class="panel" style="background:#C8F04A; color:#1E1E22"><div class="disp" style="font-size:1.8rem">"Trade in your old school shoes. Walk out in new ones."</div><p class="sm" style="color:#1E1E22; margin:10px 0 0">In-store activation</p></div>
+      </div>
+      <div class="g4 mt">
+        <div class="panel kpi" style="background:var(--bg)"><div class="v">+10 pts</div><p class="sm" style="margin:0">"A brand for people like me" among 18–28s</p></div>
+        <div class="panel kpi" style="background:var(--bg)"><div class="v">+15%</div><p class="sm" style="margin:0">share of sneaker and casual sales</p></div>
+        <div class="panel kpi" style="background:var(--bg)"><div class="v">3.5+</div><p class="sm" style="margin:0">average touchpoint score (from 2.2 in the audit)</p></div>
+        <div class="panel kpi" style="background:var(--bg)"><div class="v">2 waves</div><p class="sm" style="margin:0">brand health tracking, before and after launch</p></div>
+      </div>
+      <p class="note">Targets are illustrative proposals for a portfolio concept.</p>
+    </div>
+  </section>
+
+  <section id="work"><div class="wrap">
+  <div class="pg"><b>07</b> Working files</div>
+  <div class="panel">
+    <h2>The working files</h2><p class="lede" style="max-width:46rem">How the refresh gets delivered: the touchpoint audit that sets priorities, the messaging matrix, the rollout plan and the asset checklist, loaded straight from the Excel workbook.</p>
+    <div class="tabs" role="tablist" aria-label="Working files"><button type="button" role="tab" id="wt0" aria-controls="wp0">Touchpoint audit</button><button type="button" role="tab" id="wt1" aria-controls="wp1">Messaging matrix</button><button type="button" role="tab" id="wt2" aria-controls="wp2">Rollout plan</button><button type="button" role="tab" id="wt3" aria-controls="wp3">Asset checklist</button></div><div class="tp" id="wp0" role="tabpanel" aria-labelledby="wt0"><div class="scroll"><table><thead><tr><th>Touchpoint</th><th>Consistency</th><th>Distinctiveness</th><th>Youth relevance</th><th>Quality signal</th><th>Average</th><th>Priority</th><th>Owner</th><th>Rollout phase</th></tr></thead><tbody><tr><td>Store fascia and signage</td><td>3</td><td>2</td><td>2</td><td>3</td><td>2.5</td><td>Medium</td><td>Retail design</td><td>Phase 2</td></tr><tr><td>Shoebox and packaging</td><td>2</td><td>2</td><td>1</td><td>2</td><td>1.8</td><td>High</td><td>Packaging</td><td>Phase 1</td></tr><tr><td>Shopping bag</td><td>2</td><td>1</td><td>1</td><td>2</td><td>1.5</td><td>High</td><td>Packaging</td><td>Phase 1</td></tr><tr><td>Website and app</td><td>3</td><td>2</td><td>3</td><td>3</td><td>2.8</td><td>Medium</td><td>Digital</td><td>Phase 1</td></tr><tr><td>Instagram and social</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3.0</td><td>Low</td><td>Social</td><td>Phase 1</td></tr><tr><td>Marketplace listings</td><td>2</td><td>1</td><td>2</td><td>2</td><td>1.8</td><td>High</td><td>E-commerce</td><td>Phase 2</td></tr><tr><td>Sneaker Studio in-store wall</td><td>3</td><td>3</td><td>4</td><td>3</td><td>3.2</td><td>Low</td><td>Retail design</td><td>Phase 2</td></tr><tr><td>Staff uniform</td><td>2</td><td>1</td><td>1</td><td>2</td><td>1.5</td><td>High</td><td>HR and retail</td><td>Phase 3</td></tr><tr><td>Receipts and bills</td><td>2</td><td>1</td><td>1</td><td>1</td><td>1.2</td><td>High</td><td>Retail ops</td><td>Phase 3</td></tr><tr><td>Sub-brand logos (Power, Floatz and others)</td><td>1</td><td>3</td><td>3</td><td>3</td><td>2.5</td><td>Medium</td><td>Brand</td><td>Phase 1</td></tr><tr><td>TV and video ads</td><td>3</td><td>3</td><td>3</td><td>4</td><td>3.2</td><td>Low</td><td>Marketing</td><td>Phase 2</td></tr><tr><td>Customer service scripts</td><td>2</td><td>1</td><td>2</td><td>2</td><td>1.8</td><td>High</td><td>CX</td><td>Phase 3</td></tr></tbody></table></div><p class="note">Overall brand consistency score: <b>2.2 out of 5</b>, with 6 touchpoints marked High priority. Scores are the auditor’s illustrative judgements, to be validated with research.</p></div><div class="tp" id="wp1" role="tabpanel" aria-labelledby="wt1"><div class="scroll"><table><thead><tr><th>Audience</th><th>What they think today</th><th>Core message</th><th>Proof points</th><th>Tone</th><th>Main channels</th></tr></thead><tbody><tr><td>Gen Z, 18–24</td><td>"Bata? My school shoes."</td><td>Your first step was Bata. Your next one can be too.</td><td>Sneaker Studios, Power, Floatz; new designs every season</td><td>Confident, playful, never try-hard</td><td>Instagram, creators, campus events</td></tr><tr><td>First jobbers, 22–28</td><td>Need formal shoes that don’t feel formal</td><td>Shoes for the job you have, and the one you want.</td><td>Hybrid formal-casual range; comfort tech</td><td>Supportive, practical, a little witty</td><td>Meta ads, LinkedIn, stores</td></tr><tr><td>Parents, 30–45</td><td>Trust Bata for kids, not for themselves</td><td>The brand you trust for them has something for you.</td><td>Comfort ranges, ballerinas, Hush Puppies</td><td>Warm, reassuring</td><td>Stores, WhatsApp, YouTube</td></tr><tr><td>Small-town shoppers</td><td>Bata is the default nearby store</td><td>Big-city styles, at your nearest Bata.</td><td>Around 2,000 exclusive stores, home delivery from franchise stores</td><td>Proud, local</td><td>Stores, regional-language social</td></tr></tbody></table></div></div><div class="tp" id="wp2" role="tabpanel" aria-labelledby="wt2"><div class="scroll"><table><thead><tr><th>Phase</th><th>Workstream</th><th>Task</th><th>Start</th><th>End</th><th>Days</th><th>Owner</th><th>Status</th></tr></thead><tbody><tr><td>Phase 1</td><td>Strategy</td><td>Sign off brand platform and positioning</td><td>02 Nov 2026</td><td>20 Nov 2026</td><td>18</td><td>Brand lead</td><td>Not started</td></tr><tr><td>Phase 1</td><td>Identity</td><td>Final wordmark, colour and tread system</td><td>09 Nov 2026</td><td>18 Dec 2026</td><td>39</td><td>Design agency</td><td>Not started</td></tr><tr><td>Phase 1</td><td>Guidelines</td><td>Publish brand book and asset library</td><td>14 Dec 2026</td><td>08 Jan 2027</td><td>25</td><td>Brand lead</td><td>Not started</td></tr><tr><td>Phase 1</td><td>Packaging</td><td>New shoebox and bag in 3 pilot cities</td><td>11 Jan 2027</td><td>26 Feb 2027</td><td>46</td><td>Packaging</td><td>Not started</td></tr><tr><td>Phase 1</td><td>Digital</td><td>Website, app and social refresh</td><td>11 Jan 2027</td><td>12 Feb 2027</td><td>32</td><td>Digital</td><td>Not started</td></tr><tr><td>Phase 2</td><td>Retail</td><td>Refit 50 flagship stores</td><td>01 Mar 2027</td><td>30 Jun 2027</td><td>121</td><td>Retail design</td><td>Not started</td></tr><tr><td>Phase 2</td><td>Campaign</td><td>Launch "Your Next Step" campaign</td><td>15 Mar 2027</td><td>15 May 2027</td><td>61</td><td>Marketing</td><td>Not started</td></tr><tr><td>Phase 2</td><td>E-commerce</td><td>Update marketplace listings and brand stores</td><td>01 Mar 2027</td><td>15 Apr 2027</td><td>45</td><td>E-commerce</td><td>Not started</td></tr><tr><td>Phase 3</td><td>Retail</td><td>Roll out to franchise stores</td><td>01 Jul 2027</td><td>31 Dec 2027</td><td>183</td><td>Franchise team</td><td>Not started</td></tr><tr><td>Phase 3</td><td>People</td><td>Staff uniforms and service scripts</td><td>01 Jul 2027</td><td>30 Sep 2027</td><td>91</td><td>HR and CX</td><td>Not started</td></tr><tr><td>Phase 3</td><td>Measurement</td><td>Brand health tracking wave 2</td><td>01 Sep 2027</td><td>30 Sep 2027</td><td>29</td><td>Insights</td><td>Not started</td></tr></tbody></table></div><p class="note">Change a date in Excel and the duration updates. Status has a dropdown for tracking.</p></div><div class="tp" id="wp3" role="tabpanel" aria-labelledby="wt3"><div class="scroll"><table><thead><tr><th>Asset</th><th>Formats</th><th>Used by</th><th>Status</th></tr></thead><tbody><tr><td>Wordmark: primary, reversed, mono</td><td>SVG, PNG, PDF</td><td>All teams</td><td>To do</td></tr><tr><td>Sub-brand lockups</td><td>SVG, PNG</td><td>Product, retail</td><td>To do</td></tr><tr><td>Colour palette with HEX, RGB, CMYK</td><td>PDF, ASE swatch file</td><td>Design, print</td><td>To do</td></tr><tr><td>Tread pattern library</td><td>SVG, PNG</td><td>Design, packaging</td><td>To do</td></tr><tr><td>Typography files and licences</td><td>OTF, WOFF2</td><td>Design, digital</td><td>To do</td></tr><tr><td>Photography library</td><td>JPG</td><td>Social, e-commerce</td><td>To do</td></tr><tr><td>Social templates</td><td>Canva</td><td>Social</td><td>To do</td></tr><tr><td>Packaging dielines</td><td>PDF, AI</td><td>Packaging</td><td>To do</td></tr><tr><td>Store signage templates</td><td>PDF</td><td>Retail</td><td>To do</td></tr><tr><td>Tone of voice guide</td><td>PDF</td><td>Everyone</td><td>To do</td></tr></tbody></table></div></div>
+    <a class="dl" data-file="Bata_Brand_Rollout.xlsx">Download the full Excel file</a>
+  </div>
+  <div class="panel" style="margin-top:18px">
+    <h2>Designed assets</h2><p class="lede">The brand book and launch creatives, made in Canva.</p>
+    <div class="gal"><figure><div class="shot wide" data-img="images/bata-brand-book.png" data-alt="Brand book"><div class="mock" style="background:#D52B1E; color:#F7F5F2"><small>Brand guidelines</small><span>Bata: your next step</span><small>9 pages</small></div></div><figcaption><b>Brand book</b><span>9-page guidelines deck: platform, wordmark, colour, tread, type, applications</span><a class="cv" href="https://canva.link/017lfyogyon7svl" target="_blank" rel="noopener">Open in Canva</a></figcaption></figure><figure><div class="shot" data-img="images/bata-launch-post.png" data-alt="Launch post"><div class="mock" style="background:#D52B1E; color:#F7F5F2"><small>#YourNextStep</small><span>You took your first step in Bata. Take your next one.</span><small>BATA</small></div></div><figcaption><b>Launch post</b><span>Instagram · 4:5</span><a class="cv" href="https://canva.link/71trfzhfzi92kkf" target="_blank" rel="noopener">Open in Canva</a></figcaption></figure><figure><div class="shot wide" data-img="images/bata-billboard.png" data-alt="Billboard"><div class="mock" style="background:#1E1E22; color:#C8F04A"><small>Out of home</small><span>Your parents bought your first pair. This one’s on you.</span><small>BATA · Your next step</small></div></div><figcaption><b>Billboard</b><span>Outdoor · landscape</span><a class="cv" href="https://canva.link/3t1bsnbmoid7fb6" target="_blank" rel="noopener">Open in Canva</a></figcaption></figure></div>
+  </div>
+</div></section>
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('#work [role="tab"]'));
+  function sel(i){ tabs.forEach(function(t,j){ t.setAttribute('aria-selected',j===i); t.tabIndex=j===i?0:-1; document.getElementById(t.getAttribute('aria-controls')).classList.toggle('show',j===i); }); }
+  tabs.forEach(function(t,i){ t.addEventListener('click',function(){ sel(i); }); t.addEventListener('keydown',function(e){ if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ e.preventDefault(); var j=(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length; sel(j); tabs[j].focus(); } }); });
+  sel(0);
+  document.querySelectorAll('#work .dl[data-file]').forEach(function(a){ var f=a.getAttribute('data-file'); try{ fetch(f,{method:'HEAD'}).then(function(r){ if(r.ok){ a.setAttribute('href',f); a.setAttribute('download',''); a.classList.add('on'); } }).catch(function(){}); }catch(e){} });
+  document.querySelectorAll('#work .shot[data-img]').forEach(function(s){ var im=new Image(); im.alt=s.getAttribute('data-alt'); im.onload=function(){ s.innerHTML=''; s.appendChild(im); }; im.src=s.getAttribute('data-img'); });
+})();
+</script>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="disp" style="font-size:clamp(2.2rem,6vw,4rem); margin:0">Your next step.</p>
+    <p style="margin-top:12px"><b>Brand refresh by Akshara Singh</b>, digital marketer · <a href="mailto:Akshara.singh.marketing@gmail.com">Akshara.singh.marketing@gmail.com</a></p>
+    <ol class="src">
+      <li>Open Magazine, "Bata's long walk back to cool", April 2026. <a href="https://openthemagazine.com/branding-marketing-and-advertising/batas-long-walk-back-to-cool">Link</a></li>
+      <li>Trade Brains, "Bata India: can the company reinvent itself for young consumers?", December 2025. <a href="https://tradebrains.in/bata-india-can-the-company-reinvent-itself-for-young-consumers/">Link</a></li>
+    </ol>
+    <p class="note" style="max-width:52rem">A self-initiated brand refresh concept created for portfolio purposes. Not affiliated with, commissioned by or endorsed by Bata India or Bata Brands. The wordmark, patterns and applications are original concepts; Bata's real logo is not used.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  function $(id){return document.getElementById(id);}
+  /* timeline */
+  var T=[['2006','Age 6. Your first pair of school shoes. Bata, obviously.',0],['2014','Age 14. PT class canvas shoes. Still Bata.',0],['2021','Age 21. College. You moved on to the big sneaker brands.',1],['2026','Age 26. First job, own money. What if your next pair was Bata again?',1]];
+  function tl(){ var t=T[+$('age').value]; $('yr').textContent=t[0]; $('cap').textContent=t[1]; $('shoeA').style.opacity=t[2]?0:1; $('shoeB').style.opacity=t[2]?1:0; }
+  $('age').addEventListener('input',tl); tl();
+
+  /* perception */
+  var P={think:[['School shoes','The black lace-ups everyone wore.'],['For parents to buy','Practical, not personal.'],['Old-fashioned','Not where you\u2019d look for sneakers.']],
+         true:[['90%+ non-school','Sneakers, casual, comfort and formal-casual hybrids.'],['Average customer ~32','Young working adults, not just kids.'],['Sneaker Studios','In 750+ stores, with Power and Floatz growing.']]};
+  function pr(k){ $('prgrid').className='prgrid '+k; $('prgrid').innerHTML=P[k].map(function(p){ return '<div><b>'+p[0]+'</b>'+p[1]+'</div>'; }).join(''); $('pThink').setAttribute('aria-pressed',k==='think'); $('pTrue').setAttribute('aria-pressed',k==='true'); }
+  $('pThink').addEventListener('click',function(){pr('think');}); $('pTrue').addEventListener('click',function(){pr('true');}); pr('think');
+
+  /* architecture */
+  function arch(next){ $('arch').className='arch '+(next?'next':'today');
+    var subs=next?[['Bata Power','sports and athleisure'],['Bata Floatz','casual, washable'],['Bata Comfit','everyday comfort'],['Bata Studio','sneaker drops']]:[['Power','feels like a separate brand'],['Floatz','feels like a separate brand'],['Comfit','known only in store'],['Sneaker Studio','a shelf, not a brand']];
+    $('arch').innerHTML='<div class="mb">BATA</div><div class="lines"></div><div class="subs">'+subs.map(function(s){ return '<div class="sub">'+s[0]+'<small>'+s[1]+'</small></div>'; }).join('')+'</div><p class="sm" style="text-align:center; max-width:36rem">'+(next?'A branded house: every success builds the Bata name. Hush Puppies stays separate as a licensed global brand.':'A house of brands: new products win, but people don\u2019t connect them to Bata.')+'</p>';
+    $('aToday').setAttribute('aria-pressed',!next); $('aNext').setAttribute('aria-pressed',next); }
+  $('aToday').addEventListener('click',function(){arch(false);}); $('aNext').addEventListener('click',function(){arch(true);}); arch(true);
+
+  /* tread generator */
+  var pats={Zigzag:'<path d="M0 20 L15 5 L30 20 L45 5 L60 20 M0 40 L15 25 L30 40 L45 25 L60 40" fill="none" stroke="F" stroke-width="6"/>',Chevron:'<path d="M0 10 L30 30 L60 10" fill="none" stroke="F" stroke-width="8"/>',Grip:'<circle cx="15" cy="10" r="6" fill="F"/><circle cx="45" cy="30" r="6" fill="F"/><rect x="36" y="4" width="18" height="6" rx="3" fill="F"/><rect x="6" y="28" width="18" height="6" rx="3" fill="F"/>',Wave:'<path d="M0 20 Q15 5 30 20 T60 20" fill="none" stroke="F" stroke-width="6"/>'};
+  var cws={'Red on asphalt':['#1E1E22','#D52B1E'],'Chalk on red':['#D52B1E','#F7F5F2'],'Lime on asphalt':['#1E1E22','#C8F04A'],'Asphalt on chalk':['#F7F5F2','#1E1E22']};
+  var cp='Zigzag', cc='Red on asphalt';
+  function btns(id,obj,cur,set){ $(id).innerHTML=Object.keys(obj).map(function(k){ return '<button type="button" aria-pressed="'+(k===cur)+'" data-k="'+k+'">'+k+'</button>'; }).join(''); $(id).onclick=function(e){ var b=e.target.closest('[data-k]'); if(!b) return; set(b.getAttribute('data-k')); gen(); $(id).querySelector('[data-k="'+b.getAttribute('data-k')+'"]').focus(); }; }
+  function gen(){ btns('pat',pats,cp,function(k){cp=k;}); btns('cw',cws,cc,function(k){cc=k;}); var c=cws[cc];
+    $('gen').innerHTML='<defs><pattern id="gp" width="60" height="40" patternUnits="userSpaceOnUse">'+pats[cp].replace(/F/g,c[1])+'</pattern></defs><rect width="400" height="240" fill="'+c[0]+'"/><rect width="400" height="240" fill="url(#gp)"/><rect x="120" y="85" width="160" height="70" rx="10" fill="'+c[0]+'"/><text x="200" y="138" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="48" fill="'+c[1]+'">BATA</text>'; }
+  gen();
+
+  /* applications */
+  function tread(col){ return '<svg class="tr" viewBox="0 0 120 120" preserveAspectRatio="xMidYMid slice"><defs><pattern id="ap'+col.slice(1)+'" width="30" height="20" patternUnits="userSpaceOnUse"><path d="M0 10 L7.5 2.5 L15 10 L22.5 2.5 L30 10" fill="none" stroke="'+col+'" stroke-width="4"/></pattern></defs><rect width="120" height="120" fill="url(#ap'+col.slice(1)+')"/></svg>'; }
+  var A={'Shoebox':'<div class="box">'+tread('#1E1E22')+'<span class="lbl">BATA</span></div>','Store front':'<div class="fascia"><div class="sign">BATA<small>your next step</small></div><div class="win"><div></div><div></div><div></div></div></div>','Shopping bag':'<div class="bag">'+tread('#D52B1E')+'<b>BATA</b></div>','Instagram post':'<div class="igp"><small>#YourNextStep</small><span>You took your first step in Bata. <em>Take your next one.</em></span><small>BATA</small></div>','Staff tee':'<div class="tee">YOUR<br>NEXT<br>STEP</div>'};
+  var ca='Shoebox';
+  function apps(){ $('apps').innerHTML=Object.keys(A).map(function(k){ return '<button type="button" aria-pressed="'+(k===ca)+'" data-a="'+k+'">'+k+'</button>'; }).join(''); $('appStage').innerHTML=A[ca]; }
+  $('apps').addEventListener('click',function(e){ var b=e.target.closest('[data-a]'); if(!b) return; ca=b.getAttribute('data-a'); apps(); $('apps').querySelector('[data-a="'+ca+'"]').focus(); });
+  apps();
+})();
+</script>
+<a class="as-allwork" href="../../#work" aria-label="Back to all of Akshara Singh's work">&larr; All work</a>
+<style>.as-allwork{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:2147483000;display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:999px;background:rgba(17,17,16,.88);color:#F5F2EC!important;font:600 14px/1 system-ui,-apple-system,"Segoe UI",sans-serif;text-decoration:none!important;letter-spacing:0;box-shadow:0 8px 24px rgba(0,0,0,.25);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:transform .2s}.as-allwork:hover{transform:translateY(-2px)}.as-allwork:focus-visible{outline:2px solid #E9B872;outline-offset:3px}@media print{.as-allwork{display:none}}</style>
+</body>
+</html>

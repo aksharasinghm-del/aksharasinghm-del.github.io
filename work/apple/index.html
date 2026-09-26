@@ -1,0 +1,823 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Apple Offline: a case study inside a phone, by Akshara Singh</title>
+<meta name="description" content="A marketing case study about getting Gen Z off their phones, told inside a phone. By Akshara Singh.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light dark;
+  --page:#E9E6F2; --page-ink:#1C1B22; --page-muted:#5E5B6B; --page-line:#CFCADD; --card:#F6F4FA;
+  --red:#FF3B30; --green:#34C759; --blue:#007AFF; --lime:#DDF94A;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){ --page:#0E0D14; --page-ink:#F1EFF7; --page-muted:#A5A1B5; --page-line:#2B2838; --card:#18161F; }
+}
+:root[data-theme="dark"]{ --page:#0E0D14; --page-ink:#F1EFF7; --page-muted:#A5A1B5; --page-line:#2B2838; --card:#18161F; }
+*,*::before,*::after{box-sizing:inherit}
+html,body{height:100%}
+body{
+  margin:0; background:var(--page); color:var(--page-ink);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:16px; line-height:1.45; letter-spacing:-.015em; -webkit-font-smoothing:antialiased;
+  transition:background .9s;
+}
+body.offline{background:#DDF0D2}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) body.offline{background:#10200F} }
+:root[data-theme="dark"] body.offline{background:#10200F}
+button{font:inherit; color:inherit}
+:focus-visible{outline:3px solid var(--blue); outline-offset:2px; border-radius:8px}
+a{color:var(--blue)}
+
+/* ---------- page layout ---------- */
+.layout{min-height:100%; display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); gap:clamp(20px,4vw,56px); align-items:center; padding:24px clamp(16px,3vw,40px); max-width:1320px; margin:0 auto}
+.intro{max-width:340px; justify-self:end}
+.intro h1{font-size:clamp(2.2rem,3.6vw,3.2rem); line-height:1; letter-spacing:-.045em; margin:0 0 .5rem; font-weight:800}
+.intro .tag{font-size:1.1rem; color:var(--page-muted); margin:0 0 1.4rem}
+.oneliner{background:var(--card); border:1px solid var(--page-line); border-radius:20px; padding:18px}
+.oneliner b{display:block; font-size:.82rem; color:var(--page-muted); margin-bottom:.35rem}
+.oneliner p{margin:0; font-size:1.02rem; font-weight:500}
+.howto{font-size:.92rem; color:var(--page-muted); margin:1.1rem 0}
+.start{border:0; border-radius:999px; background:var(--page-ink); color:var(--page); padding:.7em 1.3em; font-weight:600; cursor:pointer}
+.me{margin-top:1.6rem; font-size:.88rem; color:var(--page-muted)}
+.me b{color:var(--page-ink)}
+.chapters{max-width:300px; justify-self:start}
+.chapters h2{font-size:.95rem; margin:0 0 .6rem; color:var(--page-muted); font-weight:600}
+.chapters ol{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px}
+.chapters button{width:100%; text-align:left; border:0; background:transparent; padding:7px 10px; border-radius:10px; cursor:pointer; display:flex; gap:10px; align-items:center; font-size:.93rem}
+.chapters button:hover{background:var(--card)}
+.chapters button .ix{width:22px; height:22px; border-radius:50%; background:var(--red); color:#fff; font-size:.72rem; font-weight:700; display:grid; place-items:center; flex:none}
+.chapters button.seen .ix{background:var(--page-line); color:var(--page-muted)}
+.chapters button.current{background:var(--card); font-weight:600}
+.chapters button small{color:var(--page-muted); font-size:.8rem; display:block}
+.progress{font-size:.85rem; color:var(--page-muted); margin-top:.8rem}
+.disclaim{font-size:.75rem; color:var(--page-muted); margin-top:1.2rem}
+
+/* ---------- device ---------- */
+.device{--h:min(860px, calc(100svh - 48px)); height:var(--h); aspect-ratio:9/19.3; max-width:calc(100vw - 32px); position:relative}
+.phone{position:absolute; inset:0; border-radius:58px; padding:12px; background:linear-gradient(145deg,#56535e,#1d1c22 38%,#3b3942); box-shadow:0 60px 100px -50px rgba(20,10,40,.7), inset 0 0 0 1.5px #6b6874}
+.phone::before{content:""; position:absolute; right:-3px; top:24%; width:4px; height:74px; border-radius:3px; background:#3b3942}
+.screen{position:relative; width:100%; height:100%; border-radius:47px; overflow:hidden; background:#000; isolation:isolate; font-size:15px}
+.wall{position:absolute; inset:0; background:radial-gradient(90% 55% at 15% 5%,#6A35E8,transparent 60%),radial-gradient(80% 50% at 100% 100%,#E23B7A,transparent 60%),#120C24; transition:opacity .9s}
+.wall.day{background:linear-gradient(180deg,#8FCBFF 0%,#D9F0FF 40%,#EAF8DD 62%,#86D160 100%); opacity:0}
+body.offline .wall.day{opacity:1}
+.island{position:absolute; top:11px; left:50%; transform:translateX(-50%); width:32%; height:30px; border-radius:20px; background:#000; z-index:60}
+.status{position:absolute; top:0; left:0; right:0; height:52px; z-index:55; display:flex; align-items:center; justify-content:space-between; padding:6px 30px 0 34px; color:#fff; font-weight:600; font-size:.9rem; pointer-events:none; transition:color .3s}
+.status.dark{color:#000}
+.status .r{display:flex; gap:6px; align-items:center}
+.status .batt{width:24px; height:12px; border:1.5px solid currentColor; border-radius:4px; position:relative; opacity:.9}
+.status .batt::after{content:""; position:absolute; inset:1.5px; right:5px; background:currentColor; border-radius:1.5px}
+.status .pill{display:none; background:var(--green); color:#fff; border-radius:999px; padding:1px 8px; font-size:.72rem}
+body.offline .status .pill{display:inline-block}
+.homebar{position:absolute; bottom:8px; left:50%; transform:translateX(-50%); width:36%; height:5px; border-radius:5px; background:rgba(255,255,255,.85); border:0; z-index:58; cursor:pointer; padding:0}
+.homebar::before{content:""; position:absolute; inset:-12px -10px}
+.homebar.dark{background:rgba(0,0,0,.75)}
+
+/* lock */
+.lock{position:absolute; inset:0; z-index:40; background:radial-gradient(90% 55% at 15% 5%,#6A35E8,transparent 60%),radial-gradient(80% 50% at 100% 100%,#E23B7A,transparent 60%),#120C24; display:flex; flex-direction:column; align-items:center; padding:74px 16px 40px; color:#fff; transition:transform .55s cubic-bezier(.6,0,.3,1), opacity .55s}
+.lock.gone{transform:translateY(-100%); opacity:0; pointer-events:none}
+.lock .date{font-size:1.05rem; font-weight:600; opacity:.9}
+.lock .time{font-size:5.4rem; font-weight:700; letter-spacing:-.04em; line-height:1}
+.lock .ns{margin-top:auto; width:100%; display:flex; flex-direction:column; gap:8px}
+.ln{background:rgba(255,255,255,.18); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border-radius:20px; padding:12px 14px; display:flex; gap:11px; font-size:.85rem; line-height:1.3; text-align:left}
+.ln .ai{width:36px; height:36px; border-radius:9px; flex:none; display:grid; place-items:center; font-size:1.1rem}
+.ln b{display:block}
+.ln small{opacity:.7; float:right; font-weight:400}
+.unlock{margin-top:14px; border:0; background:rgba(255,255,255,.22); color:#fff; border-radius:999px; padding:.7em 1.4em; font-weight:600; cursor:pointer; backdrop-filter:blur(20px)}
+
+/* home */
+.home{position:absolute; inset:0; padding:62px 18px 30px; display:flex; flex-direction:column; z-index:10}
+.widget{background:rgba(255,255,255,.2); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border-radius:24px; padding:16px; color:#fff; transition:background .6s,color .6s}
+body.offline .widget{background:rgba(255,255,255,.55); color:#1C1B22}
+.widget .wt{font-size:.78rem; font-weight:600; opacity:.8}
+.widget .wh{font-size:1.25rem; font-weight:800; letter-spacing:-.03em; line-height:1.15; margin:.2rem 0 .6rem}
+.widget button{border:0; background:#fff; color:#1C1B22; border-radius:999px; padding:.45em 1em; font-weight:700; font-size:.82rem; cursor:pointer}
+.grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px 10px; margin-top:22px}
+.icon{border:0; background:transparent; padding:0; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:5px; color:#fff; font-size:.7rem; font-weight:500; position:relative; transition:color .6s}
+body.offline .icon{color:#1C1B22}
+.icon .sq{width:58px; height:58px; border-radius:15px; display:grid; place-items:center; font-size:1.7rem; box-shadow:0 4px 12px rgba(0,0,0,.25); position:relative; transition:transform .15s}
+.icon:active .sq{transform:scale(.92)}
+.icon .badge{position:absolute; top:-6px; right:-6px; min-width:22px; height:22px; border-radius:11px; background:var(--red); color:#fff; font-size:.72rem; font-weight:700; display:grid; place-items:center; padding:0 5px; box-shadow:0 0 0 2px rgba(0,0,0,.15); transition:opacity .3s, transform .3s}
+.icon.seen .badge{opacity:0; transform:scale(.5)}
+.cal-ic{background:#fff; color:#1C1B22; flex-direction:column; display:flex!important; align-items:center; justify-content:center; line-height:1}
+.cal-ic small{color:var(--red); font-size:.55rem; font-weight:700}
+.cal-ic b{font-size:1.5rem; font-weight:400}
+.dock{margin-top:auto; background:rgba(255,255,255,.2); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border-radius:30px; padding:12px; display:grid; grid-template-columns:repeat(4,1fr)}
+.dock .icon span.lbl{display:none}
+
+/* apps */
+.app{position:absolute; inset:0; z-index:30; background:#F2F2F7; color:#000; display:flex; flex-direction:column; transform:scale(.88); opacity:0; visibility:hidden; transition:transform .38s cubic-bezier(.3,.8,.2,1), opacity .25s, visibility 0s .38s; border-radius:47px}
+.app.open{transform:none; opacity:1; visibility:visible; transition:transform .38s cubic-bezier(.3,.8,.2,1), opacity .2s, visibility 0s}
+.app.darkapp{background:#000; color:#fff}
+.app .top{padding:56px 18px 6px; flex:none}
+.back{border:0; background:transparent; color:var(--blue); font-size:1rem; padding:4px 0; cursor:pointer}
+.app.darkapp .back{color:#FFD60A}
+.app .ttl{font-size:2rem; font-weight:800; letter-spacing:-.035em; line-height:1.05; margin:.25rem 0 0}
+.app .ch{font-size:.8rem; color:#8E8E93; font-weight:600; margin-top:.15rem}
+.body{flex:1; overflow-y:auto; padding:10px 16px 40px; -webkit-overflow-scrolling:touch; overscroll-behavior:contain}
+.grp{background:#fff; border-radius:14px; overflow:hidden; margin-top:12px}
+.darkapp .grp{background:#1C1C1E}
+.row{display:flex; justify-content:space-between; gap:12px; align-items:center; padding:12px 14px; border-bottom:1px solid #E5E5EA; font-size:.92rem}
+.darkapp .row{border-color:#2C2C2E}
+.row:last-child{border-bottom:0}
+.row .v{color:#8E8E93; text-align:right}
+.row .v.g{color:var(--green); font-weight:600}
+.row .v.r{color:var(--red); font-weight:600}
+.cap{font-size:.78rem; color:#8E8E93; padding:6px 4px 0; line-height:1.35}
+.h{font-size:1.05rem; font-weight:700; margin:18px 0 4px; letter-spacing:-.02em}
+.p{font-size:.92rem; margin:6px 0}
+.next{display:block; width:100%; margin-top:22px; border:0; border-radius:14px; background:var(--blue); color:#fff; padding:13px; font-weight:600; cursor:pointer; font-size:.95rem}
+.darkapp .next{background:#FFD60A; color:#000}
+.src{font-size:.72rem; color:#8E8E93; display:block; margin-top:2px}
+
+/* notes */
+.notes .body{background:#fff}
+.notes .app-top-bg{background:#fff}
+.note-h{font-size:1.5rem; font-weight:800; letter-spacing:-.03em; margin:4px 0 2px}
+.note-d{font-size:.78rem; color:#8E8E93}
+.hl{background:linear-gradient(transparent 55%,#FFE66D 55%)}
+.stat{display:flex; gap:12px; padding:10px 0; border-bottom:1px solid #F2F2F7}
+.stat b{font-size:1.5rem; font-weight:800; letter-spacing:-.04em; min-width:64px}
+.stat p{margin:0; font-size:.88rem}
+.chk{list-style:none; padding:0; margin:6px 0}
+.chk li{padding:4px 0 4px 26px; position:relative; font-size:.9rem}
+.chk li::before{content:""; position:absolute; left:0; top:6px; width:16px; height:16px; border-radius:50%; border:1.5px solid #C7C7CC}
+.chk.done li::before{background:#FFD60A; border-color:#FFD60A}
+
+/* screen time */
+.chart{display:flex; align-items:flex-end; gap:8px; height:120px; padding:10px 4px 0}
+.chart div{flex:1; background:linear-gradient(180deg,#5E5CE6,#BF5AF2); border-radius:5px 5px 2px 2px; position:relative}
+.chart span{position:absolute; bottom:-18px; left:0; right:0; text-align:center; font-size:.68rem; color:#8E8E93}
+.big{font-size:2.6rem; font-weight:800; letter-spacing:-.045em; line-height:1}
+.slider{width:100%; accent-color:#5E5CE6; margin:10px 0 4px}
+.alts{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:10px}
+.alts div{background:#F2F2F7; border-radius:12px; padding:10px}
+.alts b{display:block; font-size:1.05rem}
+.alts span{font-size:.72rem; color:#6E6E73}
+.insight{background:#1C1C1E; color:#fff; border-radius:18px; padding:18px; margin-top:14px}
+.insight b{display:block; font-size:.72rem; color:#FFD60A; margin-bottom:6px}
+.insight p{margin:0; font-size:1.35rem; font-weight:800; letter-spacing:-.03em; line-height:1.15}
+
+/* messages */
+.thread-list button{width:100%; border:0; background:#fff; text-align:left; display:flex; gap:12px; padding:12px 14px; border-bottom:1px solid #E5E5EA; cursor:pointer; align-items:center}
+.av{width:46px; height:46px; border-radius:50%; display:grid; place-items:center; font-weight:800; flex:none; font-size:1.1rem}
+.thread-list b{display:block; font-size:.95rem}
+.thread-list span{font-size:.82rem; color:#8E8E93; display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden}
+.convo{display:none}
+.convo.show{display:block}
+.bub{max-width:80%; padding:9px 13px; border-radius:18px; font-size:.9rem; margin:4px 0; line-height:1.3; width:fit-content}
+.bub.in{background:#E9E9EB; border-bottom-left-radius:5px}
+.bub.out{background:var(--blue); color:#fff; margin-left:auto; border-bottom-right-radius:5px}
+.sysn{font-size:.72rem; color:#8E8E93; text-align:center; margin:12px 0 4px}
+.needs{background:#fff; border-radius:14px; padding:12px; margin-top:12px; font-size:.86rem}
+.needs b{color:var(--green)}
+
+/* maps */
+.map{position:relative; height:330px; border-radius:16px; overflow:hidden; margin-top:6px;
+  background:
+   radial-gradient(35% 28% at 22% 70%,#B8E0A6 98%,transparent 100%),
+   radial-gradient(22% 20% at 80% 25%,#A9D4F5 98%,transparent 100%),
+   repeating-linear-gradient(28deg,transparent 0 46px,#fff 46px 52px),
+   repeating-linear-gradient(-62deg,transparent 0 70px,#fff 70px 76px),
+   #F1ECE2}
+.pin{position:absolute; transform:translate(-50%,-100%); border:0; background:transparent; cursor:pointer; display:flex; flex-direction:column; align-items:center; padding:0}
+.pin i{width:34px; height:34px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); display:grid; place-items:center; box-shadow:0 3px 8px rgba(0,0,0,.25)}
+.pin i span{transform:rotate(45deg); font-style:normal; font-size:1rem}
+.pin em{font-style:normal; font-size:.66rem; font-weight:700; background:#fff; padding:1px 6px; border-radius:6px; margin-top:3px; box-shadow:0 1px 3px rgba(0,0,0,.2); white-space:nowrap}
+.pin.gap i{background:#fff; border:2px dashed var(--red); animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 10px rgba(255,59,48,.18)}}
+.pin.sel em{background:#000; color:#fff}
+.sheet{background:#fff; border-radius:16px; padding:14px; margin-top:10px; min-height:110px}
+.sheet h4{margin:0 0 4px; font-size:1rem}
+.sheet .row2{font-size:.86rem; margin:4px 0}
+.sheet .row2 b{color:#6E6E73; font-weight:600}
+
+/* keynote */
+.deck{position:relative; background:#111; border-radius:16px; aspect-ratio:3/4; overflow:hidden; margin-top:6px}
+.slide{position:absolute; inset:0; padding:22px; display:flex; flex-direction:column; justify-content:center; opacity:0; transform:translateX(20px); transition:opacity .35s, transform .35s; color:#fff}
+.slide.on{opacity:1; transform:none}
+.slide .k{font-size:.72rem; color:#FFD60A; font-weight:700; margin-bottom:8px}
+.slide .t{font-size:1.9rem; font-weight:800; letter-spacing:-.04em; line-height:1.05}
+.slide .s{font-size:.95rem; margin-top:10px; color:#D1D1D6; line-height:1.4}
+.slide.s-g{background:linear-gradient(160deg,#1E6B34,#36B35A)}
+.slide.s-p{background:linear-gradient(140deg,#FF5FB0,#8B5CF6 60%,#3B82F6)}
+.slide.s-l{background:#DDF94A; color:#111} .slide.s-l .s{color:#333} .slide.s-l .k{color:#111}
+.deck-nav{display:flex; justify-content:space-between; align-items:center; margin-top:10px}
+.deck-nav button{border:0; background:#2C2C2E; color:#fff; border-radius:999px; padding:.5em 1.1em; cursor:pointer; font-weight:600}
+.dots{display:flex; gap:5px}
+.dots i{width:6px; height:6px; border-radius:50%; background:#48484A}
+.dots i.on{background:#fff}
+
+/* settings */
+.tg{position:relative; width:52px; height:32px; border-radius:32px; border:0; background:#E9E9EB; cursor:pointer; padding:0; flex:none; transition:background .25s}
+.tg::after{content:""; position:absolute; top:2px; left:2px; width:28px; height:28px; border-radius:50%; background:#fff; box-shadow:0 2px 5px rgba(0,0,0,.2); transition:transform .25s cubic-bezier(.3,.7,.2,1.2)}
+.tg[aria-checked="true"]{background:var(--green)}
+.tg[aria-checked="true"]::after{transform:translateX(20px)}
+.set-hero{background:#fff; border-radius:14px; padding:16px; display:flex; gap:12px; align-items:center; margin-top:10px}
+.set-hero .sq{width:44px; height:44px; border-radius:11px; background:var(--green); display:grid; place-items:center; font-size:1.3rem; flex:none}
+.set-hero b{display:block}
+.set-hero span{font-size:.8rem; color:#6E6E73}
+
+/* clubs */
+.chips{display:flex; gap:6px; overflow-x:auto; padding:4px 0 8px; scrollbar-width:none}
+.chips button{border:0; border-radius:999px; background:#fff; padding:.4em .9em; font-weight:600; font-size:.82rem; cursor:pointer; white-space:nowrap}
+.chips button[aria-pressed="true"]{background:#000; color:#fff}
+.club{background:#fff; border-radius:18px; padding:14px; margin-top:10px; display:flex; gap:12px; align-items:center}
+.club .e{width:52px; height:52px; border-radius:14px; display:grid; place-items:center; font-size:1.5rem; flex:none}
+.club .i{flex:1; min-width:0}
+.club b{display:block}
+.club .w{font-size:.78rem; color:#6E6E73}
+.club .d{font-size:.82rem; margin-top:2px}
+.club .rs{border:0; border-radius:999px; background:var(--green); color:#fff; font-weight:700; padding:.45em .9em; cursor:pointer; font-size:.8rem; white-space:nowrap}
+.club .rs[aria-pressed="true"]{background:#E9E9EB; color:#000}
+
+/* photos */
+.pgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:3px; margin:6px -16px 0}
+.ph{aspect-ratio:1; border:0; padding:8px; cursor:pointer; display:flex; align-items:flex-end; text-align:left; font-weight:800; letter-spacing:-.03em; font-size:.62rem; line-height:1.1; overflow:hidden}
+.viewer{position:absolute; inset:0; z-index:5; border-radius:47px; background:#000; color:#fff; display:none; flex-direction:column; padding:56px 16px 30px}
+.viewer.show{display:flex}
+.viewer .art{flex:1; border-radius:16px; display:flex; align-items:center; justify-content:center; text-align:center; padding:20px; font-weight:800; letter-spacing:-.04em; font-size:1.7rem; line-height:1.1; margin:10px 0}
+.viewer .what{font-size:.72rem; color:#FFD60A; font-weight:700}
+.viewer p{font-size:.9rem; color:#D1D1D6; margin:4px 0 0}
+.viewer .close{align-self:flex-start; border:0; background:transparent; color:#FFD60A; cursor:pointer; font-size:1rem; padding:0}
+.a-black{background:#000; color:#fff; border:1px solid #333}
+.a-lime{background:#DDF94A; color:#111}
+.a-day{background:linear-gradient(160deg,#8FCBFF,#86D160); color:#111}
+.a-web{background:#fff; color:#111}
+.a-film{background:radial-gradient(80% 60% at 50% 40%,#3b2a7a,#0d0d12); color:#fff}
+.a-pink{background:linear-gradient(140deg,#FF5FB0,#8B5CF6); color:#fff}
+
+/* social */
+.seg{display:flex; background:#E3E3E8; border-radius:10px; padding:2px; margin:6px 0 10px}
+.seg button{flex:1; border:0; background:transparent; border-radius:8px; padding:6px 0; font-size:.82rem; font-weight:600; cursor:pointer}
+.seg button[aria-selected="true"]{background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.spane{display:none} .spane.show{display:block}
+.plat{background:#fff; border-radius:14px; padding:12px 14px; margin-top:8px}
+.plat b{display:block}
+.plat span{font-size:.84rem; color:#3A3A3C}
+.plat small{display:block; font-size:.76rem; color:#8E8E93; margin-top:3px}
+.pill-row{display:flex; gap:6px; flex-wrap:wrap; margin-top:6px}
+.pill-row span{font-size:.76rem; font-weight:600; border-radius:999px; padding:.25em .7em; background:#fff}
+.reel{border-radius:18px; aspect-ratio:9/14; padding:16px; display:flex; flex-direction:column; justify-content:space-between; margin-top:10px; color:#fff}
+.reel .who{font-size:.76rem; font-weight:700; opacity:.85}
+.reel .txt{font-size:1.35rem; font-weight:800; letter-spacing:-.035em; line-height:1.1}
+.reel .cp{font-size:.8rem}
+.reel .gl{font-size:.7rem; opacity:.75; margin-top:4px}
+.cm{background:#fff; border-radius:14px; padding:12px; margin-top:8px}
+.cm .q{font-size:.86rem; background:#F2F2F7; border-radius:14px 14px 14px 4px; padding:8px 11px; width:fit-content; max-width:90%}
+.cm .a{font-size:.86rem; background:var(--green); color:#fff; border-radius:14px 14px 4px 14px; padding:8px 11px; width:fit-content; max-width:90%; margin:6px 0 0 auto}
+.cm small{display:block; font-size:.66rem; opacity:.75; font-weight:600}
+
+/* calendar */
+.phase{border-left:4px solid; background:#fff; border-radius:10px; padding:10px 12px; margin-top:8px}
+.phase b{display:block; font-size:.95rem}
+.phase .w{font-size:.76rem; color:#8E8E93; font-weight:600}
+.phase ul{margin:6px 0 0; padding-left:1.1rem; font-size:.84rem}
+.day{display:grid; grid-template-columns:44px 1fr; gap:10px; padding:10px 0; border-bottom:1px solid #E5E5EA}
+.day .dn{text-align:center}
+.day .dn small{display:block; font-size:.66rem; color:var(--red); font-weight:700}
+.day .dn b{font-size:1.2rem; font-weight:500}
+.day .ev{font-size:.85rem}
+.day .ev span{display:inline-block; font-size:.68rem; font-weight:700; border-radius:6px; padding:1px 6px; background:#F2F2F7; margin-bottom:2px}
+
+/* stocks / results */
+.tick{width:100%; border:0; background:transparent; color:#fff; display:grid; grid-template-columns:1fr 70px 78px; gap:8px; align-items:center; padding:12px 2px; border-bottom:1px solid #2C2C2E; text-align:left; cursor:pointer}
+.tick b{display:block; font-size:.92rem}
+.tick small{font-size:.72rem; color:#8E8E93; display:block}
+.tick svg{width:70px; height:26px}
+.tick .val{background:var(--green); color:#fff; border-radius:6px; padding:3px 6px; font-weight:700; font-size:.8rem; text-align:right}
+.tick-d{display:none; font-size:.82rem; color:#D1D1D6; padding:8px 2px 12px; border-bottom:1px solid #2C2C2E}
+.tick-d.show{display:block}
+.bars .br{display:grid; grid-template-columns:1fr 36px; gap:6px; font-size:.82rem; margin-top:8px}
+.bars .tr{grid-column:1/-1; height:7px; background:#2C2C2E; border-radius:6px; overflow:hidden}
+.bars .tr i{display:block; height:100%; background:var(--green); border-radius:6px}
+
+/* contact */
+.card{background:#fff; border-radius:20px; padding:22px 18px; text-align:center; margin-top:8px}
+.card .av{width:86px; height:86px; margin:0 auto 10px; font-size:2rem; background:linear-gradient(135deg,#DDF94A,#34C759)}
+.card h3{margin:0; font-size:1.45rem; letter-spacing:-.03em}
+.card .role{color:#6E6E73; font-size:.9rem}
+.card .acts{display:flex; justify-content:center; gap:10px; margin-top:14px}
+.card .acts a,.card .acts button{background:#F2F2F7; border-radius:12px; padding:10px 14px; font-size:.8rem; font-weight:600; text-decoration:none; color:var(--blue); border:0; cursor:pointer}
+.poweroff{position:absolute; inset:0; z-index:80; background:#000; color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:30px; opacity:0; pointer-events:none; transition:opacity .8s}
+.poweroff.on{opacity:1; pointer-events:auto}
+.poweroff .g{font-size:2.6rem; font-weight:800; letter-spacing:-.045em; line-height:1}
+.poweroff p{color:#8E8E93; font-size:.9rem}
+.poweroff button{border:0; background:#1C1C1E; color:#fff; border-radius:999px; padding:.6em 1.2em; cursor:pointer; margin-top:10px}
+
+@media (max-width:1080px){
+  .layout{grid-template-columns:1fr; justify-items:center; gap:28px}
+  .intro,.chapters{justify-self:center; max-width:520px; width:100%}
+  .device{--h:min(820px, calc(100svh - 32px))}
+}
+@media (max-width:480px){
+  .layout{padding:16px 10px}
+  .device{--h:auto; width:calc(100vw - 20px); height:auto}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important; animation:none!important}
+}
+/* campaign kit */
+.ck{margin-top:1.4rem; padding-top:1.2rem; border-top:1px solid var(--page-line)}
+.ck b{display:block; font-size:.95rem}
+.ck p{font-size:.88rem; color:var(--page-muted); margin:.3rem 0 .8rem}
+.ck-strip{display:flex; gap:10px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:8px}
+.ck-strip a{flex:0 0 104px; scroll-snap-align:start}
+.ck-strip img{display:block; width:100%; height:auto; border-radius:12px; border:1px solid var(--page-line)}
+.ck-btns{display:flex; flex-wrap:wrap; gap:8px; margin-top:.6rem}
+.ck-btns a{font-size:.85rem; font-weight:700; text-decoration:none; color:var(--page-ink); border:1px solid var(--page-line); border-radius:999px; padding:.45em .9em}
+.ck-btns a.ck-p{background:var(--page-ink); color:var(--page); border-color:var(--page-ink)}
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <aside class="intro">
+    <h1>Apple Offline</h1>
+    <p class="tag">A marketing case study about getting Gen Z off their phones, told inside a phone.</p>
+    <div class="oneliner">
+      <b>The campaign in one line</b>
+      <p>Apple launches free weekly clubs in Apple Stores, plus an Offline Mode on iPhone, so Gen Z can put their phones down without missing out.</p>
+    </div>
+    <p class="howto">Unlock the phone and open the apps in order. The red badges show you where to go next. Or let it guide you:</p>
+    <button class="start" id="startTour" type="button">Start the tour</button>
+    <p class="me"><b>Akshara Singh</b><br>Research, strategy, campaign, social media plan, copy and design.</p>
+    <div class="ck">
+      <b>The campaign kit</b>
+      <p>The whole case study as a six-slide carousel I designed. Tap a slide to enlarge.</p>
+      <div class="ck-strip" tabindex="0" aria-label="Campaign kit slides, scroll sideways"><a href="canva-kit/01.jpg" target="_blank" rel="noopener"><img src="canva-kit/01.jpg" alt="Slide 1: Apple Offline" loading="lazy" width="1080" height="1350"></a><a href="canva-kit/02.jpg" target="_blank" rel="noopener"><img src="canva-kit/02.jpg" alt="Slide 2: The receipts" loading="lazy" width="1080" height="1350"></a><a href="canva-kit/03.jpg" target="_blank" rel="noopener"><img src="canva-kit/03.jpg" alt="Slide 3: The insight" loading="lazy" width="1080" height="1350"></a><a href="canva-kit/04.jpg" target="_blank" rel="noopener"><img src="canva-kit/04.jpg" alt="Slide 4: The idea" loading="lazy" width="1080" height="1350"></a><a href="canva-kit/05.jpg" target="_blank" rel="noopener"><img src="canva-kit/05.jpg" alt="Slide 5: Offline Wrapped" loading="lazy" width="1080" height="1350"></a><a href="canva-kit/06.jpg" target="_blank" rel="noopener"><img src="canva-kit/06.jpg" alt="Slide 6: Gen Z, and credits" loading="lazy" width="1080" height="1350"></a></div>
+      <div class="ck-btns"><a class="ck-p" href="https://www.canva.com/d/OWpsMtAJqkIaAXi" target="_blank" rel="noopener">View in Canva ↗</a><a href="canva-kit/campaign-kit.pdf" download>PDF</a><a href="https://www.canva.com/d/84mWTID-NMi4Fmd" target="_blank" rel="noopener">All my work ↗</a></div>
+    </div>
+  </aside>
+
+  <div class="device">
+    <div class="phone">
+      <div class="screen" id="screen">
+        <div class="wall"></div><div class="wall day"></div>
+        <div class="island"></div>
+        <div class="status" id="status"><span id="clock">9:41</span><span class="r"><span class="pill">Offline</span><span class="batt" aria-hidden="true"></span></span></div>
+
+        <!-- LOCK -->
+        <div class="lock" id="lock">
+          <div class="date" id="lockDate">Saturday</div>
+          <div class="time" id="lockTime">9:41</div>
+          <div class="ns">
+            <div class="ln"><div class="ai" style="background:#DDF94A">👋</div><div><b>Akshara Singh <small>now</small></b>I made Apple a marketing campaign. It's inside this phone.</div></div>
+            <div class="ln"><div class="ai" style="background:#FFD60A">📝</div><div><b>Notes <small>now</small></b>Start here: why everyone's mad at phones right now.</div></div>
+          </div>
+          <button class="unlock" id="unlock" type="button">Tap to unlock</button>
+        </div>
+
+        <!-- HOME -->
+        <div class="home" id="home" aria-label="Home screen">
+          <div class="widget">
+            <div class="wt">Apple Offline, a case study</div>
+            <div class="wh">Apple made the phone Gen Z can't put down. Here's how Apple helps them put it down.</div>
+            <button type="button" data-open="notes">Start with Notes</button>
+          </div>
+          <div class="grid" id="grid"></div>
+          <div class="dock" id="dock"></div>
+        </div>
+
+        <!-- 1 NOTES -->
+        <section class="app notes" id="app-notes" aria-label="Notes: the problem">
+          <div class="top" style="background:#fff"><button class="back" data-home type="button">‹ Home</button></div>
+          <div class="body">
+            <div class="note-h">the problem (read me first)</div>
+            <div class="note-d">Chapter 1 of 12</div>
+            <p class="p" style="margin-top:12px"><span class="hl">Apple doesn't have a customer problem. It has a meaning problem.</span> The iPhone is becoming the villain in Gen Z's mental health story.</p>
+            <div class="h">the receipts</div>
+            <div class="stat"><b>58%</b><p>of countries now ban phones in schools nationally, up from under a quarter in 2023.<span class="src">UNESCO GEM Report, March 2026</span></p></div>
+            <div class="stat"><b>51%</b><p>of US Gen Z adults feel lonely on weekends. 65% experience their social life more through a phone than in person.<span class="src">2026 US survey of 4,100 adults, via Communicate</span></p></div>
+            <div class="stat"><b>45%</b><p>of US smartphone users are considering a "dumbphone".<span class="src">WhistleOut survey</span></p></div>
+            <div class="stat"><b>75%</b><p>of US adults support banning phones in class.<span class="src">Pew Research Center 2025, via Newsweek</span></p></div>
+            <div class="h">apple's answer so far</div>
+            <p class="p">More Screen Time dashboards and parental controls. Useful, but they're settings for parents. They don't give a 21-year-old one reason to love Apple more.</p>
+            <div class="h">brand audit</div>
+            <p class="p"><b>strengths</b></p>
+            <ul class="chk done"><li>the iPhone is Gen Z's status symbol</li><li>owns the software, the Watch and hundreds of stores</li><li>trusted on privacy</li></ul>
+            <p class="p"><b>weaknesses</b></p>
+            <ul class="chk"><li>seen as the maker of the addictive thing</li><li>wellbeing messaging is defensive</li><li>stores are for buying, not belonging</li></ul>
+            <p class="p"><b>opportunities</b></p>
+            <ul class="chk done"><li>Gen Z wants real-life community: run clubs, phone-free events</li><li>no big tech brand owns "logging off"</li></ul>
+            <p class="p"><b>threats</b></p>
+            <ul class="chk"><li>school bans and age-check laws keep spreading</li><li>dumbphones make "less Apple" a lifestyle</li></ul>
+            <button class="next" data-next type="button">Next: Screen Time</button>
+          </div>
+        </section>
+
+        <!-- 2 SCREEN TIME -->
+        <section class="app" id="app-screentime" aria-label="Screen Time: the insight">
+          <div class="top"><button class="back" data-home type="button">‹ Home</button><div class="ttl">Screen Time</div><div class="ch">Chapter 2: the insight</div></div>
+          <div class="body">
+            <div class="grp" style="padding:14px 14px 26px">
+              <div style="font-size:.78rem; color:#8E8E93">Example week, daily average</div>
+              <div class="big">7h 12m</div>
+              <div class="chart" aria-hidden="true"><div style="height:62%"><span>M</span></div><div style="height:70%"><span>T</span></div><div style="height:55%"><span>W</span></div><div style="height:78%"><span>T</span></div><div style="height:66%"><span>F</span></div><div style="height:95%"><span>S</span></div><div style="height:88%"><span>S</span></div></div>
+            </div>
+            <div class="grp" style="padding:14px">
+              <label for="hrs" style="font-weight:600; font-size:.92rem">Your hours a day: <span id="hrsOut">6</span></label>
+              <input class="slider" type="range" id="hrs" min="1" max="12" step="0.5" value="6">
+              <div style="font-size:.8rem; color:#8E8E93">That's</div>
+              <div class="big" id="days" aria-live="polite">91 days</div>
+              <div style="font-size:.8rem; color:#8E8E93">a year on your phone. Or:</div>
+              <div class="alts"><div><b id="a1">2,190</b><span>run clubs</span></div><div><b id="a2">2,920</b><span>albums</span></div><div><b id="a3">1,095</b><span>movie nights</span></div></div>
+            </div>
+            <div class="insight"><b>The insight</b><p>Logging off is easy. Having somewhere to go is the hard part.</p></div>
+            <p class="p" style="margin-top:12px">Gen Z doesn't need another screen-time timer. They need a better place to be when the phone goes down. Apple already owns hundreds of those places.</p>
+            <button class="next" data-next type="button">Next: Messages</button>
+          </div>
+        </section>
+
+        <!-- 3 MESSAGES -->
+        <section class="app" id="app-messages" aria-label="Messages: the audience">
+          <div class="top"><button class="back" data-home type="button" id="msgBack">‹ Home</button><div class="ttl" id="msgTitle">Messages</div><div class="ch">Chapter 3: the audience, Gen Z 18–26</div></div>
+          <div class="body" style="padding-left:0; padding-right:0">
+            <div class="thread-list" id="threads">
+              <button type="button" data-t="0"><span class="av" style="background:#DDF94A">Z</span><span><b>Zoe, 19, student</b><span>i want to use my phone less but everyone's on it</span></span></button>
+              <button type="button" data-t="1"><span class="av" style="background:#FF5FB0; color:#fff">A</span><span><b>Arjun, 23, new in the city</b><span>my social life is basically group chats</span></span></button>
+              <button type="button" data-t="2"><span class="av" style="background:#8FCBFF">L</span><span><b>Lina, 26, remote designer</b><span>i'd buy a flip phone if i didn't need maps</span></span></button>
+            </div>
+            <div style="padding:0 16px">
+              <div class="convo" data-c="0"><div class="sysn">Zoe · wakes up scrolling, falls asleep scrolling</div><div class="bub in">i want to use my phone less but everyone's on it</div><div class="bub in">if i log off i just miss stuff</div><div class="bub out">what would make you put it down?</div><div class="bub in">honestly? if my friends were doing something irl too</div><div class="needs"><b>What she needs:</b> a reason to log off that her friends will join.</div></div>
+              <div class="convo" data-c="1"><div class="sysn">Arjun · office, commute, home, repeat</div><div class="bub in">my social life is basically group chats</div><div class="bub in">don't really know anyone here outside work</div><div class="bub out">would you go to a meetup?</div><div class="bub in">if it wasn't awkward. like if there was a thing to do</div><div class="needs"><b>What he needs:</b> an easy, low-pressure way to meet people.</div></div>
+              <div class="convo" data-c="2"><div class="sysn">Lina · screens for work, screens to relax</div><div class="bub in">i'd buy a flip phone if i didn't need maps</div><div class="bub in">and music. and my camera</div><div class="bub out">so you want less phone, not no phone</div><div class="bub in">exactly</div><div class="needs"><b>What she needs:</b> to go offline without losing the useful stuff.</div></div>
+              <p class="cap">Personas are illustrative composites built for this project.</p>
+              <button class="next" data-next type="button">Next: Maps</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4 MAPS -->
+        <section class="app" id="app-maps" aria-label="Maps: the competition">
+          <div class="top"><button class="back" data-home type="button">‹ Home</button><div class="ttl">Maps</div><div class="ch">Chapter 4: who's already here</div></div>
+          <div class="body">
+            <p class="p" style="margin-top:0">Everyone trying to help Gen Z use their phone less. Tap a pin.</p>
+            <div class="map" id="map">
+              <button class="pin" type="button" data-p="0" style="left:24%; top:34%"><i style="background:#8E8E93"><span>📵</span></i><em>Dumbphones</em></button>
+              <button class="pin" type="button" data-p="1" style="left:72%; top:52%"><i style="background:#5E5CE6"><span>⏱️</span></i><em>App blockers</em></button>
+              <button class="pin" type="button" data-p="2" style="left:30%; top:84%"><i style="background:#FF9F0A"><span>🏃</span></i><em>Run clubs</em></button>
+              <button class="pin" type="button" data-p="3" style="left:80%; top:88%"><i style="background:#FF375F"><span>👯</span></i><em>Friend apps</em></button>
+              <button class="pin gap" type="button" data-p="4" style="left:52%; top:26%"><i><span>❓</span></i><em>Unclaimed</em></button>
+            </div>
+            <div class="sheet" id="sheet" aria-live="polite"><h4>Tap a pin</h4><div class="row2">Each one solves half the problem.</div></div>
+            <button class="next" data-next type="button">Next: the idea</button>
+          </div>
+        </section>
+
+        <!-- 5 IDEA (Keynote) -->
+        <section class="app darkapp" id="app-idea" aria-label="Keynote: the idea">
+          <div class="top"><button class="back" data-home type="button">‹ Home</button><div class="ttl">The idea</div><div class="ch">Chapter 5</div></div>
+          <div class="body">
+            <div class="deck" id="deck">
+              <div class="slide on"><div class="k">Introducing</div><div class="t">Apple Offline.</div><div class="s">Apple's first product you don't hold.</div></div>
+              <div class="slide"><div class="k">In one line</div><div class="t" style="font-size:1.45rem">Free weekly clubs in Apple Stores, plus an Offline Mode on iPhone.</div><div class="s">So Gen Z can put the phone down without missing out.</div></div>
+              <div class="slide s-g"><div class="k">Part 1: the feature</div><div class="t">Offline Mode</div><div class="s">One swipe. Social apps pause, notifications stop, but Maps, Music, Camera and Pay keep working. It counts time offline, not time on screen.</div></div>
+              <div class="slide s-l"><div class="k">Part 2: the new vertical</div><div class="t">Offline Clubs</div><div class="s">Apple Stores become Gen Z's new hangout after hours. Run Club, Listening Club, Photo Walk, Make Club. Free, with Offline Mode on at the door.</div></div>
+              <div class="slide s-p"><div class="k">Part 3: the share moment</div><div class="t">Offline Wrapped</div><div class="s">Every December: your hours offline, top club and people you met. Built to be shared. Yes, we know the irony.</div></div>
+              <div class="slide"><div class="k">Why only Apple</div><div class="t" style="font-size:1.5rem">It owns the software, the stores, the Watch and the culture.</div><div class="s">Nobody else can switch off the phone and open a door at the same time.</div></div>
+              <div class="slide s-g"><div class="k">Where the money is</div><div class="t">Leave the phone. Keep the Watch.</div><div class="s">Going offline safely is easier with Apple Watch and AirPods. Clubs are free, and the ecosystem gets more useful.</div></div>
+            </div>
+            <div class="deck-nav"><button type="button" id="prev">Back</button><div class="dots" id="dots" aria-hidden="true"></div><button type="button" id="nxt">Next slide</button></div>
+            <p class="cap" id="slideNo" aria-live="polite" style="text-align:center">Slide 1 of 7</p>
+            <button class="next" data-next type="button">Next: try Offline Mode</button>
+          </div>
+        </section>
+
+        <!-- 6 SETTINGS -->
+        <section class="app" id="app-settings" aria-label="Settings: Offline Mode">
+          <div class="top"><button class="back" data-home type="button">‹ Home</button><div class="ttl">Settings</div><div class="ch">Chapter 6: the product</div></div>
+          <div class="body">
+            <div class="set-hero"><div class="sq">🌿</div><div style="flex:1"><b id="omLbl">Offline Mode</b><span>Try it. Watch the phone change.</span></div><button class="tg" id="om" role="switch" aria-checked="false" aria-labelledby="omLbl" type="button"></button></div>
+            <div class="grp">
+              <div class="row"><span>Social apps</span><span class="v" id="r1">Allowed</span></div>
+              <div class="row"><span>Notifications</span><span class="v" id="r2">Everyone</span></div>
+              <div class="row"><span>Maps, Music, Camera, Pay</span><span class="v g">Always on</span></div>
+              <div class="row"><span>Time offline today</span><span class="v" id="r3">0:00</span></div>
+            </div>
+            <p class="cap">Offline Mode is a proposed iOS feature. It works at system level, so it can't be deleted like a blocker app, and it keeps the useful stuff.</p>
+            <div class="grp">
+              <div class="row"><span>Allow calls from</span><span class="v">Close Friends</span></div>
+              <div class="row"><span>Turn on automatically</span><span class="v">At an Offline Club</span></div>
+              <div class="row"><span>Keep reachable on</span><span class="v">Apple Watch</span></div>
+            </div>
+            <button class="next" data-next type="button">Next: Clubs</button>
+          </div>
+        </section>
+
+        <!-- 7 CLUBS -->
+        <section class="app" id="app-clubs" aria-label="Clubs: the new vertical">
+          <div class="top"><button class="back" data-home type="button">‹ Home</button><div class="ttl">Offline Clubs</div><div class="ch">Chapter 7: the new vertical</div></div>
+          <div class="body">
+            <p class="p" style="margin-top:0">Free clubs in Apple Stores, after hours. Pick a city and RSVP.</p>
+            <div class="chips" id="cities" role="group" aria-label="City"></div>
+            <div id="clubList"></div>
+            <p class="cap">Launching in 10 cities, then expanding based on return rates. Partner cafés, bookshops and parks host clubs where there's no store.</p>
+            <button class="next" data-next type="button">Next: Photos</button>
+          </div>
+        </section>
+
+        <!-- 8 PHOTOS -->
+        <section class="app" id="app-photos" aria-label="Photos: the campaign">
+          <div class="top"><button class="back" data-home type="button">‹ Home</button><div class="ttl">Photos</div><div class="ch">Chapter 8: the campaign, tap any photo</div></div>
+          <div class="body" style="position:relative">
+            <div class="pgrid" id="pgrid"></div>
+            <button class="next" data-next type="button">Next: Social</button>
+          </div>
+          <div class="viewer" id="viewer" role="dialog" aria-label="Campaign asset">
+              <button class="close" id="vClose" type="button">‹ All photos</button>
+              <div class="art" id="vArt"></div>
+              <div class="what" id="vWhat"></div>
+              <p id="vTxt"></p>
+            </div>
+        </section>
+
+        <!-- 9 SOCIAL -->
+        <section class="app" id="app-social" aria-label="Social: the social media plan">
+          <div class="top"><button class="back" data-home type="button">‹ Home</button><div class="ttl">Social</div><div class="ch">Chapter 9: the social media plan</div></div>
+          <div class="body">
+            <div class="seg" role="tablist" aria-label="Social plan" id="seg">
+              <button type="button" role="tab" aria-selected="true" data-s="0">Strategy</button>
+              <button type="button" role="tab" aria-selected="false" data-s="1">Posts</button>
+              <button type="button" role="tab" aria-selected="false" data-s="2">Replies</button>
+            </div>
+            <div class="spane show" data-sp="0" role="tabpanel">
+              <p class="p" style="margin-top:0">A log-off campaign that lives online. We say the irony out loud, and use social to get people offline, not to keep them scrolling.</p>
+              <div class="plat"><b>TikTok</b><span>Join the screen-time and dumbphone conversation honestly.</span><small>Creator "24 hours offline" videos, club recaps. KPI: shares, sign-ups.</small></div>
+              <div class="plat"><b>Instagram</b><span>The club home: weekly drops and member stories.</span><small>Stories with RSVP stickers, carousels, city Broadcast channels. KPI: RSVPs.</small></div>
+              <div class="plat"><b>YouTube</b><span>The launch film and "We met at Run Club" series.</span><small>60-second film, 8-minute episodes, Shorts. KPI: watch time, brand lift.</small></div>
+              <div class="plat"><b>Strava</b><span>Run Club lives where runners already are.</span><small>Official club, route challenges. KPI: members, event joins.</small></div>
+              <div class="plat"><b>Threads and X</b><span>Launch-day conversation around the apple.com stunt.</span><small>Real-time replies. KPI: mentions, earned media.</small></div>
+              <div class="h">Content pillars</div>
+              <div class="pill-row"><span>Club life 35%</span><span>Creators log off 25%</span><span>Club drops 25%</span><span>How-to 15%</span></div>
+              <div class="h">Creators</div>
+              <p class="p">Big creators go offline for 24 hours on launch. Run-club founders, book-club hosts and DJs lead the first clubs. Local creators film their city. Members, with consent, become the main content.</p>
+              <div class="h">Paid</div>
+              <p class="p">Tease to 18–26 in launch cities, then "Find a club" creator ads, then local club-drop Stories to people within 10 km of a store.</p>
+            </div>
+            <div class="spane" data-sp="1" role="tabpanel">
+              <div class="reel" style="background:linear-gradient(180deg,#111,#2a1b4a)"><div class="who">TikTok, @apple</div><div class="txt">POV: Apple told you to log off</div><div><div class="cp">"apple really said touch grass 😭 ok fine. see u saturday."</div><div class="gl">Goal: reach and conversation</div></div></div>
+              <div class="reel" style="background:linear-gradient(160deg,#E9FBE1,#86D160); color:#111"><div class="who">Instagram carousel, @apple</div><div class="txt">What 40 strangers did instead of scrolling this Saturday</div><div><div class="cp">"Run club, coffee, one very competitive game of chess. Next one's Saturday."</div><div class="gl">Goal: saves and sign-ups</div></div></div>
+              <div class="reel" style="background:linear-gradient(140deg,#FF5FB0,#8B5CF6)"><div class="who">Instagram Story, @apple</div><div class="txt">Club drop: Listening Club, Thursday 8pm. 30 spots.</div><div><div class="cp">RSVP sticker, city Broadcast channel</div><div class="gl">Goal: RSVPs</div></div></div>
+            </div>
+            <div class="spane" data-sp="2" role="tabpanel">
+              <p class="p" style="margin-top:0">Tone: Apple's confidence, Gen Z's self-awareness. Short, never preachy.</p>
+              <div class="cm"><div class="q"><small>user</small>apple telling me to put my phone down is crazy 💀</div><div class="a"><small>apple</small>we know 😭 hear us out: saturday, 8am, run club. phone optional.</div></div>
+              <div class="cm"><div class="q"><small>user</small>so this is just a way to sell me a watch lol</div><div class="a"><small>apple</small>clubs are free and you don't need anything to join. the watch is a nice-to-have, not a ticket.</div></div>
+              <div class="cm"><div class="q"><small>user</small>corporate touch grass 🙄</div><div class="a"><small>apple</small>fair. come see if it feels corporate. every club is free.</div></div>
+              <div class="h">Rules</div>
+              <p class="p">Admit the irony first. Reply within the first hour. Never shame anyone's screen time. Never sell inside clubs. Never post members without consent.</p>
+            </div>
+            <button class="next" data-next type="button">Next: Calendar</button>
+          </div>
+        </section>
+
+        <!-- 10 CALENDAR -->
+        <section class="app" id="app-calendar" aria-label="Calendar: the rollout">
+          <div class="top"><button class="back" data-home type="button">‹ Home</button><div class="ttl">Calendar</div><div class="ch">Chapter 10: the rollout</div></div>
+          <div class="body">
+            <div class="phase" style="border-color:#8E8E93"><span class="w">Weeks 1–2</span><b>Tease</b><ul><li>"Screen Time: 0h 0m. Personal best." ads in parks</li><li>6-second social teasers</li><li>Press briefings on Gen Z loneliness</li></ul></div>
+            <div class="phase" style="border-color:#007AFF"><span class="w">Week 3</span><b>Launch</b><ul><li>apple.com goes offline for one hour</li><li>"The Last Notification" film</li><li>Offline Mode arrives in an iOS update</li></ul></div>
+            <div class="phase" style="border-color:#34C759"><span class="w">Weeks 4–24</span><b>Clubs</b><ul><li>Weekly clubs in 10 cities</li><li>Weekly social drops, member stories</li><li>Strava Run Club, Listening Club premieres</li></ul></div>
+            <div class="phase" style="border-color:#FF5FB0"><span class="w">December</span><b>Wrapped</b><ul><li>Offline Wrapped goes live</li><li>Results announced, next cities revealed</li></ul></div>
+            <div class="h">Launch week, post by post</div>
+            <div class="day"><div class="dn"><small>MON</small><b>1</b></div><div class="ev"><span>Threads + X</span><br>apple.com offline for an hour; live replies</div></div>
+            <div class="day"><div class="dn"><small>MON</small><b>1</b></div><div class="ev"><span>YouTube + TikTok</span><br>Launch film goes live</div></div>
+            <div class="day"><div class="dn"><small>TUE</small><b>2</b></div><div class="ev"><span>TikTok</span><br>Creators begin 24 hours offline</div></div>
+            <div class="day"><div class="dn"><small>WED</small><b>3</b></div><div class="ev"><span>Instagram</span><br>First club drops in 10 cities</div></div>
+            <div class="day"><div class="dn"><small>THU</small><b>4</b></div><div class="ev"><span>TikTok</span><br>Creators' honest "after" videos</div></div>
+            <div class="day"><div class="dn"><small>SAT</small><b>6</b></div><div class="ev"><span>Instagram + Strava</span><br>First Run Club, stories from members</div></div>
+            <button class="next" data-next type="button">Next: Results</button>
+          </div>
+        </section>
+
+        <!-- 11 RESULTS -->
+        <section class="app darkapp" id="app-results" aria-label="Results: KPIs and business case">
+          <div class="top"><button class="back" data-home type="button">‹ Home</button><div class="ttl">Results</div><div class="ch">Chapter 11: targets for the first 6 months, tap a row</div></div>
+          <div class="body" id="ticks"></div>
+        </section>
+
+        <!-- 12 ABOUT -->
+        <section class="app" id="app-about" aria-label="About me">
+          <div class="top"><button class="back" data-home type="button">‹ Home</button><div class="ttl">Contacts</div><div class="ch">Chapter 12: who made this</div></div>
+          <div class="body">
+            <div class="card">
+              <div class="av">A</div>
+              <h3>Akshara Singh</h3>
+              <div class="role">Digital marketer</div>
+              <div class="acts"><a href="mailto:Akshara.singh.marketing@gmail.com">Email</a></div>
+            </div>
+            <div class="grp">
+              <div class="row"><span>Email</span><span class="v" style="font-size:.78rem">Akshara.singh.marketing@gmail.com</span></div>
+              <div class="row"><span>Campaign kit</span><span class="v"><a href="https://www.canva.com/d/OWpsMtAJqkIaAXi" target="_blank" rel="noopener">View in Canva</a></span></div>
+              <div class="row"><span>On this project</span><span class="v">Research, brand audit, strategy, new vertical, social plan, copy, design</span></div>
+            </div>
+            <p class="cap">A self-initiated campaign created for portfolio purposes only. Not affiliated with, commissioned by or endorsed by Apple Inc. Apple, iPhone, Apple Watch, AirPods and Apple Music are trademarks of Apple Inc. Personas, targets and budget are illustrative; statistics are credited to their sources.</p>
+            <button class="next" id="powerBtn" type="button" style="background:#000">You've seen it all. Now put the phone down.</button>
+          </div>
+        </section>
+
+        <div class="poweroff" id="power" aria-live="polite">
+          <div class="g">Now go outside.</div>
+          <p>Log off. Show up.</p>
+          <button type="button" id="wake">Wake the phone</button>
+        </div>
+
+        <button class="homebar" id="homebar" type="button" aria-label="Go to home screen"></button>
+      </div>
+    </div>
+  </div>
+
+  <aside class="chapters">
+    <h2>Chapters</h2>
+    <ol id="chap"></ol>
+    <p class="progress" id="prog" aria-live="polite">0 of 12 opened</p>
+    <p class="disclaim">Portfolio project. Not affiliated with Apple Inc.</p>
+  </aside>
+</div>
+
+<script>
+(function(){
+  function $(id){return document.getElementById(id);}
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var apps=[
+    {id:'notes', name:'Notes', ch:'The problem', bg:'linear-gradient(180deg,#FFE66D,#FFD60A)', e:'📝'},
+    {id:'screentime', name:'Screen Time', ch:'The insight', bg:'linear-gradient(135deg,#5E5CE6,#BF5AF2)', e:'⏳'},
+    {id:'messages', name:'Messages', ch:'The audience', bg:'linear-gradient(180deg,#5BE37D,#28C840)', e:'💬'},
+    {id:'maps', name:'Maps', ch:'The competition', bg:'linear-gradient(135deg,#B8E0A6,#8FCBFF)', e:'🗺️'},
+    {id:'idea', name:'Keynote', ch:'The idea', bg:'linear-gradient(180deg,#2C2C2E,#000)', e:'💡'},
+    {id:'settings', name:'Settings', ch:'Offline Mode', bg:'linear-gradient(180deg,#C7C7CC,#8E8E93)', e:'⚙️'},
+    {id:'clubs', name:'Clubs', ch:'The new vertical', bg:'linear-gradient(135deg,#DDF94A,#34C759)', e:'🏃'},
+    {id:'photos', name:'Photos', ch:'The campaign', bg:'#fff', e:'🌸'},
+    {id:'social', name:'Social', ch:'Social media plan', bg:'linear-gradient(135deg,#FF5FB0,#8B5CF6)', e:'✨'},
+    {id:'calendar', name:'Calendar', ch:'The rollout', bg:'#fff', e:'cal'},
+    {id:'results', name:'Results', ch:'KPIs and money', bg:'#000', e:'📈'},
+    {id:'about', name:'Contacts', ch:'About me', bg:'linear-gradient(180deg,#D1D1D6,#AEAEB2)', e:'👋'}
+  ];
+  var seen={}, current=null, screen=$('screen');
+
+  /* clock */
+  function tick(){ var d=new Date(), t=d.getHours()+':'+String(d.getMinutes()).padStart(2,'0');
+    $('clock').textContent=t; $('lockTime').textContent=t;
+    $('lockDate').textContent=d.toLocaleDateString(undefined,{weekday:'long', day:'numeric', month:'long'}); }
+  tick(); setInterval(tick,15000);
+
+  /* build icons */
+  function iconHTML(a,i){
+    var inner=a.e==='cal'?'<span class="sq cal-ic"><small>'+new Date().toLocaleDateString(undefined,{weekday:'short'}).toUpperCase()+'</small><b>'+new Date().getDate()+'</b></span>':'<span class="sq" style="background:'+a.bg+'">'+a.e+'</span>';
+    return '<button class="icon" type="button" data-open="'+a.id+'" aria-label="'+a.name+', chapter '+(i+1)+': '+a.ch+'">'+inner+'<span class="badge">'+(i+1)+'</span><span class="lbl">'+a.name+'</span></button>';
+  }
+  var grid='', dock='';
+  apps.forEach(function(a,i){ grid+=iconHTML(a,i); });
+  $('grid').innerHTML=grid;
+  $('dock').innerHTML=['messages','notes','photos','settings'].map(function(id){ var i=apps.findIndex(function(a){return a.id===id;}); return iconHTML(apps[i],i).replace('<span class="badge">'+(i+1)+'</span>',''); }).join('');
+  $('chap').innerHTML=apps.map(function(a,i){ return '<li><button type="button" data-open="'+a.id+'"><span class="ix">'+(i+1)+'</span><span>'+a.ch+'<small>'+a.name+'</small></span></button></li>'; }).join('');
+
+  /* lock */
+  var unlocked=false;
+  function unlock(){ if(unlocked) return; unlocked=true; $('lock').classList.add('gone'); updateChrome(); }
+  $('unlock').addEventListener('click',unlock);
+
+  /* open/close */
+  function updateChrome(){
+    var light=current && !$('app-'+current).classList.contains('darkapp');
+    $('status').classList.toggle('dark', !!light);
+    $('homebar').classList.toggle('dark', !!light);
+  }
+  function openApp(id){
+    unlock(); closeViewer();
+    if(current) $('app-'+current).classList.remove('open');
+    current=id; var el=$('app-'+id); el.classList.add('open');
+    el.querySelector('.body').scrollTop=0;
+    seen[id]=true; document.querySelectorAll('[data-open="'+id+'"]').forEach(function(b){ if(b.classList.contains('icon')) b.classList.add('seen'); });
+    refreshChap(); updateChrome();
+    setTimeout(function(){ var b=el.querySelector('.back'); if(b) b.focus({preventScroll:true}); }, reduce?0:200);
+    if(id==='messages') showThreads();
+  }
+  function goHome(){ if(current){ $('app-'+current).classList.remove('open'); current=null; } updateChrome(); }
+  function refreshChap(){
+    var n=0; document.querySelectorAll('#chap button').forEach(function(b){ var id=b.getAttribute('data-open'); b.classList.toggle('seen',!!seen[id]); if(seen[id]) n++; b.classList.toggle('current',id===current); });
+    $('prog').textContent=n+' of 12 opened'+(n===12?'. You saw everything.':'');
+  }
+  document.addEventListener('click',function(e){
+    var o=e.target.closest('[data-open]'); if(o){ openApp(o.getAttribute('data-open')); return; }
+    if(e.target.closest('[data-home]')){ if(current==='messages' && inConvo){ showThreads(); return; } goHome(); return; }
+    if(e.target.closest('[data-next]')){ var i=apps.findIndex(function(a){return a.id===current;}); openApp(apps[(i+1)%apps.length].id); }
+  });
+  $('homebar').addEventListener('click',goHome);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ if($('viewer').classList.contains('show')) closeViewer(); else goHome(); } });
+  $('startTour').addEventListener('click',function(){ openApp('notes'); $('screen').scrollIntoView({behavior:reduce?'auto':'smooth', block:'center'}); });
+
+  /* screen time */
+  var hrs=$('hrs');
+  function calc(){ var h=parseFloat(hrs.value), yr=h*365; $('hrsOut').textContent=h; $('days').textContent=Math.round(yr/24)+' days';
+    $('a1').textContent=Math.round(yr).toLocaleString(); $('a2').textContent=Math.round(yr/.75).toLocaleString(); $('a3').textContent=Math.round(yr/2).toLocaleString(); }
+  hrs.addEventListener('input',calc); calc();
+
+  /* messages */
+  var inConvo=false;
+  function showThreads(){ inConvo=false; $('threads').style.display=''; document.querySelectorAll('.convo').forEach(function(c){c.classList.remove('show');}); $('msgTitle').textContent='Messages'; $('msgBack').textContent='‹ Home'; }
+  $('threads').addEventListener('click',function(e){ var b=e.target.closest('[data-t]'); if(!b) return; var t=b.getAttribute('data-t');
+    inConvo=true; $('threads').style.display='none'; document.querySelector('.convo[data-c="'+t+'"]').classList.add('show'); $('msgTitle').textContent=b.querySelector('b').textContent.split(',')[0]; $('msgBack').textContent='‹ Messages'; $('msgBack').focus(); });
+
+  /* maps */
+  var pins=[
+    ['Dumbphones','A simpler phone with no apps.','You lose maps, music and camera. And you still have nowhere to go.'],
+    ['App blockers','Timers and limits on your current phone.','Feels like punishment. Willpower, not joy.'],
+    ['Run clubs and phone-free events','Real community, in person.','Scattered and local. No big brand owns it.'],
+    ['Friend-finding apps','Meet new people nearby.','You still start on your phone, and it can feel awkward.'],
+    ['Unclaimed territory','Less phone AND somewhere better to go.','Nobody is here yet. This is where Apple Offline goes.']
+  ];
+  $('map').addEventListener('click',function(e){ var b=e.target.closest('.pin'); if(!b) return; var p=pins[+b.getAttribute('data-p')];
+    document.querySelectorAll('.pin').forEach(function(x){x.classList.toggle('sel',x===b);});
+    $('sheet').innerHTML='<h4>'+p[0]+'</h4><div class="row2"><b>Offers:</b> '+p[1]+'</div><div class="row2"><b>Missing:</b> '+p[2]+'</div>'; });
+
+  /* deck */
+  var slides=[].slice.call(document.querySelectorAll('#deck .slide')), si=0;
+  $('dots').innerHTML=slides.map(function(){return '<i></i>';}).join('');
+  function show(i){ si=(i+slides.length)%slides.length; slides.forEach(function(s,j){s.classList.toggle('on',j===si);});
+    [].forEach.call($('dots').children,function(d,j){d.classList.toggle('on',j===si);}); $('slideNo').textContent='Slide '+(si+1)+' of '+slides.length; }
+  $('prev').addEventListener('click',function(){show(si-1);}); $('nxt').addEventListener('click',function(){show(si+1);}); show(0);
+
+  /* offline mode */
+  var om=$('om'), t0=0, iv=0;
+  function fmt(s){ var m=Math.floor(s/60), r=s%60; return m+':'+(r<10?'0':'')+r; }
+  om.addEventListener('click',function(){ var on=om.getAttribute('aria-checked')!=='true'; om.setAttribute('aria-checked',on);
+    document.body.classList.toggle('offline',on);
+    $('r1').textContent=on?'Paused':'Allowed'; $('r1').className='v'+(on?' r':'');
+    $('r2').textContent=on?'Close Friends only':'Everyone';
+    clearInterval(iv); if(on){ t0=Date.now(); iv=setInterval(function(){ $('r3').textContent=fmt(Math.floor((Date.now()-t0)/1000)); },1000); $('r3').className='v g'; } else { $('r3').className='v'; } });
+
+  /* clubs */
+  var cities=['London','Mumbai','New York','Tokyo','Berlin','Sydney'], city=0, rs={};
+  var clubs=[['🏃','Run Club','Saturdays, 8am','5K, every pace welcome, coffee after.',40,'#FFE9D6'],['🎧','Listening Club','Thursdays, 8pm','A new album, start to finish. Phones in the box.',30,'#EDE3FF'],['📷','Photo Walk','Sundays, 4pm','Shoot, then share prints, not posts.',20,'#DFF1FF'],['✂️','Make Club','Wednesdays, 7pm','Zines, stickers, bracelets. Zero talent needed.',25,'#F4FFD6']];
+  function renderClubs(){
+    $('cities').innerHTML=cities.map(function(c,i){return '<button type="button" aria-pressed="'+(i===city)+'" data-c="'+i+'">'+c+'</button>';}).join('');
+    $('clubList').innerHTML=clubs.map(function(c,i){ var k=city+'-'+i, on=!!rs[k];
+      return '<div class="club"><div class="e" style="background:'+c[5]+'">'+c[0]+'</div><div class="i"><b>'+c[1]+'</b><div class="w">'+c[2]+', Apple '+cities[city]+'</div><div class="d">'+c[3]+'</div><div class="w">'+(c[4]-(on?1:0))+' spots left</div></div><button class="rs" type="button" aria-pressed="'+on+'" data-k="'+k+'">'+(on?'You\u2019re in 🫶':'RSVP')+'</button></div>'; }).join('');
+  }
+  $('cities').addEventListener('click',function(e){ var b=e.target.closest('[data-c]'); if(!b) return; city=+b.getAttribute('data-c'); renderClubs(); });
+  $('clubList').addEventListener('click',function(e){ var b=e.target.closest('[data-k]'); if(!b) return; var k=b.getAttribute('data-k'); rs[k]=!rs[k]; renderClubs(); var nb=document.querySelector('[data-k="'+k+'"]'); if(nb) nb.focus(); });
+  renderClubs();
+
+  /* photos */
+  var photos=[
+    ['a-web','We\u2019re out. Back at 8pm.','Launch stunt','On launch day, apple.com shows nothing but this line and a club finder for one hour. Built for screenshots and headlines.'],
+    ['a-black','Screen Time: 0h 0m. Personal best.','Outdoor ad','Placed in parks and on commutes during the tease.'],
+    ['a-lime','Your For You page will be fine.','Outdoor ad','A Gen Z in-joke that makes logging off feel low-stakes.'],
+    ['a-day','The group chat can wait. The group can\u2019t.','Outdoor ad','Points people to Saturday\u2019s club.'],
+    ['a-film','0:00 A phone buzzing nonstop.','Launch film, frame 1','"The Last Notification": we never see the screen, only its glow on her face.'],
+    ['a-black','0:12 Offline Mode, on.','Launch film, frame 2','She swipes. The sound of the city fades in.'],
+    ['a-day','0:25 Run Club. Strangers laughing.','Launch film, frame 3','The payoff: people, not pixels.'],
+    ['a-black','Log off. Show up.','Launch film, end card','The campaign line, closing every piece.'],
+    ['a-pink','312 hours offline.','Offline Wrapped','A December share card: your hours offline, top club and people you met.']
+  ];
+  $('pgrid').innerHTML=photos.map(function(p,i){ return '<button class="ph '+p[0]+'" type="button" data-ph="'+i+'" aria-label="'+p[2]+': '+p[1]+'">'+p[1]+'</button>'; }).join('');
+  var lastPh=null;
+  $('pgrid').addEventListener('click',function(e){ var b=e.target.closest('[data-ph]'); if(!b) return; lastPh=b; var p=photos[+b.getAttribute('data-ph')];
+    $('vArt').className='art '+p[0]; $('vArt').textContent=p[1]; $('vWhat').textContent=p[2]; $('vTxt').textContent=p[3];
+    $('viewer').classList.add('show'); $('status').classList.remove('dark'); $('homebar').classList.remove('dark'); $('vClose').focus(); });
+  function closeViewer(){ if(!$('viewer').classList.contains('show')) return; $('viewer').classList.remove('show'); updateChrome(); if(lastPh) lastPh.focus(); }
+  $('vClose').addEventListener('click',closeViewer);
+
+  /* social tabs */
+  $('seg').addEventListener('click',function(e){ var b=e.target.closest('[data-s]'); if(!b) return; var s=b.getAttribute('data-s');
+    document.querySelectorAll('#seg button').forEach(function(x){x.setAttribute('aria-selected',x===b);});
+    document.querySelectorAll('.spane').forEach(function(p){p.classList.toggle('show',p.getAttribute('data-sp')===s);}); });
+
+  /* results */
+  var kpis=[
+    ['Offline Mode switch-ons','Proof people want it','50M','M0 20 L10 18 L20 19 L30 12 L40 13 L50 6 L60 7 L70 2','The first number that shows the feature is loved, not tolerated.'],
+    ['Club RSVPs','Across 10 cities','500K','M0 22 L10 20 L20 16 L30 17 L40 11 L50 9 L60 5 L70 3','Measures whether the new vertical is real.'],
+    ['Gen Z store visits','Evenings and weekends','+20%','M0 18 L10 19 L20 15 L30 14 L40 10 L50 11 L60 6 L70 4','Stores become somewhere to be, not just to buy.'],
+    ['Brand perception','"Apple helps me have a healthier relationship with my phone"','+10 pts','M0 20 L10 20 L20 17 L30 15 L40 14 L50 10 L60 8 L70 5','Tracked with a brand-lift study among 18\u201326.'],
+    ['Watch cellular sales','Among 18\u201326','+8%','M0 19 L10 17 L20 18 L30 13 L40 12 L50 9 L60 8 L70 5','"Leave the phone, keep the Watch" in action.'],
+    ['Offline Wrapped shares','In December','10M','M0 24 L10 23 L20 22 L30 20 L40 18 L50 12 L60 6 L70 1','The share moment that brings next year\u2019s members.'],
+    ['Club return rate','Members who come back','60%','M0 16 L10 14 L20 15 L30 11 L40 12 L50 9 L60 8 L70 7','The best sign it\u2019s a habit, not a stunt.']
+  ];
+  var html=kpis.map(function(k,i){ return '<button class="tick" type="button" aria-expanded="false" aria-controls="td'+i+'" data-tk="'+i+'"><span><b>'+k[0]+'</b><small>'+k[1]+'</small></span><svg viewBox="0 0 70 26" aria-hidden="true"><path d="'+k[3]+'" fill="none" stroke="#34C759" stroke-width="2"/></svg><span class="val">'+k[2]+'</span></button><div class="tick-d" id="td'+i+'">'+k[4]+'</div>'; }).join('');
+  html+='<p class="cap">Illustrative targets for a portfolio project.</p>';
+  html+='<div class="h">How this makes Apple money</div><div class="grp"><div class="row"><span>Ecosystem</span><span class="v">Watch and AirPods become the "go offline safely" kit</span></div><div class="row"><span>Stores</span><span class="v">Gen Z visits every week, not just on upgrade day</span></div><div class="row"><span>Retention</span><span class="v">People wanting less phone stay with Apple, not a dumbphone</span></div><div class="row"><span>Apple Music</span><span class="v">Listening Club premieres drive subscriptions</span></div><div class="row"><span>Goodwill</span><span class="v">A positive answer for schools, parents, regulators</span></div></div>';
+  var bud=[['Social and creators',30],['Club operations',25],['Film and content',15],['Outdoor ads',15],['PR and stunt',8],['Partnerships',7]];
+  html+='<div class="h">Budget split (illustrative)</div><div class="bars">'+bud.map(function(b){return '<div class="br"><span>'+b[0]+'</span><span style="text-align:right">'+b[1]+'%</span><span class="tr"><i style="width:'+(b[1]/30*100)+'%"></i></span></div>';}).join('')+'</div>';
+  html+='<div class="h">Risks</div><div class="grp"><div class="row"><span>Hypocrisy backlash</span><span class="v">Say the irony first; back it with a real feature</span></div><div class="row"><span>Less app use</span><span class="v">Apple earns from devices and subscriptions, not scrolling minutes</span></div><div class="row"><span>Feels corporate</span><span class="v">Community builders host; no selling in clubs</span></div><div class="row"><span>Safety</span><span class="v">Trained hosts, 18+ evening clubs</span></div></div>';
+  html+='<button class="next" data-next type="button">Next: who made this</button>';
+  $('ticks').innerHTML=html;
+  $('ticks').addEventListener('click',function(e){ var b=e.target.closest('[data-tk]'); if(!b) return; var d=$('td'+b.getAttribute('data-tk')), open=!d.classList.contains('show'); d.classList.toggle('show',open); b.setAttribute('aria-expanded',open); });
+
+  /* power off */
+  $('powerBtn').addEventListener('click',function(){ $('power').classList.add('on'); $('wake').focus(); });
+  $('wake').addEventListener('click',function(){ $('power').classList.remove('on'); goHome(); });
+})();
+</script>
+<a class="as-allwork" href="../../#work" aria-label="Back to all of Akshara Singh's work">&larr; All work</a>
+<style>.as-allwork{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:2147483000;display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:999px;background:rgba(17,17,16,.88);color:#F5F2EC!important;font:600 14px/1 system-ui,-apple-system,"Segoe UI",sans-serif;text-decoration:none!important;letter-spacing:0;box-shadow:0 8px 24px rgba(0,0,0,.25);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:transform .2s}.as-allwork:hover{transform:translateY(-2px)}.as-allwork:focus-visible{outline:2px solid #E9B872;outline-offset:3px}@media print{.as-allwork{display:none}}</style>
+</body>
+</html>

@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IndiGo: a social media trust strategy by Akshara Singh</title>
+<meta name="description" content="A social media strategy for IndiGo after the December 2025 disruption: say it before they ask. Insight, strategy, a live triage desk, a crisis protocol and measurement.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light dark;
+  --bg:#ECEDF1; --panel:#FFFFFF; --ink:#13183A; --muted:#5A6082; --line:#D7D9E3;
+  --indigo:#1B2A7B; --amber:#FFC53D; --board:#111318; --flap:#1C1F27; --flapt:#F5F2E8; --ok:#2FB26A; --bad:#E5484D;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){ --bg:#0B0D16; --panel:#151827; --ink:#ECEEF8; --muted:#A1A6C3; --line:#262A40; --indigo:#8E9CF2; }
+}
+:root[data-theme="dark"]{ --bg:#0B0D16; --panel:#151827; --ink:#ECEEF8; --muted:#A1A6C3; --line:#262A40; --indigo:#8E9CF2; }
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size:16.5px; line-height:1.6}
+button{font:inherit; color:inherit}
+:focus-visible{outline:3px solid var(--amber); outline-offset:3px; border-radius:6px}
+a{color:var(--indigo)}
+.mono{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace}
+.wrap{max-width:1140px; margin:0 auto; padding:0 clamp(16px,4vw,40px)}
+h1,h2,h3{margin:0; letter-spacing:-.025em; line-height:1.08; font-weight:800}
+h2{font-size:clamp(1.9rem,4.4vw,3.1rem); margin-bottom:.4em}
+h3{font-size:1.25rem; margin-bottom:.35em}
+p{margin:0 0 1em}
+.lede{font-size:clamp(1.05rem,1.7vw,1.2rem); color:var(--muted); max-width:42rem}
+.sm{font-size:.9rem; color:var(--muted)}
+.note{font-size:.8rem; color:var(--muted); margin-top:10px}
+section{padding:clamp(60px,8vw,100px) 0; border-top:1px solid var(--line)}
+.gate{display:inline-flex; gap:10px; align-items:center; font-family:"JetBrains Mono",monospace; font-size:.78rem; font-weight:700; background:var(--board); color:var(--amber); padding:5px 12px; border-radius:6px; margin-bottom:14px}
+.gate span{color:var(--flapt)}
+.g2{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px}
+.g3{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px}
+.g4{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px}
+.card{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:18px}
+.mt{margin-top:clamp(24px,3.5vw,40px)}
+.tw{overflow-x:auto}
+table{width:100%; border-collapse:collapse; font-size:.93rem}
+th,td{text-align:left; vertical-align:top; padding:11px 14px 11px 0; border-bottom:1px solid var(--line)}
+th{font-size:.74rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted)}
+td:first-child{font-weight:700}
+.btn{border:0; border-radius:10px; background:var(--indigo); color:#fff; font-weight:700; padding:.6em 1.1em; cursor:pointer}
+:root:not([data-theme="light"]) .btn{color:#fff}
+
+/* hero board */
+.hero{background:var(--board); color:var(--flapt); padding:clamp(22px,4vw,40px) 0 clamp(40px,6vw,64px)}
+.hero .top{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; font-family:"JetBrains Mono",monospace; font-size:.8rem; color:#9AA0B8}
+.hero h1{font-size:clamp(2.6rem,7vw,5.4rem); margin:clamp(20px,3vw,34px) 0 10px; color:#fff}
+.hero h1 span{color:var(--amber)}
+.hero .lede{color:#B9BDD2}
+.board{margin-top:clamp(22px,3vw,36px); border:2px solid #2A2E3A; border-radius:14px; overflow:hidden}
+.board .bh,.board .row{display:grid; grid-template-columns:110px minmax(0,1fr) 160px 70px; gap:12px; align-items:center; padding:10px 14px}
+.board .bh{font-family:"JetBrains Mono",monospace; font-size:.72rem; color:var(--amber); background:#0A0B0F; letter-spacing:.1em}
+.board .row{border:0; border-top:1px solid #23262F; background:transparent; width:100%; text-align:left; cursor:pointer; color:var(--flapt)}
+.board .row:hover{background:#181B23}
+.flaps{display:flex; gap:2px; flex-wrap:wrap}
+.flaps i{font-style:normal; font-family:"JetBrains Mono",monospace; font-weight:700; background:var(--flap); border-radius:3px; min-width:1.05em; text-align:center; padding:1px 0; font-size:clamp(.72rem,1.4vw,.95rem); position:relative}
+.flaps i::after{content:""; position:absolute; left:0; right:0; top:50%; height:1px; background:rgba(0,0,0,.6)}
+.st{font-family:"JetBrains Mono",monospace; font-weight:800; font-size:.78rem; letter-spacing:.06em}
+.st.ok{color:var(--ok)} .st.am{color:var(--amber)} .st.bd{color:var(--bad)} .st.bl{color:#7FB2FF}
+.go{font-family:"JetBrains Mono",monospace; font-size:.75rem; color:#9AA0B8; text-align:right}
+.blink{animation:blink 1.2s steps(1) infinite}
+@keyframes blink{50%{opacity:.25}}
+
+/* timeline */
+.tl{position:relative; margin-top:16px; padding-left:22px; border-left:3px solid var(--line)}
+.tl div{position:relative; margin-bottom:16px}
+.tl div::before{content:""; position:absolute; left:-31px; top:6px; width:14px; height:14px; border-radius:50%; background:var(--bad); border:3px solid var(--bg)}
+.tl b{display:block; font-family:"JetBrains Mono",monospace; font-size:.8rem; color:var(--muted)}
+.stat .v{font-size:2.2rem; font-weight:800; line-height:1; color:var(--indigo)}
+.quote{font-size:clamp(1.5rem,3.4vw,2.4rem); font-weight:800; line-height:1.15; letter-spacing:-.02em}
+.quote em{font-style:normal; background:var(--amber); color:#13183A; padding:0 .15em}
+
+/* triage */
+.triage{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:18px; align-items:start}
+.tweet{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:16px}
+.tweet .u{display:flex; gap:10px; align-items:center; font-weight:700; font-size:.9rem}
+.tweet .u i{width:36px; height:36px; border-radius:50%; background:var(--line); display:grid; place-items:center; font-style:normal}
+.tweet .u small{color:var(--muted); font-weight:500}
+.tweet p{margin:10px 0 0; font-size:1rem}
+.cats{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin-top:12px}
+.cats button{border:1.5px solid var(--line); background:var(--panel); border-radius:10px; padding:.55em .4em; font-weight:700; font-size:.85rem; cursor:pointer}
+.cats button:hover{border-color:var(--indigo)}
+.cats button.right{border-color:var(--ok); background:color-mix(in srgb,var(--ok) 14%,var(--panel))}
+.cats button.wrong{border-color:var(--bad); background:color-mix(in srgb,var(--bad) 12%,var(--panel))}
+.reply{background:var(--board); color:var(--flapt); border-radius:16px; padding:16px; min-height:220px}
+.reply .h{font-family:"JetBrains Mono",monospace; font-size:.75rem; color:var(--amber); margin-bottom:8px}
+.reply .r{background:#1B2A7B; color:#fff; border-radius:14px 14px 4px 14px; padding:10px 12px; margin:8px 0}
+.reply dl{margin:10px 0 0; font-size:.88rem}
+.reply dt{font-family:"JetBrains Mono",monospace; font-size:.72rem; color:#9AA0B8; margin-top:8px}
+.reply dd{margin:0}
+.score{font-family:"JetBrains Mono",monospace; font-weight:800}
+
+/* crisis sim */
+.sim{background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:clamp(16px,3vw,26px)}
+.sim input{width:100%; accent-color:var(--indigo)}
+.sim .ticks{display:flex; justify-content:space-between; font-family:"JetBrains Mono",monospace; font-size:.72rem; color:var(--muted)}
+.simout{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:16px; margin-top:16px}
+.xpost{border:1px solid var(--line); border-radius:16px; padding:14px; background:var(--bg)}
+.xpost .u{display:flex; gap:8px; align-items:center; font-weight:800; font-size:.9rem}
+.xpost .u i{width:34px; height:34px; border-radius:50%; background:#1B2A7B; color:#fff; display:grid; place-items:center; font-style:normal; font-size:.7rem}
+.xpost .u small{color:var(--muted); font-weight:500}
+.xpost p{margin:10px 0 0; white-space:pre-line}
+.checks{list-style:none; padding:0; margin:0}
+.checks li{padding:8px 0 8px 28px; position:relative; border-bottom:1px solid var(--line); font-size:.93rem}
+.checks li::before{content:"✓"; position:absolute; left:0; top:7px; width:20px; height:20px; border-radius:50%; background:var(--ok); color:#fff; font-size:.75rem; display:grid; place-items:center; font-weight:800}
+
+.pill{display:inline-block; font-size:.72rem; font-weight:800; border-radius:6px; padding:2px 8px; background:var(--amber); color:#13183A}
+.kpi .v{font-size:2.1rem; font-weight:800; line-height:1; color:var(--indigo)}
+.kpi .l{font-weight:700}
+.kpi .d{font-size:.85rem; color:var(--muted)}
+.src{font-size:.82rem; color:var(--muted); padding-left:1.1rem}
+.src li{margin-bottom:.35rem; word-break:break-word}
+footer{padding:60px 0 50px; border-top:1px solid var(--line)}
+@media (max-width:900px){
+  .g2,.g3,.triage,.simout{grid-template-columns:1fr}
+  .g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .board .bh,.board .row{grid-template-columns:78px minmax(0,1fr) 96px}
+  .board .go,.board .bh span:last-child{display:none}
+}
+@media (prefers-reduced-motion:reduce){ .blink{animation:none} }
+/* campaign kit */
+.ck-g{margin-top:2.4rem}
+.ck-gh{display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:8px 16px; border-top:1px solid var(--line); padding-top:14px}
+.ck-gh b{font-size:1.05rem}
+.ck-gh span{display:flex; gap:14px; font-size:.9rem}
+.ck-gh a{font-weight:700}
+.ck-strip{display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding:14px 2px 12px}
+.ck-strip figure{margin:0; flex:none; scroll-snap-align:start}
+.ck-strip img{display:block; height:min(360px,62vw); width:auto; max-width:none; border-radius:12px; border:1px solid var(--line); box-shadow:0 16px 30px -20px rgba(0,0,0,.45)}
+.ck-strip figcaption{font-size:.82rem; color:var(--muted); margin-top:8px; max-width:280px}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="top"><span>AKSHARA SINGH · SOCIAL MEDIA STRATEGY</span><span>PROPOSAL FOR INDIGO · NOV 2026</span></div>
+    <h1>Say it <span>before</span> they ask.</h1>
+    <p class="lede">A social media strategy to rebuild trust after the December 2025 disruption, and make sure India's biggest airline is ready before the next peak season. Choose a flight to go to that part of the plan.</p>
+    <div class="board" role="group" aria-label="Departures board: sections of the strategy">
+      <div class="bh"><span>FLIGHT</span><span>DESTINATION</span><span>STATUS</span><span>GATE</span></div>
+      <div id="rows"></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="what">
+    <div class="wrap">
+      <span class="gate">6E 001 <span>WHAT HAPPENED</span></span>
+      <h2>December 2025, in numbers.</h2>
+      <div class="g4 mt">
+        <div class="card stat"><div class="v">~4,500</div><div class="sm">flights cancelled over ten days</div></div>
+        <div class="card stat"><div class="v">10 lakh+</div><div class="sm">passengers affected</div></div>
+        <div class="card stat"><div class="v">~1,600</div><div class="sm">cancellations at the peak, on 5 December</div></div>
+        <div class="card stat"><div class="v">60%+</div><div class="sm">IndiGo's share of domestic flying</div></div>
+      </div>
+      <div class="g2 mt">
+        <div class="tl">
+          <div><b>2 DEC 2025</b>Cancellations begin as the airline fails to adjust to new crew duty and rest rules.</div>
+          <div><b>3–5 DEC</b>Crowds at airports; bags pile up; passengers turn to IndiGo's team on X for help.</div>
+          <div><b>5 DEC</b>Cancellations peak at roughly 1,600 in a single day, during wedding season.</div>
+          <div><b>10 DEC</b>The chairman issues a public apology.</div>
+          <div><b>AFTER</b>₹10,000 travel vouchers for severely impacted customers; the regulator orders refunds and caps fares.</div>
+        </div>
+        <div class="card">
+          <h3>What this means for social</h3>
+          <p>Social media became the airport's help desk. People weren't only posting about cancelled flights. They were posting that nobody told them, and that they couldn't find their bags.</p>
+          <p style="margin:0">So this isn't a "post more ads" problem. It's a trust problem, and trust is built by what the brand says, how fast, and whether it keeps its word.</p>
+        </div>
+      </div>
+      <p class="note">Sources listed at the bottom of the page.</p>
+    </div>
+  </section>
+
+  <section id="insight">
+    <div class="wrap">
+      <span class="gate">6E 002 <span>THE INSIGHT</span></span>
+      <p class="quote">Passengers forgive a delay. They don't forgive <em>being left in the dark.</em></p>
+      <p class="lede mt">Stranded travellers reported not being informed about cancellations. Silence is what turns a bad day into a lost customer, so the strategy is built around one habit: <b>tell people first, clearly, and keep telling them.</b></p>
+    </div>
+  </section>
+
+  <section id="strategy">
+    <div class="wrap">
+      <span class="gate">6E 003 <span>THE STRATEGY</span></span>
+      <h2>Rebuild trust by being boringly reliable online.</h2>
+      <div class="tw mt"><table><tbody>
+        <tr><td>Goals</td><td>Faster help, clearer information and visibly better sentiment before the December 2026 peak.</td></tr>
+        <tr><td>Audience</td><td>Frequent flyers, first-time flyers, families travelling for weddings, and business travellers.</td></tr>
+        <tr><td>Platform roles</td><td><b>X</b> for live service and updates; <b>Instagram</b> for explainers and people stories; <b>LinkedIn</b> for leadership and industry trust; <b>YouTube</b> for behind-the-scenes films.</td></tr>
+        <tr><td>Voice</td><td>Calm, human, specific. Numbers and next steps, never "inconvenience is regretted".</td></tr>
+      </tbody></table></div>
+      <div class="g3 mt">
+        <div class="card"><span class="pill">Transparency</span><h3 style="margin-top:8px">Weekly on-time report</h3><p class="sm" style="margin:0">Every Monday, the numbers from last week, good or bad. Trust comes from publishing the bad weeks too.</p></div>
+        <div class="card"><span class="pill">Your rights</span><h3 style="margin-top:8px">Know-your-rights explainers</h3><p class="sm" style="margin:0">Cancellations, refunds and lost bags explained in one swipe. People save these before they need them.</p></div>
+        <div class="card"><span class="pill">People of IndiGo</span><h3 style="margin-top:8px">Faces behind the flights</h3><p class="sm" style="margin:0">Schedulers, pilots and baggage teams. It's hard to stay angry at a brand once you've met its people.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="triage">
+    <div class="wrap">
+      <span class="gate">6E 004 <span>TRIAGE DESK</span></span>
+      <h2>Try the social care desk.</h2>
+      <p class="lede">On a bad day, hundreds of messages arrive an hour. The first job is sorting them. Pick the right category for each message to see the reply and next step.</p>
+      <div class="triage mt">
+        <div>
+          <div class="tweet" id="tweet" aria-live="polite"></div>
+          <div class="cats" id="cats" role="group" aria-label="Choose a category"></div>
+          <p class="sm" style="margin-top:10px">Message <span id="qn">1</span> of 6 · Score <span class="score" id="score">0</span></p>
+        </div>
+        <div class="reply" id="reply" aria-live="polite"><div class="h">RESPONSE PLAYBOOK</div><p style="margin:0; color:#B9BDD2">Choose a category to see how we'd reply.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="crisis">
+    <div class="wrap">
+      <span class="gate">6E 005 <span>CRISIS PROTOCOL</span></span>
+      <h2>If it happens again: hour by hour.</h2>
+      <p class="lede">Drag through a disruption day to see what the social team posts and does at each stage.</p>
+      <div class="sim mt">
+        <label for="t" style="font-weight:700">Time since disruption: <span class="mono" id="tl"></span></label>
+        <input type="range" id="t" min="0" max="5" step="1" value="0">
+        <div class="ticks" aria-hidden="true"><span>0 min</span><span>30 min</span><span>2 hrs</span><span>End of day</span><span>+3 days</span><span>+2 weeks</span></div>
+        <div class="simout">
+          <div class="xpost" aria-live="polite" id="xpost"></div>
+          <div><h3>The team's checklist</h3><ul class="checks" id="checks"></ul></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="plan">
+    <div class="wrap">
+      <span class="gate">6E 006 <span>CONTENT PLAN</span></span>
+      <h2>A month of calm, useful content.</h2>
+      <p class="lede">November 2026, the month before peak season. The full 30-day calendar, response playbook and crisis checklist are in the Excel workbook that comes with this strategy.</p>
+      <div class="tw mt"><table>
+        <thead><tr><th>Day</th><th>Platform</th><th>Post</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>Mondays</td><td>X</td><td>Weekly on-time performance report</td><td>Proof, every week</td></tr>
+          <tr><td>Tuesdays</td><td>Instagram</td><td>Know-your-rights carousel</td><td>Saves; fewer angry DMs later</td></tr>
+          <tr><td>Wednesdays</td><td>Instagram</td><td>People of IndiGo reel</td><td>Human faces, softer sentiment</td></tr>
+          <tr><td>Fridays</td><td>Instagram</td><td>Wedding-season travel tips</td><td>Useful at the busiest time of year</td></tr>
+          <tr><td>Once a month</td><td>LinkedIn, YouTube</td><td>Leadership note; operations centre film</td><td>Industry trust</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <section id="measure">
+    <div class="wrap">
+      <span class="gate">6E 007 <span>MEASUREMENT</span></span>
+      <h2>How we'll know trust is coming back.</h2>
+      <div class="g4 mt">
+        <div class="card kpi"><div class="v">&lt;30 min</div><div class="l">Median first response</div><div class="d">on X and DMs</div></div>
+        <div class="card kpi"><div class="v">95%</div><div class="l">Mentions answered</div><div class="d">within 24 hours</div></div>
+        <div class="card kpi"><div class="v">+15 pts</div><div class="l">Positive or neutral sentiment</div><div class="d">via social listening</div></div>
+        <div class="card kpi"><div class="v">52/52</div><div class="l">Weekly reports published</div><div class="d">including the bad weeks</div></div>
+      </div>
+      <p class="note">Targets are proposals; baselines would come from IndiGo's own social listening and care data.</p>
+      <h3 class="mt">Sources</h3>
+      <ol class="src">
+        <li>Wikipedia, "2025 IndiGo scheduling crisis". <a href="https://en.wikipedia.org/wiki/2025_IndiGo_disruption">Link</a></li>
+        <li>The Better India, "What sparked the IndiGo flight cancellations?", December 2025. <a href="https://thebetterindia.com/trending/indigo-flight-cancellations-december-2025-10906993">Link</a></li>
+        <li>Malay Mail (Reuters), "Where's my bag? India's IndiGo battles passenger fury", December 2025. <a href="https://malaymail.com/news/money/2025/12/08/wheres-my-bag-indias-indigo-battles-passenger-fury-over-luggage-lost-in-flight-cancellation-chaos/201209">Link</a></li>
+        <li>Gulf News, "IndiGo to compensate severely impacted passengers". <a href="https://gulfnews.com/business/aviation/indigo-to-compensate-severely-impacted-passengers-up-to-10000-after-crisis-1.500376380">Link</a></li>
+        <li>Deccan Herald, "IndiGo crisis: passengers emerge as collateral damage", December 2025. <a href="https://www.deccanherald.com/india/indigo-crisis-passengers-emerge-as-collateral-damage-in-indigos-ongoing-chaos-3820734">Link</a></li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+
+<style>
+.wf{--wf-card:var(--paper,var(--panel)); --wf-acc:var(--jamun,var(--indigo)); padding:clamp(56px,8vw,96px) 0}
+.wf .wf-card{background:var(--wf-card); border:2px solid var(--line); border-radius:18px; padding:clamp(18px,3vw,30px)}
+.wf h2{margin-bottom:.35em}
+.wf-tabs{display:flex; gap:8px; flex-wrap:wrap; margin:16px 0}
+.wf-tabs button,.wf-filter button{border:2px solid var(--line); background:var(--wf-card); border-radius:999px; padding:.4em .95em; font-weight:800; font-size:.86rem; cursor:pointer; color:var(--ink)}
+.wf-tabs button[aria-selected="true"],.wf-filter button[aria-pressed="true"]{background:var(--wf-acc); border-color:var(--wf-acc); color:#fff}
+.wf-filter{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px; align-items:center}
+.wf-filter span{font-size:.8rem; font-weight:800; color:var(--muted); margin-right:4px}
+.wf-panel{display:none} .wf-panel.show{display:block}
+.wf-scroll{overflow-x:auto; border:1px solid var(--line); border-radius:12px; max-height:560px; overflow-y:auto}
+.wf table{width:100%; border-collapse:collapse; font-size:.86rem; min-width:760px}
+.wf th{position:sticky; top:0; background:var(--wf-acc); color:#fff; text-align:left; padding:9px 10px; font-size:.74rem; letter-spacing:.04em; text-transform:uppercase; z-index:1}
+.wf td{padding:9px 10px; border-bottom:1px solid var(--line); vertical-align:top}
+.wf tr.calrow{cursor:pointer}
+.wf tr.calrow:hover td{background:color-mix(in srgb,var(--wf-acc) 7%,transparent)}
+.wf .cap-row td{background:color-mix(in srgb,var(--wf-acc) 6%,transparent); font-size:.9rem}
+.wf .tag{display:inline-block; border-radius:6px; padding:1px 7px; font-size:.72rem; font-weight:800; background:color-mix(in srgb,var(--wf-acc) 15%,transparent); color:var(--ink); white-space:nowrap}
+.wf .dl{display:none; margin-top:14px; border:0; border-radius:12px; background:var(--wf-acc); color:#fff; font-weight:800; padding:.7em 1.2em; text-decoration:none}
+.wf .dl.on{display:inline-block}
+.wf .wf-note{font-size:.82rem; color:var(--muted); margin-top:10px}
+.gal{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:18px}
+.gal figure{margin:0; background:var(--wf-card); border:2px solid var(--line); border-radius:16px; overflow:hidden; display:flex; flex-direction:column}
+.gal .shot{aspect-ratio:4/5; position:relative; overflow:hidden; display:flex}
+.gal .shot.story{aspect-ratio:9/13}
+.gal .shot img{width:100%; height:100%; object-fit:cover; display:block}
+.gal .mock{flex:1; display:flex; flex-direction:column; justify-content:space-between; padding:18px; font-weight:900; line-height:1.1; font-size:1.25rem}
+.gal .mock small{font-size:.72rem; font-weight:800; opacity:.9; letter-spacing:.02em}
+.gal figcaption{padding:14px}
+.gal figcaption b{display:block}
+.gal figcaption span{font-size:.85rem; color:var(--muted); display:block; margin:2px 0 10px}
+.gal .canva{display:inline-block; border-radius:999px; border:2px solid var(--wf-acc); color:var(--ink); font-weight:800; font-size:.82rem; padding:.35em .9em; text-decoration:none}
+.gal .canva:hover{background:var(--wf-acc); color:#fff}
+@media (max-width:900px){ .gal{grid-template-columns:1fr 1fr} }
+@media (max-width:560px){ .gal{grid-template-columns:1fr} }
+</style>
+
+<section class="wf" id="work">
+  <div class="wrap">
+    <div class="wf-card">
+      <h2>The working files</h2>
+      <p style="max-width:44rem; color:var(--muted)">This is what a client receives every month: the content calendar, the reporting template and the playbook. Filter the calendar, tap any post to read its caption, or download the full Excel file.</p>
+      <div class="wf-tabs" role="tablist" aria-label="Working files">
+        <button type="button" role="tab" id="wt1" aria-controls="wp1">30-day content calendar</button>
+        <button type="button" role="tab" id="wt2" aria-controls="wp2">Response playbook</button>
+        <button type="button" role="tab" id="wt3" aria-controls="wp3">Monthly report</button>
+      </div>
+      <div class="wf-panel" id="wp1" role="tabpanel" aria-labelledby="wt1">
+        <div class="wf-filter" id="fPil" role="group" aria-label="Filter by pillar"></div>
+        <div class="wf-filter" id="fPla" role="group" aria-label="Filter by platform"></div>
+        <div class="wf-scroll"><table><thead><tr><th>Date</th><th>Platform</th><th>Format</th><th>Pillar</th><th>Post idea</th><th>Time</th><th>Goal</th></tr></thead><tbody id="calBody"></tbody></table></div>
+        <p class="wf-note" id="calCount" aria-live="polite"></p>
+      </div>
+      <div class="wf-panel" id="wp2" role="tabpanel" aria-labelledby="wt2"><div class="wf-scroll"><table><thead><tr><th>Message type</th><th>First public reply</th><th>Next step in DMs</th><th>Target first response</th><th>Escalate to</th></tr></thead><tbody><tr><td><b>Cancellation</b></td><td>We’re really sorry, [name]. This matters, and we want to get you there. Please DM your PNR and we’ll look at options right now.</td><td>Check alternatives, offer rebooking or refund, confirm entitlement in writing.</td><td>15 min</td><td>Duty manager if no seat within 24 hrs</td></tr><tr><td><b>Lost baggage</b></td><td>That’s stressful, especially with medication inside. Please DM your PNR and bag tag number; we’ll prioritise this.</td><td>Log case, share tracking reference, update every 12 hrs.</td><td>15 min</td><td>Baggage desk; medical items marked urgent</td></tr><tr><td><b>Refund status</b></td><td>We hear you. DM your PNR and we’ll check exactly where it is and when it lands.</td><td>Share status and date in writing.</td><td>30 min</td><td>Refunds team if past stated timeline</td></tr><tr><td><b>Rant / abuse</b></td><td>We’re sorry we let you down. If you’re open to it, DM us what happened and we’ll make it right where we can.</td><td>One offer to help; do not argue.</td><td>30 min</td><td>Community lead if threats or harassment</td></tr><tr><td><b>Praise</b></td><td>This made our day. We’ll pass this on to the crew. Thank you for flying with us!</td><td>Share with crew team; ask permission to feature.</td><td>2 hrs</td><td>None</td></tr><tr><td><b>Misinformation</b></td><td>Operations are running as scheduled. Check live status here: [status link]. We’ll post here first if anything changes.</td><td>Monitor; pin clarification if spreading.</td><td>15 min</td><td>Comms lead if trending</td></tr><tr><td><b>Media / influencer complaint</b></td><td>We’re sorry, [name]. We’ve DMed you and our airport team is on it.</td><td>Same process as everyone, faster visibility to manager.</td><td>10 min</td><td>Comms lead + airport duty manager</td></tr></tbody></table></div><p class="wf-note">The Excel file also includes an hour-by-hour crisis protocol checklist for disruption days.</p></div>
+      <div class="wf-panel" id="wp3" role="tabpanel" aria-labelledby="wt3"><div class="wf-scroll"><table style="min-width:520px"><thead><tr><th>Metric</th><th>How it is calculated</th></tr></thead><tbody><tr><td><b>Follower growth</b></td><td>(This month followers − last month) ÷ last month</td></tr><tr><td><b>Engagement rate</b></td><td>Engagements ÷ accounts reached</td></tr><tr><td><b>Save rate</b></td><td>Saves ÷ reach: is the content useful?</td></tr><tr><td><b>Share rate</b></td><td>Shares ÷ reach: is it worth passing on?</td></tr><tr><td><b>Click-through rate</b></td><td>Link clicks ÷ reach</td></tr><tr><td><b>Average reach per post</b></td><td>Reach ÷ posts published</td></tr><tr><td><b>Response rate</b></td><td>Mentions and DMs answered ÷ received</td></tr><tr><td><b>Median first response</b></td><td>Minutes to first reply, from the care tool</td></tr><tr><td><b>Sentiment</b></td><td>Positive or neutral share, from social listening</td></tr></tbody></table></div><p class="wf-note">The Excel template calculates every rate automatically. Fill in the monthly numbers and it produces the report, plus a wins, misses and next-month section.</p></div>
+      <a class="dl" data-file="IndiGo_Social_Media_Operations.xlsx">Download the full Excel file</a>
+    </div>
+
+    <div class="wf-card" style="margin-top:22px">
+      <h2>Designed posts</h2>
+      <p style="max-width:44rem; color:var(--muted)">Ready-to-publish creatives made in Canva, straight from the calendar above.</p>
+      <div class="gal"><figure><div class="shot" data-img="images/indigo-know-your-rights.png" data-alt="Know your rights: cancellations"><div class="mock" style="background:#1B2A7B; color:#FFFFFF"><small>your rights · 1/6</small><span>flight cancelled? here’s what you’re owed.</span><small>swipe for refunds and rebooking →</small></div></div><figcaption><b>Know your rights: cancellations</b><span>Carousel cover, 1 of 6</span><a class="canva" href="https://canva.link/z1q5o7dpx0xesp0" target="_blank" rel="noopener">Open in Canva</a></figcaption></figure><figure><div class="shot" data-img="images/indigo-weekly-report.png" data-alt="Weekly on-time report"><div class="mock" style="background:#111318; color:#FFC53D"><small>WEEKLY ON-TIME REPORT · WEEK 45</small><span>ON-TIME DEPARTURES  XX%</span><small>good weeks and bad ones. that’s the promise.</small></div></div><figcaption><b>Weekly on-time report</b><span>Published every Monday, good weeks and bad</span><a class="canva" href="https://canva.link/fv901mvsewq5qpy" target="_blank" rel="noopener">Open in Canva</a></figcaption></figure><figure><div class="shot story" data-img="images/indigo-people-of-indigo.png" data-alt="People of IndiGo reel cover"><div class="mock" style="background:#FFC53D; color:#1B2A7B"><small>people of indigo</small><span>meet the person who makes sure your crew is rested.</span><small>watch the reel ▶</small></div></div><figcaption><b>People of IndiGo reel cover</b><span>Meet the crew scheduler</span><a class="canva" href="https://canva.link/vhjae42c5gt3b17" target="_blank" rel="noopener">Open in Canva</a></figcaption></figure></div>
+    </div>
+  </div>
+</section>
+<script>window.__WF={"cal": [{"date": "01 Nov", "day": "Sun", "platform": "X", "format": "Thread", "pillar": "Transparency", "idea": "What’s changed since December: crew rostering, explained", "caption": "nine months ago we let you down. here’s exactly what we changed, in plain words. (1/6)", "tags": "#IndiGo", "time": "10:00 AM", "goal": "Trust"}, {"date": "02 Nov", "day": "Mon", "platform": "Instagram", "format": "Carousel", "pillar": "Your rights", "idea": "Your rights if a flight is cancelled", "caption": "cancelled flight? here’s what you’re entitled to, in one swipe.", "tags": "#IndiGo #TravelSmart", "time": "1:00 PM", "goal": "Saves"}, {"date": "03 Nov", "day": "Tue", "platform": "Instagram", "format": "Reel", "pillar": "People of IndiGo", "idea": "A day with a crew scheduler", "caption": "meet the people who make sure your crew is rested.", "tags": "#PeopleOfIndiGo", "time": "7:30 PM", "goal": "Trust"}, {"date": "04 Nov", "day": "Wed", "platform": "X", "format": "Post", "pillar": "On-time report", "idea": "Last week’s on-time performance, published", "caption": "our numbers, every week. good weeks and bad ones.", "tags": "#IndiGo", "time": "9:00 AM", "goal": "Trust"}, {"date": "05 Nov", "day": "Thu", "platform": "Instagram", "format": "Story", "pillar": "Service", "idea": "How to rebook in the app in 30 seconds", "caption": "save this for the day you need it.", "tags": "—", "time": "6:00 PM", "goal": "Self-service"}, {"date": "06 Nov", "day": "Fri", "platform": "LinkedIn", "format": "Post", "pillar": "Transparency", "idea": "Leadership note: what reliability means to us", "caption": "for business travellers and industry", "tags": "#IndiGo", "time": "9:30 AM", "goal": "Trust"}, {"date": "07 Nov", "day": "Sat", "platform": "Instagram", "format": "Reel", "pillar": "Travel tips", "idea": "Wedding season: 5 ways to travel stress-free", "caption": "packing the lehenga in hand luggage is a lifestyle.", "tags": "#WeddingSeason #IndiGo", "time": "7:30 PM", "goal": "Saves"}, {"date": "08 Nov", "day": "Sun", "platform": "X", "format": "Post", "pillar": "On-time report", "idea": "Weekly on-time performance", "caption": "this week’s numbers, as promised.", "tags": "#IndiGo", "time": "9:00 AM", "goal": "Trust"}, {"date": "09 Nov", "day": "Mon", "platform": "Instagram", "format": "Carousel", "pillar": "Your rights", "idea": "Lost bag? Exactly what to do, step by step", "caption": "the steps that get your bag back faster.", "tags": "#IndiGo", "time": "1:00 PM", "goal": "Saves"}, {"date": "10 Nov", "day": "Tue", "platform": "Instagram", "format": "Reel", "pillar": "People of IndiGo", "idea": "Baggage team night shift", "caption": "where your bag goes after you drop it.", "tags": "#PeopleOfIndiGo", "time": "7:30 PM", "goal": "Trust"}, {"date": "11 Nov", "day": "Wed", "platform": "X", "format": "Post", "pillar": "Service", "idea": "Service update format test: live status card", "caption": "testing a clearer format for delay updates.", "tags": "#IndiGo", "time": "11:00 AM", "goal": "Clarity"}, {"date": "12 Nov", "day": "Thu", "platform": "Instagram", "format": "Story poll", "pillar": "Community", "idea": "What should we explain next?", "caption": "you ask, we explain.", "tags": "—", "time": "6:00 PM", "goal": "Replies"}, {"date": "13 Nov", "day": "Fri", "platform": "YouTube", "format": "Video", "pillar": "Transparency", "idea": "Inside the operations control centre", "caption": "8-minute film", "tags": "#IndiGo", "time": "7:00 PM", "goal": "Trust"}, {"date": "14 Nov", "day": "Sat", "platform": "X", "format": "Post", "pillar": "On-time report", "idea": "Weekly on-time performance", "caption": "steady week. here are the numbers.", "tags": "#IndiGo", "time": "9:00 AM", "goal": "Trust"}, {"date": "15 Nov", "day": "Sun", "platform": "Instagram", "format": "Reel", "pillar": "Travel tips", "idea": "First-time flyer? What to expect at the airport", "caption": "for everyone taking their first flight this season.", "tags": "#FirstFlight #IndiGo", "time": "7:30 PM", "goal": "Reach"}, {"date": "16 Nov", "day": "Mon", "platform": "Instagram", "format": "Carousel", "pillar": "Your rights", "idea": "Refunds: how long they take and how to track", "caption": "no guessing. here’s the timeline.", "tags": "#IndiGo", "time": "1:00 PM", "goal": "Saves"}, {"date": "17 Nov", "day": "Tue", "platform": "Instagram", "format": "Reel", "pillar": "People of IndiGo", "idea": "A pilot on rest rules: why they matter", "caption": "rested crew, safer skies.", "tags": "#PeopleOfIndiGo", "time": "7:30 PM", "goal": "Trust"}, {"date": "18 Nov", "day": "Wed", "platform": "X", "format": "Post", "pillar": "Service", "idea": "Peak season readiness: what we’ve added", "caption": "extra crew, extra buffers, extra help desks.", "tags": "#IndiGo", "time": "10:00 AM", "goal": "Trust"}, {"date": "19 Nov", "day": "Thu", "platform": "Instagram", "format": "Story", "pillar": "Service", "idea": "Save these numbers and links", "caption": "the only travel help list you need.", "tags": "—", "time": "6:00 PM", "goal": "Self-service"}, {"date": "20 Nov", "day": "Fri", "platform": "LinkedIn", "format": "Post", "pillar": "Transparency", "idea": "What we learned from December 2025", "caption": "for industry audiences", "tags": "#IndiGo", "time": "9:30 AM", "goal": "Trust"}, {"date": "21 Nov", "day": "Sat", "platform": "Instagram", "format": "Reel", "pillar": "Travel tips", "idea": "Flying with elderly parents: a checklist", "caption": "wheelchair, seat, meds, snacks. sorted.", "tags": "#IndiGo", "time": "7:30 PM", "goal": "Saves"}, {"date": "22 Nov", "day": "Sun", "platform": "X", "format": "Post", "pillar": "On-time report", "idea": "Weekly on-time performance", "caption": "this week’s numbers.", "tags": "#IndiGo", "time": "9:00 AM", "goal": "Trust"}, {"date": "23 Nov", "day": "Mon", "platform": "Instagram", "format": "Carousel", "pillar": "Your rights", "idea": "Delay vs cancellation: what’s the difference for you?", "caption": "the difference matters. here’s why.", "tags": "#IndiGo", "time": "1:00 PM", "goal": "Saves"}, {"date": "24 Nov", "day": "Tue", "platform": "Instagram", "format": "Reel", "pillar": "People of IndiGo", "idea": "Ground staff: the calm voices at the counter", "caption": "say hi next time. they’ve earned it.", "tags": "#PeopleOfIndiGo", "time": "7:30 PM", "goal": "Trust"}, {"date": "25 Nov", "day": "Wed", "platform": "X", "format": "Post", "pillar": "Service", "idea": "Crisis drill: how we’ll update you if things go wrong", "caption": "our promise for disruption days.", "tags": "#IndiGo", "time": "10:00 AM", "goal": "Trust"}, {"date": "26 Nov", "day": "Thu", "platform": "Instagram", "format": "Story quiz", "pillar": "Community", "idea": "Travel myths: true or false?", "caption": "can you carry a pressure cooker? find out.", "tags": "—", "time": "6:00 PM", "goal": "Replies"}, {"date": "27 Nov", "day": "Fri", "platform": "YouTube", "format": "Short", "pillar": "Travel tips", "idea": "Packing for a winter wedding in 60 seconds", "caption": "the carry-on of champions.", "tags": "#IndiGo", "time": "7:00 PM", "goal": "Views"}, {"date": "28 Nov", "day": "Sat", "platform": "X", "format": "Post", "pillar": "On-time report", "idea": "Monthly reliability report", "caption": "a full month of numbers, and what we’ll improve.", "tags": "#IndiGo", "time": "9:00 AM", "goal": "Trust"}, {"date": "29 Nov", "day": "Sun", "platform": "Instagram", "format": "Carousel", "pillar": "Transparency", "idea": "Our December promise, in writing", "caption": "what you can hold us to this season.", "tags": "#IndiGo", "time": "1:00 PM", "goal": "Trust"}, {"date": "30 Nov", "day": "Mon", "platform": "Instagram", "format": "Story", "pillar": "Community", "idea": "Thank-you and season kickoff", "caption": "see you on board. we’ve got you.", "tags": "—", "time": "6:00 PM", "goal": "Retention"}]};</script>
+
+<script>
+(function(){
+  var W=window.__WF; function $(id){return document.getElementById(id);}
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  /* tabs */
+  var tabs=[].slice.call(document.querySelectorAll('.wf-tabs button'));
+  tabs.forEach(function(t,i){ t.addEventListener('click',function(){ sel(i); }); t.addEventListener('keydown',function(e){ if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ e.preventDefault(); var j=(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length; sel(j); tabs[j].focus(); } }); });
+  function sel(i){ tabs.forEach(function(t,j){ t.setAttribute('aria-selected',j===i); t.tabIndex=j===i?0:-1; document.getElementById(t.getAttribute('aria-controls')).classList.toggle('show',j===i); }); }
+  sel(0);
+  /* calendar */
+  var fP='All', fL='All';
+  function uniq(k){ var s=[]; W.cal.forEach(function(r){ if(s.indexOf(r[k])<0) s.push(r[k]); }); return s; }
+  function filt(id,vals,cur,set){ $(id).innerHTML='<span>'+(id==='fPil'?'Pillar':'Platform')+'</span>'+['All'].concat(vals).map(function(v){ return '<button type="button" aria-pressed="'+(v===cur)+'" data-v="'+esc(v)+'">'+esc(v)+'</button>'; }).join('');
+    $(id).onclick=function(e){ var b=e.target.closest('button'); if(!b) return; set(b.getAttribute('data-v')); render(); }; }
+  var open=-1;
+  function render(){
+    filt('fPil',uniq('pillar'),fP,function(v){fP=v;}); filt('fPla',uniq('platform'),fL,function(v){fL=v;});
+    var rows=W.cal.map(function(r,i){return [r,i];}).filter(function(x){ return (fP==='All'||x[0].pillar===fP)&&(fL==='All'||x[0].platform===fL); });
+    $('calBody').innerHTML=rows.map(function(x){ var r=x[0], i=x[1];
+      return '<tr class="calrow" tabindex="0" data-i="'+i+'" aria-expanded="'+(open===i)+'"><td><b>'+esc(r.date)+'</b><br><span style="color:var(--muted)">'+esc(r.day)+'</span></td><td>'+esc(r.platform)+'</td><td>'+esc(r.format)+'</td><td><span class="tag">'+esc(r.pillar)+'</span></td><td>'+esc(r.idea)+'</td><td>'+esc(r.time)+'</td><td>'+esc(r.goal)+'</td></tr>'+
+        (open===i?'<tr class="cap-row"><td></td><td colspan="6"><b>Caption draft:</b> '+esc(r.caption).replace(/\n/g,'<br>')+'<br><b>Hashtags:</b> '+esc(r.tags)+'</td></tr>':''); }).join('');
+    $('calCount').textContent=rows.length+' of '+W.cal.length+' posts shown. Tap a row to read the caption.';
+  }
+  $('calBody').addEventListener('click',function(e){ var tr=e.target.closest('tr.calrow'); if(!tr) return; var i=+tr.getAttribute('data-i'); open=open===i?-1:i; render(); var t=document.querySelector('tr.calrow[data-i="'+i+'"]'); if(t) t.focus(); });
+  $('calBody').addEventListener('keydown',function(e){ if((e.key==='Enter'||e.key===' ')&&e.target.matches('tr.calrow')){ e.preventDefault(); e.target.click(); } });
+  render();
+  /* show download button only where the file is hosted alongside the page */
+  document.querySelectorAll('.dl[data-file]').forEach(function(a){ var f=a.getAttribute('data-file');
+    try{ fetch(f,{method:'HEAD'}).then(function(r){ if(r.ok){ a.setAttribute('href',f); a.setAttribute('download',''); a.classList.add('on'); } }).catch(function(){}); }catch(e){} });
+  /* gallery images: use exported PNG if present, else keep the preview card */
+  document.querySelectorAll('.shot[data-img]').forEach(function(s){ var im=new Image(); im.alt=s.getAttribute('data-alt'); im.onload=function(){ s.innerHTML=''; s.appendChild(im); }; im.src=s.getAttribute('data-img'); });
+})();
+</script>
+
+<section id="campaign-kit">
+    <div class="wrap">
+      <span class="gate">6E 008 <span>CAMPAIGN KIT</span></span>
+      <h2>The campaign kit.</h2>
+      <p class="lede">Four kinds of assets I designed for this strategy, including new variations of the post series above: an Instagram carousel, Stories, widescreen pieces and a print piece. Scroll each row, or open the originals in Canva.</p>
+      <div class="ck-g">
+        <div class="ck-gh"><b>Know your rights carousel</b><span><a href="https://www.canva.com/d/KJB645Ks98AgONz" target="_blank" rel="noopener">View in Canva ↗</a><a href="canva-kit/carousel.pdf" download>PDF</a></span></div>
+        <div class="ck-strip" tabindex="0" aria-label="Know your rights carousel, scroll sideways">
+          <figure><img src="canva-kit/carousel/01.jpg" alt="Know your rights carousel, Flight cancelled?" loading="lazy"><figcaption>Flight cancelled?</figcaption></figure>
+          <figure><img src="canva-kit/carousel/02.jpg" alt="Know your rights carousel, You choose" loading="lazy"><figcaption>You choose</figcaption></figure>
+          <figure><img src="canva-kit/carousel/03.jpg" alt="Know your rights carousel, Told less than 24 hours before?" loading="lazy"><figcaption>Told less than 24 hours before?</figcaption></figure>
+          <figure><img src="canva-kit/carousel/04.jpg" alt="Know your rights carousel, Delays: the clock" loading="lazy"><figcaption>Delays: the clock</figcaption></figure>
+          <figure><img src="canva-kit/carousel/05.jpg" alt="Know your rights carousel, Lost bag?" loading="lazy"><figcaption>Lost bag?</figcaption></figure>
+          <figure><img src="canva-kit/carousel/06.jpg" alt="Know your rights carousel, Save this" loading="lazy"><figcaption>Save this</figcaption></figure>
+        </div>
+      </div>
+      <div class="ck-g">
+        <div class="ck-gh"><b>Instagram Stories</b><span><a href="https://www.canva.com/d/dPs3MQCxij64Eg4" target="_blank" rel="noopener">View in Canva ↗</a><a href="canva-kit/stories.pdf" download>PDF</a></span></div>
+        <div class="ck-strip" tabindex="0" aria-label="Instagram Stories, scroll sideways">
+          <figure><img src="canva-kit/stories/01.jpg" alt="Instagram Stories, Weekly on-time report · week 46" loading="lazy"><figcaption>Weekly on-time report · week 46</figcaption></figure>
+          <figure><img src="canva-kit/stories/02.jpg" alt="Instagram Stories, People of IndiGo: baggage" loading="lazy"><figcaption>People of IndiGo: baggage</figcaption></figure>
+          <figure><img src="canva-kit/stories/03.jpg" alt="Instagram Stories, Live update: fog at Delhi" loading="lazy"><figcaption>Live update: fog at Delhi</figcaption></figure>
+        </div>
+      </div>
+      <div class="ck-g">
+        <div class="ck-gh"><b>Airport and crisis protocol</b><span><a href="https://www.canva.com/d/OjJ3MjnsIEj4YcV" target="_blank" rel="noopener">View in Canva ↗</a><a href="canva-kit/widescreen.pdf" download>PDF</a></span></div>
+        <div class="ck-strip" tabindex="0" aria-label="Airport and crisis protocol, scroll sideways">
+          <figure><img src="canva-kit/widescreen/01.jpg" alt="Airport and crisis protocol, Departure board that gives the reason" loading="lazy"><figcaption>Departure board that gives the reason</figcaption></figure>
+          <figure><img src="canva-kit/widescreen/02.jpg" alt="Airport and crisis protocol, Crisis protocol, hour by hour" loading="lazy"><figcaption>Crisis protocol, hour by hour</figcaption></figure>
+        </div>
+      </div>
+      <div class="ck-g">
+        <div class="ck-gh"><b>Print: rights card</b><span><a href="https://www.canva.com/d/knjYKJXMb0j34Ds" target="_blank" rel="noopener">View in Canva ↗</a><a href="canva-kit/print.pdf" download>PDF</a></span></div>
+        <div class="ck-strip" tabindex="0" aria-label="Print: rights card, scroll sideways">
+          <figure><img src="canva-kit/print/01.jpg" alt="Print: rights card, Seat-pocket rights card, front and back" loading="lazy"><figcaption>Seat-pocket rights card, front and back</figcaption></figure>
+        </div>
+      </div>
+      <p style="margin-top:2rem"><a href="https://www.canva.com/d/84mWTID-NMi4Fmd" target="_blank" rel="noopener">See all my work ↗</a></p>
+      
+    </div>
+  </section>
+
+<footer>
+  <div class="wrap">
+    <p style="font-size:clamp(1.6rem,4vw,2.4rem); font-weight:800; margin:0">Say it before they ask.</p>
+    <p style="margin-top:12px"><b>Strategy by Akshara Singh</b>, digital marketer · <a href="mailto:Akshara.singh.marketing@gmail.com">Akshara.singh.marketing@gmail.com</a></p>
+    <p class="note" style="max-width:52rem">An unsolicited social media strategy created for portfolio purposes. Not affiliated with, commissioned by or endorsed by IndiGo or InterGlobe Aviation. Facts about December 2025 are from public reporting; sample posts, replies and targets are illustrative.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  function $(id){return document.getElementById(id);}
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* board */
+  var rows=[['6E 001','WHAT HAPPENED','ARRIVED','bl','A1','what'],['6E 002','THE INSIGHT','ON TIME','ok','A2','insight'],['6E 003','THE STRATEGY','BOARDING','am','B4','strategy'],['6E 004','TRIAGE DESK','GATE OPEN','ok','B7','triage'],['6E 005','CRISIS PROTOCOL','STANDBY','am','C2','crisis'],['6E 006','CONTENT PLAN','ON TIME','ok','C5','plan'],['6E 007','MEASUREMENT','SCHEDULED','bl','D1','measure'],['6E 008','WORKING FILES','NOW OPEN','ok','D4','work']];
+  function flaps(t){ return '<span class="flaps">'+t.split('').map(function(c){ return '<i>'+(c===' '?'&nbsp;':c)+'</i>'; }).join('')+'</span>'; }
+  $('rows').innerHTML=rows.map(function(r,i){ return '<button class="row" type="button" data-go="'+r[5]+'" aria-label="'+r[1].toLowerCase()+', go to section"><span class="mono" style="font-weight:700">'+r[0]+'</span><span class="dest" data-t="'+r[1]+'">'+flaps(r[1])+'</span><span class="st '+r[3]+(r[2]==='BOARDING'?' blink':'')+'">'+r[2]+'</span><span class="go">'+r[4]+'</span></button>'; }).join('');
+  if(!reduce){
+    var chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    document.querySelectorAll('.dest').forEach(function(d,ri){ var t=d.getAttribute('data-t'), n=0; var iv=setInterval(function(){ n++; d.innerHTML=flaps(t.split('').map(function(c,ci){ return (c===' '||n>ci+ri*2+4)?c:chars[Math.floor(Math.random()*26)]; }).join('')); if(n>t.length+ri*2+5){ clearInterval(iv); d.innerHTML=flaps(t);} },45); });
+  }
+  $('rows').addEventListener('click',function(e){ var b=e.target.closest('[data-go]'); if(!b) return; $(b.getAttribute('data-go')).scrollIntoView({behavior:reduce?'auto':'smooth'}); });
+
+  /* triage */
+  var cats=['Cancellation','Baggage','Refund','Rant','Misinformation','Praise'];
+  var q=[
+    ['@neha_travels','flight cancelled 2 hrs before departure. my brother\u2019s wedding is TOMORROW. nobody is answering.','Cancellation','We\u2019re so sorry, Neha. We know what tomorrow means. Please DM your PNR right now and we\u2019ll look at every option to get you there.','Find alternatives, rebook or refund, confirm entitlements in writing.','15 minutes','Duty manager if no seat within 24 hours'],
+    ['@arjun.k','bag missing for 2 days. my dad\u2019s medicines are in it.','Baggage','That\u2019s worrying, especially with medicine inside. Please DM your PNR and bag tag number; we\u2019re marking this urgent.','Log case, share a tracking reference, update every 12 hours.','15 minutes','Baggage desk, medical flag'],
+    ['@sam_r','its been 12 days. WHERE IS MY REFUND','Refund','We hear you, Sam. DM your PNR and we\u2019ll tell you exactly where it is and the date it lands.','Share status and a date in writing.','30 minutes','Refunds team if past the stated timeline'],
+    ['@frequentflyer','heard ALL flights tomorrow are cancelled?? is this true','Misinformation','Operations are running as scheduled. Check live status on our site or app. We\u2019ll post here first if anything changes.','Monitor; pin a clarification if it spreads.','15 minutes','Comms lead if trending'],
+    ['@angry_dev','worst airline in the world. never flying again.','Rant','We\u2019re sorry we let you down. If you\u2019re open to it, DM us what happened and we\u2019ll make it right where we can.','One offer to help; no back-and-forth.','30 minutes','Community lead only if abusive'],
+    ['@meera_s','crew on today\u2019s morning flight were so kind to my 80-year-old mum ❤️','Praise','This made our day, Meera. We\u2019ll pass it on to the crew. Thank you for flying with us!','Share with crew team; ask permission to feature.','2 hours','None']
+  ];
+  var qi=0, score=0, answered=false;
+  function renderQ(){
+    answered=false;
+    if(qi>=q.length){ $('tweet').innerHTML='<div class="u"><i>✅</i><span>Queue cleared</span></div><p>You sorted '+score+' of '+q.length+' correctly. On a real disruption day, this sorting happens hundreds of times an hour, which is why the playbook matters.</p><button class="btn" type="button" id="again" style="margin-top:10px">Try again</button>'; $('cats').innerHTML=''; $('qn').textContent=q.length; $('again').addEventListener('click',function(){ qi=0; score=0; $('score').textContent=0; renderQ(); }); return; }
+    var m=q[qi]; $('qn').textContent=qi+1;
+    $('tweet').innerHTML='<div class="u"><i aria-hidden="true">👤</i><span>'+m[0]+' <small>· now</small></span></div><p>'+m[1]+'</p>';
+    $('cats').innerHTML=cats.map(function(c){ return '<button type="button" data-c="'+c+'">'+c+'</button>'; }).join('');
+  }
+  $('cats').addEventListener('click',function(e){ var b=e.target.closest('[data-c]'); if(!b||answered) return; answered=true; var m=q[qi], ok=b.getAttribute('data-c')===m[2];
+    if(ok) score++; $('score').textContent=score;
+    document.querySelectorAll('#cats button').forEach(function(x){ if(x.getAttribute('data-c')===m[2]) x.classList.add('right'); else if(x===b) x.classList.add('wrong'); x.disabled=true; });
+    $('reply').innerHTML='<div class="h">'+(ok?'✅ CORRECT':'↪ THIS ONE IS')+' · '+m[2].toUpperCase()+'</div><div class="r">'+m[3]+'</div><dl><dt>NEXT STEP, IN DMS</dt><dd>'+m[4]+'</dd><dt>TARGET FIRST RESPONSE</dt><dd>'+m[5]+'</dd><dt>ESCALATE TO</dt><dd>'+m[6]+'</dd></dl><button class="btn" type="button" id="nextQ" style="margin-top:12px; background:var(--amber); color:#13183A">Next message</button>';
+    $('nextQ').addEventListener('click',function(){ qi++; renderQ(); $('reply').innerHTML='<div class="h">RESPONSE PLAYBOOK</div><p style="margin:0; color:#B9BDD2">Choose a category to see how we\u2019d reply.</p>'; var f=$('cats').querySelector('button')||$('again'); if(f) f.focus(); });
+    $('nextQ').focus(); });
+  renderQ();
+
+  /* crisis sim */
+  var stages=[
+    ['0 minutes','We\u2019re seeing disruption to some flights this morning. We\u2019re working on it now.\n\nIf your flight is affected, you\u2019ll get an SMS and email. Next update here at 10:30 AM.',['Pause all scheduled promotional posts','Post a holding statement within 30 minutes','Alert care team to add staff']],
+    ['30 minutes','Update 1: 120 flights affected so far (list here). If yours is one of them, you can rebook or get a full refund in the app, in 2 taps.\n\nNext update at 12:30 PM.',['Pin the live status post','Link self-service rebooking and refunds','Start triage using the response playbook']],
+    ['2 hours','Update 2: here\u2019s what\u2019s happening and why, in plain words. Help desks at the 8 busiest airports now have extra staff.\n\nNext update at 2:30 PM.',['Share numbers, not adjectives','Every update names the next update time','Reply to high-stakes cases first (weddings, medical)']],
+    ['End of day','A message from our leadership: we\u2019re sorry. Here\u2019s what went wrong today, and what we\u2019re changing so it doesn\u2019t happen again.',['Leadership apology on X, Instagram and LinkedIn','State cause and fixes, no blame-shifting','Commit to a follow-up date']],
+    ['+3 days','Your rights after this week\u2019s disruption, in one swipe: refunds, compensation, and how to claim.',['Publish explainer carousel and X thread','Clear the refund queue publicly','Thank staff without making it about us']],
+    ['+2 weeks','What we learned, and what\u2019s changed. Our full report is here.',['Post-mortem with the care and ops teams','Update the playbook and protocol','Resume normal content only when sentiment recovers']]
+  ];
+  function sim(){ var s=stages[+$('t').value]; $('tl').textContent=s[0];
+    $('xpost').innerHTML='<div class="u"><i>6E</i><span>IndiGo <small>@IndiGo6E · sample post</small></span></div><p>'+s[1]+'</p>';
+    $('checks').innerHTML=s[2].map(function(c){ return '<li>'+c+'</li>'; }).join(''); }
+  $('t').addEventListener('input',sim); sim();
+})();
+</script>
+<a class="as-allwork" href="../../#work" aria-label="Back to all of Akshara Singh's work">&larr; All work</a>
+<style>.as-allwork{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:2147483000;display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:999px;background:rgba(17,17,16,.88);color:#F5F2EC!important;font:600 14px/1 system-ui,-apple-system,"Segoe UI",sans-serif;text-decoration:none!important;letter-spacing:0;box-shadow:0 8px 24px rgba(0,0,0,.25);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:transform .2s}.as-allwork:hover{transform:translateY(-2px)}.as-allwork:focus-visible{outline:2px solid #E9B872;outline-offset:3px}@media print{.as-allwork{display:none}}</style>
+</body>
+</html>

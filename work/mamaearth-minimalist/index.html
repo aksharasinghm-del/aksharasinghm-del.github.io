@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Brand Audit: Mamaearth vs Minimalist, by Akshara Singh</title>
+<meta name="description" content="A full brand audit of Mamaearth and Minimalist: brand inventory, brand exploratory, digital audit, competitive benchmarking, brand equity, SWOT, scorecard and recommendations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light dark;
+  --paper:#F4F3F8; --sheet:#FFFFFF; --ink:#23243A; --muted:#66677E; --line:#DDDCE8; --grid:#EBEAF2;
+  --me:#F2B48A; --me-t:#A3521F; --me-soft:#FCE9DC;
+  --mi:#9AA6E8; --mi-t:#3F4BB0; --mi-soft:#E6E9FB;
+  --hi:#FBEFA8; --red:#C2553F; --ok:#3E7D55; --amber:#A7771A; --focus:#3F4BB0;
+  --deep:#2B2D52; --deep-t:#F4F3F8;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){ --paper:#15151F; --sheet:#1E1E2C; --ink:#ECEBF4; --muted:#A2A1B8; --line:#30304A; --grid:#25253A; --me-t:#F6C29E; --me-soft:#3A2A22; --mi-t:#B7C0FF; --mi-soft:#262A48; --red:#EE9A8C; --ok:#9CC7A0; --amber:#EFCB7A; --focus:#B7C0FF; --deep:#2E3160; --deep-t:#F4F3F8; }
+}
+:root[data-theme="dark"]{ --paper:#15151F; --sheet:#1E1E2C; --ink:#ECEBF4; --muted:#A2A1B8; --line:#30304A; --grid:#25253A; --me-t:#F6C29E; --me-soft:#3A2A22; --mi-t:#B7C0FF; --mi-soft:#262A48; --red:#EE9A8C; --ok:#9CC7A0; --amber:#EFCB7A; --focus:#B7C0FF; --deep:#2E3160; --deep-t:#F4F3F8; }
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px); scroll-behavior:smooth}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size:16.5px; line-height:1.6}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--focus); outline-offset:3px; border-radius:4px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace}
+.serif,h1,h2,h3{font-family:"Newsreader",Georgia,"Times New Roman",serif; font-weight:500; letter-spacing:-.015em; margin:0; line-height:1.1}
+h2{font-size:clamp(1.9rem,4vw,2.8rem); margin-bottom:.35em}
+h3{font-size:1.4rem; margin:0 0 .4em}
+h4{margin:0 0 .35em; font-size:1rem}
+p{margin:0 0 1em}
+.muted{color:var(--muted)}
+.sm{font-size:.88rem}
+mark{background:var(--hi); color:#23243A; padding:0 .15em}
+sup a{font-family:"IBM Plex Mono",monospace; font-size:.7em; color:var(--muted); text-decoration:none; padding:0 1px}
+sup a:hover{color:var(--ink); text-decoration:underline}
+
+/* layout */
+.shell{display:grid; grid-template-columns:240px minmax(0,1fr); max-width:1280px; margin:0 auto}
+.toc{position:sticky; top:0; align-self:start; height:100svh; padding:28px 18px 28px 24px; border-right:1px solid var(--line); overflow-y:auto}
+.toc .t{font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--muted); margin-bottom:10px}
+.toc ol{list-style:none; margin:0; padding:0}
+.toc a{display:flex; gap:10px; text-decoration:none; font-size:.88rem; padding:5px 6px; border-radius:6px; color:var(--muted)}
+.toc a span{font-family:"IBM Plex Mono",monospace; font-size:.78rem; min-width:22px}
+.toc a.on{background:var(--sheet); color:var(--ink); font-weight:600; box-shadow:inset 3px 0 0 var(--mi)}
+.toc .who{margin-top:22px; font-size:.8rem; color:var(--muted); border-top:1px solid var(--line); padding-top:14px}
+main{padding:0 clamp(18px,4vw,56px) 80px; min-width:0}
+.bar{position:sticky; top:0; z-index:10; background:color-mix(in srgb,var(--paper) 90%,transparent); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); padding:12px 0; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding-top:calc(12px + env(safe-area-inset-top,0px)); margin-top:calc(-1 * env(safe-area-inset-top,0px))}
+.bar .lbl{font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--muted)}
+.seg{display:inline-flex; border:1.5px solid var(--ink); border-radius:999px; overflow:hidden}
+.seg button{font:inherit; font-size:.85rem; font-weight:600; border:0; background:transparent; color:var(--ink); padding:.4em 1em; cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink); color:var(--paper)}
+.bar .stamp{margin-left:auto; font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--muted)}
+
+section{padding:clamp(56px,7vw,88px) 0 0}
+.code{font-family:"IBM Plex Mono",monospace; font-size:.8rem; color:var(--muted); display:flex; gap:10px; align-items:center; margin-bottom:.8rem}
+.code b{background:var(--deep); color:var(--deep-t); padding:.1em .5em; border-radius:4px; font-weight:500}
+.lede{font-size:1.1rem; color:var(--muted); max-width:44rem}
+.sheet{background:var(--sheet); border:1px solid var(--line); border-radius:12px; padding:clamp(18px,2.4vw,28px)}
+.mt{margin-top:clamp(24px,3vw,36px)}
+.two{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px}
+.three{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px}
+body.only-me .two>[data-b="mi"], body.only-mi .two>[data-b="me"]{display:none}
+body.only-me .two, body.only-mi .two{grid-template-columns:1fr}
+body.only-me [data-col="mi"], body.only-mi [data-col="me"]{display:none}
+.bhead{display:flex; align-items:center; gap:10px; margin-bottom:14px}
+.bhead i{width:12px; height:12px; border-radius:3px; flex:none}
+.bhead b{font-family:"Newsreader",serif; font-size:1.35rem; font-weight:600}
+[data-b="me"] .bhead i{background:var(--me)} [data-b="mi"] .bhead i{background:var(--mi)}
+[data-b="me"]{border-top:3px solid var(--me)} [data-b="mi"]{border-top:3px solid var(--mi)}
+.tw{overflow-x:auto}
+table{width:100%; border-collapse:collapse; font-size:.92rem}
+th,td{text-align:left; vertical-align:top; padding:11px 14px 11px 0; border-bottom:1px solid var(--grid)}
+th{font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:.76rem; color:var(--muted)}
+td:first-child{font-weight:600; min-width:9rem}
+th.me,td.me{box-shadow:inset 3px 0 0 var(--me); padding-left:12px}
+th.mi,td.mi{box-shadow:inset 3px 0 0 var(--mi); padding-left:12px}
+.facts{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 18px; margin:0}
+.facts div{border-top:1px solid var(--grid); padding-top:8px}
+.facts dt{font-family:"IBM Plex Mono",monospace; font-size:.74rem; color:var(--muted)}
+.facts dd{margin:.15rem 0 0; font-weight:500}
+.quote{font-family:"Newsreader",serif; font-size:1.25rem; line-height:1.3; border-left:3px solid currentColor; padding-left:14px; margin:14px 0}
+.rating{display:inline-flex; gap:3px; vertical-align:middle}
+.rating i{width:9px; height:9px; border-radius:2px; background:var(--grid)}
+.rating i.f{background:var(--ink)}
+.verdict{display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:.72rem; font-weight:600; padding:.15em .5em; border-radius:4px; white-space:nowrap}
+.v-good{background:color-mix(in srgb,#9CC7A0 35%,transparent); color:var(--ok)}
+.v-mid{background:color-mix(in srgb,#EFCB7A 35%,transparent); color:var(--amber)}
+.v-bad{background:color-mix(in srgb,#EE9A8C 32%,transparent); color:var(--red)}
+.finding{display:grid; grid-template-columns:auto minmax(0,1fr); gap:14px; padding:14px 0; border-top:1px solid var(--grid)}
+.finding .n{font-family:"IBM Plex Mono",monospace; font-size:.8rem; color:var(--muted); padding-top:2px}
+.method li{margin-bottom:.4rem}
+
+/* map */
+.map-wrap{display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:24px; align-items:center}
+.map{position:relative; aspect-ratio:1; background:var(--sheet); border:1px solid var(--line); border-radius:12px; background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px); background-size:10% 10%}
+.map::before,.map::after{content:""; position:absolute; background:var(--muted); opacity:.5}
+.map::before{left:50%; top:4%; bottom:4%; width:1px}
+.map::after{top:50%; left:4%; right:4%; height:1px}
+.ax{position:absolute; font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--muted); background:var(--sheet); padding:0 4px}
+.dot{position:absolute; transform:translate(-50%,-50%); display:flex; flex-direction:column; align-items:center; font-size:.76rem; font-weight:600; white-space:nowrap}
+.dot i{width:12px; height:12px; border-radius:50%; background:var(--muted); margin-bottom:3px}
+.dot.me i{background:var(--me); width:20px; height:20px; box-shadow:0 0 0 2px var(--me-t)} .dot.me{color:var(--me-t)}
+.dot.mi i{background:var(--mi); width:20px; height:20px; box-shadow:0 0 0 2px var(--mi-t)} .dot.mi{color:var(--mi-t)}
+
+/* pyramid */
+.pyr svg{width:100%; max-width:360px; display:block; margin:0 auto}
+.pyr svg .lv{cursor:pointer}
+.pyr svg .lv:hover path,.pyr svg .lv:focus path{stroke:var(--ink); stroke-width:2}
+.pyr svg text{font-family:"IBM Plex Sans",sans-serif; font-size:9.5px; font-weight:600; pointer-events:none}
+.pyr .why{min-height:4.8em; font-size:.9rem; margin-top:10px; background:var(--paper); border-radius:8px; padding:10px 12px}
+.legend{display:flex; gap:12px; flex-wrap:wrap; font-size:.8rem; color:var(--muted); margin-top:8px}
+.legend span{display:inline-flex; gap:6px; align-items:center}
+.legend i{width:12px; height:12px; border-radius:3px}
+
+/* scorecard */
+.score-row{display:grid; grid-template-columns:minmax(0,1.3fr) 150px minmax(0,1fr) minmax(0,1fr); gap:14px; align-items:center; padding:12px 0; border-bottom:1px solid var(--grid)}
+.score-row.hd{font-family:"IBM Plex Mono",monospace; font-size:.74rem; color:var(--muted)}
+.score-row .crit b{display:block; font-size:.95rem}
+.score-row .crit small{color:var(--muted); font-size:.8rem}
+.score-row input[type=range]{width:100%; accent-color:var(--ink)}
+.wv{font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--muted)}
+.sc{display:flex; align-items:center; gap:8px}
+.sc .pip{flex:1; height:8px; border-radius:5px; background:var(--grid); overflow:hidden}
+.sc .pip i{display:block; height:100%}
+.sc .v{font-family:"IBM Plex Mono",monospace; font-size:.85rem; font-weight:600; min-width:26px; text-align:right}
+.me .pip i{background:var(--me)} .mi .pip i{background:var(--mi)}
+.totals{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin-top:18px}
+.total{border-radius:12px; padding:18px; color:#fff}
+.total.me{background:var(--me); color:#23243A} .total.mi{background:var(--mi); color:#23243A}
+.total .k{font-family:"IBM Plex Mono",monospace; font-size:.76rem; opacity:.85}
+.total .big{font-family:"Newsreader",serif; font-size:3rem; line-height:1; margin:.2rem 0}
+.total .g{font-size:.9rem; opacity:.9}
+.reset{font:inherit; font-size:.85rem; border:1px solid var(--line); background:var(--sheet); color:var(--ink); border-radius:999px; padding:.35em .9em; cursor:pointer}
+
+/* recs */
+.rec{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:12px; padding:14px 0; border-top:1px solid var(--grid)}
+.rec .tags{display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end; align-self:start}
+.tag{font-family:"IBM Plex Mono",monospace; font-size:.7rem; border:1px solid var(--line); border-radius:4px; padding:.1em .45em; white-space:nowrap}
+.tag.hi{background:var(--hi); color:#23243A; border-color:var(--hi); font-weight:600}
+.cover{padding:clamp(48px,7vw,88px) 0 0}
+.cover h1 em{color:var(--mi-t)}
+.cover h1{font-family:"Newsreader",serif; font-size:clamp(2.6rem,6.4vw,5rem); font-weight:500; letter-spacing:-.03em; line-height:1}
+.cover h1 em{font-style:italic}
+.vs{display:grid; grid-template-columns:1fr auto 1fr; gap:14px; align-items:stretch; margin-top:clamp(28px,4vw,44px)}
+.vs .card{border-radius:14px; padding:22px; display:flex; flex-direction:column; justify-content:space-between; min-height:190px}
+.vs .card.me{background:var(--me-soft); color:var(--ink); border:1px solid color-mix(in srgb,var(--me) 60%,transparent)}
+.vs .card.mi{background:var(--mi-soft); color:var(--ink); border:1px solid color-mix(in srgb,var(--mi) 60%,transparent)}
+.vs .card .nm{font-family:"Newsreader",serif; font-size:2rem; font-weight:600}
+.vs .card .pos{font-size:.95rem}
+.vs .card .muted{color:var(--muted)}
+.vs .x{color:var(--muted)!important}
+.vs .x{align-self:center; font-family:"Newsreader",serif; font-style:italic; font-size:1.6rem; color:var(--muted)}
+.headline{background:var(--deep); color:var(--deep-t); border-radius:14px; padding:clamp(20px,3vw,30px); margin-top:18px}
+.headline .k{font-family:"IBM Plex Mono",monospace; font-size:.76rem; opacity:.7}
+.headline p{font-family:"Newsreader",serif; font-size:clamp(1.4rem,2.8vw,2rem); line-height:1.2; margin:.4rem 0 0}
+.src-list{font-size:.84rem; padding-left:1.4rem}
+.src-list li{margin-bottom:.4rem; word-break:break-word}
+.src-list li:target{background:var(--hi); color:#23243A}
+footer{margin-top:70px; padding-top:22px; border-top:1px solid var(--line); font-size:.88rem; color:var(--muted)}
+
+@media (max-width:1000px){
+  .shell{grid-template-columns:1fr}
+  .toc{display:none}
+  .two,.three,.map-wrap,.totals{grid-template-columns:1fr}
+  .score-row{grid-template-columns:1fr 1fr; }
+  .score-row .crit{grid-column:1/-1}
+  .score-row.hd{display:none}
+  .vs{grid-template-columns:1fr}
+  .vs .x{justify-self:center}
+}
+@media (max-width:560px){ .facts{grid-template-columns:1fr} .rec{grid-template-columns:1fr} .rec .tags{justify-content:flex-start} }
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+/* campaign kit */
+.ck-g{margin-top:2.4rem}
+.ck-gh{display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:8px 16px; border-top:1px solid var(--line); padding-top:14px}
+.ck-gh b{font-size:1.05rem}
+.ck-gh span{display:flex; gap:14px; font-size:.9rem}
+.ck-gh a{font-weight:700}
+.ck-strip{display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding:14px 2px 12px}
+.ck-strip figure{margin:0; flex:none; scroll-snap-align:start}
+.ck-strip img{display:block; height:min(360px,62vw); width:auto; max-width:none; border-radius:12px; border:1px solid var(--line); box-shadow:0 16px 30px -20px rgba(0,0,0,.45)}
+.ck-strip figcaption{font-size:.82rem; color:var(--muted); margin-top:8px; max-width:280px}
+</style>
+</head>
+<body>
+<div class="shell">
+  <nav class="toc" aria-label="Audit sections">
+    <div class="t">BRAND AUDIT / CONTENTS</div>
+    <ol id="toc">
+      <li><a href="#s0"><span>00</span>Scope and method</a></li>
+      <li><a href="#s1"><span>01</span>Brand snapshot</a></li>
+      <li><a href="#s2"><span>02</span>Brand inventory</a></li>
+      <li><a href="#s3"><span>03</span>Marketing mix</a></li>
+      <li><a href="#s4"><span>04</span>Brand exploratory</a></li>
+      <li><a href="#s5"><span>05</span>Digital and social</a></li>
+      <li><a href="#s6"><span>06</span>Competitive position</a></li>
+      <li><a href="#s7"><span>07</span>Brand equity</a></li>
+      <li><a href="#s8"><span>08</span>SWOT</a></li>
+      <li><a href="#s9"><span>09</span>Scorecard</a></li>
+      <li><a href="#s10"><span>10</span>Recommendations</a></li>
+      <li><a href="#campaign-kit"><span>11</span>Campaign kit</a></li>
+      <li><a href="#src"><span>—</span>Sources</a></li>
+    </ol>
+    <div class="who">Prepared by <b>Akshara Singh</b><br>September 2026<br>Portfolio project</div>
+  </nav>
+
+  <main>
+    <div class="bar" role="region" aria-label="View options">
+      <span class="lbl">VIEW</span>
+      <div class="seg" role="group" aria-label="Choose which brand to view">
+        <button type="button" data-view="both" aria-pressed="true">Both</button>
+        <button type="button" data-view="me" aria-pressed="false">Mamaearth</button>
+        <button type="button" data-view="mi" aria-pressed="false">Minimalist</button>
+      </div>
+      <span class="stamp">Desk audit · Sept 2026 · public data only</span>
+    </div>
+
+    <header class="cover">
+      <div class="code"><b>BRAND AUDIT</b> Indian skincare, two approaches</div>
+      <h1>Mamaearth <em>vs</em> Minimalist</h1>
+      <p class="lede" style="margin-top:1rem">Two of India's biggest digital-first skincare brands, built on opposite promises. One sells nature. The other sells proof. This audit examines both using a standard brand audit framework.</p>
+      <div class="vs">
+        <div class="card me"><div><div class="nm">Mamaearth</div><div class="mono sm muted">Honasa Consumer · since 2016</div></div><div class="pos">Promise: <b>"Goodness Inside"</b>. Natural, toxin-free personal care.</div></div>
+        <div class="x">vs</div>
+        <div class="card mi"><div><div class="nm">Minimalist</div><div class="mono sm muted">Hindustan Unilever · since 2020</div></div><div class="pos">Promise: <b>#HideNothing</b>. Actives-led science, fully disclosed.</div></div>
+      </div>
+      <div class="headline"><div class="k">HEADLINE FINDING</div><p>Mamaearth has reach and momentum but a trust gap. Minimalist has trust and clarity but a scale test ahead. Each brand's next chapter depends on building what the other already has.</p></div>
+    </header>
+
+    <!-- 00 SCOPE -->
+    <section id="s0">
+      <div class="code"><b>00</b> Scope and methodology</div>
+      <h2>What this audit covers, and how.</h2>
+      <div class="two mt">
+        <div class="sheet">
+          <h4>Objectives</h4>
+          <ul class="method"><li>Assess each brand's identity, positioning and marketing mix (brand inventory).</li><li>Assess how customers and the market perceive each brand (brand exploratory).</li><li>Benchmark both against each other and key competitors.</li><li>Score brand health and recommend priorities.</li></ul>
+        </div>
+        <div class="sheet">
+          <h4>Method</h4>
+          <ul class="method"><li><b>Framework:</b> Keller's brand audit (inventory + exploratory) and the CBBE brand equity pyramid.</li><li><b>Evidence:</b> company filings and results, brand websites, social profiles, press coverage, ASCI complaint reports, review platforms.</li><li><b>Scoring:</b> 1–5 per criterion, evidence-linked, adjustable weights.</li></ul>
+        </div>
+      </div>
+      <div class="sheet mt">
+        <h4>Limitations</h4>
+        <p class="sm" style="margin:0">This is a desk audit using public information only. A full client audit would add internal data (sales by SKU, retention cohorts, brand tracking) and primary research (consumer survey, interviews). Scores are the auditor's evidence-based judgement. Mamaearth figures are partly reported at parent-company (Honasa) level.</p>
+      </div>
+    </section>
+
+    <!-- 01 SNAPSHOT -->
+    <section id="s1">
+      <div class="code"><b>01</b> Brand snapshot</div>
+      <h2>The two brands at a glance.</h2>
+      <div class="two mt">
+        <div class="sheet" data-b="me">
+          <div class="bhead"><i></i><b>Mamaearth</b></div>
+          <dl class="facts">
+            <div><dt>Founded</dt><dd>2016, by Varun and Ghazal Alagh</dd></div>
+            <div><dt>Parent</dt><dd>Honasa Consumer (listed 2023)</dd></div>
+            <div><dt>Parent revenue FY26</dt><dd>₹2,392 cr, up 15.7%<sup><a href="#r1">1</a></sup></dd></div>
+            <div><dt>Parent profit FY26</dt><dd>₹200 cr, from ₹72.6 cr<sup><a href="#r1">1</a></sup></dd></div>
+            <div><dt>Origin story</dt><dd>Founders couldn't find safe products for their baby</dd></div>
+            <div><dt>Momentum</dt><dd>Returned to double-digit growth in FY26<sup><a href="#r2">2</a></sup></dd></div>
+          </dl>
+        </div>
+        <div class="sheet" data-b="mi">
+          <div class="bhead"><i></i><b>Minimalist</b></div>
+          <dl class="facts">
+            <div><dt>Founded</dt><dd>2020, by Mohit and Rahul Yadav, Jaipur</dd></div>
+            <div><dt>Parent</dt><dd>HUL, 90.5% stake at ₹2,955 cr valuation<sup><a href="#r4">4</a></sup></dd></div>
+            <div><dt>Revenue FY26</dt><dd>₹690.2 cr, up 36%<sup><a href="#r4">4</a></sup></dd></div>
+            <div><dt>Profit FY26</dt><dd>₹25.9 cr PAT<sup><a href="#r4">4</a></sup></dd></div>
+            <div><dt>Origin story</dt><dd>A belief that skincare needed a transparency revolution</dd></div>
+            <div><dt>Momentum</dt><dd>36% growth after 45% the year before<sup><a href="#r4">4</a></sup></dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 INVENTORY -->
+    <section id="s2">
+      <div class="code"><b>02</b> Brand inventory: identity and positioning</div>
+      <h2>What each brand says it is.</h2>
+      <p class="lede">The supply side of the audit: brand elements, promise and positioning, assessed against Keller's criteria for strong brand elements (memorable, meaningful, likeable, transferable, adaptable, protectable).</p>
+      <div class="tw sheet mt">
+        <table>
+          <thead><tr><th>Element</th><th class="me" data-col="me">Mamaearth</th><th class="mi" data-col="mi">Minimalist</th></tr></thead>
+          <tbody>
+            <tr><td>Name</td><td class="me" data-col="me">Warm, maternal, nature-led. Rooted in baby care, which makes it harder to stretch into Gen Z skincare. <span class="verdict v-mid">MEANINGFUL, LESS TRANSFERABLE</span></td><td class="mi" data-col="mi">Describes the philosophy exactly. Generic word, so harder to protect and easy for others to echo. <span class="verdict v-mid">MEANINGFUL, LESS PROTECTABLE</span></td></tr>
+            <tr><td>Tagline / mission</td><td class="me" data-col="me">"Goodness Inside" and #GoodnessInside; toxin-free, plastic-positive, cruelty-free<sup><a href="#r11">11</a></sup></td><td class="mi" data-col="mi">#HideNothing; "efficacious, transparent and comprehensive"<sup><a href="#r7">7</a></sup><sup><a href="#r12">12</a></sup></td></tr>
+            <tr><td>Visual identity</td><td class="me" data-col="me">Bright, colourful, ingredient imagery (onion, ubtan, rice). Varies by range. <span class="verdict v-mid">LIKEABLE, LESS CONSISTENT</span></td><td class="mi" data-col="mi">Clinical, white, typographic; the active and its percentage on the front of pack. <span class="verdict v-good">DISTINCTIVE, CONSISTENT</span></td></tr>
+            <tr><td>Tone of voice</td><td class="me" data-col="me">Emotional, family, "maa ka nuskha"; recently Gen Z-led communication<sup><a href="#r3">3</a></sup></td><td class="mi" data-col="mi">Rational, educational; "more like a chemistry class than a beauty campaign"<sup><a href="#r14">14</a></sup></td></tr>
+            <tr><td>Point of difference</td><td class="me" data-col="me">Natural and toxin-free. Once unique; now claimed widely and criticised as unproven<sup><a href="#r18">18</a></sup>. <span class="verdict v-bad">ERODED</span></td><td class="mi" data-col="mi">Full ingredient disclosure with concentrations and clinical data. <span class="verdict v-good">STRONG, BUT COPYABLE</span></td></tr>
+            <tr><td>Points of parity</td><td class="me" data-col="me">Dermatologically tested, affordable, available everywhere.</td><td class="mi" data-col="mi">Affordable, dermatologist-tested, broad routine coverage.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="two mt">
+        <div class="sheet" data-b="me"><div class="bhead"><i></i><b>Positioning statement (as inferred)</b></div><p class="quote" style="color:var(--me-t)">For young families and conscious consumers, Mamaearth is the personal care brand with natural goodness inside, because it's made without harmful toxins.</p><p class="sm muted" style="margin:0">Finding: the "why believe" (toxin-free) is the most contested part of the statement.</p></div>
+        <div class="sheet" data-b="mi"><div class="bhead"><i></i><b>Positioning statement (as inferred)</b></div><p class="quote">For ingredient-aware skincare buyers, Minimalist is the actives brand that shows you exactly what's inside, because it discloses every ingredient and its percentage.</p><p class="sm muted" style="margin:0">Finding: the "why believe" is built into the pack itself, the strongest possible proof.</p></div>
+      </div>
+    </section>
+
+    <!-- 03 MARKETING MIX -->
+    <section id="s3">
+      <div class="code"><b>03</b> Brand inventory: marketing mix</div>
+      <h2>What each brand actually does.</h2>
+      <div class="tw sheet mt">
+        <table>
+          <thead><tr><th>4P</th><th class="me" data-col="me">Mamaearth</th><th class="mi" data-col="mi">Minimalist</th></tr></thead>
+          <tbody>
+            <tr><td>Product</td><td class="me" data-col="me">Broad range (200+ products) across baby, skin, hair and body<sup><a href="#r15">15</a></sup>. Hero SKUs: Ubtan Face Wash, Onion Shampoo; Rice Face Wash reached a ₹100 cr annual run rate<sup><a href="#r2">2</a></sup>.</td><td class="mi" data-col="mi">Focused actives portfolio: serums, cleansers, moisturisers, sunscreens, hair care. Hero: Niacinamide 10% serum, 4.3★ from 125,000+ Amazon ratings<sup><a href="#r16">16</a></sup>.</td></tr>
+            <tr><td>Price</td><td class="me" data-col="me">Mass-premium, laddered across a very wide range; premium justified by "natural" claims, which critics dispute<sup><a href="#r18">18</a></sup>.</td><td class="mi" data-col="mi">Accessible for actives: Niacinamide 10% serum at ₹599 MRP<sup><a href="#r16">16</a></sup>, priced so people can "test and play" with ingredients.</td></tr>
+            <tr><td>Place</td><td class="me" data-col="me">Omnichannel: D2C, marketplaces and 40,000+ points of sale<sup><a href="#r15">15</a></sup>; offline distribution restructured and being rebuilt<sup><a href="#r18">18</a></sup>.</td><td class="mi" data-col="mi">Digital-first: D2C, Amazon, Nykaa, Flipkart. Under HUL, offline footprint planned from 3,000 to 40,000 stores<sup><a href="#r5">5</a></sup>.</td></tr>
+            <tr><td>Promotion</td><td class="me" data-col="me">High-volume influencer marketing (5,000–6,000 collaborations a month, per its chairman)<sup><a href="#r19">19</a></sup>, celebrity films, campaigns like "Maa Paas Nahi, Toh Mamaearth Hi Sahi"<sup><a href="#r15">15</a></sup>.</td><td class="mi" data-col="mi">Niche expert skincare creators and educational content<sup><a href="#r14">14</a></sup>. Ad spend rose 55% to ₹235 cr in FY26<sup><a href="#r6">6</a></sup>.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="sheet mt">
+        <h4>Auditor's note</h4>
+        <p class="sm" style="margin:0">The two brands' marketing mixes mirror their promises. Mamaearth wins on <b>breadth and reach</b>. Minimalist wins on <b>focus and product-led proof</b>. The mixes are now converging: Mamaearth is getting more focused (hero SKUs, "category-first") while Minimalist is getting broader (mass offline, higher ad spend).</p>
+      </div>
+    </section>
+
+    <!-- 04 EXPLORATORY -->
+    <section id="s4">
+      <div class="code"><b>04</b> Brand exploratory: perception</div>
+      <h2>What the market thinks.</h2>
+      <p class="lede">The demand side of the audit: brand associations, sentiment and trust, from press, expert commentary, reviews and regulators.</p>
+      <div class="two mt">
+        <div class="sheet" data-b="me">
+          <div class="bhead"><i></i><b>Mamaearth</b></div>
+          <h4>Top associations</h4>
+          <p class="sm">natural · toxin-free · onion shampoo · baby care · influencers · everywhere · "Shark Tank founder"</p>
+          <h4>Sentiment themes</h4>
+          <div class="finding"><span class="n">+</span><div class="sm">Hero products still pull demand; newer launches like Rice Face Wash landed well with younger buyers<sup><a href="#r2">2</a></sup>.</div></div>
+          <div class="finding"><span class="n">−</span><div class="sm">In 2024, press reported growing negative online feedback and experts described a "perception mismatch" between tall claims and experience<sup><a href="#r10">10</a></sup>.</div></div>
+          <div class="finding"><span class="n">−</span><div class="sm">Dermatologists and consumer voices have questioned whether "toxin-free" and "natural" are meaningful differences<sup><a href="#r18">18</a></sup>.</div></div>
+          <div class="finding"><span class="n">−</span><div class="sm">Parent Honasa was ASCI's biggest violator in FY24 with 187 ads flagged<sup><a href="#r8">8</a></sup>, and the most-flagged beauty company for influencer disclosure in FY26 (24 cases)<sup><a href="#r9">9</a></sup>.</div></div>
+          <p class="sm" style="margin:12px 0 0"><b>Trust verdict:</b> <span class="verdict v-bad">AT RISK</span></p>
+        </div>
+        <div class="sheet" data-b="mi">
+          <div class="bhead"><i></i><b>Minimalist</b></div>
+          <h4>Top associations</h4>
+          <p class="sm">transparent · science · percentages · niacinamide · affordable actives · no-nonsense</p>
+          <h4>Sentiment themes</h4>
+          <div class="finding"><span class="n">+</span><div class="sm">Strong loyalty: the founder has cited around 60% of customers returning to buy every quarter<sup><a href="#r13">13</a></sup>.</div></div>
+          <div class="finding"><span class="n">+</span><div class="sm">Hero serum holds 4.3★ across 125,000+ Amazon ratings<sup><a href="#r16">16</a></sup>.</div></div>
+          <div class="finding"><span class="n">−</span><div class="sm">Some international buyers report fulfilment and refund problems, and one reviewer flagged an ingredient list that didn't match the pack<sup><a href="#r17">17</a></sup>. Small numbers, but dangerous for a #HideNothing brand.</div></div>
+          <div class="finding"><span class="n">?</span><div class="sm">Open question: will HUL ownership dilute the indie, founder-led transparency that built trust?</div></div>
+          <p class="sm" style="margin:12px 0 0"><b>Trust verdict:</b> <span class="verdict v-good">STRONG</span></p>
+        </div>
+      </div>
+      <p class="sm muted" style="margin-top:10px">Note: review-platform complaints are individual accounts and are treated as signals to monitor, not proof of systemic issues.</p>
+    </section>
+
+    <!-- 05 DIGITAL -->
+    <section id="s5">
+      <div class="code"><b>05</b> Digital and social audit</div>
+      <h2>How each brand shows up online.</h2>
+      <div class="tw sheet mt">
+        <table>
+          <thead><tr><th>Metric</th><th class="me" data-col="me">Mamaearth</th><th class="mi" data-col="mi">Minimalist</th></tr></thead>
+          <tbody>
+            <tr><td>Instagram followers</td><td class="me" data-col="me">1.6M (July 2026)<sup><a href="#r11">11</a></sup></td><td class="mi" data-col="mi">536K<sup><a href="#r12">12</a></sup></td></tr>
+            <tr><td>Bio positioning</td><td class="me" data-col="me">"Spreading #GoodnessInside one little choice at a time!" with plastic-positive, toxin-free, cruelty-free emoji list<sup><a href="#r11">11</a></sup></td><td class="mi" data-col="mi">"Efficacious, transparent &amp; comprehensive. Proven science &amp; tested by Dermats." plus #HideNothing<sup><a href="#r12">12</a></sup></td></tr>
+            <tr><td>Engagement</td><td class="me" data-col="me">Estimated 0.04% engagement rate, around 565 likes a post (third-party tool)<sup><a href="#r11">11</a></sup>. <span class="verdict v-bad">LOW FOR SIZE</span></td><td class="mi" data-col="mi">Not measured here; to verify with a social listening tool in a full audit.</td></tr>
+            <tr><td>Content style</td><td class="me" data-col="me">Product-led, celebrity and influencer driven, trend-reactive.</td><td class="mi" data-col="mi">Educational, ingredient explainers, routine-building.</td></tr>
+            <tr><td>Influencer model</td><td class="me" data-col="me">Volume: thousands of collaborations a month<sup><a href="#r19">19</a></sup>.</td><td class="mi" data-col="mi">Selective: niche skincare experts with credible audiences<sup><a href="#r14">14</a></sup>.</td></tr>
+            <tr><td>Compliance</td><td class="me" data-col="me">Most-flagged beauty company for influencer disclosure in FY26<sup><a href="#r9">9</a></sup>. <span class="verdict v-bad">HIGH RISK</span></td><td class="mi" data-col="mi">No brand-specific flags found; parent HUL had 12 influencer cases in FY26<sup><a href="#r9">9</a></sup>. <span class="verdict v-mid">MONITOR</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="sheet mt">
+        <h4>Auditor's note</h4>
+        <p class="sm" style="margin:0">Mamaearth has three times the audience but, on third-party estimates, very low engagement for its size, a sign that reach is being bought rather than earned. Minimalist's smaller audience is built on content people use, which matches its high repeat-purchase rate.</p>
+      </div>
+    </section>
+
+    <!-- 06 COMPETITIVE -->
+    <section id="s6">
+      <div class="code"><b>06</b> Competitive position</div>
+      <h2>Where they sit in the market.</h2>
+      <div class="map-wrap mt">
+        <div class="map" role="img" aria-label="Perceptual map. Horizontal axis: nature-led on the left to science-led on the right. Vertical axis: mass at the bottom to premium at the top. Mamaearth sits nature-led and mass. Minimalist sits science-led and mid-market. The Derma Co sits science-led, mid. Plum sits nature-leaning, mid. The Ordinary sits science-led, mid. Forest Essentials sits nature-led, premium.">
+          <span class="ax" style="top:2%; left:50%; transform:translateX(-50%)">PREMIUM</span>
+          <span class="ax" style="bottom:2%; left:50%; transform:translateX(-50%)">MASS</span>
+          <span class="ax" style="left:1%; top:50%; transform:translateY(-50%)">NATURE-LED</span>
+          <span class="ax" style="right:1%; top:50%; transform:translateY(-50%)">SCIENCE-LED</span>
+          <span class="dot me" style="left:24%; top:68%"><i></i>Mamaearth</span>
+          <span class="dot mi" style="left:78%; top:58%"><i></i>Minimalist</span>
+          <span class="dot" style="left:70%; top:42%"><i></i>The Derma Co</span>
+          <span class="dot" style="left:86%; top:36%"><i></i>The Ordinary</span>
+          <span class="dot" style="left:38%; top:44%"><i></i>Plum</span>
+          <span class="dot" style="left:18%; top:16%"><i></i>Forest Essentials</span>
+        </div>
+        <div>
+          <h3>Reading the map</h3>
+          <p class="sm">Science-led skincare has become the most crowded, fastest-moving space. Minimalist sits at its accessible end; Honasa's own The Derma Co sits nearby.</p>
+          <p class="sm"><mark>Key tension for Mamaearth:</mark> its sister brand already owns "science", so Mamaearth must win the nature side on credibility, not just claims.</p>
+          <p class="sm"><mark>Key tension for Minimalist:</mark> The Ordinary pioneered the transparent-actives model globally, so Minimalist's difference must come from Indian skin needs, price and education.</p>
+          <p class="sm muted" style="margin:0">Positions are the auditor's qualitative assessment of brand communication and pricing.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 EQUITY -->
+    <section id="s7">
+      <div class="code"><b>07</b> Brand equity: CBBE pyramid</div>
+      <h2>How strong is each brand, level by level?</h2>
+      <p class="lede">Keller's customer-based brand equity model builds from awareness at the base to loyalty at the top. Tap a level to see the evidence.</p>
+      <div class="two mt">
+        <div class="sheet pyr" data-b="me"><div class="bhead"><i></i><b>Mamaearth</b></div><svg viewBox="0 0 300 220" id="pyrMe" role="group" aria-label="Mamaearth brand equity pyramid"></svg><div class="why" id="whyMe" aria-live="polite">Tap a level.</div></div>
+        <div class="sheet pyr" data-b="mi"><div class="bhead"><i></i><b>Minimalist</b></div><svg viewBox="0 0 300 220" id="pyrMi" role="group" aria-label="Minimalist brand equity pyramid"></svg><div class="why" id="whyMi" aria-live="polite">Tap a level.</div></div>
+      </div>
+      <div class="legend"><span><i style="background:#9CC7A0"></i>Strong (4–5)</span><span><i style="background:#EFCB7A"></i>Mixed (3)</span><span><i style="background:#EE9A8C"></i>Weak (1–2)</span></div>
+    </section>
+
+    <!-- 08 SWOT -->
+    <section id="s8">
+      <div class="code"><b>08</b> SWOT</div>
+      <h2>Strengths, weaknesses, opportunities, threats.</h2>
+      <div class="two mt">
+        <div class="sheet" data-b="me"><div class="bhead"><i></i><b>Mamaearth</b></div>
+          <div class="tw"><table><tbody>
+            <tr><td>Strengths</td><td>Huge awareness and distribution; proven hero products; parent now highly profitable; fast innovation.</td></tr>
+            <tr><td>Weaknesses</td><td>Contested core claim; ad-compliance record; low organic engagement; name rooted in baby care.</td></tr>
+            <tr><td>Opportunities</td><td>Re-prove "natural" with evidence; Gen Z communication already working; offline rebuild.</td></tr>
+            <tr><td>Threats</td><td>Regulatory scrutiny of claims; science-led rivals (including its own sister brand); influencer fatigue.</td></tr>
+          </tbody></table></div>
+        </div>
+        <div class="sheet" data-b="mi"><div class="bhead"><i></i><b>Minimalist</b></div>
+          <div class="tw"><table><tbody>
+            <tr><td>Strengths</td><td>Clear, credible promise; distinctive packaging; high repeat purchase; fast, profitable growth.</td></tr>
+            <tr><td>Weaknesses</td><td>Lower awareness than mass brands; rational, less emotional brand; generic, copyable name.</td></tr>
+            <tr><td>Opportunities</td><td>HUL's offline reach; international markets; owning skincare education in India.</td></tr>
+            <tr><td>Threats</td><td>Perceived dilution under HUL; many copycat "percentage" brands; any transparency slip-up.</td></tr>
+          </tbody></table></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 SCORECARD -->
+    <section id="s9">
+      <div class="code"><b>09</b> Brand health scorecard</div>
+      <h2>The scores, weighted.</h2>
+      <p class="lede">Each criterion is scored 1–5 based on the evidence above. Weights reflect what matters most for a skincare brand in 2026. Change the weights to test a different point of view.</p>
+      <div class="sheet mt">
+        <div class="score-row hd"><span>CRITERION</span><span>WEIGHT</span><span data-col="me">MAMAEARTH</span><span data-col="mi">MINIMALIST</span></div>
+        <div id="rows"></div>
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; margin-top:14px">
+          <span class="sm muted" id="wsum" aria-live="polite"></span>
+          <button class="reset" type="button" id="reset">Reset weights</button>
+        </div>
+        <div class="totals">
+          <div class="total me" data-col="me"><div class="k">MAMAEARTH / WEIGHTED SCORE</div><div class="big" id="tMe">0</div><div class="g" id="gMe"></div></div>
+          <div class="total mi" data-col="mi"><div class="k">MINIMALIST / WEIGHTED SCORE</div><div class="big" id="tMi">0</div><div class="g" id="gMi"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 RECOMMENDATIONS -->
+    <section id="s10">
+      <div class="code"><b>10</b> Recommendations</div>
+      <h2>What each brand should do next.</h2>
+      <p class="lede">Prioritised by impact on brand health, with the effort each would take.</p>
+      <div class="two mt">
+        <div class="sheet" data-b="me"><div class="bhead"><i></i><b>Mamaearth: close the trust gap</b></div>
+          <div class="rec"><div><b>1. Prove the goodness, product by product.</b><div class="sm muted">Replace blanket "toxin-free" language with SKU-level proof: key ingredient percentages, test results and which products are certified.</div></div><div class="tags"><span class="tag hi">HIGH</span><span class="tag">0–6 MONTHS</span></div></div>
+          <div class="rec"><div><b>2. Fewer, better, fully disclosed creators.</b><div class="sm muted">Shift from thousands of collaborations to fewer long-term creators, with disclosure built into contracts and weekly compliance checks.</div></div><div class="tags"><span class="tag hi">HIGH</span><span class="tag">0–3 MONTHS</span></div></div>
+          <div class="rec"><div><b>3. Draw a clear line with The Derma Co.</b><div class="sm muted">Mamaearth owns "nature you can check"; The Derma Co owns "science". Stop overlapping claims across the two.</div></div><div class="tags"><span class="tag">MEDIUM</span><span class="tag">3–6 MONTHS</span></div></div>
+          <div class="rec"><div><b>4. Earn engagement, not just reach.</b><div class="sm muted">Move social from product pushes to community and education, and set engagement rate, not followers, as the social KPI.</div></div><div class="tags"><span class="tag">MEDIUM</span><span class="tag">3–9 MONTHS</span></div></div>
+        </div>
+        <div class="sheet" data-b="mi"><div class="bhead"><i></i><b>Minimalist: scale without losing the soul</b></div>
+          <div class="rec"><div><b>1. Apply #HideNothing to the company itself.</b><div class="sm muted">Publish an annual transparency report: what changed under HUL, what didn't, formulations and sourcing. Keep the founders visible.</div></div><div class="tags"><span class="tag hi">HIGH</span><span class="tag">0–6 MONTHS</span></div></div>
+          <div class="rec"><div><b>2. Take the education into stores.</b><div class="sm muted">Going from 3,000 to 40,000 stores means reaching shoppers who've never seen the content. Add shelf explainers and QR codes to routine guides.</div></div><div class="tags"><span class="tag hi">HIGH</span><span class="tag">3–12 MONTHS</span></div></div>
+          <div class="rec"><div><b>3. Add warmth without losing rigour.</b><div class="sm muted">Build salience with human stories: real customers' skin journeys and the chemists behind the formulas.</div></div><div class="tags"><span class="tag">MEDIUM</span><span class="tag">6–12 MONTHS</span></div></div>
+          <div class="rec"><div><b>4. Fix international customer experience first.</b><div class="sm muted">Resolve fulfilment and label-consistency issues before scaling overseas; one mismatch hurts a transparency brand more than most.</div></div><div class="tags"><span class="tag">MEDIUM</span><span class="tag">0–6 MONTHS</span></div></div>
+        </div>
+      </div>
+      <div class="headline"><div class="k">CONCLUSION</div><p>Mamaearth needs to prove what it promises. Minimalist needs to keep promising what it proves. Trust is now the real battleground in Indian skincare.</p></div>
+    </section>
+
+    <section id="campaign-kit">
+      <div class="code"><b>11</b> Campaign kit</div>
+      <h2>The audit, made shareable.</h2>
+      <p class="lede">Four kinds of assets I designed for this strategy: an Instagram carousel, Stories, widescreen pieces and a print piece. Scroll each row, or open the originals in Canva.</p>
+      <div class="ck-g">
+        <div class="ck-gh"><b>Instagram carousel</b><span><a href="https://www.canva.com/d/okOJpEdgXSoPGh2" target="_blank" rel="noopener">View in Canva ↗</a><a href="canva-kit/carousel.pdf" download>PDF</a></span></div>
+        <div class="ck-strip" tabindex="0" aria-label="Instagram carousel, scroll sideways">
+          <figure><img src="canva-kit/carousel/01.jpg" alt="Instagram carousel, Nature vs proof" loading="lazy"><figcaption>Nature vs proof</figcaption></figure>
+          <figure><img src="canva-kit/carousel/02.jpg" alt="Instagram carousel, Snapshot" loading="lazy"><figcaption>Snapshot</figcaption></figure>
+          <figure><img src="canva-kit/carousel/03.jpg" alt="Instagram carousel, The trust gap" loading="lazy"><figcaption>The trust gap</figcaption></figure>
+          <figure><img src="canva-kit/carousel/04.jpg" alt="Instagram carousel, Brand equity pyramids" loading="lazy"><figcaption>Brand equity pyramids</figcaption></figure>
+          <figure><img src="canva-kit/carousel/05.jpg" alt="Instagram carousel, Competitive map" loading="lazy"><figcaption>Competitive map</figcaption></figure>
+          <figure><img src="canva-kit/carousel/06.jpg" alt="Instagram carousel, Scorecard" loading="lazy"><figcaption>Scorecard</figcaption></figure>
+        </div>
+      </div>
+      <div class="ck-g">
+        <div class="ck-gh"><b>Instagram Stories</b><span><a href="https://www.canva.com/d/DpSIms6EeEQ-JHz" target="_blank" rel="noopener">View in Canva ↗</a><a href="canva-kit/stories.pdf" download>PDF</a></span></div>
+        <div class="ck-strip" tabindex="0" aria-label="Instagram Stories, scroll sideways">
+          <figure><img src="canva-kit/stories/01.jpg" alt="Instagram Stories, This or that" loading="lazy"><figcaption>This or that</figcaption></figure>
+          <figure><img src="canva-kit/stories/02.jpg" alt="Instagram Stories, Engagement quiz" loading="lazy"><figcaption>Engagement quiz</figcaption></figure>
+          <figure><img src="canva-kit/stories/03.jpg" alt="Instagram Stories, The fix" loading="lazy"><figcaption>The fix</figcaption></figure>
+        </div>
+      </div>
+      <div class="ck-g">
+        <div class="ck-gh"><b>Keynote slides</b><span><a href="https://www.canva.com/d/46B3aPbnnQ4HfyK" target="_blank" rel="noopener">View in Canva ↗</a><a href="canva-kit/widescreen.pdf" download>PDF</a></span></div>
+        <div class="ck-strip" tabindex="0" aria-label="Keynote slides, scroll sideways">
+          <figure><img src="canva-kit/widescreen/01.jpg" alt="Keynote slides, Headline finding" loading="lazy"><figcaption>Headline finding</figcaption></figure>
+          <figure><img src="canva-kit/widescreen/02.jpg" alt="Keynote slides, Recommendations roadmap" loading="lazy"><figcaption>Recommendations roadmap</figcaption></figure>
+        </div>
+      </div>
+      <div class="ck-g">
+        <div class="ck-gh"><b>Print: report card</b><span><a href="https://www.canva.com/d/PxNZheibddkB92o" target="_blank" rel="noopener">View in Canva ↗</a><a href="canva-kit/print.pdf" download>PDF</a></span></div>
+        <div class="ck-strip" tabindex="0" aria-label="Print: report card, scroll sideways">
+          <figure><img src="canva-kit/print/01.jpg" alt="Print: report card, Brand health report card" loading="lazy"><figcaption>Brand health report card</figcaption></figure>
+        </div>
+      </div>
+      <p class="mt"><a href="https://www.canva.com/d/84mWTID-NMi4Fmd" target="_blank" rel="noopener">See all my work ↗</a></p>
+    </section>
+
+    <!-- SOURCES -->
+    <section id="src">
+      <div class="code"><b>—</b> Sources</div>
+      <h2>Evidence log.</h2>
+      <ol class="src-list">
+        <li id="r1">D2C Insider Pulse, "Mamaearth parent Honasa Consumer posts 3X profit growth in Q4 as FY26 revenue crosses ₹2,390 crore", May 2026. <a href="https://pulse.d2cinsider.com/mamaearth-parent-honasa-consumer-posts-3x-profit-growth-in-q4-as-fy26-revenue-crosses-%E2%82%B92390-crore/">Link</a></li>
+        <li id="r2">Bharat Fast, "Honasa Consumer FY26 profit jumps 175% as Mamaearth, The Derma Co drive strong growth", May 2026. <a href="https://bharatfast.com/english/start-up/honasa-fy26-results-mamaearth-growth/32751/">Link</a></li>
+        <li id="r3">BW Disrupt, "Honasa Consumer Q3 FY26 profit soars 93%", Feb 2026. <a href="https://www.bwdisrupt.com/article/honasa-consumer-q3-fy26-profit-soars-93-to-rs-50-2-cr-revenue-up-16-on-mamaearth-derma-co-growth-593362">Link</a></li>
+        <li id="r4">Entrackr, "HUL-owned Minimalist nears Rs 700 Cr income in FY26", Aug 2026. <a href="https://entrackr.com/fintrackr/hul-owned-minimalist-nears-rs-700-cr-income-in-fy26-posts-rs-26-cr-pat-12267525">Link</a></li>
+        <li id="r5">Inc42, "HUL-owned Minimalist turns profitable in FY26", Aug 2026. <a href="https://inc42.com/buzz/hul-owned-minimalist-turns-profitable-in-fy26-revenue-up-36-yoy/">Link</a></li>
+        <li id="r6">Ascendants, "Minimalist spends Rs 235 Cr on advertising as FY26 revenue jumps 36%", Aug 2026. <a href="https://ascendants.in/business-stories/minimalist-fy26-revenue-rs-690-crore-pat-rs-25-crore/">Link</a></li>
+        <li id="r7">Unilever, "HUL to acquire premium beauty brand Minimalist", Jan 2025. <a href="https://www.unilever.com/news/press-and-media/press-releases/2025/hul-to-acquire-premium-beauty-brand-minimalist/">Link</a></li>
+        <li id="r8">Storyboard18, "Mamaearth-parent Honasa Consumer has highest number of ad violations: ASCI", May 2024. <a href="https://www.storyboard18.com/quantum-brief/mamaearth-parent-honasa-consumer-records-most-ad-violations-asci-compliants-report-32377.htm">Link</a></li>
+        <li id="r9">Storyboard18, "Honasa, L'Oréal and HUL top ASCI's influencer disclosure violations list in FY26", May 2026. <a href="https://www.storyboard18.com/advertising/honasa-loreal-hul-top-ascis-influencer-disclosure-violations-list-in-fy26-in-personal-care-99540.htm">Link</a></li>
+        <li id="r10">Storyboard18, "Unearthing Mamaearth: decoding consumer feedback", Sept 2024. <a href="https://www.storyboard18.com/how-it-works/unearthing-mamaearth-negative-feedback-positive-growth-42299.htm">Link</a></li>
+        <li id="r11">Qoruz, Mamaearth Instagram profile statistics, July 2026. <a href="https://qoruz.com/mamaearth.in/instagram">Link</a></li>
+        <li id="r12">Minimalist, Instagram profile (@beminimalist__). <a href="https://www.instagram.com/beminimalist__/">Link</a></li>
+        <li id="r13">Deep Dive Blogs, "Inside Minimalist's breakthrough in India's beauty market", Nov 2024 (citing the founder on a podcast). <a href="https://deepdiveblogs.substack.com/p/inside-minimalists-breakthrough-in">Link</a></li>
+        <li id="r14">Laffaz, "How Minimalist's influencer strategy led to a ₹2,955 Cr exit", Apr 2026. <a href="https://laffaz.com/minimalist-skincare-influencer-marketing-hul-acquisition/">Link</a></li>
+        <li id="r15">Honasa Consumer, BSE filing on the "Maa Paas Nahi, Toh Mamaearth Hi Sahi" campaign, May 2024. <a href="https://bseindia.com/xml-data/corpfiling/AttachHis/035a5242-5dec-4be9-83c4-f6c986eae0a0.pdf">Link</a></li>
+        <li id="r16">DermFND, Minimalist 10% Niacinamide Face Serum analysis, May 2026. <a href="https://dermfnd.org/p/minimalist-10-niacinamide-face-serum/">Link</a></li>
+        <li id="r17">Trustpilot, Minimalist customer reviews, 2026. <a href="https://www.trustpilot.com/review/beminimalist.co">Link</a></li>
+        <li id="r18">Value for Startups, "Mamaearth business model", May 2026. <a href="https://valueforstartups.in/25-mamaearth-rebrand">Link</a></li>
+        <li id="r19">Storyboard18, "95% of ASCI ad violation allegations are influencer posts: Varun Alagh", May 2024. <a href="https://www.storyboard18.com/how-it-works/95-of-asci-ad-violation-allegations-are-influencer-posts-not-advertising-claims-varun-alagh-33091.htm">Link</a></li>
+      </ol>
+      <footer>
+        <p><b style="color:var(--ink)">Brand audit by Akshara Singh</b>, digital marketer. <a href="mailto:Akshara.singh.marketing@gmail.com">Akshara.singh.marketing@gmail.com</a></p>
+        <p>An independent desk audit created for portfolio purposes, using publicly available information as of September 2026. Not affiliated with, commissioned by or endorsed by Honasa Consumer, Mamaearth, Hindustan Unilever or Minimalist. Scores and positioning are the author's analytical judgement.</p>
+      </footer>
+    </section>
+  </main>
+</div>
+
+<script>
+(function(){
+  function $(id){return document.getElementById(id);}
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* view toggle */
+  document.querySelectorAll('[data-view]').forEach(function(b){ b.addEventListener('click',function(){
+    var v=b.getAttribute('data-view');
+    document.querySelectorAll('[data-view]').forEach(function(x){ x.setAttribute('aria-pressed',x===b); });
+    document.body.classList.toggle('only-me',v==='me'); document.body.classList.toggle('only-mi',v==='mi');
+  }); });
+
+  /* pyramid */
+  var levels=['Salience','Performance','Imagery','Judgements','Feelings','Resonance'];
+  var data={
+    me:[5,3,3,2,3,3],
+    mi:[3,5,4,5,3,4]
+  };
+  var why={
+    me:['Salience 5/5: one of India\u2019s most recognised personal care brands, with 1.6M Instagram followers and 40,000+ points of sale.',
+        'Performance 3/5: hero products like Ubtan Face Wash and Rice Face Wash sell strongly, but critics question whether "natural" formulas outperform alternatives.',
+        'Imagery 3/5: warm and natural, but rooted in baby care, while communication is now shifting to Gen Z.',
+        'Judgements 2/5: credibility is weakened by ASCI\u2019s FY24 violations record and disputes over "toxin-free" claims.',
+        'Feelings 3/5: emotional family warmth ("Maa Paas Nahi") is a real asset, though online sentiment has been mixed.',
+        'Resonance 3/5: repeat purchase of hero SKUs, but low estimated engagement suggests a weaker community bond.'],
+    mi:['Salience 3/5: well known among skincare enthusiasts; 536K Instagram followers; offline reach still growing.',
+        'Performance 5/5: the hero serum is rated 4.3★ across 125,000+ Amazon ratings, with clinically-studied active levels.',
+        'Imagery 4/5: clean, clinical, honest. Distinctive, if a little cold.',
+        'Judgements 5/5: credibility is the brand\u2019s core; disclosure is built into every pack.',
+        'Feelings 3/5: a rational brand; respect is high but emotional warmth is limited.',
+        'Resonance 4/5: around 60% of customers repurchase every quarter, according to the founder.']
+  };
+  function col(s){ return s>=4?'#9CC7A0':(s===3?'#EFCB7A':'#EE9A8C'); }
+  function pyramid(svgId,whyId,key){
+    var svg=$(svgId), rows=[[5],[3,4],[1,2],[0]], H=220, W=300, rowH=H/4, html='';
+    // Keller pyramid: bottom salience; then performance|imagery; judgements|feelings; resonance top
+    var layout=[{r:3,items:[0]},{r:2,items:[1,2]},{r:1,items:[3,4]},{r:0,items:[5]}];
+    layout.forEach(function(L){
+      var yTop=L.r*rowH, yBot=yTop+rowH;
+      var wTop=W*(0.22+0.78*L.r/4), wBot=W*(0.22+0.78*(L.r+1)/4);
+      var xT0=(W-wTop)/2, xB0=(W-wBot)/2, n=L.items.length;
+      L.items.forEach(function(idx,k){
+        var tA=xT0+wTop*k/n, tB=xT0+wTop*(k+1)/n, bA=xB0+wBot*k/n, bB=xB0+wBot*(k+1)/n;
+        
+        var s=data[key][idx], cx=(tA+tB+bA+bB)/4, cy=yTop+rowH*0.74;
+        html+='<g class="lv" tabindex="0" role="button" data-i="'+idx+'" aria-label="'+levels[idx]+', '+s+' out of 5"><path d="M'+tA+' '+yTop+' L'+tB+' '+yTop+' L'+bB+' '+yBot+' L'+bA+' '+yBot+' Z" fill="'+col(s)+'" fill-opacity="1" stroke="var(--sheet)" stroke-width="2"/>'+
+          '<text x="'+cx+'" y="'+cy+'" text-anchor="middle" fill="#23243A">'+levels[idx]+' '+s+'</text></g>';
+      });
+    });
+    svg.innerHTML=html;
+    function show(g){ $(whyId).textContent=why[key][+g.getAttribute('data-i')]; }
+    svg.addEventListener('click',function(e){ var g=e.target.closest('.lv'); if(g) show(g); });
+    svg.addEventListener('keydown',function(e){ if((e.key==='Enter'||e.key===' ')&&e.target.closest('.lv')){ e.preventDefault(); show(e.target.closest('.lv')); } });
+  }
+  pyramid('pyrMe','whyMe','me'); pyramid('pyrMi','whyMi','mi');
+
+  /* scorecard */
+  var crit=[
+    ['Awareness and reach','How widely known and available',15,5,3],
+    ['Positioning clarity','Is the promise clear and consistent?',15,3,5],
+    ['Differentiation','Is the difference real and hard to copy?',10,2,4],
+    ['Credibility and trust','Do claims hold up? Regulatory record?',20,2,5],
+    ['Customer loyalty','Repeat purchase and advocacy',15,3,4],
+    ['Social engagement','Earned attention, not just followers',10,2,3],
+    ['Growth momentum','Recent revenue and profit trajectory',15,4,5]
+  ];
+  var defaults=crit.map(function(c){return c[2];});
+  $('rows').innerHTML=crit.map(function(c,i){
+    return '<div class="score-row"><div class="crit"><b>'+c[0]+'</b><small>'+c[1]+'</small></div>'+
+      '<div><input type="range" min="0" max="30" step="5" value="'+c[2]+'" id="w'+i+'" aria-label="Weight for '+c[0]+'"><div class="wv" id="wv'+i+'">'+c[2]+'%</div></div>'+
+      '<div class="sc me" data-col="me"><span class="pip"><i style="width:'+c[3]*20+'%"></i></span><span class="v">'+c[3]+'/5</span></div>'+
+      '<div class="sc mi" data-col="mi"><span class="pip"><i style="width:'+c[4]*20+'%"></i></span><span class="v">'+c[4]+'/5</span></div></div>';
+  }).join('');
+  function grade(x){ return x>=85?'Excellent brand health':x>=70?'Healthy, with gaps':x>=55?'Needs attention':'At risk'; }
+  function calc(){
+    var ws=crit.map(function(c,i){ return +$('w'+i).value; }), sum=ws.reduce(function(a,b){return a+b;},0);
+    ws.forEach(function(w,i){ $('wv'+i).textContent=w+'%'; });
+    $('wsum').textContent='Weights total '+sum+'%'+(sum!==100?', scores are normalised to 100.':'.');
+    var me=0, mi=0; if(sum>0){ crit.forEach(function(c,i){ me+=ws[i]*c[3]; mi+=ws[i]*c[4]; }); me=me/sum*20; mi=mi/sum*20; }
+    $('tMe').textContent=Math.round(me)+'/100'; $('tMi').textContent=Math.round(mi)+'/100';
+    $('gMe').textContent=grade(me); $('gMi').textContent=grade(mi);
+  }
+  crit.forEach(function(c,i){ $('w'+i).addEventListener('input',calc); });
+  $('reset').addEventListener('click',function(){ defaults.forEach(function(d,i){ $('w'+i).value=d; }); calc(); });
+  calc();
+
+  /* toc */
+  var links={}; document.querySelectorAll('#toc a').forEach(function(a){ links[a.getAttribute('href').slice(1)]=a; });
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ for(var k in links) links[k].classList.toggle('on',k===e.target.id); } }); },{rootMargin:'-40% 0px -55% 0px'});
+    Object.keys(links).forEach(function(k){ var s=$(k); if(s) io.observe(s); });
+  }
+})();
+</script>
+<a class="as-allwork" href="../../#work" aria-label="Back to all of Akshara Singh's work">&larr; All work</a>
+<style>.as-allwork{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:2147483000;display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:999px;background:rgba(17,17,16,.88);color:#F5F2EC!important;font:600 14px/1 system-ui,-apple-system,"Segoe UI",sans-serif;text-decoration:none!important;letter-spacing:0;box-shadow:0 8px 24px rgba(0,0,0,.25);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:transform .2s}.as-allwork:hover{transform:translateY(-2px)}.as-allwork:focus-visible{outline:2px solid #E9B872;outline-offset:3px}@media print{.as-allwork{display:none}}</style>
+</body>
+</html>

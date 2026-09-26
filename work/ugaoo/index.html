@@ -1,0 +1,750 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ugaoo: a 90-day Instagram strategy by Akshara Singh</title>
+<meta name="description" content="A 90-day Instagram strategy proposal for Ugaoo: audit, pillars, series designs, reels, calendar, community management and targets. By Akshara Singh.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=DM+Sans:opsz,wght@9..40,400..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light dark;
+  --moss:#173A27; --sprout:#C6F36B; --cream:#FFF6E8; --blush:#FFC2CF; --ink:#121712; --flag:#2FA84F; --red:#E5484D;
+  --bg:#FBF8F1; --fg:#121712; --muted:#5D675F; --line:#E4DED0; --card:#FFFFFF; --soft:#F2EEE3;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){ --bg:#0E1410; --fg:#EEF2EC; --muted:#9BA89E; --line:#243028; --card:#151D18; --soft:#1B241E; }
+}
+:root[data-theme="dark"]{ --bg:#0E1410; --fg:#EEF2EC; --muted:#9BA89E; --line:#243028; --card:#151D18; --soft:#1B241E; }
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth}
+body{margin:0; background:var(--bg); color:var(--fg); font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size:17px; line-height:1.55}
+a{color:inherit}
+button{font:inherit; color:inherit}
+:focus-visible{outline:3px solid var(--flag); outline-offset:3px; border-radius:6px}
+.wrap{max-width:1080px; margin:0 auto; padding:0 20px}
+.disp{font-family:"Bricolage Grotesque","DM Sans",system-ui,sans-serif; letter-spacing:-.03em}
+h1,h2,h3{font-family:"Bricolage Grotesque","DM Sans",system-ui,sans-serif; letter-spacing:-.035em; margin:0; line-height:1.02; font-weight:750}
+h2{font-size:clamp(2.2rem,5.4vw,3.8rem); margin-bottom:.35em}
+h3{font-size:1.45rem; margin-bottom:.35em; letter-spacing:-.025em}
+h4{margin:0 0 .3em; font-size:1.02rem}
+p{margin:0 0 1em}
+.lede{font-size:clamp(1.1rem,1.9vw,1.3rem); color:var(--muted); max-width:40rem}
+.sm{font-size:.9rem; color:var(--muted)}
+.note{font-size:.82rem; color:var(--muted); margin-top:10px}
+section{padding:clamp(72px,10vw,120px) 0; border-top:1px solid var(--line)}
+.mt{margin-top:clamp(32px,4.5vw,52px)}
+.g2{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px}
+.g3{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px}
+.g4{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px}
+.box{background:var(--card); border:1px solid var(--line); border-radius:20px; padding:clamp(18px,2.4vw,26px)}
+.kicker{display:inline-flex; align-items:center; gap:8px; font-weight:700; color:var(--flag); margin-bottom:.8rem; font-size:1rem}
+.kicker svg{width:18px; height:18px}
+.tw{overflow-x:auto}
+table{width:100%; border-collapse:collapse; font-size:.95rem}
+th,td{text-align:left; vertical-align:top; padding:12px 16px 12px 0; border-bottom:1px solid var(--line)}
+th{color:var(--muted); font-weight:600; font-size:.85rem}
+td:first-child{font-weight:700; min-width:8rem}
+
+/* ---------- top intro ---------- */
+.topbar{display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; padding:18px 0; font-size:.92rem; color:var(--muted)}
+.topbar b{color:var(--fg)}
+.intro{padding:clamp(28px,5vw,56px) 0 clamp(28px,4vw,40px)}
+.intro h1{font-size:clamp(2.6rem,7vw,5.6rem); max-width:14ch}
+.intro .lede{margin-top:1rem}
+
+/* ---------- time machine ---------- */
+.machine{position:sticky; top:0; z-index:15; background:color-mix(in srgb,var(--bg) 88%,transparent); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid var(--line); padding-top:env(safe-area-inset-top,0px); margin-top:calc(-1 * env(safe-area-inset-top,0px))}
+.machine .in{display:flex; align-items:center; gap:18px; flex-wrap:wrap; padding:12px 20px; max-width:1080px; margin:0 auto}
+.machine label{font-weight:700; white-space:nowrap}
+.scrub{flex:1; min-width:220px; position:relative}
+.scrub input{width:100%; accent-color:var(--flag); margin:0}
+.scrub .marks{display:flex; justify-content:space-between; font-size:.78rem; color:var(--muted); font-weight:600; margin-top:2px}
+.play{border:0; border-radius:999px; background:var(--fg); color:var(--bg); padding:.55em 1.1em; font-weight:700; cursor:pointer; white-space:nowrap}
+.chips{display:flex; gap:8px; flex-wrap:wrap}
+.chip{background:var(--card); border:1px solid var(--line); border-radius:999px; padding:.25em .8em; font-size:.82rem; white-space:nowrap}
+.chip b{font-variant-numeric:tabular-nums}
+
+/* ---------- profile ---------- */
+.profile{max-width:935px; margin:28px auto 0; padding:0 20px}
+.p-head{display:grid; grid-template-columns:auto minmax(0,1fr); gap:clamp(20px,6vw,80px); align-items:center; padding:10px clamp(0px,3vw,40px) 26px}
+.avatar{width:clamp(86px,16vw,150px); aspect-ratio:1; border-radius:50%; padding:4px; background:var(--line); transition:background .5s}
+.avatar.ring{background:conic-gradient(from 200deg,var(--sprout),var(--flag),var(--blush),var(--sprout))}
+.avatar .in{width:100%; height:100%; border-radius:50%; border:3px solid var(--bg); overflow:hidden; display:grid; place-items:center; transition:background .5s}
+.avatar .in.old{background:radial-gradient(60% 60% at 40% 40%,#8a8f7e,#4b4f45); filter:blur(1.2px) saturate(.5)}
+.avatar .in.new{background:var(--moss)}
+.avatar svg{width:58%; height:58%}
+.handle-row{display:flex; align-items:center; gap:12px; flex-wrap:wrap}
+.handle{font-size:1.3rem; font-weight:600}
+.pbtn{border:0; border-radius:9px; padding:.4em 1.1em; font-weight:700; font-size:.9rem; background:var(--soft); cursor:default}
+.pbtn.blue{background:#0095F6; color:#fff}
+.stats{display:flex; gap:clamp(18px,4vw,40px); margin:16px 0; font-size:1rem}
+.stats b{font-variant-numeric:tabular-nums}
+.bio{font-size:.95rem; line-height:1.45; white-space:pre-line; min-height:5.6em}
+.bio .nm{font-weight:700; display:block}
+.bio .lk{color:#1D6FB8; font-weight:600}
+.hls{display:flex; gap:clamp(14px,3vw,34px); padding:6px clamp(0px,3vw,40px) 28px; overflow-x:auto; min-height:118px; scrollbar-width:none}
+.hl{border:0; background:transparent; padding:0; display:flex; flex-direction:column; align-items:center; gap:6px; font-size:.78rem; font-weight:600; cursor:pointer; flex:none; animation:pop .4s cubic-bezier(.3,1.4,.5,1)}
+@keyframes pop{from{transform:scale(.6); opacity:0}}
+.hl span.c{width:72px; height:72px; border-radius:50%; padding:3px; border:1px solid var(--line); display:block}
+.hl span.c i{width:100%; height:100%; border-radius:50%; display:grid; place-items:center; font-style:normal; font-size:1.6rem}
+.hl-empty{font-size:.85rem; color:var(--muted); align-self:center}
+.tabs-ig{display:flex; justify-content:center; gap:50px; border-top:1px solid var(--line); font-size:.78rem; font-weight:700; letter-spacing:.06em}
+.tabs-ig span{padding:14px 0; border-top:1.5px solid transparent; margin-top:-1px; color:var(--muted)}
+.tabs-ig span.on{border-color:var(--fg); color:var(--fg)}
+.pgrid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px}
+.tile{border:0; padding:0; cursor:pointer; position:relative; display:block; background:var(--soft)}
+.tile .ico{position:absolute; top:8px; right:8px; z-index:2; width:20px; height:20px; filter:drop-shadow(0 1px 2px rgba(0,0,0,.4))}
+.tile.fresh{animation:flip .55s cubic-bezier(.3,.8,.3,1)}
+@keyframes flip{from{transform:rotateY(80deg); opacity:.2}}
+.tile:hover .art{filter:brightness(.92)}
+.caption-strip{display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; font-size:.85rem; color:var(--muted); padding:12px 2px 0}
+
+/* ---------- post art (container-scaled) ---------- */
+.tile,.reel .cover,.dlg .left{container-type:inline-size}
+.art{aspect-ratio:4/5; position:relative; overflow:hidden; display:flex; flex-direction:column; padding:7cqw; font-family:"Bricolage Grotesque","DM Sans",system-ui,sans-serif; letter-spacing:-.035em; line-height:1.02; text-align:left; transition:filter .2s}
+.art .tag{align-self:flex-start; font-family:"DM Sans",system-ui,sans-serif; font-weight:700; letter-spacing:0; font-size:4.2cqw; padding:1.4cqw 3cqw; border-radius:99px}
+.art .h1{font-size:11cqw; font-weight:800; margin-top:4cqw}
+.art .h2{font-size:7.4cqw; font-weight:750}
+.art .b{font-family:"DM Sans",system-ui,sans-serif; letter-spacing:-.01em; font-size:4.6cqw; line-height:1.25; font-weight:500}
+.art .foot{margin-top:auto; display:flex; justify-content:space-between; align-items:flex-end; font-family:"DM Sans",system-ui,sans-serif; letter-spacing:0; font-size:3.4cqw; font-weight:700}
+.art svg.ill{position:absolute; pointer-events:none}
+.logo-mini{display:inline-flex; align-items:center; gap:1.2cqw}
+.logo-mini svg{width:5cqw; height:5cqw}
+.old{background:#5f6258; color:#fff; font-family:Arial,Helvetica,sans-serif; letter-spacing:0; justify-content:center; align-items:center; text-align:center}
+.old .ot{font-size:9cqw; font-weight:700; text-shadow:0 0 6px rgba(0,0,0,.6)}
+.old::before{content:""; position:absolute; inset:0; background:radial-gradient(70% 50% at 50% 70%,rgba(80,110,70,.7),transparent),linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.1)); filter:blur(2px)}
+.old .ot{position:relative}
+.old{filter:saturate(.55) contrast(.9)}
+
+/* ---------- modal ---------- */
+dialog{border:0; padding:0; border-radius:22px; max-width:min(960px,94vw); width:100%; background:var(--card); color:var(--fg); box-shadow:0 40px 80px -30px rgba(0,0,0,.5)}
+dialog::backdrop{background:rgba(10,15,11,.72)}
+.dlg{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.dlg .left{background:#000}
+.dlg .right{padding:22px 24px; max-height:min(84vh,760px); overflow-y:auto; display:flex; flex-direction:column; gap:14px}
+.dlg .who{display:flex; align-items:center; gap:10px; font-weight:700; font-size:.95rem; padding-bottom:12px; border-bottom:1px solid var(--line)}
+.dlg .who i{width:32px; height:32px; border-radius:50%; background:var(--moss); display:grid; place-items:center}
+.dlg .who i svg{width:18px; height:18px}
+.dlg .cap{font-size:.95rem; white-space:pre-line}
+.dlg .why{background:var(--soft); border-radius:14px; padding:14px}
+.dlg .why b{display:block; color:var(--flag); font-size:.85rem; margin-bottom:.3rem}
+.dlg .meta{display:flex; gap:8px; flex-wrap:wrap}
+.dlg .close{align-self:flex-end; border:0; background:var(--soft); border-radius:999px; padding:.35em .9em; cursor:pointer; font-weight:700}
+.dlg .nums{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; text-align:center}
+.dlg .nums div{background:var(--soft); border-radius:12px; padding:8px}
+.dlg .nums b{display:block; font-size:1.1rem}
+.dlg .nums span{font-size:.72rem; color:var(--muted)}
+
+/* ---------- sections ---------- */
+.before{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px}
+.before .box h4{display:flex; align-items:center; gap:8px}
+.flag{display:inline-block; width:14px; height:16px}
+.persona b{font-family:"Bricolage Grotesque",system-ui,sans-serif; font-size:1.25rem; letter-spacing:-.02em}
+.persona .who{font-size:.85rem; color:var(--muted)}
+.pillars{display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px}
+.pil{border-radius:18px; padding:16px; color:var(--ink)}
+.pil .pc{font-family:"Bricolage Grotesque",system-ui,sans-serif; font-size:2rem; font-weight:800; letter-spacing:-.04em}
+.pil b{display:block; margin:.2rem 0 .3rem}
+.pil p{font-size:.86rem; margin:0}
+.voice{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px}
+.voice .say{font-family:"Bricolage Grotesque",system-ui,sans-serif; font-size:1.2rem; letter-spacing:-.02em; margin:.3rem 0}
+.say.no{text-decoration:line-through; text-decoration-color:var(--red); color:var(--muted)}
+
+/* brand kit */
+.kit{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.4fr); gap:18px}
+.logo-box{background:var(--moss); color:var(--cream); border-radius:22px; padding:28px; display:flex; flex-direction:column; justify-content:space-between; min-height:260px}
+.logo-lock{display:flex; align-items:center; gap:12px; font-family:"Bricolage Grotesque",system-ui,sans-serif; font-weight:800; font-size:1.9rem; letter-spacing:-.04em; line-height:.95}
+.logo-lock svg{width:56px; height:56px}
+.sw{display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px}
+.sw div{border-radius:16px; aspect-ratio:1/1.1; padding:10px; display:flex; flex-direction:column; justify-content:flex-end; font-size:.78rem; font-weight:600; color:var(--ink); border:1px solid rgba(0,0,0,.06)}
+.types{margin-top:14px}
+.types .t1{font-family:"Bricolage Grotesque",system-ui,sans-serif; font-weight:800; font-size:2.4rem; letter-spacing:-.045em; line-height:1}
+.types .t2{font-family:"DM Sans",system-ui,sans-serif; font-size:1rem}
+.rules{margin:0; padding-left:1.1rem}
+.rules li{margin-bottom:.35rem}
+
+/* reels */
+.reels{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px}
+.reel{background:var(--card); border:1px solid var(--line); border-radius:20px; overflow:hidden}
+.reel .cover{aspect-ratio:9/12}
+.reel .cover .art{aspect-ratio:auto; height:100%}
+.reel .sc{padding:16px}
+.reel ol{margin:.4rem 0 0; padding-left:1.15rem; font-size:.9rem}
+.reel ol li{margin-bottom:.35rem}
+.reel .hook{background:var(--sprout); color:var(--ink); border-radius:10px; padding:8px 10px; font-weight:700; font-size:.9rem}
+.reel .meta{font-size:.82rem; color:var(--muted); margin-top:.6rem}
+
+/* playbook */
+.phases{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0; border:1px solid var(--line); border-radius:22px; overflow:hidden}
+.ph{padding:20px; border-right:1px solid var(--line); background:var(--card)}
+.ph:last-child{border-right:0}
+.ph .wk{font-size:.82rem; font-weight:700; color:var(--muted)}
+.ph h3{margin:.2rem 0 .6rem}
+.ph ul{margin:0; padding-left:1.1rem; font-size:.9rem}
+.ph li{margin-bottom:.4rem}
+.ph .goal{margin-top:.8rem; font-size:.85rem; background:var(--soft); border-radius:10px; padding:8px 10px}
+
+/* calendar */
+.legend{display:flex; gap:14px; flex-wrap:wrap; font-size:.85rem; margin-bottom:12px}
+.legend span{display:inline-flex; align-items:center; gap:6px}
+.legend i{width:12px; height:12px; border-radius:4px; display:inline-block}
+.cal{display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:6px}
+.cal .dh{font-size:.78rem; font-weight:700; color:var(--muted); text-align:center; padding-bottom:4px}
+.cal button{border:1px solid var(--line); background:var(--card); border-radius:12px; min-height:84px; padding:8px; text-align:left; cursor:pointer; display:flex; flex-direction:column; gap:4px}
+.cal button[aria-pressed="true"]{outline:2.5px solid var(--fg); outline-offset:-1px}
+.cal .dn{font-size:.78rem; font-weight:700; color:var(--muted)}
+.cal .ev{font-size:.72rem; font-weight:700; border-radius:6px; padding:2px 5px; color:var(--ink); line-height:1.2}
+.day-detail{margin-top:14px; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px; min-height:90px}
+
+/* community */
+.chat{background:var(--card); border:1px solid var(--line); border-radius:22px; padding:18px; display:flex; flex-direction:column; gap:8px}
+.bub{max-width:82%; padding:9px 13px; border-radius:18px; font-size:.92rem; line-height:1.35; width:fit-content}
+.bub.in{background:var(--soft); border-bottom-left-radius:5px}
+.bub.out{background:var(--moss); color:var(--cream); margin-left:auto; border-bottom-right-radius:5px}
+.bub.auto{background:transparent; border:1.5px dashed var(--flag); margin-left:auto; border-bottom-right-radius:5px}
+.bub small{display:block; font-size:.7rem; opacity:.7; font-weight:700}
+.photo-bub{width:120px; aspect-ratio:1; border-radius:14px; background:var(--soft); display:grid; place-items:center}
+.flow{display:flex; gap:8px; flex-wrap:wrap; align-items:center; font-size:.88rem; font-weight:600}
+.flow span{background:var(--soft); border-radius:999px; padding:.3em .8em}
+.flow em{font-style:normal; color:var(--muted)}
+
+/* analytics */
+.dash{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px}
+.kpi{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:16px}
+.kpi .v{font-family:"Bricolage Grotesque",system-ui,sans-serif; font-size:clamp(1.9rem,3.4vw,2.5rem); font-weight:800; letter-spacing:-.045em; line-height:1}
+.kpi .l{font-weight:600; font-size:.9rem; margin-top:.3rem}
+.kpi .d{font-size:.8rem; color:var(--flag); font-weight:700}
+.chartbox{background:var(--card); border:1px solid var(--line); border-radius:20px; padding:18px}
+.chartbox svg{width:100%; height:auto; display:block}
+.chartbox .ax{font-size:10px; fill:var(--muted)}
+.funnel{display:flex; flex-direction:column; gap:8px}
+.funnel div{border-radius:10px; padding:10px 14px; display:flex; justify-content:space-between; font-weight:600; font-size:.92rem; color:var(--ink)}
+.report{background:var(--moss); color:var(--cream); border-radius:24px; padding:clamp(22px,3.4vw,36px)}
+.report h3{color:var(--sprout)}
+.report .cols{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:12px}
+.report ul{margin:.3rem 0 0; padding-left:1.1rem; font-size:.92rem}
+.report b{color:var(--sprout)}
+
+footer{padding:clamp(70px,10vw,120px) 0 50px; border-top:1px solid var(--line)}
+footer .big{font-size:clamp(2.4rem,7vw,5rem)}
+.skills{display:flex; flex-wrap:wrap; gap:8px; margin:1.2rem 0}
+.skills span{background:var(--sprout); color:var(--ink); border-radius:999px; padding:.35em .9em; font-weight:700; font-size:.88rem}
+
+@media (max-width:900px){
+  .g3,.g4,.dash,.reels{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pillars{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .g2,.before,.voice,.kit,.report .cols{grid-template-columns:1fr}
+  .phases{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ph:nth-child(2){border-right:0} .ph:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .dlg{grid-template-columns:1fr}
+  .dlg .left .art{max-height:52vh; aspect-ratio:auto; height:52vh}
+}
+@media (max-width:600px){
+  .g3,.g4,.reels,.phases,.pillars{grid-template-columns:1fr}
+  .ph{border-right:0!important; border-bottom:1px solid var(--line)}
+  .dash{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .p-head{grid-template-columns:1fr; justify-items:start}
+  .cal button{min-height:64px; padding:5px}
+  .cal .ev{font-size:.6rem}
+  .sw{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .tabs-ig{gap:28px}
+  .machine .chips{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .tile.fresh,.hl{animation:none}
+}
+.ugmark{font-family:"Bricolage Grotesque",system-ui,sans-serif; font-weight:800; letter-spacing:-.05em; color:var(--sprout); font-size:clamp(1.1rem,3.4vw,2rem)}
+.ugmark.sm{font-size:.62rem; letter-spacing:-.03em}
+.ugmark.lg{font-size:2.6rem}
+.exist-art{background:var(--soft); color:var(--muted); align-items:center; justify-content:center; gap:3cqw; font-family:"DM Sans",system-ui,sans-serif; letter-spacing:0; font-size:4.4cqw; font-weight:600}
+.tile.exist{cursor:default}
+.kpi .v{white-space:nowrap}
+.cal button{min-width:0; overflow:hidden}
+.cal .ev{overflow-wrap:anywhere; hyphens:auto}
+/* campaign kit */
+.ck-g{margin-top:2.4rem}
+.ck-gh{display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:8px 16px; border-top:1px solid var(--line); padding-top:14px}
+.ck-gh b{font-size:1.05rem}
+.ck-gh span{display:flex; gap:14px; font-size:.9rem}
+.ck-gh a{font-weight:700}
+.ck-strip{display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding:14px 2px 12px}
+.ck-strip figure{margin:0; flex:none; scroll-snap-align:start}
+.ck-strip img{display:block; height:min(360px,62vw); width:auto; max-width:none; border-radius:12px; border:1px solid var(--line); box-shadow:0 16px 30px -20px rgba(0,0,0,.45)}
+.ck-strip figcaption{font-size:.82rem; color:var(--muted); margin-top:8px; max-width:280px}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar"><span><b>Akshara Singh</b>, social media portfolio</span><span>A strategy proposal for Ugaoo</span></div>
+  <div class="intro">
+    <span class="kicker"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 18V9" stroke="currentColor" stroke-width="2"/><path d="M10 10C5 10 3 6 3 3c4 0 7 2 7 7zm0 0c0-5 3-7 7-7 0 3-2 7-7 7z" fill="currentColor"/></svg>A 90-day Instagram strategy for Ugaoo</span>
+    <h1>Make every Ugaoo follower a plant parent who never gives up.</h1>
+    <p class="lede">Ugaoo already has 392K followers and a mission to make plant parenting easy. This strategy turns that audience into a community that keeps plants alive, shows them off and keeps coming back. Drag the slider to see the plan roll out on the profile.</p>
+  </div>
+</div>
+
+<div class="machine" role="region" aria-label="Strategy timeline">
+  <div class="in">
+    <label for="day"><span id="dayLbl">Today</span></label>
+    <div class="scrub">
+      <input type="range" id="day" min="0" max="3" step="1" value="0" aria-valuetext="Today">
+      <div class="marks" aria-hidden="true"><span>Today</span><span>Day 30</span><span>Day 60</span><span>Day 90</span></div>
+    </div>
+    <button class="play" id="play" type="button">Play the plan</button>
+    <div class="chips" aria-live="polite">
+      <span class="chip">Clinic DMs a month <b id="er">start</b></span>
+      <span class="chip">#UgaooGhar posts <b id="rp">start</b></span>
+      <span class="chip">Series live <b id="dm">0</b></span>
+    </div>
+  </div>
+</div>
+
+<div class="profile" id="profile">
+  <div class="p-head">
+    <div class="avatar ring" id="av"><div class="in new" id="avIn"><span class="ugmark">ugaoo</span></div></div>
+    <div>
+      <div class="handle-row"><span class="handle">ugaoo</span><span class="pbtn blue">Follow</span><span class="pbtn">Message</span></div>
+      <div class="stats"><span><b id="sPosts">3,659</b> posts</span><span><b id="sFol">392,000</b> followers</span><span><b id="sFing">29</b> following</span></div>
+      <div class="bio" id="bio"></div>
+    </div>
+  </div>
+  <div class="hls" id="hls" aria-label="New story highlights from the plan"></div>
+  <div class="tabs-ig" aria-hidden="true"><span class="on">POSTS</span><span>REELS</span><span>TAGGED</span></div>
+  <div class="pgrid" id="pgrid"></div>
+  <div class="caption-strip"><span id="gridNote">Today: Ugaoo's existing posts (not reproduced here). Drag forward to add the new series.</span><span>Followers and posts today are public figures; later numbers are targets.</span></div>
+</div>
+
+<dialog id="dlg" aria-labelledby="dlgTitle">
+  <div class="dlg">
+    <div class="left" id="dlgArt"></div>
+    <div class="right">
+      <button class="close" id="dlgClose" type="button">Close</button>
+      <div class="who"><i id="dlgAv"><span class="ugmark sm">ugaoo</span></i><span id="dlgTitle">ugaoo</span></div>
+      <div class="meta" id="dlgMeta"></div>
+      <div class="cap" id="dlgCap"></div>
+      <div class="why" id="dlgWhy"></div>
+      <div class="nums" id="dlgNums"></div>
+    </div>
+  </div>
+</dialog>
+
+<main>
+  <!-- STARTING POINT -->
+  <section id="audit">
+    <div class="wrap">
+      <span class="kicker">Where Ugaoo stands</span>
+      <h2>A big, loved brand with more to grow.</h2>
+      <p class="lede">A strategy starts from what the brand already has. These are Ugaoo's public numbers and assets, and the opportunities I'd build on.</p>
+      <div class="g4 mt">
+        <div class="kpi"><div class="v">392K</div><div class="l">Instagram followers</div><div class="d" style="color:var(--muted)">3,659 posts</div></div>
+        <div class="kpi"><div class="v">10M+</div><div class="l">Customers</div><div class="d" style="color:var(--muted)">4.5★ rated</div></div>
+        <div class="kpi"><div class="v">25 acres</div><div class="l">Own farm in Talegaon</div><div class="d" style="color:var(--muted)">tended by local tribal families</div></div>
+        <div class="kpi"><div class="v">50+</div><div class="l">Corporate gifting clients</div><div class="d" style="color:var(--muted)">including Tata and Mercedes</div></div>
+      </div>
+      <p class="note">Sources: Ugaoo's Instagram profile and ugaoo.com, September 2026.</p>
+      <div class="before mt">
+        <div class="box"><h4><span style="color:var(--flag)">■</span> Strengths to build on</h4>
+          <ul class="rules"><li>A clear, lovable mission: make plant parenting easy for everyone.</li><li>A distinctive voice already: "Ugaoo Bhidu, Ugaoo!"</li><li>A real farm, real people and real expertise, which most competitors can't show.</li><li>A huge customer base whose plants are already in homes across India.</li></ul>
+        </div>
+        <div class="box"><h4><span style="color:var(--red)">■</span> Opportunities for social</h4>
+          <ul class="rules"><li>Turn one-time buyers into plant parents who return, by owning plant care after the sale.</li><li>Put the farm and its people on screen as a trust story.</li><li>Make customers' homes the content, so 10M customers become creators.</li><li>Reach first-time plant parents in their 20s, who are nervous about killing plants.</li></ul>
+        </div>
+      </div>
+      <p class="note">Opportunities are my hypotheses from public information. Week 1 of the plan is a full audit with Ugaoo's own analytics to confirm them.</p>
+    </div>
+  </section>
+
+  <!-- STRATEGY -->
+  <section id="strategy">
+    <div class="wrap">
+      <span class="kicker">The strategy</span>
+      <h2>From "buy plants" to "we'll keep them alive with you".</h2>
+      <p class="lede">The big insight: people don't stop buying plants because they stop liking them. They stop because their last one died. If Ugaoo owns what happens after delivery, every follower stays a customer.</p>
+      <div class="g3 mt">
+        <div class="box"><h4>Goal 1: Care</h4><p class="sm" style="margin:0">Make Ugaoo the first place people go when a plant looks sad, through a free DM clinic.</p></div>
+        <div class="box"><h4>Goal 2: Community</h4><p class="sm" style="margin:0">Turn customers into content creators with #UgaooGhar, their plant corners at home.</p></div>
+        <div class="box"><h4>Goal 3: Growth</h4><p class="sm" style="margin:0">Reach first-time plant parents with reels built to be shared and saved.</p></div>
+      </div>
+
+      <h3 class="mt">Who we're talking to</h3>
+      <div class="g3" style="margin-top:14px">
+        <div class="box persona"><b>The nervous first-timer</b><div class="who">20–28, first flat or hostel room</div><p class="sm" style="margin:.6rem 0 0">Wants a plant but is scared of killing it. Saves tips, shares memes.</p></div>
+        <div class="box persona"><b>The home stylist</b><div class="who">26–40, proud of their space</div><p class="sm" style="margin:.6rem 0 0">Buys statement plants and loves being featured.</p></div>
+        <div class="box persona"><b>The gifter</b><div class="who">Any age, plus HR teams</div><p class="sm" style="margin:.6rem 0 0">Wants thoughtful gifts for people and offices, and fast delivery.</p></div>
+      </div>
+
+      <h3 class="mt" id="pillars-h">Content pillars</h3>
+      <div class="pillars" style="margin-top:14px">
+        <div class="pil" style="background:var(--sprout)"><div class="pc">30%</div><b>Bhidu-proof plants</b><p>A numbered series of plants that survive anyone.</p></div>
+        <div class="pil" style="background:var(--blush)"><div class="pc">20%</div><b>Ugaoo Clinic</b><p>Plant rescues and DM diagnoses, turned into reels.</p></div>
+        <div class="pil" style="background:#CDE8FF"><div class="pc">20%</div><b>Relatable</b><p>Memes, quizzes and plant-parent humour in the Bhidu voice.</p></div>
+        <div class="pil" style="background:#FFE7A8"><div class="pc">15%</div><b>#UgaooGhar</b><p>Customers' plant corners, and the farm team behind them.</p></div>
+        <div class="pil" style="background:#E8E1D4"><div class="pc">15%</div><b>Shop and gifting</b><p>New arrivals, gift guides and offers, one in six posts at most.</p></div>
+      </div>
+
+      <h3 class="mt">Tone of voice: the bhidu who knows plants</h3>
+      <div class="voice" style="margin-top:14px">
+        <div class="box"><h4>We say</h4><p class="say">"tension mat le bhidu, your peace lily is just being dramatic."</p><p class="say">"DM us a photo. our plant doctors will tell you what it needs."</p></div>
+        <div class="box"><h4>We don't say</h4><p class="say no">"Buy now!! Limited stock!!"</p><p class="say no">"Your plant died because you did it wrong."</p></div>
+      </div>
+
+      <h3 class="mt">Posting rhythm</h3>
+      <div class="tw" style="margin-top:10px">
+        <table>
+          <thead><tr><th>Format</th><th>How often</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td>Reels</td><td>5 a week</td><td>Reach new, younger plant parents.</td></tr>
+            <tr><td>Carousels</td><td>3 a week</td><td>Care guides that get saved and shared.</td></tr>
+            <tr><td>Stories</td><td>Daily</td><td>Clinic Q&amp;A, polls, farm behind the scenes.</td></tr>
+            <tr><td>Broadcast channel</td><td>Twice a week</td><td>Restocks and drops for the most loyal fans.</td></tr>
+            <tr><td>LinkedIn</td><td>Twice a week</td><td>Corporate gifting and office plants for HR teams.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN SYSTEM -->
+  <section id="kit">
+    <div class="wrap">
+      <span class="kicker">The graphics system</span>
+      <h2>Series designs anyone on the team can make.</h2>
+      <p class="lede">A proposed look for the new series, built as editable templates, so posts are recognisable in the feed and quick to produce.</p>
+      <div class="kit mt">
+        <div class="logo-box">
+          <div class="logo-lock"><span class="ugmark lg">ugaoo</span><span style="font-size:1.1rem; font-weight:600; opacity:.9">series system</span></div>
+          <p style="margin:0; font-size:.9rem; opacity:.85">Each series has its own colour and a numbered label, so followers start collecting them.</p>
+        </div>
+        <div>
+          <div class="sw">
+            <div style="background:#173A27; color:#FFF6E8">Leaf<br>#173A27<br><small>Bhidu-proof</small></div>
+            <div style="background:#C6F36B">Sprout<br>#C6F36B<br><small>Reels</small></div>
+            <div style="background:#FFC2CF">Blush<br>#FFC2CF<br><small>Clinic</small></div>
+            <div style="background:#FFF6E8">Cream<br>#FFF6E8<br><small>Tips</small></div>
+            <div style="background:#121712; color:#FFF6E8">Soil<br>#121712<br><small>Text</small></div>
+          </div>
+          <div class="box types">
+            <div class="t1">Bricolage Grotesque</div><div class="sm">Headlines: big, lowercase, friendly.</div>
+            <div class="t2" style="margin-top:10px">DM Sans for captions and labels.</div>
+          </div>
+        </div>
+      </div>
+      <div class="g2 mt">
+        <div class="box"><h4>Template rules</h4><ul class="rules"><li>One idea per post. If it needs two, it's a carousel.</li><li>Series label top-left, numbered.</li><li>Always a plant in frame.</li><li>Hinglish is welcome in headlines, where it sounds natural.</li><li>Ugaoo wordmark small, bottom-right.</li></ul></div>
+        <div class="box"><h4>Grid rhythm</h4><p class="sm" style="margin:0">Series colours rotate so the grid looks planned from a distance, with a reel cover in every row. Drag the slider to Day 90 to see it.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REELS -->
+  <section id="reels">
+    <div class="wrap">
+      <span class="kicker">Reels</span>
+      <h2>Three reel scripts, ready to shoot.</h2>
+      <p class="lede">Each one has a hook in the first two seconds and a reason to save, share or DM.</p>
+      <div class="reels mt" id="reelList"></div>
+    </div>
+  </section>
+
+  <!-- PLAYBOOK -->
+  <section id="growth">
+    <div class="wrap">
+      <span class="kicker">The 90-day plan</span>
+      <h2>Four phases.</h2>
+      <p class="lede">Start by listening and setting up systems, then launch the series, then bring in creators and customers, then scale what works.</p>
+      <div class="phases mt">
+        <div class="ph"><div class="wk">Days 1–14</div><h3>Audit and set up</h3><ul><li>Full audit with Ugaoo's own analytics</li><li>Top 20 posts analysed: what gets saved, shared, DMed</li><li>Series templates in Canva</li><li>Clinic DM quick replies and plant-doctor rota</li></ul><div class="goal">Goal: a baseline and a system</div></div>
+        <div class="ph"><div class="wk">Days 15–45</div><h3>Launch the series</h3><ul><li>Bhidu-proof plants, weekly</li><li>Ugaoo Clinic opens in DMs</li><li>Farm reels from Talegaon</li><li>Test three hook styles per week</li></ul><div class="goal">Goal: find what travels</div></div>
+        <div class="ph"><div class="wk">Days 46–75</div><h3>Bring in the community</h3><ul><li>#UgaooGhar launch: customers' plant corners</li><li>Seed plants to 25 home and hostel creators</li><li>Collab posts with café and interior accounts</li><li>Monthly Clinic Live on Instagram</li></ul><div class="goal">Goal: customers become creators</div></div>
+        <div class="ph"><div class="wk">Days 76–90</div><h3>Scale</h3><ul><li>Put paid spend behind the top five reels</li><li>Gifting season push on Instagram and LinkedIn</li><li>Broadcast channel drops</li><li>Report and next-quarter plan</li></ul><div class="goal">Goal: turn reach into orders</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALENDAR -->
+  <section id="calendar">
+    <div class="wrap">
+      <span class="kicker">Content calendar</span>
+      <h2>A month of posts, planned.</h2>
+      <p class="lede">Month two of the plan, when every series is running. Tap a day to see the post.</p>
+      <div class="legend mt"><span><i style="background:var(--sprout)"></i>Bhidu-proof</span><span><i style="background:var(--blush)"></i>Clinic</span><span><i style="background:#CDE8FF"></i>Relatable</span><span><i style="background:#FFE7A8"></i>#UgaooGhar</span><span><i style="background:#E8E1D4"></i>Shop and gifting</span></div>
+      <div class="cal" id="cal"></div>
+      <div class="day-detail" id="dayDetail" aria-live="polite"><b>Tap a day</b><p class="sm" style="margin:.3rem 0 0">Stories go out daily and aren't shown here.</p></div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section id="community">
+    <div class="wrap">
+      <span class="kicker">Community management</span>
+      <h2>Ugaoo Clinic: care in the DMs.</h2>
+      <p class="lede">Ugaoo already promises it's "just a call away". The Clinic moves that promise to where people already are: Instagram DMs, with a photo.</p>
+      <div class="g2 mt" style="align-items:start">
+        <div class="chat" aria-label="Example Ugaoo Clinic conversation">
+          <div class="bub in"><small>follower</small>help 😭 my money plant leaves are going yellow</div>
+          <div class="photo-bub" aria-label="Follower's photo"><svg viewBox="0 0 80 80" width="70" height="70" aria-hidden="true"><path d="M26 58h28l-4 16H30z" fill="#C9A27A"/><ellipse cx="32" cy="36" rx="12" ry="18" fill="#C9C35A" transform="rotate(-25 32 36)"/><ellipse cx="48" cy="34" rx="12" ry="18" fill="#9DB34C" transform="rotate(20 48 34)"/></svg></div>
+          <div class="bub auto"><small>quick reply, instant</small>photo mil gaya bhidu! a plant doctor will reply within the hour 🌿</div>
+          <div class="bub out"><small>ugaoo clinic, 25 min later</small>good news: it's overwatering, not disease. let the top 5 cm of soil dry out and move it near a bright window. want a guide saved to your DMs?</div>
+          <div class="bub in"><small>follower</small>yes pls. also need a gift for my sister's new flat</div>
+          <div class="bub out"><small>ugaoo clinic</small>sending you three bhidu-proof picks now 💚</div>
+        </div>
+        <div>
+          <h3>How it works</h3>
+          <div class="flow" style="margin:12px 0 20px"><span>Post or story CTA</span><em>then</em><span>Follower DMs a photo</span><em>then</em><span>Instant quick reply</span><em>then</em><span>Plant doctor replies in 1 hour</span><em>then</em><span>Care guide or product</span><em>then</em><span>Order</span></div>
+          <h3>Comment replies</h3>
+          <div class="chat" style="margin-top:10px">
+            <div class="bub in"><small>@sam.k</small>i kill every plant i touch</div>
+            <div class="bub out"><small>ugaoo</small>tension mat le. snake plant. it survives anything, including you 🐍🌿</div>
+            <div class="bub in"><small>@priya.designs</small>tagging @meera because this is literally your plant 😂</div>
+            <div class="bub out"><small>ugaoo</small>meera, we're here for you. DM us a photo 🩺</div>
+          </div>
+          <div class="box" style="margin-top:16px"><h4>Community rules</h4><ul class="rules" style="margin:0"><li>Reply to every comment in the first hour after posting.</li><li>Clinic DMs answered within 1 hour, 9am to 9pm.</li><li>Complaints about deliveries move to DMs with order support, same day.</li><li>Always ask before resharing a customer's photo.</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TARGETS -->
+  <section id="results">
+    <div class="wrap">
+      <span class="kicker">Targets and measurement</span>
+      <h2>How we'd know it's working.</h2>
+      <p class="lede">Proposed 90-day targets, to be finalised against Ugaoo's real baseline after the week-1 audit.</p>
+      <div class="dash mt">
+        <div class="kpi"><div class="v">+32K</div><div class="l">New followers</div><div class="d">392K to 424K</div></div>
+        <div class="kpi"><div class="v">5K</div><div class="l">Clinic DMs a month</div><div class="d">by day 90</div></div>
+        <div class="kpi"><div class="v">3K</div><div class="l">#UgaooGhar posts</div><div class="d">made by customers</div></div>
+        <div class="kpi"><div class="v">2×</div><div class="l">Saves per carousel</div><div class="d">vs. week-1 baseline</div></div>
+      </div>
+      <div class="g2 mt" style="align-items:start">
+        <div class="chartbox"><h4>Follower target, week by week</h4><svg id="lineChart" viewBox="0 0 420 220" role="img" aria-label="Target line: followers growing from 392,000 today to 424,000 by week 13, speeding up after creators and #UgaooGhar launch in week 7."></svg></div>
+        <div class="chartbox"><h4>What we'll track, by goal</h4>
+          <div class="tw"><table><tbody>
+            <tr><td>Care</td><td>Clinic DMs, reply time, DMs that lead to orders</td></tr>
+            <tr><td>Community</td><td>#UgaooGhar posts, UGC reshares, comments per post</td></tr>
+            <tr><td>Growth</td><td>Reach from non-followers, shares, follower growth</td></tr>
+            <tr><td>Sales</td><td>Link clicks, orders tagged to Instagram, gifting leads from LinkedIn</td></tr>
+          </tbody></table></div>
+        </div>
+      </div>
+      <div class="g2 mt" style="align-items:start">
+        <div class="chartbox"><h4>Target funnel per month by day 90</h4>
+          <div class="funnel" style="margin-top:12px">
+            <div style="background:#CDE8FF; width:100%">Accounts reached<span>4.5M</span></div>
+            <div style="background:var(--sprout); width:78%">Profile visits<span>180K</span></div>
+            <div style="background:var(--blush); width:56%">Clinic DMs<span>5,000</span></div>
+            <div style="background:#FFE7A8; width:40%">Orders from Instagram<span>1,800</span></div>
+          </div>
+        </div>
+        <div class="report">
+          <h3>Monthly report, the template</h3>
+          <p style="font-size:.92rem; opacity:.9; margin:.3rem 0 0">One page, sent on the 1st of every month.</p>
+          <div class="cols">
+            <div><b>Wins</b><ul><li>Top 3 posts and why they worked</li><li>Targets hit</li></ul></div>
+            <div><b>Misses</b><ul><li>What underperformed</li><li>What we'll stop doing</li></ul></div>
+            <div><b>Next month</b><ul><li>3 things to test</li><li>Budget changes</li></ul></div>
+          </div>
+        </div>
+      </div>
+      <p class="note">All future numbers on this page are proposed targets, not results.</p>
+    </div>
+  </section>
+  <section id="campaign-kit">
+    <div class="wrap">
+      <span class="kicker">Campaign kit</span>
+      <h2>See it in the feed.</h2>
+      <p class="lede">Four kinds of assets I designed for this strategy: an Instagram carousel, Stories, widescreen pieces and a print piece. Scroll each row, or open the originals in Canva.</p>
+      <div class="ck-g">
+        <div class="ck-gh"><b>Instagram carousel</b><span><a href="https://www.canva.com/d/KnHUNdhMSwU5oae" target="_blank" rel="noopener">View in Canva ↗</a><a href="canva-kit/carousel.pdf" download>PDF</a></span></div>
+        <div class="ck-strip" tabindex="0" aria-label="Instagram carousel, scroll sideways">
+          <figure><img src="canva-kit/carousel/01.jpg" alt="Instagram carousel, Cover" loading="lazy"><figcaption>Cover</figcaption></figure>
+          <figure><img src="canva-kit/carousel/02.jpg" alt="Instagram carousel, The insight" loading="lazy"><figcaption>The insight</figcaption></figure>
+          <figure><img src="canva-kit/carousel/03.jpg" alt="Instagram carousel, Three goals" loading="lazy"><figcaption>Three goals</figcaption></figure>
+          <figure><img src="canva-kit/carousel/04.jpg" alt="Instagram carousel, Bhidu-proof no. 07" loading="lazy"><figcaption>Bhidu-proof no. 07</figcaption></figure>
+          <figure><img src="canva-kit/carousel/05.jpg" alt="Instagram carousel, Ugaoo Clinic" loading="lazy"><figcaption>Ugaoo Clinic</figcaption></figure>
+          <figure><img src="canva-kit/carousel/06.jpg" alt="Instagram carousel, Day-90 targets" loading="lazy"><figcaption>Day-90 targets</figcaption></figure>
+        </div>
+      </div>
+      <div class="ck-g">
+        <div class="ck-gh"><b>Instagram Stories</b><span><a href="https://www.canva.com/d/ndAIx8GJjHlssy8" target="_blank" rel="noopener">View in Canva ↗</a><a href="canva-kit/stories.pdf" download>PDF</a></span></div>
+        <div class="ck-strip" tabindex="0" aria-label="Instagram Stories, scroll sideways">
+          <figure><img src="canva-kit/stories/01.jpg" alt="Instagram Stories, Poll: dying or dramatic?" loading="lazy"><figcaption>Poll: dying or dramatic?</figcaption></figure>
+          <figure><img src="canva-kit/stories/02.jpg" alt="Instagram Stories, Clinic is open" loading="lazy"><figcaption>Clinic is open</figcaption></figure>
+          <figure><img src="canva-kit/stories/03.jpg" alt="Instagram Stories, #UgaooGhar of the week" loading="lazy"><figcaption>#UgaooGhar of the week</figcaption></figure>
+        </div>
+      </div>
+      <div class="ck-g">
+        <div class="ck-gh"><b>Billboard and plan</b><span><a href="https://www.canva.com/d/AhPcU5JIVOs4_7R" target="_blank" rel="noopener">View in Canva ↗</a><a href="canva-kit/widescreen.pdf" download>PDF</a></span></div>
+        <div class="ck-strip" tabindex="0" aria-label="Billboard and plan, scroll sideways">
+          <figure><img src="canva-kit/widescreen/01.jpg" alt="Billboard and plan, Out-of-home: Ugaoo Clinic" loading="lazy"><figcaption>Out-of-home: Ugaoo Clinic</figcaption></figure>
+          <figure><img src="canva-kit/widescreen/02.jpg" alt="Billboard and plan, The grid at day 90" loading="lazy"><figcaption>The grid at day 90</figcaption></figure>
+        </div>
+      </div>
+      <div class="ck-g">
+        <div class="ck-gh"><b>Print: care cards</b><span><a href="https://www.canva.com/d/JKLL31oct1HBtcu" target="_blank" rel="noopener">View in Canva ↗</a><a href="canva-kit/print.pdf" download>PDF</a></span></div>
+        <div class="ck-strip" tabindex="0" aria-label="Print: care cards, scroll sideways">
+          <figure><img src="canva-kit/print/01.jpg" alt="Print: care cards, Bhidu-proof collectible care cards" loading="lazy"><figcaption>Bhidu-proof collectible care cards</figcaption></figure>
+        </div>
+      </div>
+      <p style="margin-top:2rem"><a href="https://www.canva.com/d/84mWTID-NMi4Fmd" target="_blank" rel="noopener">See all my work ↗</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="disp big" style="font-weight:800; margin:0">Ugaoo Bhidu, Ugaoo. Now let's keep them alive.</p>
+    <div class="skills"><span>Social strategy</span><span>Account audit</span><span>Content pillars</span><span>Content calendars</span><span>Graphic design</span><span>Reel scripting</span><span>Community management</span><span>Growth planning</span><span>Measurement and reporting</span></div>
+    <p>Strategy by Akshara Singh, digital marketer. <a href="mailto:Akshara.singh.marketing@gmail.com">Akshara.singh.marketing@gmail.com</a></p>
+    <p class="note">An unsolicited strategy proposal created for portfolio purposes. Not affiliated with, commissioned by or endorsed by Ugaoo. Current figures are from Ugaoo's public Instagram profile and website; all other numbers are proposed targets. Post designs are proposals, not Ugaoo's published content.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $(id){return document.getElementById(id);}
+  var C={moss:'#173A27',sprout:'#C6F36B',cream:'#FFF6E8',blush:'#FFC2CF',ink:'#121712',flag:'#2FA84F'};
+
+  function pot(x,y,w,h,c){ return '<rect x="'+(x-4)+'" y="'+y+'" width="'+(w+8)+'" height="'+(h*.2)+'" rx="3" fill="'+c+'"/><path d="M'+x+' '+(y+h*.2)+'h'+w+'l-'+(w*.12)+' '+(h*.8)+'h-'+(w*.76)+'z" fill="'+c+'" opacity=".9"/>'; }
+  function snake(cx,base,h,c){ var s='', offs=[-22,-10,0,11,22], hs=[.75,.95,1,.88,.7], rot=[-10,-4,0,5,11];
+    offs.forEach(function(o,i){ var hh=h*hs[i]; s+='<ellipse cx="'+(cx+o)+'" cy="'+(base-hh/2)+'" rx="7" ry="'+(hh/2)+'" fill="'+c+'" transform="rotate('+rot[i]+' '+(cx+o)+' '+base+')"/><ellipse cx="'+(cx+o)+'" cy="'+(base-hh/2)+'" rx="3" ry="'+(hh/2-6)+'" fill="none" stroke="#fff" stroke-opacity=".25" stroke-dasharray="4 7" transform="rotate('+rot[i]+' '+(cx+o)+' '+base+')"/>'; }); return s; }
+  function perky(cx,base,c){ return '<path d="M'+cx+' '+base+'q0 -40 0 -60" stroke="'+c+'" stroke-width="4" fill="none"/><ellipse cx="'+(cx-18)+'" cy="'+(base-52)+'" rx="12" ry="22" fill="'+c+'" transform="rotate(-35 '+(cx-18)+' '+(base-52)+')"/><ellipse cx="'+(cx+18)+'" cy="'+(base-56)+'" rx="12" ry="22" fill="'+c+'" transform="rotate(35 '+(cx+18)+' '+(base-56)+')"/><ellipse cx="'+cx+'" cy="'+(base-72)+'" rx="10" ry="20" fill="'+c+'"/>'; }
+  function droopy(cx,base,c){ return '<path d="M'+cx+' '+base+'q2 -30 -4 -40" stroke="'+c+'" stroke-width="4" fill="none"/><ellipse cx="'+(cx-20)+'" cy="'+(base-24)+'" rx="10" ry="20" fill="'+c+'" transform="rotate(-140 '+(cx-20)+' '+(base-24)+')"/><ellipse cx="'+(cx+16)+'" cy="'+(base-26)+'" rx="10" ry="20" fill="'+c+'" transform="rotate(140 '+(cx+16)+' '+(base-26)+')"/><ellipse cx="'+(cx-4)+'" cy="'+(base-40)+'" rx="8" ry="16" fill="'+c+'" transform="rotate(160 '+(cx-4)+' '+(base-40)+')"/>'; }
+  function monstera(cx,cy,r,c,bg){ return '<path d="M'+cx+' '+(cy+r)+'C'+(cx-r*1.3)+' '+(cy+r*.4)+' '+(cx-r*1.1)+' '+(cy-r*1.1)+' '+cx+' '+(cy-r*.7)+'C'+(cx+r*1.1)+' '+(cy-r*1.1)+' '+(cx+r*1.3)+' '+(cy+r*.4)+' '+cx+' '+(cy+r)+'z" fill="'+c+'"/><path d="M'+cx+' '+(cy+r)+'V'+(cy-r*.6)+'" stroke="'+bg+'" stroke-width="2" opacity=".5"/>'+[-.55,-.1,.35].map(function(k){ return '<path d="M'+(cx-r*1.05)+' '+(cy+r*k)+'L'+(cx-r*.35)+' '+(cy+r*k+4)+'M'+(cx+r*1.05)+' '+(cy+r*k)+'L'+(cx+r*.35)+' '+(cy+r*k+4)+'" stroke="'+bg+'" stroke-width="5" stroke-linecap="round"/>'; }).join(''); }
+  function svg(inner,style){ return '<svg class="ill" viewBox="0 0 200 250" preserveAspectRatio="xMidYMax meet" style="'+(style||'left:0;right:0;bottom:0;width:100%;height:100%')+'" aria-hidden="true">'+inner+'</svg>'; }
+  function lm(col){ return '<span class="logo-mini" style="color:'+col+'; font-family:Bricolage Grotesque,sans-serif; font-weight:800; font-size:4.4cqw; letter-spacing:-.04em">ugaoo</span>'; }
+  var ICO={reel:'<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="#fff" stroke-width="2"/><path d="M10 8l6 4-6 4z" fill="#fff"/></svg>', car:'<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2" width="15" height="15" rx="3" fill="#fff"/><rect x="2" y="7" width="15" height="15" rx="3" fill="none" stroke="#fff" stroke-width="2"/></svg>'};
+
+  var posts=[
+    {type:'car', pillar:'Bhidu-proof plants', label:'Bhidu-proof #1, carousel', art:function(){ return '<div class="art" style="background:'+C.moss+'; color:'+C.cream+'"><span class="tag" style="background:'+C.sprout+'; color:'+C.ink+'">bhidu-proof #1</span><div class="h1" style="color:'+C.sprout+'">snake plant.</div><div class="b" style="margin-top:2cqw; max-width:70%">forgives you for ghosting it for three weeks.</div>'+svg(pot(122,196,56,54,'#E8C9A0')+snake(150,200,120,C.sprout),'right:0;bottom:10%;width:58%;height:56%')+'<div class="foot" style="position:relative">swipe for care tips '+lm(C.cream)+'</div></div>'; },
+      cap:'bhidu-proof plants #1: the snake plant 🐍🌿\n\nno bright light? chalega. forgot to water for 3 weeks? chalega.\n\nswipe for the only 3 things it actually needs, and save this for your first plant.\n\n#UgaooBhidu #plantparent #easyplants', why:'A numbered series for nervous first-timers. Carousels with simple care tips get saved, and saves tell the algorithm the post is useful.', nums:['target: 60K','target: 6K','target: 2K']},
+    {type:'reel', pillar:'Ugaoo Clinic', label:'Ugaoo Clinic rescue, reel', art:function(){ return '<div class="art" style="background:'+C.blush+'; color:'+C.ink+'"><span class="tag" style="background:'+C.ink+'; color:'+C.blush+'">ugaoo clinic #1</span><div class="h2" style="margin-top:3cqw">day 1 vs day 21</div>'+svg('<line x1="100" y1="70" x2="100" y2="240" stroke="'+C.ink+'" stroke-opacity=".2" stroke-width="2"/>'+pot(24,196,52,50,'#C99A6E')+droopy(50,200,'#8FA35A')+pot(124,196,52,50,'#C99A6E')+perky(150,200,C.flag),'left:0;right:0;bottom:0;width:100%;height:74%')+'<div class="foot" style="position:relative">DM us yours '+lm(C.ink)+'</div></div>'; },
+      cap:'ugaoo clinic #1: a follower\'s peace lily, 21 days later 🥲 → 🌿\n\nwhat our plant doctors did: repotted, trimmed the mushy roots, watered less. that\'s it.\n\nDM us a photo of your sad plant. it might be the next rescue.\n\n#UgaooClinic #plantrescue', why:'Before-and-after is the most satisfying reel format. It shows Ugaoo\'s real expertise and invites people into the DM Clinic.', nums:['target: 250K','target: 8K','target: 5K']},
+    {type:'post', pillar:'Relatable', label:'Meme post', art:function(){ return '<div class="art" style="background:#fff; color:'+C.ink+'"><div class="b" style="font-weight:700">me: bas ek plant lunga</div><div class="b" style="font-weight:700; margin-top:4cqw">me, 20 minutes later:</div>'+svg([0,1,2,3,4,5,6].map(function(i){ var x=14+(i%4)*46, y=i<4?150:210; return pot(x,y,30,30,['#E8C9A0','#C99A6E','#FFC2CF','#E8C9A0'][i%4])+'<ellipse cx="'+(x+15)+'" cy="'+(y-12)+'" rx="9" ry="16" fill="'+(i%2?C.flag:'#6FA84A')+'"/>'; }).join(''),'left:0;right:0;bottom:0;width:100%;height:78%')+'<div class="foot" style="position:relative"><span>tag your plant enabler</span>'+lm(C.ink)+'</div></div>'; },
+      cap:'"just one plant" they said 😭 tag the friend who always says "le le yaar"\n\n#plantmemes #UgaooBhidu', why:'Hinglish memes are built to be shared and tagged, putting Ugaoo in front of friends of followers.', nums:['target: 120K','target: 1K','target: 9K']},
+    {type:'post', pillar:'Ugaoo Clinic', label:'Ugaoo Clinic launch post', art:function(){ return '<div class="art" style="background:'+C.cream+'; color:'+C.ink+'"><span class="tag" style="background:'+C.moss+'; color:'+C.cream+'">ugaoo clinic</span><div class="h2" style="margin-top:4cqw">send us a photo of your sad plant.</div><div class="b" style="margin-top:3cqw">a real plant doctor replies in 1 hour. free.</div><div style="margin-top:6cqw; display:flex; flex-direction:column; gap:2cqw"><span style="align-self:flex-start; background:#fff; border-radius:4cqw; padding:2.4cqw 3.4cqw; font-family:DM Sans,sans-serif; font-size:4cqw; letter-spacing:0; box-shadow:0 1px 3px rgba(0,0,0,.08)">money plant yellow ho raha hai 😭</span><span style="align-self:flex-end; background:'+C.moss+'; color:'+C.cream+'; border-radius:4cqw; padding:2.4cqw 3.4cqw; font-family:DM Sans,sans-serif; font-size:4cqw; letter-spacing:0">overwatering, bhidu. here\'s the fix 🌿</span></div><div class="foot">DM "clinic" '+lm(C.ink)+'</div></div>'; },
+      cap:'introducing ugaoo clinic 🩺🌿\n\nDM us a photo and the word "clinic". one of our plant doctors will tell you what\'s wrong and how to fix it. free, always, even if you didn\'t buy it from us.\n\n#UgaooClinic', why:'Moves Ugaoo\'s "we\'re just a call away" promise into DMs. Every conversation builds trust and can lead to an order.', nums:['target: 90K','target: 4K','target: 3K']},
+    {type:'reel', pillar:'Bhidu-proof plants', label:'Reel: overwatering', art:function(){ return '<div class="art" style="background:'+C.sprout+'; color:'+C.ink+'"><span class="tag" style="background:'+C.ink+'; color:'+C.sprout+'">reel</span><div class="h1" style="font-size:10cqw">POV: you finally stopped overwatering</div>'+svg(pot(72,190,56,56,C.moss)+perky(100,194,C.moss)+'<path d="M150 70q10 16 0 24q-10-8 0-24z" fill="#5BB6F0"/><line x1="138" y1="64" x2="166" y2="100" stroke="#E5484D" stroke-width="5" stroke-linecap="round"/>','left:0;right:0;bottom:0;width:100%;height:62%')+'<div class="foot" style="position:relative"><span>save for later</span>'+lm(C.ink)+'</div></div>'; },
+      cap:'the glow up is real 💧❌🌿\n\nfinger test: push a finger 5 cm into the soil. dry? water. damp? walk away.\n\n#plantcare #UgaooBhidu', why:'A familiar "POV" trend hook plus one simple tip gives people a reason to save.', nums:['target: 200K','target: 10K','target: 4K']},
+    {type:'post', pillar:'#UgaooGhar', label:'#UgaooGhar feature', art:function(){ return '<div class="art" style="background:'+C.moss+'; color:'+C.cream+'"><span class="tag" style="background:'+C.blush+'; color:'+C.ink+'">#ugaooghar</span><div style="margin:5cqw auto 0; width:74%; background:#fff; padding:3cqw 3cqw 9cqw; transform:rotate(-3deg); box-shadow:0 2cqw 5cqw rgba(0,0,0,.3)"><div style="aspect-ratio:1; background:#EFE6D6; position:relative; overflow:hidden">'+svg('<rect x="0" y="120" width="200" height="8" fill="#9C7A55"/><rect x="0" y="210" width="200" height="8" fill="#9C7A55"/>'+[10,24,36,50,62].map(function(x,i){return '<rect x="'+x+'" y="'+(70+i%2*10)+'" width="11" height="'+(50-i%2*10)+'" fill="'+['#C96F53','#3E6B8A','#E0B54B','#6D8B5A','#B45C7A'][i]+'"/>';}).join('')+pot(110,94,30,26,'#E8C9A0')+'<ellipse cx="125" cy="80" rx="10" ry="18" fill="'+C.flag+'"/>'+pot(24,186,30,24,'#FFC2CF')+monstera(39,160,20,'#2E7D46','#EFE6D6')+pot(140,186,34,24,'#C99A6E')+snake(157,188,60,'#4E8F3A'),'left:0;right:0;bottom:0;width:100%;height:100%')+'</div></div><div class="foot">a customer\'s bookshelf jungle '+lm(C.cream)+'</div></div>'; },
+      cap:'#UgaooGhar of the week 📚🌿 books and plants, the best combo.\n\nshow us your plant corner with #UgaooGhar for a chance to be featured.\n\n#UgaooGhar #plantshelf', why:'10M+ customers already have Ugaoo plants at home. #UgaooGhar turns them into creators, and featured customers share with their friends.', nums:['target: 70K','target: 3K','target: 2K']},
+    {type:'car', pillar:'Relatable', label:'Red flags vs green flags carousel', art:function(){ return '<div class="art" style="padding:0; background:'+C.cream+'"><div style="flex:1; background:#FFD4D4; padding:7cqw; color:'+C.ink+'"><div class="b" style="font-weight:700">🚩 red flag</div><div class="h2" style="margin-top:2cqw">"i water all my plants every sunday."</div></div><div style="flex:1; background:'+C.sprout+'; padding:7cqw; color:'+C.ink+'"><div class="b" style="font-weight:700">green flag</div><div class="h2" style="margin-top:2cqw">"i check the soil first."</div><div class="foot" style="margin-top:4cqw">swipe for 5 more '+lm(C.ink)+'</div></div></div>'; },
+      cap:'plant parent red flags vs green flags 🚩🌿\n\nwhich one are you? sach bolna, in the comments.\n\n#redflaggreenflag #plantparent', why:'Borrows a well-known trend and makes it a care lesson. Asking "which one are you?" drives comments.', nums:['target: 150K','target: 9K','target: 6K']},
+    {type:'post', pillar:'#UgaooGhar', label:'Farm story post', art:function(){ return '<div class="art" style="background:'+C.blush+'; color:'+C.ink+'"><span class="tag" style="background:'+C.moss+'; color:'+C.cream+'">from our farm</span><div class="h1" style="margin-top:5cqw">this monstera grew up in talegaon.</div><div class="b" style="margin-top:3cqw; max-width:64%">meet the people on our 25-acre farm who raised it for you.</div>'+svg(pot(70,196,60,54,C.moss)+'<path d="M100 198V176" stroke="#2E7D46" stroke-width="4"/>'+monstera(100,146,32,'#2E7D46',C.blush),'left:0;right:0;bottom:0;width:100%;height:46%')+'<div class="foot" style="position:relative">watch the series '+lm(C.ink)+'</div></div>'; },
+      cap:'before it reached your home, this monstera spent months on our farm in talegaon 🌱\n\nthis series introduces the families who grow your plants. first episode in reels.\n\n#UgaooFarm #fromfarmtohome', why:'The farm is something most online plant shops can\'t show. People trust plants more when they meet who grew them.', nums:['target: 80K','target: 2K','target: 2K']},
+    {type:'reel', pillar:'Relatable', label:'Quiz reel', art:function(){ return '<div class="art" style="background:'+C.cream+'; color:'+C.ink+'"><span class="tag" style="background:'+C.blush+'; color:'+C.ink+'">quiz</span><div class="h2" style="margin-top:3cqw">which plant matches your texting style?</div><div style="display:flex; flex-direction:column; gap:2.4cqw; margin-top:5cqw; font-family:DM Sans,sans-serif; letter-spacing:0; font-size:4.4cqw; font-weight:600">'+[['replies in 3 days','cactus 🌵'],['double texts','pothos 🌿'],['voice notes only','monstera 🍃']].map(function(r){return '<div style="display:flex; justify-content:space-between; background:#fff; border-radius:3cqw; padding:2.4cqw 3cqw"><span>'+r[0]+'</span><b>'+r[1]+'</b></div>';}).join('')+'</div><div class="foot">comment yours '+lm(C.ink)+'</div></div>'; },
+      cap:'which one are you? 👀 comment your texting style and we\'ll reply with your plant.\n\n(haan, we reply to every single one)\n\n#plantquiz #UgaooBhidu', why:'Everyone can answer a personality quiz, and replying to every comment keeps the post growing.', nums:['target: 180K','target: 3K','target: 7K']}
+  ];
+
+  var stages=[
+    {posts:3659, fol:392000, fing:29, ch:['start','start','0'], bio:'<span class="nm">Ugaoo</span>Ugaoo Bhidu, Ugaoo! 🪴', hls:[], note:'Today: Ugaoo\u2019s existing posts (not reproduced here). Drag forward to add the new series.'},
+    {posts:3701, fol:398000, fing:29, ch:['1.5K','500','3'], bio:'<span class="nm">Ugaoo</span>Ugaoo Bhidu, Ugaoo! 🪴\n🩺 ugaoo clinic: DM a plant photo, reply in 1 hr\n🏡 show us your plant corner #UgaooGhar', hls:[['Clinic','🩺','#community'],['Bhidu-proof','🌿','#pillars-h']], note:'Day 30: Bhidu-proof plants and Ugaoo Clinic are live.'},
+    {posts:3745, fol:408000, fing:29, ch:['3.5K','1.5K','4'], bio:'<span class="nm">Ugaoo</span>Ugaoo Bhidu, Ugaoo! 🪴\n🩺 ugaoo clinic: DM a plant photo, reply in 1 hr\n🏡 show us your plant corner #UgaooGhar\n🌱 grown on our farm in talegaon', hls:[['Clinic','🩺','#community'],['Bhidu-proof','🌿','#pillars-h'],['Rescues','🪴','#reels'],['#UgaooGhar','🏡','#kit']], note:'Day 60: customers and creators join in with #UgaooGhar.'},
+    {posts:3790, fol:424000, fing:29, ch:['5K','3K','5'], bio:'<span class="nm">Ugaoo</span>Ugaoo Bhidu, Ugaoo! 🪴\n🩺 ugaoo clinic: DM a plant photo, reply in 1 hr\n🏡 show us your plant corner #UgaooGhar\n🌱 grown on our farm in talegaon\n🎁 gifting for homes and offices', hls:[['Clinic','🩺','#community'],['Bhidu-proof','🌿','#pillars-h'],['Rescues','🪴','#reels'],['#UgaooGhar','🏡','#kit'],['Farm','🌱','#growth'],['Gifting','🎁','#results']], note:'Day 90: every series running, a planned grid. Tap any post.'}
+  ];
+  var cur=-1, shown={};
+  function countTo(el,to){ var from=parseInt(el.textContent.replace(/,/g,''))||0; if(reduce||from===to){ el.textContent=to.toLocaleString(); return; }
+    var t0=performance.now(), d=700; (function f(t){ var k=Math.min(1,(t-t0)/d), e=1-Math.pow(1-k,3); el.textContent=Math.round(from+(to-from)*e).toLocaleString(); if(k<1) requestAnimationFrame(f); })(t0); }
+  function tileHTML(i,isNew){ if(isNew){ var p=posts[i]; return '<button class="tile" type="button" data-p="'+i+'" aria-label="'+p.label+'. Open post">'+(p.type!=='post'?ICO[p.type]:'')+p.art()+'</button>'; }
+    return '<div class="tile exist" aria-hidden="true"><div class="art exist-art"><svg viewBox="0 0 40 40" width="26%" aria-hidden="true"><path d="M20 34V18" stroke="currentColor" stroke-width="2.5"/><path d="M20 20c-7 0-10-6-10-11 6 0 10 4 10 11zm0 0c0-7 4-11 10-11 0 5-3 11-10 11z" fill="currentColor"/></svg><span>existing post</span></div></div>'; }
+  var days=['Today','Day 30','Day 60','Day 90'];
+  function setStage(s){
+    if(s===cur) return; var st=stages[s]; cur=s;
+    $('dayLbl').textContent=days[s]; $('day').setAttribute('aria-valuetext',days[s]);
+    countTo($('sPosts'),st.posts); countTo($('sFol'),st.fol); countTo($('sFing'),st.fing);
+    $('er').textContent=st.ch[0]; $('rp').textContent=st.ch[1]; $('dm').textContent=st.ch[2];
+    $('bio').innerHTML=st.bio; $('gridNote').textContent=st.note;
+    $('hls').innerHTML=st.hls.length?st.hls.map(function(h){ return '<button class="hl" type="button" data-go="'+h[2]+'"><span class="c"><i style="background:'+C.moss+'">'+h[1]+'</i></span>'+h[0]+'</button>'; }).join(''):'<span class="hl-empty">New highlights appear as the plan rolls out.</span>';
+    var nNew=s*3, html='';
+    for(var i=nNew-1;i>=0;i--) html+=tileHTML(i,true);
+    for(var j=0;j<9-nNew;j++) html+=tileHTML(j,false);
+    $('pgrid').innerHTML=html;
+    [].forEach.call($('pgrid').querySelectorAll('[data-p]'),function(t){ var k=t.getAttribute('data-p'); if(!shown[k]){ t.classList.add('fresh'); shown[k]=1; } });
+  }
+  $('day').addEventListener('input',function(){ stopPlay(); setStage(+this.value); });
+  var playT=0;
+  function stopPlay(){ clearInterval(playT); playT=0; $('play').textContent='Play the plan'; }
+  $('play').addEventListener('click',function(){
+    if(playT){ stopPlay(); return; }
+    var s=0; $('day').value=0; setStage(0); $('play').textContent='Pause';
+    playT=setInterval(function(){ s++; if(s>3){ stopPlay(); return; } $('day').value=s; setStage(s); }, reduce?300:1500);
+  });
+  $('hls').addEventListener('click',function(e){ var b=e.target.closest('[data-go]'); if(b) document.querySelector(b.getAttribute('data-go')).scrollIntoView({behavior:reduce?'auto':'smooth'}); });
+  setStage(0);
+
+  var dlg=$('dlg'), lastT=null;
+  $('pgrid').addEventListener('click',function(e){ var t=e.target.closest('.tile[data-p]'); if(!t) return; lastT=t;
+    var p=posts[+t.getAttribute('data-p')];
+    $('dlgArt').innerHTML=p.art(); $('dlgMeta').innerHTML='<span class="chip">'+({post:'Single post',car:'Carousel',reel:'Reel'})[p.type]+'</span><span class="chip">Pillar: '+p.pillar+'</span>';
+    $('dlgCap').textContent=p.cap; $('dlgWhy').innerHTML='<b>Why it works</b>'+p.why;
+    $('dlgNums').innerHTML='<div><b>'+p.nums[0].replace('target: ','')+'</b><span>target reach</span></div><div><b>'+p.nums[1].replace('target: ','')+'</b><span>target saves</span></div><div><b>'+p.nums[2].replace('target: ','')+'</b><span>target shares</span></div>';
+    dlg.showModal(); $('dlgClose').focus(); });
+  $('dlgClose').addEventListener('click',function(){ dlg.close(); });
+  dlg.addEventListener('close',function(){ if(lastT) lastT.focus(); });
+  dlg.addEventListener('click',function(e){ if(e.target===dlg) dlg.close(); });
+
+  var reels=[
+    {p:1, t:'Ugaoo Clinic: day 1 vs day 21', hook:'Hook (0–2s): "a follower sent us this. challenge accepted."', steps:['0–2s: the follower\u2019s DM photo on screen, text hook','2–8s: plant doctor repotting, trimming roots, fresh soil','8–13s: time-lapse of it recovering over three weeks','13–15s: side-by-side before and after, "DM us yours"'], meta:'Audio: trending sad-to-happy sound. CTA: DM "clinic". Goal: reach and Clinic DMs.'},
+    {p:4, t:'POV: you finally stopped overwatering', hook:'Hook (0–2s): a watering can stopped mid-pour', steps:['0–2s: text "POV: you finally stopped overwatering"','2–7s: the finger test: "dry? water. damp? walk away."','7–12s: glow-up montage of a thriving plant','12–15s: "save this", Ugaoo end frame'], meta:'Audio: glow-up trend. Goal: saves.'},
+    {p:7, t:'From our farm, episode 1', hook:'Hook (0–2s): drone shot, "this is where your plant grew up"', steps:['0–3s: wide shot of the Talegaon farm','3–10s: one grower talks about a plant they raised, with subtitles','10–14s: that plant being packed and delivered','14–15s: the customer unboxing it at home'], meta:'Audio: grower\u2019s own voice. Goal: trust, shares, brand love.'}
+  ];
+  $('reelList').innerHTML=reels.map(function(r){ return '<div class="reel"><div class="cover">'+posts[r.p].art()+'</div><div class="sc"><h4>'+r.t+'</h4><div class="hook">'+r.hook+'</div><ol>'+r.steps.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ol><div class="meta">'+r.meta+'</div></div></div>'; }).join('');
+
+  var pc={'Bhidu-proof':C.sprout,'Clinic':C.blush,'Relatable':'#CDE8FF','#UgaooGhar':'#FFE7A8','Shop and gifting':'#E8E1D4'};
+  var plan={
+    1:['Shop and gifting','Broadcast: new arrivals','Channel message','Weekly drop for loyal fans.'],
+    2:['Clinic','Clinic rescue #5: fern','Reel','Before and after of a follower\u2019s fern.'],
+    3:['Bhidu-proof','Bhidu-proof #6: ZZ plant','Carousel','"survives your vacation." Five care slides.'],
+    4:['Shop and gifting','Office plants for HR teams','LinkedIn post','Corporate gifting case, for decision-makers.'],
+    5:['Relatable','Meme: "bas ek plant"','Reel','Trend audio, Hinglish on-screen text.'],
+    7:['#UgaooGhar','#UgaooGhar of the week','Post','Customer\u2019s plant corner, with permission.'],
+    9:['Clinic','Clinic rescue #6: money plant','Reel','Root rot save; CTA to DM "clinic".'],
+    10:['Bhidu-proof','Bhidu-proof #7: pothos','Carousel','"grows even when you forget it exists."'],
+    11:['#UgaooGhar','From our farm, episode 2','Reel','Meet the grower who raises our succulents.'],
+    12:['Relatable','Quiz: plant for your zodiac','Reel','Comment your sign; we reply with a plant.'],
+    13:['#UgaooGhar','Café collab post','Collab post','Joint post with a café account.'],
+    14:['#UgaooGhar','#UgaooGhar of the week','Post','UGC feature.'],
+    16:['Clinic','Clinic Live','Instagram Live','Plant doctors answer questions live for 30 minutes.'],
+    17:['Bhidu-proof','Bhidu-proof #8: spider plant','Carousel','Pet-safe edition; tag your pet.'],
+    18:['Shop and gifting','Gifting for Diwali teams','LinkedIn post','Early-bird corporate gifting.'],
+    19:['Relatable','Red flags vs green flags 2','Carousel','Part two of a high-comment format.'],
+    20:['Shop and gifting','Gift guide: under 999','Carousel','Three easy gift picks with fast delivery.'],
+    21:['#UgaooGhar','Creator seeding: hostel room glow-up','Collab reel','A creator styles a hostel room with Ugaoo plants.'],
+    23:['Clinic','Clinic: what you asked this month','Carousel','Top five DM questions and answers.'],
+    24:['Bhidu-proof','Bhidu-proof #9: peace lily','Carousel','"not dramatic, just communicating."'],
+    26:['Relatable','POV: plant parent at 2am','Reel','Checking plants with a phone torch.'],
+    27:['#UgaooGhar','From our farm, episode 3','Reel','Harvest day on the farm.'],
+    28:['Shop and gifting','Monthly restock','Carousel','Everything new this month, one per slide.']
+  };
+  var ch='';['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].forEach(function(d){ ch+='<div class="dh">'+d+'</div>'; });
+  for(var d=1; d<=28; d++){ var e=plan[d]; ch+='<button type="button" data-d="'+d+'" aria-pressed="false" aria-label="Day '+d+(e?': '+e[1]:': stories only')+'"><span class="dn">'+d+'</span>'+(e?'<span class="ev" style="background:'+pc[e[0]]+'">'+e[1]+'</span>':'')+'</button>'; }
+  $('cal').innerHTML=ch;
+  $('cal').addEventListener('click',function(ev){ var b=ev.target.closest('[data-d]'); if(!b) return; var d=+b.getAttribute('data-d'), e=plan[d];
+    [].forEach.call($('cal').querySelectorAll('[data-d]'),function(x){ x.setAttribute('aria-pressed',x===b); });
+    $('dayDetail').innerHTML=e?'<b>Day '+d+': '+e[1]+'</b><p class="sm" style="margin:.3rem 0 0">'+e[2]+', '+e[0]+' pillar. '+e[3]+'</p>':'<b>Day '+d+'</b><p class="sm" style="margin:.3rem 0 0">Stories only: Clinic Q&amp;A, polls and farm behind the scenes.</p>'; });
+
+  var fol=[392,393,394.5,396,398,400,402,404.5,408,411,415,419,424];
+  var W=420,H=220,L=44,R=12,T=14,B=30, mn=390, mx=426;
+  var pts=fol.map(function(v,i){ return [L+i*(W-L-R)/(fol.length-1), T+(H-T-B)*(1-(v-mn)/(mx-mn))]; });
+  var lc='';
+  [390,400,410,420].forEach(function(v){ var y=T+(H-T-B)*(1-(v-mn)/(mx-mn)); lc+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y+'" y2="'+y+'" stroke="currentColor" stroke-opacity=".12"/><text class="ax" x="'+(L-6)+'" y="'+(y+3)+'" text-anchor="end">'+v+'K</text>'; });
+  [0,4,8,12].forEach(function(i){ lc+='<text class="ax" x="'+pts[i][0]+'" y="'+(H-10)+'" text-anchor="middle">wk '+i+'</text>'; });
+  var x7=pts[7][0]; lc+='<line x1="'+x7+'" x2="'+x7+'" y1="'+T+'" y2="'+(H-B)+'" stroke="#2FA84F" stroke-dasharray="3 4"/><text class="ax" x="'+(x7+4)+'" y="'+(T+10)+'">#UgaooGhar and creators</text>';
+  lc+='<path d="M'+pts.map(function(p){return p.join(' ');}).join(' L')+'" fill="none" stroke="#2FA84F" stroke-width="3" stroke-dasharray="7 5" stroke-linejoin="round"/>';
+  lc+='<circle cx="'+pts[0][0]+'" cy="'+pts[0][1]+'" r="5" fill="#2FA84F"/><circle cx="'+pts[12][0]+'" cy="'+pts[12][1]+'" r="5" fill="none" stroke="#2FA84F" stroke-width="2.5"/>';
+  $('lineChart').innerHTML=lc; $('lineChart').style.color='var(--fg)';
+})();
+</script>
+<a class="as-allwork" href="../../#work" aria-label="Back to all of Akshara Singh's work">&larr; All work</a>
+<style>.as-allwork{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:2147483000;display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:999px;background:rgba(17,17,16,.88);color:#F5F2EC!important;font:600 14px/1 system-ui,-apple-system,"Segoe UI",sans-serif;text-decoration:none!important;letter-spacing:0;box-shadow:0 8px 24px rgba(0,0,0,.25);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:transform .2s}.as-allwork:hover{transform:translateY(-2px)}.as-allwork:focus-visible{outline:2px solid #E9B872;outline-offset:3px}@media print{.as-allwork{display:none}}</style>
+</body>
+</html>

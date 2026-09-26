@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inbox: an email marketing program for Blue Tokai, by Akshara Singh</title>
+<meta name="description" content="An interactive email marketing portfolio: welcome series, abandoned cart, replenishment, a personalised newsletter and win-back emails for Blue Tokai Coffee Roasters. By Akshara Singh.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light dark;
+  --bg:#EEF2F9; --side:#E3E9F5; --panel:#FFFFFF; --ink:#10213F; --muted:#5B6782; --line:#D8DFEC; --hover:#F3F6FC; --sel:#E2EAFB;
+  --peacock:#1B4DB1; --teal:#0E8C8C; --gold:#E9A91C; --gold-soft:#FFF3D6; --plum:#7A3E8E; --ok:#1F8A5B;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){ --bg:#0D1424; --side:#111A2E; --panel:#16203A; --ink:#E8EDF8; --muted:#9AA6C2; --line:#26324F; --hover:#1B2745; --sel:#22305A; --peacock:#7FA2F5; --teal:#4CC6C6; --gold:#F2C04E; --gold-soft:#3A3014; --plum:#C58DD8; --ok:#5CCB93; }
+}
+:root[data-theme="dark"]{ --bg:#0D1424; --side:#111A2E; --panel:#16203A; --ink:#E8EDF8; --muted:#9AA6C2; --line:#26324F; --hover:#1B2745; --sel:#22305A; --peacock:#7FA2F5; --teal:#4CC6C6; --gold:#F2C04E; --gold-soft:#3A3014; --plum:#C58DD8; --ok:#5CCB93; }
+*,*::before,*::after{box-sizing:inherit}
+html,body{height:100%}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size:15px; line-height:1.5}
+button{font:inherit; color:inherit}
+:focus-visible{outline:3px solid var(--peacock); outline-offset:2px; border-radius:6px}
+a{color:var(--peacock)}
+.disp{font-family:"Gloock",Georgia,"Times New Roman",serif; font-weight:400; letter-spacing:-.01em}
+
+/* ---------- app shell ---------- */
+.app{display:grid; grid-template-columns:230px 360px minmax(0,1fr); height:100%; min-height:100%}
+.side{background:var(--side); padding:18px 14px; display:flex; flex-direction:column; gap:14px; overflow-y:auto}
+.logo{display:flex; align-items:center; gap:10px; padding:4px 6px}
+.logo i{width:34px; height:34px; border-radius:10px; background:conic-gradient(from 210deg,#1B4DB1,#0E8C8C,#E9A91C,#7A3E8E,#1B4DB1); display:grid; place-items:center; color:#fff; font-style:normal; font-size:1rem}
+.logo b{font-family:"Gloock",serif; font-weight:400; font-size:1.25rem; line-height:1}
+.logo small{display:block; font-size:.72rem; color:var(--muted); margin-top:2px}
+.compose{border:0; border-radius:14px; background:var(--peacock); color:#fff; padding:.75em 1em; font-weight:700; text-align:left; cursor:pointer; display:flex; gap:8px; align-items:center}
+.folders{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px}
+.folders button{width:100%; border:0; background:transparent; text-align:left; padding:8px 10px; border-radius:10px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-weight:600; font-size:.92rem}
+.folders button:hover{background:var(--hover)}
+.folders button[aria-pressed="true"]{background:var(--sel); color:var(--peacock)}
+.folders .ct{font-size:.75rem; background:var(--gold); color:#10213F; border-radius:999px; padding:0 7px; font-weight:800}
+.side .note{font-size:.78rem; color:var(--muted); margin-top:auto; line-height:1.4}
+.side .note b{color:var(--ink)}
+
+.list{background:var(--panel); border-right:1px solid var(--line); display:flex; flex-direction:column; min-height:0}
+.list-top{padding:14px 14px 10px; border-bottom:1px solid var(--line)}
+.list-top h1{font-size:1.15rem; margin:0 0 8px; font-weight:800}
+.search{width:100%; border:1px solid var(--line); background:var(--bg); border-radius:10px; padding:.55em .8em; font:inherit; color:var(--ink)}
+.msgs{list-style:none; margin:0; padding:0; overflow-y:auto; flex:1}
+.msg{width:100%; border:0; border-bottom:1px solid var(--line); background:transparent; text-align:left; padding:12px 14px 12px 28px; cursor:pointer; position:relative; display:block}
+.msg:hover{background:var(--hover)}
+.msg[aria-current="true"]{background:var(--sel)}
+.msg .dot{position:absolute; left:11px; top:18px; width:9px; height:9px; border-radius:50%; background:var(--gold)}
+.msg.read .dot{display:none}
+.msg .r1{display:flex; justify-content:space-between; gap:8px; font-size:.82rem}
+.msg .from{font-weight:700}
+.msg.read .from{font-weight:600; color:var(--muted)}
+.msg .time{color:var(--muted); white-space:nowrap}
+.msg .subj{font-weight:700; font-size:.9rem; margin-top:2px}
+.msg.read .subj{font-weight:600}
+.msg .pre{font-size:.8rem; color:var(--muted); display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden}
+.msg .lbl{display:inline-block; font-size:.66rem; font-weight:800; letter-spacing:.02em; border-radius:6px; padding:1px 6px; margin-top:5px; margin-right:4px}
+.l-flow{background:#DDF0EF; color:#0B6B6B} .l-camp{background:#FFF0CF; color:#8A5B00} .l-memo{background:#E5EBFA; color:#1B4DB1} .l-game{background:#F1E3F6; color:#6A2F7D}
+.empty{padding:30px 16px; color:var(--muted); text-align:center; font-size:.9rem}
+
+.pane{overflow-y:auto; min-width:0; background:var(--bg)}
+.pane-in{max-width:980px; margin:0 auto; padding:22px clamp(14px,3vw,34px) 60px}
+.backbtn{display:none; border:0; background:transparent; color:var(--peacock); font-weight:700; padding:6px 0; cursor:pointer}
+.mhead h2:focus{outline:none}
+.mhead h2{font-size:clamp(1.3rem,2.4vw,1.7rem); margin:0 0 10px; font-weight:800; letter-spacing:-.02em; line-height:1.2}
+.mhead .meta{display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-size:.85rem; color:var(--muted)}
+.mhead .av{width:38px; height:38px; border-radius:50%; display:grid; place-items:center; font-weight:800; color:#fff; flex:none}
+.mhead .who b{color:var(--ink)}
+.toolbar{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:16px 0 14px; padding:8px; background:var(--panel); border:1px solid var(--line); border-radius:14px}
+.seg{display:inline-flex; background:var(--bg); border-radius:10px; padding:3px}
+.seg button{border:0; background:transparent; border-radius:8px; padding:.35em .8em; font-size:.82rem; font-weight:700; cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--panel); box-shadow:0 1px 3px rgba(16,33,63,.15)}
+.tgl{border:1.5px solid var(--line); background:var(--panel); border-radius:10px; padding:.35em .8em; font-size:.82rem; font-weight:700; cursor:pointer}
+.tgl[aria-pressed="true"]{border-color:var(--gold); background:var(--gold-soft)}
+.toolbar .spacer{flex:1}
+.toolbar .hint{font-size:.78rem; color:var(--muted)}
+.stage{display:grid; grid-template-columns:minmax(0,1fr) 250px; gap:18px; align-items:start}
+.stage.noanno{grid-template-columns:minmax(0,1fr)}
+.frame{margin:0 auto; width:100%; max-width:620px; transition:max-width .35s}
+.frame.mobile{max-width:375px; border:10px solid #10213F; border-radius:34px; overflow:hidden}
+.annos{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:14px; position:sticky; top:14px}
+.annos h4{margin:0 0 8px; font-size:.9rem}
+.annos ol{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:10px}
+.annos li{display:grid; grid-template-columns:22px 1fr; gap:8px; font-size:.82rem; line-height:1.4}
+.annos li b{display:block; font-size:.84rem}
+.num{width:22px; height:22px; border-radius:50%; background:var(--gold); color:#10213F; font-weight:800; font-size:.72rem; display:grid; place-items:center}
+
+/* ---------- the emails (brand: Blue Tokai, spec) ---------- */
+.em{--e-bg:#FFFFFF; --e-ink:#1D1A17; --e-muted:#6B6259; --e-blue:#1B4DB1; --e-teal:#0E8C8C; --e-gold:#E9A91C; --e-soft:#F4F1EB; --e-line:#E7E1D7;
+  background:var(--e-bg); color:var(--e-ink); font-family:"Manrope",Helvetica,Arial,sans-serif; border-radius:6px; overflow:hidden; box-shadow:0 10px 30px -18px rgba(16,33,63,.45); position:relative}
+.em.dark{--e-bg:#141821; --e-ink:#EDEAE4; --e-muted:#A8A197; --e-blue:#86A8F7; --e-teal:#57CFCF; --e-gold:#F2C04E; --e-soft:#1E232E; --e-line:#2A303C}
+.em-h{background:#1B4DB1; color:#fff; padding:18px 26px; display:flex; justify-content:space-between; align-items:center; gap:10px}
+.em.dark .em-h{background:#0F2A66}
+.wm{font-family:"Gloock",Georgia,serif; font-size:1.3rem; letter-spacing:.02em; display:flex; align-items:center; gap:8px}
+.wm i{width:22px; height:22px; border-radius:50%; background:conic-gradient(#1B4DB1 0 25%,#0E8C8C 0 50%,#E9A91C 0 75%,#7A3E8E 0); border:2px solid #fff}
+.em-nav{font-size:.72rem; opacity:.85}
+.em-b{padding:30px 30px 10px}
+.frame.mobile .em-b{padding:24px 20px 8px}
+.frame.mobile .em-nav{display:none}
+.eh{font-family:"Gloock",Georgia,serif; font-weight:400; font-size:2.1rem; line-height:1.08; margin:0 0 12px; letter-spacing:-.01em}
+.frame.mobile .eh{font-size:1.7rem}
+.ep{font-size:.98rem; line-height:1.6; color:var(--e-ink); margin:0 0 14px}
+.em .muted{color:var(--e-muted)}
+.cta{display:inline-block; background:var(--e-gold); color:#1D1A17; font-weight:800; text-decoration:none; border-radius:999px; padding:.8em 1.6em; font-size:.95rem; border:0; cursor:pointer}
+.cta.blue{background:var(--e-blue); color:#fff}
+.em.dark .cta.blue{color:#0B1530}
+.offer{border:2px dashed var(--e-gold); border-radius:14px; padding:16px; text-align:center; margin:18px 0; background:color-mix(in srgb,var(--e-gold) 10%,transparent)}
+.offer b{display:block; font-family:"Gloock",serif; font-weight:400; font-size:1.7rem}
+.offer code{font-family:ui-monospace,Menlo,Consolas,monospace; font-weight:700; background:var(--e-bg); padding:3px 10px; border-radius:6px; border:1px solid var(--e-line)}
+.usps{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:18px 0}
+.frame.mobile .usps{grid-template-columns:1fr}
+.usps div{background:var(--e-soft); border-radius:12px; padding:12px; font-size:.85rem}
+.usps b{display:block; font-size:.9rem}
+.hero-art{border-radius:14px; margin:0 0 18px; aspect-ratio:2.2/1; display:grid; place-items:center; position:relative; overflow:hidden}
+.bag{position:relative; width:84px; height:112px; border-radius:10px 10px 8px 8px; background:#1B4DB1; box-shadow:inset -10px 0 0 rgba(0,0,0,.12); display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; font-size:.55rem; font-weight:800; text-align:center; padding:6px}
+.bag::before{content:""; position:absolute; top:-8px; left:6px; right:6px; height:12px; border-radius:4px 4px 0 0; background:inherit; filter:brightness(.8)}
+.bag i{width:26px; height:26px; border-radius:50%; background:conic-gradient(#fff 0 25%,#E9A91C 0 50%,#fff 0 75%,#E9A91C 0); margin-bottom:6px; opacity:.9}
+.bag.teal{background:#0E8C8C} .bag.gold{background:#C58A0E} .bag.plum{background:#7A3E8E}
+.prod{display:flex; gap:16px; align-items:center; background:var(--e-soft); border-radius:14px; padding:16px; margin:16px 0}
+.prod .d{font-size:.88rem}
+.prod .d b{display:block; font-size:1rem}
+.brewgrid{display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin:16px 0}
+.frame.mobile .brewgrid{grid-template-columns:repeat(2,1fr)}
+.brewgrid button{border:2px solid var(--e-line); background:var(--e-bg); color:var(--e-ink); border-radius:14px; padding:12px 6px; cursor:pointer; font-weight:700; font-size:.8rem; display:flex; flex-direction:column; align-items:center; gap:6px}
+.brewgrid button span{font-size:1.5rem}
+.brewgrid button[aria-pressed="true"]{border-color:var(--e-blue); background:color-mix(in srgb,var(--e-blue) 10%,transparent)}
+.toast{margin:10px 0 16px; background:var(--e-soft); border-left:4px solid var(--e-teal); padding:10px 12px; font-size:.86rem; border-radius:6px; min-height:2.6em}
+.meter{height:16px; background:var(--e-soft); border-radius:10px; overflow:hidden; border:1px solid var(--e-line); margin:8px 0 4px}
+.meter i{display:block; height:100%; width:14%; background:linear-gradient(90deg,#6B3E1F,#A0612F); border-radius:10px}
+.sec{border-top:1px solid var(--e-line); padding:18px 0}
+.sec .k{font-size:.72rem; font-weight:800; letter-spacing:.06em; color:var(--e-teal); margin-bottom:4px}
+.sec h3{font-family:"Gloock",serif; font-weight:400; font-size:1.35rem; margin:0 0 6px; line-height:1.15}
+.em-f{padding:18px 30px 24px; font-size:.72rem; color:var(--e-muted); border-top:1px solid var(--e-line); line-height:1.5}
+.em-f a{color:var(--e-muted)}
+.flink{text-decoration:underline; text-underline-offset:2px}
+.ps{font-size:.9rem; color:var(--e-muted); font-style:italic}
+.pin{display:inline-grid; place-items:center; width:20px; height:20px; border-radius:50%; background:#E9A91C; color:#10213F; font-weight:800; font-size:.65rem; font-family:"Manrope",sans-serif; font-style:normal; vertical-align:middle; margin:0 4px; box-shadow:0 0 0 3px rgba(233,169,28,.3); letter-spacing:0}
+.stage.noanno .pin{display:none}
+.inbox-preview{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:10px 14px; margin-bottom:12px; font-size:.82rem}
+.inbox-preview b{display:block; font-size:.9rem}
+.inbox-preview span{color:var(--muted)}
+
+/* ---------- memos (strategy, from Akshara) ---------- */
+.memo{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:clamp(18px,3vw,30px); line-height:1.6}
+.memo h3{font-size:1.1rem; margin:22px 0 8px; font-weight:800}
+.memo h3:first-child{margin-top:0}
+.memo p{margin:0 0 12px}
+.memo ul{margin:0 0 12px; padding-left:1.2rem}
+.memo li{margin-bottom:5px}
+.cards{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:10px 0 14px}
+.cards div{background:var(--bg); border-radius:12px; padding:12px; font-size:.86rem}
+.cards b{display:block; font-size:1.3rem; font-weight:800; color:var(--peacock)}
+.tw{overflow-x:auto}
+table{width:100%; border-collapse:collapse; font-size:.86rem}
+th,td{text-align:left; vertical-align:top; padding:9px 12px 9px 0; border-bottom:1px solid var(--line)}
+th{color:var(--muted); font-weight:700; font-size:.76rem}
+td:first-child{font-weight:700}
+.src{font-size:.75rem; color:var(--muted)}
+.linkbtn{border:0; background:transparent; color:var(--peacock); font-weight:700; cursor:pointer; padding:0; text-decoration:underline}
+.sig{margin-top:18px; padding-top:14px; border-top:1px solid var(--line); font-size:.9rem}
+.sig b{font-family:"Gloock",serif; font-weight:400; font-size:1.2rem}
+
+/* flow map */
+.flow{display:flex; flex-direction:column; gap:10px; margin:12px 0}
+.lane{background:var(--bg); border-radius:14px; padding:12px}
+.lane .ln{font-weight:800; font-size:.86rem; margin-bottom:8px; display:flex; gap:8px; align-items:center}
+.nodes{display:flex; align-items:center; gap:6px; flex-wrap:wrap}
+.node{border:1.5px solid var(--line); background:var(--panel); border-radius:10px; padding:6px 10px; font-size:.78rem; font-weight:700; cursor:pointer}
+.node.trig{border-style:dashed; cursor:default; background:transparent}
+.node:not(.trig):hover{border-color:var(--peacock)}
+.wait{font-size:.72rem; color:var(--muted); font-weight:600}
+.cal{display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:4px; margin:10px 0}
+.cal div{background:var(--bg); border-radius:8px; min-height:58px; padding:5px; font-size:.68rem}
+.cal div span{display:block; color:var(--muted); font-weight:700}
+.cal div em{display:block; font-style:normal; font-weight:700; border-radius:5px; padding:1px 4px; margin-top:3px; line-height:1.25}
+.e-news{background:#FFF0CF; color:#8A5B00} .e-camp{background:#F1E3F6; color:#6A2F7D} .e-auto{background:#DDF0EF; color:#0B6B6B}
+
+/* game */
+.game .round{font-size:.8rem; color:var(--muted); font-weight:700}
+.game .q{font-size:1.05rem; font-weight:800; margin:4px 0 12px}
+.opts{display:grid; gap:10px}
+.opt{border:2px solid var(--line); background:var(--panel); border-radius:14px; padding:12px 14px; text-align:left; cursor:pointer}
+.opt:hover{border-color:var(--peacock)}
+.opt b{display:block; font-size:.95rem}
+.opt span{font-size:.8rem; color:var(--muted)}
+.opt.win{border-color:var(--ok); background:color-mix(in srgb,var(--ok) 10%,transparent)}
+.opt.lose{opacity:.55}
+.opt[disabled]{cursor:default}
+.reveal{margin-top:12px; background:var(--bg); border-radius:12px; padding:12px 14px; font-size:.9rem; min-height:2em}
+.gbtns{display:flex; gap:8px; margin-top:12px; flex-wrap:wrap}
+.pbtn{border:0; border-radius:999px; background:var(--peacock); color:#fff; font-weight:700; padding:.55em 1.2em; cursor:pointer}
+.score{font-weight:800; color:var(--plum)}
+
+/* newsletter playground */
+.play{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:12px 14px; margin-bottom:14px}
+.play h4{margin:0 0 8px; font-size:.9rem}
+.play .row{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:8px}
+.play .row > span{font-size:.78rem; font-weight:700; color:var(--muted); min-width:74px}
+.chip{border:1.5px solid var(--line); background:var(--bg); border-radius:999px; padding:.3em .8em; font-size:.8rem; font-weight:700; cursor:pointer}
+.chip[aria-pressed="true"]{border-color:var(--peacock); background:var(--sel); color:var(--peacock)}
+.changed{animation:flash 1s ease}
+@keyframes flash{0%{background:color-mix(in srgb,#E9A91C 40%,transparent)} 100%{background:transparent}}
+
+@media (max-width:1100px){
+  .app{grid-template-columns:200px 300px minmax(0,1fr)}
+  .stage{grid-template-columns:1fr}
+  .annos{position:static}
+}
+@media (max-width:820px){
+  .app{grid-template-columns:1fr; height:auto}
+  .side{flex-direction:row; flex-wrap:wrap; align-items:center; gap:10px; padding:12px}
+  .side .note,.compose{display:none}
+  .folders{flex-direction:row; flex-wrap:wrap}
+  .folders button{padding:6px 10px}
+  .list{border-right:0}
+  .pane{display:none}
+  body.reading .list{display:none}
+  body.reading .pane{display:block}
+  .backbtn{display:inline-block}
+  .cards{grid-template-columns:1fr}
+  .usps{grid-template-columns:1fr}
+}
+@media (max-width:560px){ .em-nav{display:none} .em-b{padding:22px 18px 8px} .eh{font-size:1.7rem} }
+@media (prefers-reduced-motion:reduce){ .frame{transition:none} .changed{animation:none} }
+/* ---------- campaign kit ---------- */
+.ck-strip{display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 2px 12px; margin:14px 0 6px}
+.ck-strip figure{margin:0; flex:0 0 min(300px,72%); scroll-snap-align:start}
+.ck-strip img{display:block; width:100%; height:auto; border-radius:14px; border:1px solid var(--line); box-shadow:0 14px 30px -18px rgba(16,33,63,.5)}
+.ck-strip figcaption{font-size:.78rem; color:var(--muted); margin-top:8px}
+.ck-btns{display:flex; flex-wrap:wrap; gap:10px}
+.ck-b{display:inline-block; border:1px solid var(--line); border-radius:999px; padding:.55em 1.1em; font-weight:700; text-decoration:none; color:var(--ink); background:var(--panel)}
+.ck-b.ck-p{background:var(--peacock); border-color:var(--peacock); color:#fff}
+:root[data-theme="dark"] .ck-b.ck-p{color:#0D1424}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .ck-b.ck-p{color:#0D1424} }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side" aria-label="Mail folders">
+    <div class="logo"><i aria-hidden="true">✉</i><div><b>akshara mail</b><small>email marketing portfolio</small></div></div>
+    <button class="compose" type="button" id="compose">✏️ Hire me</button>
+    <ul class="folders" id="folders">
+      <li><button type="button" data-f="all" aria-pressed="true">Inbox <span class="ct" id="unread">13</span></button></li>
+      <li><button type="button" data-f="memo" aria-pressed="false">Strategy memos</button></li>
+      <li><button type="button" data-f="flow" aria-pressed="false">Automated flows</button></li>
+      <li><button type="button" data-f="camp" aria-pressed="false">Campaigns</button></li>
+      <li><button type="button" data-f="game" aria-pressed="false">Playground</button></li>
+    </ul>
+    <p class="note"><b>Blue Tokai Coffee Roasters</b> is a real brand. These emails are an unsolicited portfolio proposal, not the brand's actual emails.</p>
+  </aside>
+
+  <section class="list" aria-label="Messages">
+    <div class="list-top">
+      <h1>Inbox</h1>
+      <label class="visually-hidden" for="q" style="position:absolute; left:-9999px">Search mail</label>
+      <input class="search" id="q" type="search" placeholder="Search mail">
+    </div>
+    <ul class="msgs" id="msgs"></ul>
+  </section>
+
+  <main class="pane" id="pane" tabindex="-1" aria-live="polite">
+    <div class="pane-in" id="paneIn"></div>
+  </main>
+</div>
+
+<script>
+(function(){
+  function $(id){return document.getElementById(id);}
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- shared email pieces ---------- */
+  function shell(body,opts){
+    opts=opts||{};
+    return '<div class="em'+(state.dark?' dark':'')+'"><header class="em-h"><span class="wm"><i></i>BLUE TOKAI</span><span class="em-nav">Coffee · Brew gear · Subscriptions</span></header><div class="em-b">'+body+'</div>'+
+      '<footer class="em-f">You\u2019re getting this because you signed up at Blue Tokai. <span class="flink">Update preferences</span> · <span class="flink">Choose fewer emails</span> · <span class="flink">Unsubscribe</span><br>Concept email by Akshara Singh for portfolio purposes. Not sent by Blue Tokai.</footer></div>';
+  }
+  function pin(n){ return '<i class="pin" aria-hidden="true">'+n+'</i>'; }
+
+  var brewInfo={
+    'French press':{e:'🫖',grind:'coarse',tip:'Steep for 4 minutes, then press slowly. Pour it all out straight away so it doesn\u2019t turn bitter.',pick:{light:'Attikan Estate',medium:'Attikan Estate',dark:'Vienna Roast'}},
+    'Pour-over':{e:'🫗',grind:'medium-fine',tip:'Bloom with twice the coffee\u2019s weight in water for 30 seconds before the main pour.',pick:{light:'Attikan Estate',medium:'Silver Oak',dark:'Vienna Roast'}},
+    'Moka pot':{e:'☕',grind:'fine',tip:'Start with hot water in the base; it shortens heating time and avoids a metallic taste.',pick:{light:'Silver Oak',medium:'Vienna Roast',dark:'Vienna Roast'}},
+    'Espresso':{e:'⚡',grind:'extra fine',tip:'Aim for about 25\u201330 seconds a shot, and adjust the grind, not the dose, first.',pick:{light:'Silver Oak',medium:'Vienna Roast',dark:'Vienna Roast'}},
+    'Cold brew':{e:'🧊',grind:'coarse',tip:'Steep in the fridge for 12\u201316 hours, then dilute 1:1 with milk or water.',pick:{light:'Attikan Estate',medium:'Silver Oak',dark:'Vienna Roast'}}
+  };
+  var state={view:'desktop', dark:false, anno:true, brew:'Pour-over', roast:'medium', stage:'new', gameI:0, gameScore:0, gameOrder:[]};
+
+  /* ---------- messages ---------- */
+  var M=[
+    {id:'start', f:'memo', from:'Akshara Singh', av:'AS', avc:'#7A3E8E', time:'9:00', subj:'Start here: my email plan for Blue Tokai ☕', pre:'Goals, flows, newsletter and how to explore this inbox.', lbl:['memo','Strategy'], render:memoStart},
+    {id:'kit', f:'memo', from:'Akshara Singh', av:'AS', avc:'#7A3E8E', time:'9:30', subj:'The campaign kit, as a 6-slide carousel \ud83c\udfa8', pre:'The whole program in six designed slides. Open it in Canva.', lbl:['memo','Campaign kit'], render:memoKit},
+    {id:'w1', f:'flow', from:'Blue Tokai', av:'BT', avc:'#1B4DB1', time:'9:02', subj:'Welcome to the roast ☕ (10% off inside)', pre:'Fresh Indian coffee, roasted after you order.', lbl:['flow','Welcome 1 of 3'], email:true, render:w1,
+      annos:[['Subject line','Tells you what\u2019s inside before you open it: a welcome, plus the gift.'],['Preheader','Continues the subject line instead of repeating it, and lands the freshness promise.'],['One job','The email has one goal: the first order. Everything points to one button.'],['Gift, not a bribe','The discount is framed as a welcome gift for joining, and it expires to create gentle urgency.'],['Why believe','Three short reasons, no paragraphs. Easy to scan on a phone.'],['The P.S.','Invites replies. Replies signal to inbox providers that people want these emails.']]},
+    {id:'w2', f:'flow', from:'Blue Tokai', av:'BT', avc:'#1B4DB1', time:'Day 2', subj:'Quick question: how do you brew? 🫖', pre:'One tap and every email after this is about your brewer.', lbl:['flow','Welcome 2 of 3'], email:true, render:w2,
+      annos:[['Zero-party data','Instead of guessing, we ask. One tap tags the subscriber with their brew method.'],['Instant value','Each answer gives the right grind size straight away, so tapping feels useful, not like a survey.'],['Feeds the newsletter','The tag personalises every future newsletter. Try a brewer, then open Brew Notes.']]},
+    {id:'w3', f:'flow', from:'Blue Tokai', av:'BT', avc:'#1B4DB1', time:'Day 5', subj:'Why a peacock? 🦚', pre:'The story behind our name, and the farms behind your cup.', lbl:['flow','Welcome 3 of 3'], email:true, render:w3,
+      annos:[['Story after sale-ask','Emails 1 and 2 ask and help. Email 3 gives the brand something worth remembering.'],['Real brand truth','The name really comes from an old Malabari word for a peacock\u2019s tail.'],['Soft CTA','"Meet the estates" invites exploration without a hard sell.']]},
+    {id:'cart', f:'flow', from:'Blue Tokai', av:'BT', avc:'#1B4DB1', time:'1 hr after', subj:'Your Attikan Estate is waiting (we haven\u2019t roasted it yet)', pre:'Finish your order and it\u2019s roasted fresh for you.', lbl:['flow','Abandoned cart 1 of 3'], email:true, render:cart,
+      annos:[['Specific, not generic','Names the exact coffee, not "you forgot something".'],['Freshness as the reason','Roast-to-order turns a reminder into a benefit.'],['Show the cart','The product, grind and size exactly as they left it.'],['One step back','The button returns them to their cart, not the homepage.'],['Part of a sequence','Email 2 after 24 hours adds brewing tips; email 3 after 72 hours adds a small incentive.']]},
+    {id:'refill', f:'flow', from:'Blue Tokai', av:'BT', avc:'#1B4DB1', time:'Day 21', subj:'Day 21: how\u2019s the bag looking? ☕', pre:'By our maths, you\u2019re on your last few brews.', lbl:['flow','Replenishment'], email:true, render:refill,
+      annos:[['Timed to real life','Sent around when a 250 g bag runs out at two cups a day, not on a random schedule.'],['Visual nudge','The fill meter makes the message obvious in one glance.'],['Two paths','Reorder once, or subscribe so it never runs out again.']]},
+    {id:'news', f:'camp', from:'Blue Tokai', av:'BT', avc:'#1B4DB1', time:'Tue', subj:'Brew Notes #14: this one\u2019s for your brewer', pre:'A coffee pick, a tip and a farm story, made for how you brew.', lbl:['camp','Newsletter'], email:true, render:news,
+      annos:[['Personalised blocks','The greeting, coffee pick, brew tip and offer all change by segment. Try the controls above.'],['A reason to open','Every issue has a recognisable structure people come to expect.'],['Story, not only sales','The farm story builds the brand between promotions.'],['Offer by lifecycle','New subscribers, subscribers and lapsed customers each see a different offer.']]},
+    {id:'win', f:'flow', from:'Blue Tokai', av:'BT', avc:'#1B4DB1', time:'Day 90', subj:'We roasted something new since you left', pre:'Three things worth coming back for.', lbl:['flow','Win-back'], email:true, render:win,
+      annos:[['News over guilt','No "we miss you" guilt trip; it leads with what\u2019s new.'],['A soft incentive','A comeback offer, only for this segment.'],['Fewer emails, not zero','A link to receive less, which keeps customers who\u2019d otherwise unsubscribe.']]},
+    {id:'game', f:'game', from:'Akshara Singh', av:'AS', avc:'#7A3E8E', time:'Play', subj:'🎯 Subject line game: which would you open?', pre:'Five rounds. See if you agree with my picks.', lbl:['game','Playground'], render:game},
+    {id:'plan', f:'memo', from:'Akshara Singh', av:'AS', avc:'#7A3E8E', time:'10:30', subj:'The flow map, calendar and list growth plan', pre:'How every email connects, and a month of sends.', lbl:['memo','Strategy'], render:memoPlan},
+    {id:'kpi', f:'memo', from:'Akshara Singh', av:'AS', avc:'#7A3E8E', time:'11:15', subj:'Targets, testing and deliverability', pre:'What I\u2019d measure, against 2026 benchmarks.', lbl:['memo','Strategy'], render:memoKpi},
+    {id:'me', f:'memo', from:'Akshara Singh', av:'AS', avc:'#7A3E8E', time:'11:40', subj:'Who made this inbox 👋', pre:'Let\u2019s talk about your emails.', lbl:['memo','About'], render:memoMe}
+  ];
+  var read={}, current=null, folder='all', query='';
+
+  function renderList(){
+    var items=M.filter(function(m){ return (folder==='all'||m.f===folder) && (!query || (m.subj+m.pre+m.from).toLowerCase().indexOf(query)>-1); });
+    $('msgs').innerHTML=items.length?items.map(function(m){
+      var l=m.lbl; var cls={memo:'l-memo',flow:'l-flow',camp:'l-camp',game:'l-game'}[l[0]];
+      return '<li><button class="msg'+(read[m.id]?' read':'')+'" type="button" data-id="'+m.id+'" aria-current="'+(current===m.id)+'"><span class="dot" aria-hidden="true"></span><span class="r1"><span class="from">'+m.from+'</span><span class="time">'+m.time+'</span></span><span class="subj" style="display:block">'+m.subj+'</span><span class="pre" style="display:block">'+m.pre+'</span><span class="lbl '+cls+'">'+l[1]+'</span>'+(read[m.id]?'':'<span class="visually-hidden" style="position:absolute; left:-9999px">unread</span>')+'</button></li>';
+    }).join(''):'<li class="empty">No emails match.</li>';
+    var n=M.filter(function(m){return !read[m.id];}).length; $('unread').textContent=n; $('unread').style.display=n?'':'none';
+  }
+  function open(id,keepScroll){
+    var m=M.find(function(x){return x.id===id;}); if(!m) return;
+    current=id; read[id]=true; renderList(); document.body.classList.add('reading');
+    var head='<button class="backbtn" type="button" id="back">‹ Inbox</button><div class="mhead"><h2 id="mTitle" tabindex="-1">'+m.subj+'</h2><div class="meta"><span class="av" style="background:'+m.avc+'">'+m.av+'</span><span class="who"><b>'+m.from+'</b>'+(m.email?' &lt;hello@bluetokai&gt; to you':' to the Blue Tokai marketing team')+'</span><span>· '+m.time+'</span></div></div>';
+    var body='';
+    if(m.email){
+      body='<div class="toolbar" role="group" aria-label="Preview options"><div class="seg" role="group" aria-label="Device"><button type="button" data-v="desktop" aria-pressed="'+(state.view==='desktop')+'">Desktop</button><button type="button" data-v="mobile" aria-pressed="'+(state.view==='mobile')+'">Mobile</button></div>'+
+        '<button class="tgl" type="button" id="tDark" aria-pressed="'+state.dark+'">🌙 Dark mode</button><button class="tgl" type="button" id="tAnno" aria-pressed="'+state.anno+'">📌 Show my notes</button><span class="spacer"></span><span class="hint">Preheader: '+m.pre+'</span></div>';
+      if(id==='news') body+=playground();
+      body+='<div class="stage'+(state.anno?'':' noanno')+'"><div class="frame '+state.view+'">'+m.render()+'</div>'+
+        (state.anno?'<aside class="annos" aria-label="Why this email works"><h4>Why it works</h4><ol>'+m.annos.map(function(a,i){ return '<li><span class="num">'+(i+1)+'</span><span><b>'+a[0]+'</b>'+a[1]+'</span></li>'; }).join('')+'</ol></aside>':'')+'</div>';
+    } else body=m.render();
+    $('paneIn').innerHTML=head+body;
+    if(!keepScroll){ $('pane').scrollTop=0; window.scrollTo(0,0); var t=$('mTitle'); if(t) t.focus({preventScroll:true}); }
+    wire(m);
+  }
+  function wire(m){
+    var b=$('back'); if(b) b.addEventListener('click',function(){ document.body.classList.remove('reading'); var el=document.querySelector('.msg[data-id="'+current+'"]'); if(el) el.focus(); });
+    document.querySelectorAll('[data-v]').forEach(function(x){ x.addEventListener('click',function(){ state.view=x.getAttribute('data-v'); open(current,true); }); });
+    var td=$('tDark'); if(td) td.addEventListener('click',function(){ state.dark=!state.dark; open(current,true); });
+    var ta=$('tAnno'); if(ta) ta.addEventListener('click',function(){ state.anno=!state.anno; open(current,true); });
+    document.querySelectorAll('[data-open]').forEach(function(x){ x.addEventListener('click',function(e){ e.preventDefault(); open(x.getAttribute('data-open')); }); });
+    if(m.id==='w2') wireBrew();
+    if(m.id==='news') wirePlay();
+    if(m.id==='game') wireGame();
+  }
+
+  /* ---------- email renders ---------- */
+  function w1(){ return shell(
+    '<div class="hero-art" style="background:linear-gradient(135deg,#DCE6FB,#F8EBD0)"><div style="display:flex; gap:14px; align-items:flex-end"><div class="bag teal"><i></i>SINGLE<br>ESTATE</div><div class="bag" style="height:128px"><i></i>BLUE<br>TOKAI</div><div class="bag gold"><i></i>FRESHLY<br>ROASTED</div></div></div>'+
+    '<h1 class="eh">Welcome to the roast.'+pin(1)+'</h1>'+
+    '<p class="ep">We roast single-estate Indian Arabica after you order, not before, so your coffee arrives at its best.'+pin(2)+'</p>'+
+    '<div class="offer"><span class="muted" style="font-size:.85rem">A welcome gift, valid for 7 days'+pin(4)+'</span><b>10% off your first bag</b><div style="margin-top:8px">Use code <code>HELLOTOKAI</code></div></div>'+
+    '<p style="text-align:center; margin:0 0 6px"><a class="cta" href="https://bluetokaicoffee.com/" target="_blank" rel="noopener">Find my coffee</a>'+pin(3)+'</p>'+
+    '<div class="usps"><div>'+pin(5)+'<b>Roasted to order</b>Fresh, never sitting on a shelf.</div><div><b>From Indian estates</b>Single-estate Arabica from farms we know.</div><div><b>Ground for you</b>Tell us your brewer, we grind to match.</div></div>'+
+    '<p class="ps">P.S. Hit reply and tell us how you take your coffee. A real person reads every one.'+pin(6)+'</p>'); }
+
+  function w2(){ var btns=Object.keys(brewInfo).map(function(k){ return '<button type="button" data-brew="'+k+'" aria-pressed="'+(state.brew===k&&state.brewTapped?'true':'false')+'"><span aria-hidden="true">'+brewInfo[k].e+'</span>'+k+'</button>'; }).join('');
+    return shell('<h1 class="eh">How do you brew?'+pin(1)+'</h1><p class="ep">Tap your brewer. We\u2019ll grind your coffee to match, and send tips made for it.'+pin(3)+'</p><div class="brewgrid">'+btns+'</div><div class="toast" id="brewToast" aria-live="polite">'+(state.brewTapped?toastText(state.brew):'Tap one. (It really works: it changes the newsletter in this inbox.)')+'</div>'+pin(2)+'<p class="ep muted" style="font-size:.85rem">Not sure? Most people start with a French press. It\u2019s forgiving and hard to get wrong.</p>'); }
+  function toastText(k){ return '<b>Tagged: '+k+'.</b> Your grind: '+brewInfo[k].grind+'. From now on, Brew Notes will show '+k.toLowerCase()+' picks and tips. <button class="linkbtn" type="button" data-open="news">See your newsletter</button>'; }
+  function wireBrew(){ document.querySelectorAll('[data-brew]').forEach(function(b){ b.addEventListener('click',function(){ state.brew=b.getAttribute('data-brew'); state.brewTapped=true;
+    document.querySelectorAll('[data-brew]').forEach(function(x){ x.setAttribute('aria-pressed',x===b); }); $('brewToast').innerHTML=toastText(state.brew);
+    var l=$('brewToast').querySelector('[data-open]'); if(l) l.addEventListener('click',function(){ open('news'); }); }); }); }
+
+  function w3(){ return shell('<div class="hero-art" style="background:radial-gradient(circle at 50% 120%,#0E8C8C,#1B4DB1 55%,#10213F)"><div style="font-size:4.4rem" aria-hidden="true">🦚</div></div><h1 class="eh">Why a peacock?'+pin(1)+'</h1><p class="ep">"Tokai" comes from an old Malabari word for a peacock\u2019s tail. Our founders chose it for the beauty and complexity they wanted in every cup.'+pin(2)+'</p><p class="ep">When we started in 2013, India grew some of the world\u2019s finest coffee, yet great, fresh Indian coffee was surprisingly hard to find at home. So we started roasting it ourselves.</p><div class="sec"><div class="k">WHERE IT COMES FROM</div><h3>Single estates, not anonymous blends</h3><p class="ep" style="margin:0">Every bag tells you the farm it came from, so you can taste the difference between one hillside and the next.</p></div><p style="text-align:center"><a class="cta blue" href="https://bluetokaicoffee.com/" target="_blank" rel="noopener">Meet the estates</a>'+pin(3)+'</p>'); }
+
+  function cart(){ return shell('<h1 class="eh">Your coffee is waiting.'+pin(1)+'</h1><p class="ep">Good news: we haven\u2019t roasted it yet. Finish your order and it\u2019s roasted fresh, just for you.'+pin(2)+'</p><div class="prod">'+pin(3)+'<div class="bag teal" style="width:70px; height:94px"><i></i>ATTIKAN<br>ESTATE</div><div class="d"><b>Attikan Estate</b>250 g · Ground for French press<br><span class="muted">Qty 1 · still in your cart</span></div></div><p style="text-align:center"><a class="cta" href="https://bluetokaicoffee.com/" target="_blank" rel="noopener">Back to my cart</a>'+pin(4)+'</p><div class="sec"><div class="k">NOT SURE YET?</div><p class="ep" style="margin:0">Reply to this email with your brewer and we\u2019ll tell you if it\u2019s the right coffee for you.</p></div><p class="ps">Coming next if you\u2019re still deciding: a brewing guide, then a small thank-you.'+pin(5)+'</p>'); }
+
+  function refill(){ return shell('<h1 class="eh">Day 21. How\u2019s the bag looking?'+pin(1)+'</h1><p class="ep">By our maths, two cups a day means you\u2019re down to your last few brews.</p><div class="prod" style="flex-direction:column; align-items:stretch">'+pin(2)+'<div style="display:flex; justify-content:space-between; font-size:.85rem; font-weight:700"><span>Your Attikan Estate</span><span>~14% left</span></div><div class="meter" role="img" aria-label="Bag about 14 percent full"><i></i></div><span class="muted" style="font-size:.78rem">Estimated from your order date and bag size</span></div><p style="text-align:center; display:flex; gap:10px; justify-content:center; flex-wrap:wrap">'+pin(3)+'<a class="cta" href="https://bluetokaicoffee.com/" target="_blank" rel="noopener">Reorder in one tap</a><a class="cta blue" href="https://bluetokaicoffee.com/" target="_blank" rel="noopener">Subscribe, never run out</a></p>'); }
+
+  function win(){ return shell('<h1 class="eh">We roasted something new since you left.'+pin(1)+'</h1><p class="ep">No guilt trip. Just three things we think you\u2019ll like.</p><div class="usps"><div><b>🆕 New estate</b>A seasonal single-estate lot.</div><div><b>🧊 Cold brew bags</b>Steep overnight, no mess.</div><div><b>☕ Easy Pour</b>Pour-over without the gear.</div></div><div class="offer">'+pin(2)+'<b>15% off, welcome back</b><div style="margin-top:8px">Code <code>BACKFORMORE</code> · 10 days</div></div><p style="text-align:center"><a class="cta" href="https://bluetokaicoffee.com/" target="_blank" rel="noopener">See what\u2019s new</a></p><p class="ps" style="text-align:center">Too many emails? <span class="flink">Get one a month instead</span>.'+pin(3)+'</p>'); }
+
+  /* newsletter */
+  function playground(){
+    function chips(key,vals){ return vals.map(function(v){ return '<button class="chip" type="button" data-k="'+key+'" data-val="'+v+'" aria-pressed="'+(state[key]===v)+'">'+v+'</button>'; }).join(''); }
+    return '<div class="play" role="group" aria-label="Personalise the newsletter"><h4>🎛️ Personalisation playground: pick a reader, watch the email rebuild</h4>'+
+      '<div class="row"><span>Brews with</span>'+chips('brew',Object.keys(brewInfo))+'</div>'+
+      '<div class="row"><span>Likes</span>'+chips('roast',['light','medium','dark'])+' <span style="min-width:0; font-weight:600">roasts</span></div>'+
+      '<div class="row" style="margin:0"><span>Customer</span>'+chips('stage',['new','subscriber','lapsed'])+'</div></div>';
+  }
+  function news(){
+    var b=brewInfo[state.brew], pick=b.pick[state.roast];
+    var greet={new:'Welcome to your first Brew Notes.',subscriber:'Your next box is being roasted this week.',lapsed:'It\u2019s been a while. Here\u2019s what you missed.'}[state.stage];
+    var offer={new:['First subscription, 15% off','Try a subscription and pause anytime.','Start my subscription'],subscriber:['Add a second coffee to this box','Free delivery on add-ons for subscribers.','Add to my box'],lapsed:['Welcome back: 15% off','One order, no strings.','Come back for a bag']}[state.stage];
+    return shell('<div style="display:flex; justify-content:space-between; font-size:.75rem; font-weight:800; letter-spacing:.06em; color:var(--e-teal)"><span>BREW NOTES · ISSUE 14</span><span>'+b.e+' '+state.brew.toUpperCase()+' EDITION</span></div>'+
+      '<h1 class="eh" style="margin-top:10px" data-p="g">'+greet+pin(1)+'</h1>'+
+      '<div class="sec" data-p="pick"><div class="k">YOUR COFFEE THIS FORTNIGHT</div><div class="prod" style="margin:6px 0 0"><div class="bag '+(state.roast==='light'?'teal':state.roast==='dark'?'plum':'gold')+'" style="width:64px; height:86px"><i></i>'+pick.toUpperCase().replace(' ','<br>')+'</div><div class="d"><b>'+pick+'</b>A '+state.roast+' roast that shines in a '+state.brew.toLowerCase()+'. Ground '+b.grind+' for you.</div></div></div>'+
+      '<div class="sec" data-p="tip"><div class="k">ONE TIP FOR YOUR '+state.brew.toUpperCase()+'</div><h3>'+b.e+' Brew it better</h3><p class="ep" style="margin:0">'+b.tip+'</p></div>'+
+      '<div class="sec">'+pin(3)+'<div class="k">FROM THE FARM</div><h3>Meet the people behind your cup</h3><p class="ep" style="margin:0">This issue: how monsoon timing shapes a harvest, and why it changes what\u2019s in your bag.</p></div>'+
+      '<div class="offer" data-p="offer">'+pin(4)+'<b>'+offer[0]+'</b><div class="muted" style="font-size:.85rem; margin:4px 0 10px">'+offer[1]+'</div><a class="cta" href="https://bluetokaicoffee.com/" target="_blank" rel="noopener">'+offer[2]+'</a></div>'+pin(2));
+  }
+  function wirePlay(){ document.querySelectorAll('[data-k]').forEach(function(c){ c.addEventListener('click',function(){ var k=c.getAttribute('data-k'); state[k]=c.getAttribute('data-val'); if(k==='brew') state.brewTapped=true;
+    open('news',true); var f=document.querySelector('.frame'); if(f && !reduce){ f.querySelectorAll('[data-p]').forEach(function(x){ x.classList.add('changed'); }); }
+    var again=document.querySelector('[data-k="'+k+'"][data-val="'+state[k]+'"]'); if(again) again.focus(); }); }); }
+
+  /* ---------- memos ---------- */
+  function sig(){ return '<div class="sig"><b>Akshara Singh</b><br><span style="color:var(--muted)">Email marketing and CRM · <a href="mailto:Akshara.singh.marketing@gmail.com">Akshara.singh.marketing@gmail.com</a></span></div>'; }
+  function memoStart(){ return '<div class="memo">'+
+    '<p>Hi team,</p><p>Blue Tokai has everything great email needs: a repeat-purchase product, subscriptions, strong opinions about brewing and a real story. Here\u2019s the email program I\u2019d build, as a working inbox you can click through.</p>'+
+    '<div class="cards"><div><b>5 flows</b>Welcome, abandoned cart, replenishment, win-back and post-purchase, running automatically.</div><div><b>1 newsletter</b>Brew Notes, every other Tuesday, personalised by brewer, roast and lifecycle.</div><div><b>1 rule</b>Every email is for one person\u2019s kitchen, not a mass blast.</div></div>'+
+    '<h3>The goals</h3><ul><li><b>Turn first orders into habits:</b> most revenue in coffee comes from the second, third and tenth bag.</li><li><b>Grow subscriptions</b> with timely replenishment emails instead of discounts.</li><li><b>Let automation do the heavy lifting.</b> Klaviyo\u2019s 2026 data shows flows earn about 18 times more revenue per recipient than one-off campaigns.<span class="src"> (Klaviyo 2026 benchmarks, via Needle)</span></li></ul>'+
+    '<h3>Who we email</h3><div class="tw"><table><thead><tr><th>Segment</th><th>What they get</th></tr></thead><tbody><tr><td>New subscribers</td><td>Welcome series; brewer quiz; first-order gift</td></tr><tr><td>First-time buyers</td><td>Brewing guide, then a replenishment nudge at day 21</td></tr><tr><td>Subscribers</td><td>Box previews and add-ons, never discounts they don\u2019t need</td></tr><tr><td>Lapsed (90+ days)</td><td>Win-back with what\u2019s new, plus an option for fewer emails</td></tr></tbody></table></div>'+
+    '<h3>How to explore this inbox</h3><ul><li>Open any <b>Blue Tokai</b> email and switch between <b>desktop, mobile and dark mode</b>.</li><li>Turn on <b>📌 Show my notes</b> to see why each part of the email is there.</li><li>In <button class="linkbtn" type="button" data-open="w2">Welcome 2</button>, tap your brewer, then open <button class="linkbtn" type="button" data-open="news">Brew Notes</button> to see it personalise.</li><li>Play the <button class="linkbtn" type="button" data-open="game">subject line game</button>.</li></ul>'+sig()+'</div>'; }
+
+  function memoPlan(){
+    var lanes=[
+      ['👋 Welcome','Signs up',[['w1','Email 1: welcome gift'],'2 days',['w2','Email 2: brewer quiz'],'3 days',['w3','Email 3: brand story']]],
+      ['🛒 Abandoned cart','Leaves checkout',[['cart','Email 1: your coffee'],'24 hrs','Email 2: brew guide','48 hrs','Email 3: small thank-you']],
+      ['☕ Replenishment','First order delivered',[['refill','Day 21: running low?'],'7 days','Day 28: subscribe offer']],
+      ['📦 Post-purchase','Order delivered',['Day 2: how to brew it','5 days','Day 7: rate your coffee']],
+      ['🌙 Win-back','No order in 90 days',[['win','Something new'],'10 days','Last call','14 days','Sunset: remove if no opens']]
+    ];
+    var flow=lanes.map(function(l){ return '<div class="lane"><div class="ln">'+l[0]+'</div><div class="nodes"><span class="node trig">Trigger: '+l[1]+'</span><span class="wait">→</span>'+l[2].map(function(n){ if(typeof n==='string' && /hrs|days/.test(n)) return '<span class="wait">wait '+n+' →</span>'; if(typeof n==='string') return '<span class="node" style="cursor:default">'+n+'</span>'; return '<button type="button" class="node" data-open="'+n[0]+'">'+n[1]+' ↗</button>'; }).join('')+'</div></div>'; }).join('');
+    var cal=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(function(d){return '<div style="min-height:auto; background:transparent"><span>'+d+'</span></div>';}).join('');
+    var ev={2:['e-news','Brew Notes #14'],5:['e-camp','New estate launch'],9:['e-auto','Subscriber box preview'],16:['e-news','Brew Notes #15'],19:['e-camp','Cold brew season'],23:['e-auto','Workshop invite, by city'],26:['e-camp','Gift guide']};
+    for(var i=1;i<=28;i++){ var e=ev[i]; cal+='<div><span>'+i+'</span>'+(e?'<em class="'+e[0]+'">'+e[1]+'</em>':'')+'</div>'; }
+    return '<div class="memo"><p>Here\u2019s how everything connects. Tap any email marked ↗ to open it.</p><h3>Flow map</h3><div class="flow">'+flow+'</div>'+
+      '<h3>A month of campaigns</h3><div class="cal" role="img" aria-label="Calendar: Brew Notes on the 2nd and 16th, launches on the 5th and 19th, a subscriber preview on the 9th, a workshop invite on the 23rd and a gift guide on the 26th.">'+cal+'</div>'+
+      '<p style="font-size:.8rem"><span class="e-news" style="padding:1px 6px; border-radius:4px; font-weight:700">Newsletter</span> <span class="e-camp" style="padding:1px 6px; border-radius:4px; font-weight:700">Campaign</span> <span class="e-auto" style="padding:1px 6px; border-radius:4px; font-weight:700">Segment-only send</span></p>'+
+      '<h3>Growing the list</h3><div class="tw"><table><thead><tr><th>Where</th><th>How</th></tr></thead><tbody><tr><td>Website</td><td>A "Find your coffee" quiz instead of a plain pop-up; the answers become tags.</td></tr><tr><td>Cafés</td><td>A table card QR code: "Get a free brewing guide for the coffee you\u2019re drinking."</td></tr><tr><td>Checkout</td><td>Opt-in for brewing tips, not "marketing emails".</td></tr><tr><td>Workshops</td><td>Every sign-up joins the list, tagged by city.</td></tr></tbody></table></div>'+sig()+'</div>'; }
+
+  function memoKit(){ var sl=['An inbox for one kitchen at a time','Subject lines: be specific','Replenishment flow, day 21','5 flows, 1 newsletter, 1 rule','Targets against 2026 benchmarks','Why a peacock?'];
+    return '<div class="memo ck"><h3>The campaign kit</h3><p>The whole program as a six-slide carousel I designed for this pitch: the inbox, the subject-line rules, the replenishment flow, the program map and the targets. Scroll through it here, or open the original in Canva.</p>'+
+    '<div class="ck-strip" tabindex="0" aria-label="Campaign kit slides, scroll sideways">'+sl.map(function(t,i){ return '<figure><img src="canva-kit/0'+(i+1)+'.jpg" alt="Slide '+(i+1)+': '+t+'" loading="lazy" width="1080" height="1350"><figcaption>'+(i+1)+' / 6 · '+t+'</figcaption></figure>'; }).join('')+'</div>'+
+    '<p class="ck-btns"><a class="ck-b ck-p" href="https://www.canva.com/d/isPpve5_gHYLyO7" target="_blank" rel="noopener">View in Canva \u2197</a><a class="ck-b" href="canva-kit/campaign-kit.pdf" download>Download PDF</a><a class="ck-b" href="https://www.canva.com/d/84mWTID-NMi4Fmd" target="_blank" rel="noopener">See all my work \u2197</a></p></div>'; }
+  function memoKpi(){ return '<div class="memo">'+
+    '<h3>Targets for the first 6 months</h3><div class="tw"><table><thead><tr><th>Metric</th><th>My target</th><th>2026 benchmark</th></tr></thead><tbody>'+
+    '<tr><td>Campaign open rate</td><td>35%</td><td>31% average; top 10% reach 45.1%<span class="src"> (Klaviyo)</span></td></tr>'+
+    '<tr><td>Click rate</td><td>2.5%+</td><td>Above 2% is considered strong<span class="src"> (Flowium)</span></td></tr>'+
+    '<tr><td>Abandoned cart recovery</td><td>8%+</td><td>8\u201312% for top performers<span class="src"> (Darkroom)</span></td></tr>'+
+    '<tr><td>Share of email revenue from flows</td><td>40%+</td><td>Klaviyo-wide average is 41%<span class="src"> (Klaviyo, via Needle)</span></td></tr>'+
+    '<tr><td>Unsubscribe rate</td><td>Under 0.3%</td><td>0.1\u20130.3% average<span class="src"> (Darkroom)</span></td></tr></tbody></table></div>'+
+    '<p class="src">Targets are my proposal. Open rates are treated as directional only, because Apple Mail Privacy Protection inflates them; revenue per recipient is the number that matters.</p>'+
+    '<h3>What I\u2019d test first</h3><ul><li><b>Welcome 1:</b> 10% off vs a free brewing guide. Does a discount-free welcome keep margins without hurting first orders?</li><li><b>Abandoned cart:</b> "we haven\u2019t roasted it yet" vs a plain reminder.</li><li><b>Brew Notes:</b> Tuesday morning vs Sunday evening sends.</li><li><b>Replenishment:</b> day 18 vs day 21 timing.</li></ul>'+
+    '<h3>Deliverability checklist</h3><ul><li>SPF, DKIM and DMARC set up on the sending domain.</li><li>A sunset flow that removes people who haven\u2019t opened in 180 days.</li><li>A preference centre so people can choose fewer emails instead of leaving.</li><li>Every email tested in dark mode and on mobile before sending.</li></ul>'+
+    '<p class="src">Sources: Klaviyo 2026 benchmarks (klaviyo.com); Darkroom, Email Marketing Benchmarks Ecommerce 2026 (darkroomagency.com); Flowium, Email Marketing Benchmarks by Industry (flowium.com); Needle, Klaviyo benchmarks for ecommerce (askneedle.com).</p>'+sig()+'</div>'; }
+
+  function memoMe(){ return '<div class="memo"><p>Hi! I\u2019m Akshara, a digital marketer who loves the channel people check first thing in the morning.</p>'+
+    '<h3>What this inbox shows I can do</h3><ul><li>Plan an email program: goals, segments, flows and a campaign calendar.</li><li>Write subject lines, preheaders and copy that sound like a brand, not a template.</li><li>Design mobile-first emails that work in dark mode.</li><li>Personalise with zero-party data and dynamic content.</li><li>Set targets, test, and keep deliverability healthy.</li></ul>'+
+    '<p><a class="pbtn" style="display:inline-block; text-decoration:none" href="mailto:Akshara.singh.marketing@gmail.com?subject=Let%E2%80%99s%20talk%20about%20our%20emails">Email me</a></p>'+
+    '<p class="src">Blue Tokai Coffee Roasters is a real brand. This is an unsolicited portfolio concept: the emails, codes and offers are illustrative and were not created, sent or endorsed by Blue Tokai. Brand facts are from public sources, including Inc42.</p>'+sig()+'</div>'; }
+
+  /* ---------- game ---------- */
+  var rounds=[
+    {ctx:'Welcome email 1',a:['Welcome to Blue Tokai','Says hello, but gives no reason to open.'],b:['Welcome to the roast ☕ (10% off inside)','Warm, on-brand, and tells you what\u2019s inside.'],win:'b',why:'Clarity beats cleverness. Readers know what they get before they open.'},
+    {ctx:'Abandoned cart',a:['Your Attikan Estate is waiting (we haven\u2019t roasted it yet)','Names the coffee and turns freshness into the reason.'],b:['You left something in your cart','Every brand sends this exact line.'],win:'a',why:'Specific beats generic. The product name and the roast-to-order benefit do the work.'},
+    {ctx:'Newsletter',a:['Our October Newsletter','Sounds like homework.'],b:['Brew Notes #14: this one\u2019s for your brewer','A named series, and it\u2019s personal.'],win:'b',why:'A recognisable series name builds a habit, and "your brewer" signals personalisation.'},
+    {ctx:'Win-back',a:['We miss you 😢','Guilt, and nothing new.'],b:['We roasted something new since you left','News is a reason to come back.'],win:'b',why:'People return for something new, not to make a brand feel better.'},
+    {ctx:'Sale ending',a:['Last call: 20% off ends at midnight','Urgent but calm.'],b:['LAST CHANCE!!! 20% OFF ENDS TONIGHT','All caps and exclamation marks.'],win:'a',why:'All caps and piles of punctuation look like spam to people and to spam filters.'}
+  ];
+  function game(){ return '<div class="memo game" id="gameBox">'+gameRound()+'</div>'; }
+  function gameRound(){
+    if(state.gameI>=rounds.length) return '<p class="round">GAME OVER</p><p class="q">You agreed with me on <span class="score">'+state.gameScore+' of '+rounds.length+'</span>.</p><p>'+(state.gameScore>=4?'You think like an email marketer. Want to work together?':'Now you know the rules I write by: be clear, be specific, and never shout.')+'</p><div class="gbtns"><button class="pbtn" type="button" id="gRestart">Play again</button><button class="pbtn" type="button" data-open="me" style="background:var(--plum)">Meet Akshara</button></div>'+sig();
+    var r=rounds[state.gameI];
+    return '<p class="round">ROUND '+(state.gameI+1)+' OF '+rounds.length+' · '+r.ctx.toUpperCase()+' · SCORE <span class="score">'+state.gameScore+'</span></p><p class="q">Which subject line would you open?</p><div class="opts">'+
+      ['a','b'].map(function(k){ return '<button type="button" class="opt" data-pick="'+k+'"><b>'+r[k][0]+'</b><span>'+r[k][1]+'</span></button>'; }).join('')+'</div><div class="reveal" id="reveal" aria-live="polite"></div>';
+  }
+  function wireGame(){
+    var box=$('gameBox'); if(!box) return;
+    box.addEventListener('click',function(e){
+      var p=e.target.closest('[data-pick]'); var r=rounds[state.gameI];
+      if(p && !p.disabled){ var k=p.getAttribute('data-pick'), ok=k===r.win; if(ok) state.gameScore++;
+        box.querySelectorAll('[data-pick]').forEach(function(o){ o.disabled=true; o.classList.add(o.getAttribute('data-pick')===r.win?'win':'lose'); });
+        $('reveal').innerHTML=(ok?'✅ <b>Same pick as me.</b> ':'🤔 <b>I\u2019d pick the other one.</b> ')+r.why+'<div class="gbtns"><button class="pbtn" type="button" id="gNext">'+(state.gameI<rounds.length-1?'Next round':'See my score')+'</button></div>';
+        $('gNext').focus(); }
+      if(e.target.id==='gNext'){ state.gameI++; box.innerHTML=gameRound(); var f=box.querySelector('button'); if(f) f.focus(); box.querySelectorAll('[data-open]').forEach(function(x){ x.addEventListener('click',function(){ open(x.getAttribute('data-open')); }); }); }
+      if(e.target.id==='gRestart'){ state.gameI=0; state.gameScore=0; box.innerHTML=gameRound(); box.querySelector('button').focus(); }
+    });
+  }
+
+  /* ---------- nav ---------- */
+  $('msgs').addEventListener('click',function(e){ var b=e.target.closest('.msg'); if(b) open(b.getAttribute('data-id')); });
+  $('folders').addEventListener('click',function(e){ var b=e.target.closest('[data-f]'); if(!b) return; folder=b.getAttribute('data-f');
+    document.querySelectorAll('[data-f]').forEach(function(x){ x.setAttribute('aria-pressed',x===b); });
+    document.querySelector('.list-top h1').textContent=b.firstChild.textContent.trim(); renderList(); });
+  $('q').addEventListener('input',function(){ query=this.value.toLowerCase().trim(); renderList(); });
+  $('compose').addEventListener('click',function(){ open('me'); });
+  renderList();
+  if(window.innerWidth>820) open('start'); else { renderList(); }
+})();
+</script>
+<a class="as-allwork" href="../../#work" aria-label="Back to all of Akshara Singh's work">&larr; All work</a>
+<style>.as-allwork{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:2147483000;display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:999px;background:rgba(17,17,16,.88);color:#F5F2EC!important;font:600 14px/1 system-ui,-apple-system,"Segoe UI",sans-serif;text-decoration:none!important;letter-spacing:0;box-shadow:0 8px 24px rgba(0,0,0,.25);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:transform .2s}.as-allwork:hover{transform:translateY(-2px)}.as-allwork:focus-visible{outline:2px solid #E9B872;outline-offset:3px}@media print{.as-allwork{display:none}}</style>
+</body>
+</html>

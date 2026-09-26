@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Still Zara: a brand strategy lookbook by Akshara Singh</title>
+<meta name="description" content="A brand strategy for Zara, presented as a fashion lookbook: the squeeze, a care-label audit, the insight, a five-look strategy collection, a fitting room, cost per wear and a size guide of KPIs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light dark;
+  --bg:#FBF3F2; --ink:#2A1D24; --muted:#7A6670; --line:#EAD9DA; --soft:#F4E6E7; --label:#FFFAF9;
+  --camel:#D8A7AE; --olive:#B5BA98; --oxblood:#C3A0BE; --stone:#CBC0C9; --navy:#A9BDD3; --accent-t:#9A4F5D;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){ --bg:#1B1418; --ink:#F4E9EC; --muted:#B8A3AC; --line:#3A2C33; --soft:#251C21; --label:#2A2025; --camel:#C08F97; --olive:#9EA383; --oxblood:#AC89A7; --stone:#A89CA6; --navy:#8EA3BB; --accent-t:#E3A4AF; }
+}
+:root[data-theme="dark"]{ --bg:#1B1418; --ink:#F4E9EC; --muted:#B8A3AC; --line:#3A2C33; --soft:#251C21; --label:#2A2025; --camel:#C08F97; --olive:#9EA383; --oxblood:#AC89A7; --stone:#A89CA6; --navy:#8EA3BB; --accent-t:#E3A4AF; }
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 56px); scroll-behavior:smooth}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size:16px; line-height:1.55; font-weight:400}
+a{color:inherit}
+button{font:inherit; color:inherit}
+:focus-visible{outline:2px solid var(--ink); outline-offset:3px}
+.serif{font-family:"Instrument Serif",Didot,"Bodoni 72",Georgia,serif; font-weight:400; letter-spacing:-.01em}
+.mono{font-family:"Space Mono",ui-monospace,Menlo,monospace}
+.cap{font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; font-weight:500}
+.wrap{max-width:1240px; margin:0 auto; padding:0 clamp(18px,4vw,48px)}
+h2{font-family:"Instrument Serif",Didot,Georgia,serif; font-weight:400; font-size:clamp(2.6rem,6.4vw,5.4rem); line-height:.95; letter-spacing:-.02em; margin:0 0 .3em}
+h2 em{font-style:italic}
+h3{font-family:"Instrument Serif",Didot,Georgia,serif; font-weight:400; font-size:1.9rem; line-height:1.05; margin:0 0 .3em}
+p{margin:0 0 1em}
+.lede{font-size:clamp(1.05rem,1.6vw,1.2rem); color:var(--muted); max-width:38rem; font-weight:300}
+section{padding:clamp(80px,11vw,150px) 0; border-top:1px solid var(--line)}
+.kick{display:flex; gap:14px; align-items:baseline; margin-bottom:1.2rem; color:var(--muted)}
+.kick .n{font-family:"Space Mono",monospace; font-size:.8rem; color:var(--ink)}
+sup .fn{font-family:"Space Mono",monospace; font-size:.65em; color:var(--muted); border:0; background:transparent; padding:0 1px; cursor:pointer}
+sup .fn:hover{color:var(--ink); text-decoration:underline}
+.readit{border:0; background:transparent; padding:0; color:var(--ink); text-decoration:underline; cursor:pointer; font-size:inherit}
+.mt{margin-top:clamp(32px,4.5vw,56px)}
+.note{font-size:.8rem; color:var(--muted); margin-top:12px}
+
+/* nav */
+.nav{position:sticky; top:0; z-index:20; background:color-mix(in srgb,var(--bg) 92%,transparent); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); padding-top:env(safe-area-inset-top,0px); margin-top:calc(-1 * env(safe-area-inset-top,0px)); border-bottom:1px solid var(--line)}
+.nav .in{display:flex; justify-content:space-between; align-items:center; gap:18px; height:52px}
+.nav .mark{font-family:"Instrument Serif",serif; font-size:1.35rem; letter-spacing:.02em; border:0; background:transparent; cursor:pointer; padding:0; color:var(--ink)}
+.nav .links{display:flex; gap:22px; overflow-x:auto; scrollbar-width:none}
+.nav .links::-webkit-scrollbar{display:none}
+.nav .links .navbtn{border:0; background:transparent; cursor:pointer; text-decoration:none; font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; white-space:nowrap; color:var(--muted); padding:4px 0; border-bottom:1px solid transparent}
+.nav .links .navbtn.on{color:var(--ink); border-color:var(--ink)}
+
+/* hero */
+.hero{padding:clamp(28px,5vw,56px) 0 clamp(60px,8vw,100px); border:0}
+.hero-top{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; color:var(--muted)}
+.hero h1{font-family:"Instrument Serif",Didot,Georgia,serif; font-weight:400; font-size:clamp(5rem,19vw,17rem); line-height:.82; letter-spacing:-.045em; margin:clamp(24px,4vw,48px) 0 0}
+.hero h1 em{font-style:italic}
+.hero .sub{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:24px; margin-top:24px; align-items:end}
+.hero .sub p{margin:0}
+.rack{position:relative; margin-top:clamp(36px,5vw,64px); padding-top:26px}
+.rack::before{content:""; position:absolute; left:0; right:0; top:26px; height:4px; background:var(--ink); border-radius:4px}
+.hangers{display:flex; justify-content:space-around; gap:6px; overflow-x:auto; padding:0 6px 10px; scrollbar-width:none}
+.hanger{border:0; background:transparent; padding:0; cursor:pointer; display:flex; flex-direction:column; align-items:center; transform-origin:50% 0; transition:transform .5s cubic-bezier(.3,1.6,.5,1); flex:none}
+.hanger:hover,.hanger[aria-expanded="true"]{transform:rotate(-4deg)}
+.hanger svg{width:clamp(70px,10vw,120px); height:auto; display:block}
+.hanger span{font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; margin-top:6px; color:var(--muted)}
+.rack-card{margin-top:18px; border:1px solid var(--line); padding:18px 20px; display:grid; grid-template-columns:auto minmax(0,1fr); gap:18px; align-items:center; min-height:96px}
+.rack-card .sw{width:54px; height:54px; border-radius:50%}
+.rack-card b{font-family:"Instrument Serif",serif; font-weight:400; font-size:1.5rem; display:block; line-height:1.1}
+
+/* numbers */
+.nums{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); border-top:1px solid var(--ink)}
+.nums div{padding:22px 18px 22px 0; border-right:1px solid var(--line)}
+.nums div:last-child{border-right:0}
+.nums .v{font-family:"Instrument Serif",serif; font-size:clamp(2.4rem,4.6vw,3.8rem); line-height:1}
+.nums .l{font-size:.85rem; color:var(--muted); margin-top:6px}
+
+/* squeeze: price tags */
+.tags{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(14px,2vw,26px); align-items:start}
+.tag{position:relative; border:0; background:transparent; padding:0; text-align:left; cursor:pointer; perspective:900px; min-height:360px}
+.tag .face{position:absolute; inset:0; padding:30px 22px 22px; border:1px solid var(--ink); border-radius:4px 4px 18px 18px; background:var(--bg); backface-visibility:hidden; -webkit-backface-visibility:hidden; transition:transform .7s cubic-bezier(.3,.8,.3,1); display:flex; flex-direction:column}
+.tag .back{transform:rotateY(180deg); background:var(--ink); color:var(--bg)}
+.tag[aria-pressed="true"] .front{transform:rotateY(-180deg)}
+.tag[aria-pressed="true"] .back{transform:rotateY(0)}
+.tag .hole{position:absolute; top:12px; left:50%; transform:translateX(-50%); width:12px; height:12px; border-radius:50%; border:1px solid currentColor}
+.tag .who{font-family:"Instrument Serif",serif; font-size:2.2rem; line-height:1; margin:14px 0 8px}
+.tag .pos{font-size:.9rem; color:var(--muted)}
+.tag .back .pos{color:inherit; opacity:.8}
+.tag .flipcue{margin-top:auto; font-size:.66rem; letter-spacing:.14em; text-transform:uppercase}
+.tag ul{margin:10px 0 0; padding-left:1rem; font-size:.88rem}
+.tag li{margin-bottom:.4rem}
+.tag.mid .front{border-width:2px}
+
+/* care label */
+.label-wrap{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); gap:clamp(24px,5vw,72px); align-items:start}
+.care{background:var(--label); color:var(--ink); border-radius:2px; padding:26px 26px 34px; font-family:"Space Mono",monospace; font-size:.8rem; line-height:1.5; box-shadow:0 20px 50px -30px rgba(0,0,0,.4); position:relative; max-width:460px; margin:0 auto; width:100%}
+.care::before,.care::after{content:""; position:absolute; left:0; right:0; height:10px; background:repeating-linear-gradient(90deg,var(--label) 0 8px,transparent 8px 12px)}
+.care::before{top:-6px} .care::after{bottom:-6px}
+.care h4{font-family:"Space Mono",monospace; font-size:.8rem; letter-spacing:.14em; margin:0 0 4px}
+.care .div{border-top:1px dashed var(--muted); margin:14px 0}
+.comp{display:flex; flex-direction:column; gap:6px}
+.comp div{display:grid; grid-template-columns:44px 1fr; align-items:center; gap:8px}
+.comp i{display:block; height:6px; background:var(--ink)}
+.sym{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px}
+.sym button{border:1px solid var(--ink); background:transparent; color:var(--ink); font-family:"Space Mono",monospace; font-size:.72rem; text-align:left; padding:8px; cursor:pointer; display:flex; gap:8px; align-items:center}
+.sym button[aria-pressed="true"]{background:var(--ink); color:var(--label)}
+.sym svg{width:26px; height:22px; flex:none}
+.care-out{margin-top:14px; min-height:7.5em; font-size:.78rem}
+.care-out b{letter-spacing:.08em}
+.swot{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; background:var(--line); border:1px solid var(--line)}
+.swot div{background:var(--bg); padding:18px}
+.swot b{display:block; font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; margin-bottom:6px}
+.swot ul{margin:0; padding-left:1rem; font-size:.9rem}
+.swot li{margin-bottom:.35rem}
+
+/* insight */
+.insight{display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:clamp(24px,5vw,72px); align-items:center}
+.big-quote{font-family:"Instrument Serif",serif; font-size:clamp(2.2rem,5vw,4.2rem); line-height:1; letter-spacing:-.02em}
+.big-quote em{color:var(--accent-t)}
+.wears{display:flex; flex-direction:column; gap:10px}
+.wear{display:grid; grid-template-columns:90px minmax(0,1fr) 70px; gap:12px; align-items:center; font-size:.85rem}
+.wear .bar{height:14px; background:var(--soft); position:relative; overflow:hidden}
+.wear .bar i{position:absolute; inset:0 auto 0 0; background:var(--ink)}
+.wear .bar i.z{background:var(--camel)}
+
+/* idea */
+.idea{text-align:center}
+.idea h2{font-size:clamp(4rem,14vw,12rem); line-height:.85}
+.idea .three{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0; border-top:1px solid var(--ink); border-bottom:1px solid var(--ink); margin-top:clamp(28px,4vw,48px); text-align:left}
+.idea .three div{padding:22px 20px; border-right:1px solid var(--line)}
+.idea .three div:last-child{border-right:0}
+.idea .three b{font-family:"Instrument Serif",serif; font-weight:400; font-size:1.7rem; display:block; line-height:1.05; margin-bottom:6px}
+
+/* collection */
+.runway-top{display:flex; justify-content:space-between; align-items:end; gap:16px; flex-wrap:wrap}
+.arrows{display:flex; gap:8px}
+.arrows button{width:44px; height:44px; border-radius:50%; border:1px solid var(--ink); background:transparent; cursor:pointer; font-size:1.1rem}
+.runway{display:flex; gap:18px; overflow-x:auto; scroll-snap-type:x mandatory; padding:10px 0 20px; margin-top:28px; scrollbar-width:thin}
+.look{flex:0 0 min(84vw,380px); scroll-snap-align:start; border:1px solid var(--line); display:flex; flex-direction:column}
+.look .fig{aspect-ratio:3/3.4; position:relative; display:flex; align-items:flex-end; justify-content:space-between; padding:16px; color:#2A1D24; overflow:hidden}
+.look .fig .no{font-family:"Instrument Serif",serif; font-size:5rem; line-height:.8}
+.look .fig svg{position:absolute; left:50%; top:50%; transform:translate(-50%,-56%); width:52%; opacity:.95}
+.look .fig .ttl{position:relative; font-size:.66rem; letter-spacing:.14em; text-transform:uppercase}
+.look .txt{padding:18px 18px 20px; display:flex; flex-direction:column; gap:6px; flex:1}
+.look .txt h3{font-size:1.7rem}
+.look dl{margin:0; font-size:.88rem}
+.look dt{font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-top:10px}
+.look dd{margin:.15rem 0 0}
+
+/* fitting room */
+.fit{display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:clamp(24px,4vw,56px); align-items:start}
+.hangers-v{display:flex; flex-direction:column; gap:8px}
+.hangers-v button{border:1px solid var(--line); background:transparent; text-align:left; padding:14px 16px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:10px}
+.hangers-v button b{font-family:"Instrument Serif",serif; font-weight:400; font-size:1.35rem; display:block}
+.hangers-v button small{color:var(--muted); font-size:.8rem}
+.hangers-v button[aria-pressed="true"]{border-color:var(--ink); background:var(--soft)}
+.mirror{border:1px solid var(--ink); padding:clamp(20px,3vw,32px); min-height:420px; position:relative}
+.mirror .curtain{position:absolute; top:0; bottom:0; width:50%; background:repeating-linear-gradient(90deg,var(--soft) 0 14px,var(--line) 14px 16px); transition:transform .6s cubic-bezier(.6,0,.3,1); z-index:2}
+.mirror .curtain.l{left:0} .mirror .curtain.r{right:0}
+.mirror.open .curtain.l{transform:translateX(-101%)} .mirror.open .curtain.r{transform:translateX(101%)}
+.mirror{overflow:hidden}
+.mirror h3{font-size:2.2rem}
+.outfit{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:14px}
+.outfit div{border-top:1px solid var(--line); padding-top:10px; font-size:.9rem}
+.outfit b{display:block; font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; font-weight:500}
+
+/* cost per wear */
+.cpw{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px}
+.gar{border:1px solid var(--line); padding:20px}
+.gar h4{margin:0 0 12px; font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; font-weight:600}
+.gar label{display:flex; justify-content:space-between; font-size:.85rem; margin-top:10px}
+.gar input{width:100%; accent-color:var(--ink)}
+.gar .res{font-family:"Instrument Serif",serif; font-size:3rem; line-height:1; margin-top:14px}
+.gar .res small{font-family:"Archivo",sans-serif; font-size:.8rem; color:var(--muted)}
+.verdict{margin-top:16px; border-left:3px solid var(--accent-t); padding:6px 14px; font-size:.95rem; min-height:2.5em}
+
+/* size guide */
+.tw{overflow-x:auto}
+table{width:100%; border-collapse:collapse; font-size:.9rem}
+th,td{text-align:left; vertical-align:top; padding:14px 16px 14px 0; border-bottom:1px solid var(--line)}
+th{font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:500}
+td:first-child{font-weight:600}
+.season{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0; border-top:1px solid var(--ink)}
+.season div{padding:18px 16px 18px 0; border-right:1px solid var(--line); padding-left:14px}
+.season div:first-child{padding-left:0}
+.season div:last-child{border-right:0}
+.season .s{font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+.season b{font-family:"Instrument Serif",serif; font-weight:400; font-size:1.6rem; display:block; margin:4px 0 8px}
+.season ul{margin:0; padding-left:1rem; font-size:.88rem}
+.src-list{font-size:.82rem; padding-left:1.2rem; color:var(--muted)}
+.src-list li{margin-bottom:.35rem; word-break:break-word}
+footer{padding:clamp(70px,10vw,120px) 0 50px; border-top:1px solid var(--line)}
+footer .end{font-family:"Instrument Serif",serif; font-size:clamp(3rem,10vw,8rem); line-height:.9; letter-spacing:-.03em}
+
+@media (max-width:900px){
+  .hero .sub,.label-wrap,.insight,.fit,.cpw{grid-template-columns:1fr}
+  .tags{grid-template-columns:1fr}
+  .nums{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .nums div:nth-child(2){border-right:0}
+  .idea .three,.season{grid-template-columns:1fr}
+  .idea .three div,.season div{border-right:0; border-bottom:1px solid var(--line); padding-left:0}
+  .swot{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .hanger,.tag .face,.mirror .curtain{transition:none}
+}
+/* campaign kit */
+.ck-g{margin-top:2.4rem}
+.ck-gh{display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:8px 16px; border-top:1px solid var(--line); padding-top:14px}
+.ck-gh b{font-size:1.05rem}
+.ck-gh span{display:flex; gap:14px; font-size:.9rem}
+.ck-gh a{font-weight:700}
+.ck-strip{display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding:14px 2px 12px}
+.ck-strip figure{margin:0; flex:none; scroll-snap-align:start}
+.ck-strip img{display:block; height:min(360px,62vw); width:auto; max-width:none; border-radius:12px; border:1px solid var(--line); box-shadow:0 16px 30px -20px rgba(0,0,0,.45)}
+.ck-strip figcaption{font-size:.82rem; color:var(--muted); margin-top:8px; max-width:280px}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Strategy sections">
+  <div class="wrap in">
+    <button class="mark jump" type="button" data-go="top">Still Zara</button>
+    <div class="links" id="links">
+      <button class="navbtn jump" type="button" data-go="context">Context</button><button class="navbtn jump" type="button" data-go="squeeze">The squeeze</button><button class="navbtn jump" type="button" data-go="audit">Care label</button><button class="navbtn jump" type="button" data-go="insight">Insight</button><button class="navbtn jump" type="button" data-go="idea">The idea</button><button class="navbtn jump" type="button" data-go="collection">Collection</button><button class="navbtn jump" type="button" data-go="fitting">Fitting room</button><button class="navbtn jump" type="button" data-go="cpw">Cost per wear</button><button class="navbtn jump" type="button" data-go="size">Size guide</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap" id="top">
+  <div class="hero-top cap"><span>Akshara Singh · Brand strategy</span><span>Collection AW26 / SS27</span></div>
+  <h1>Still <em>Zara.</em></h1>
+  <div class="sub">
+    <p class="lede">A brand strategy for the world's biggest fashion brand, now squeezed between cheaper, faster rivals below and luxury dreams above.</p>
+    <p class="cap" style="text-align:right">Browse the rack. Tap a hanger.</p>
+  </div>
+  <div class="rack" role="group" aria-label="The rack: tap a hanger to preview each part of the strategy">
+    <div class="hangers" id="hangers"></div>
+    <div class="rack-card" id="rackCard" aria-live="polite"><span class="sw" style="background:var(--stone)"></span><div><b>Six pieces, one strategy.</b><span style="color:var(--muted); font-size:.9rem">Each hanger is a chapter. Tap one for a preview, or scroll to read the full collection.</span></div></div>
+  </div>
+</header>
+
+<main>
+  <!-- CONTEXT -->
+  <section id="context">
+    <div class="wrap">
+      <div class="kick"><span class="n">01</span><span class="cap">Context</span></div>
+      <h2>A brand that is <em>already winning.</em></h2>
+      <p class="lede">That's what makes this hard. Zara doesn't need rescuing. It needs a reason to stay unbeatable for the next decade.</p>
+      <div class="nums mt">
+        <div><div class="v">€28.05bn</div><div class="l">Zara, Zara Home and Lefties sales, FY2025<sup><button class="fn jump" type="button" data-go="s1" aria-label="Source 1">1</button></sup></div></div>
+        <div><div class="v">€39.9bn</div><div class="l">Inditex group sales, up 7% at constant currency<sup><button class="fn jump" type="button" data-go="s2" aria-label="Source 2">2</button></sup></div></div>
+        <div><div class="v">5,460</div><div class="l">stores worldwide, plus €10.7bn online<sup><button class="fn jump" type="button" data-go="s3" aria-label="Source 3">3</button></sup></div></div>
+        <div><div class="v">214</div><div class="l">markets<sup><button class="fn jump" type="button" data-go="s4" aria-label="Source 4">4</button></sup></div></div>
+      </div>
+      <p class="note">Inditex's financial year runs 1 February 2025 to 31 January 2026.</p>
+    </div>
+  </section>
+
+  <!-- SQUEEZE -->
+  <section id="squeeze">
+    <div class="wrap">
+      <div class="kick"><span class="n">02</span><span class="cap">The squeeze</span></div>
+      <h2>Pressure from <em>both ends</em> of the rail.</h2>
+      <p class="lede">Tap each price tag to turn it over.</p>
+      <div class="tags mt">
+        <button class="tag" type="button" aria-pressed="false">
+          <span class="face front"><span class="hole"></span><span class="cap" style="color:var(--muted)">Below</span><span class="who">Ultra-fast fashion</span><span class="pos">Cheaper, faster, endless.</span><span class="flipcue">Turn over</span></span>
+          <span class="face back"><span class="hole"></span><span class="cap">The threat</span><ul><li>Shein opened its first permanent Paris store in November 2025, with crop tops at €5<sup><button class="fn jump" type="button" data-go="s5" aria-label="Source 5">5</button></sup>.</li><li>Speed to market is no longer Zara's alone.</li><li>But regulators are pushing back: a French draft law would ban Shein from advertising<sup><button class="fn jump" type="button" data-go="s6" aria-label="Source 6">6</button></sup>.</li></ul><span class="flipcue">Turn back</span></span>
+        </button>
+        <button class="tag mid" type="button" aria-pressed="false">
+          <span class="face front"><span class="hole"></span><span class="cap" style="color:var(--muted)">In the middle</span><span class="who">Zara</span><span class="pos">Designer ideas at high-street speed.</span><span class="flipcue">Turn over</span></span>
+          <span class="face back"><span class="hole"></span><span class="cap">The move so far</span><ul><li>Elevating: a two-year collaboration with John Galliano, first launch planned for September 2026<sup><button class="fn jump" type="button" data-go="s7" aria-label="Source 7">7</button></sup>.</li><li>A Willy Chavarria capsule<sup><button class="fn jump" type="button" data-go="s8" aria-label="Source 8">8</button></sup> and a Kate Moss collection<sup><button class="fn jump" type="button" data-go="s9" aria-label="Source 9">9</button></sup>.</li><li>Historically little traditional advertising: stores and product do the talking<sup><button class="fn jump" type="button" data-go="s10" aria-label="Source 10">10</button></sup>.</li></ul><span class="flipcue">Turn back</span></span>
+        </button>
+        <button class="tag" type="button" aria-pressed="false">
+          <span class="face front"><span class="hole"></span><span class="cap" style="color:var(--muted)">Above</span><span class="who">Luxury</span><span class="pos">Pricier, and losing people.</span><span class="flipcue">Turn over</span></span>
+          <span class="face back"><span class="hole"></span><span class="cap">The opening</span><ul><li>Kering's revenue fell 13% in 2025, with Gucci down 22%<sup><button class="fn jump" type="button" data-go="s8" aria-label="Source 8">8</button></sup>.</li><li>Aspirational shoppers are leaving luxury, and some designers are moving toward the high street.</li><li>That's the gap Zara is reaching for.</li></ul><span class="flipcue">Turn back</span></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARE LABEL AUDIT -->
+  <section id="audit">
+    <div class="wrap">
+      <div class="kick"><span class="n">03</span><span class="cap">Brand audit</span></div>
+      <div class="label-wrap">
+        <div>
+          <h2>The brand, read like a <em>care label.</em></h2>
+          <p class="lede">Every garment tells you what it's made of and how to look after it. So does every brand. Tap a care symbol to read the audit.</p>
+          <div class="swot mt">
+            <div><b>Strengths</b><ul><li>Unmatched speed and supply-chain control</li><li>Prime stores as media</li><li>Growing designer credibility</li></ul></div>
+            <div><b>Weaknesses</b><ul><li>"Fast fashion" label sticks</li><li>Uneven quality perception</li><li>Rational, less emotional brand story</li></ul></div>
+            <div><b>Opportunities</b><ul><li>Luxury's lost shoppers</li><li>Resale and repair</li><li>Regulation that hurts ultra-fast rivals more</li></ul></div>
+            <div><b>Threats</b><ul><li>Ultra-fast fashion on price</li><li>Sustainability scrutiny</li><li>Collabs that feel like costume</li></ul></div>
+          </div>
+        </div>
+        <div class="care" role="group" aria-label="Brand care label">
+          <h4>ZARA · BRAND LABEL</h4>
+          <div>Made in: A Coruña, Spain. Est. 1975.</div>
+          <div class="div"></div>
+          <h4>COMPOSITION</h4>
+          <div class="comp" aria-label="Brand composition, auditor's view">
+            <div><span>40%</span><i style="width:100%"></i></div><div style="margin-top:-4px"><span></span><span>speed and supply chain</span></div>
+            <div><span>30%</span><i style="width:75%"></i></div><div style="margin-top:-4px"><span></span><span>trend-led design</span></div>
+            <div><span>20%</span><i style="width:50%"></i></div><div style="margin-top:-4px"><span></span><span>stores and experience</span></div>
+            <div><span>10%</span><i style="width:25%"></i></div><div style="margin-top:-4px"><span></span><span>emotional brand story</span></div>
+          </div>
+          <div class="div"></div>
+          <h4>CARE INSTRUCTIONS</h4>
+          <div class="sym" id="sym"></div>
+          <div class="care-out" id="careOut" aria-live="polite">Tap a symbol.</div>
+          <div class="div"></div>
+          <div style="font-size:.7rem">Composition is the auditor's view of what the brand is built on today.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSIGHT -->
+  <section id="insight">
+    <div class="wrap insight">
+      <div>
+        <div class="kick"><span class="n">04</span><span class="cap">The insight</span></div>
+        <p class="big-quote">Ultra-fast fashion wins the <em>first</em> wear. Zara can own <em>every wear after.</em></p>
+      </div>
+      <div>
+        <p class="lede" style="color:var(--ink)">On resale platforms like Vinted, preloved Zara pieces have sold for more than Shein's brand-new items<sup><button class="fn jump" type="button" data-go="s11" aria-label="Source 11">11</button></sup>.</p>
+        <p class="lede">That's a quiet superpower. People already treat Zara as something that keeps its value. Zara just never says so. The brand talks about newness, when its real edge over ultra-fast rivals is how long its clothes stay wanted.</p>
+        <div class="wears mt" aria-label="Illustration: how long a garment stays wanted">
+          <div class="wear"><span>Ultra-fast</span><span class="bar"><i style="width:22%"></i></span><span class="mono" style="font-size:.75rem">a trend</span></div>
+          <div class="wear"><span>Zara</span><span class="bar"><i class="z" style="width:68%"></i></span><span class="mono" style="font-size:.75rem">seasons</span></div>
+          <div class="wear"><span>Luxury</span><span class="bar"><i style="width:92%"></i></span><span class="mono" style="font-size:.75rem">years</span></div>
+        </div>
+        <p class="note">Illustrative, based on the resale signal above.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- IDEA -->
+  <section id="idea" class="idea">
+    <div class="wrap">
+      <div class="kick" style="justify-content:center"><span class="n">05</span><span class="cap">The idea</span></div>
+      <h2>Still <em>Zara.</em></h2>
+      <p class="lede" style="margin:0 auto">Fast to make. Slow to leave. Zara keeps its speed, but changes what speed is for: getting the right pieces made in the right amounts, and proving they last.</p>
+      <div class="three">
+        <div><b>Still wanted</b>Designer credibility that makes pieces worth keeping.</div>
+        <div><b>Still good</b>Proof of quality on every label, not just in the ad.</div>
+        <div><b>Still worth something</b>Resale and repair built into the brand, not a side project.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLECTION -->
+  <section id="collection">
+    <div class="wrap">
+      <div class="runway-top">
+        <div>
+          <div class="kick"><span class="n">06</span><span class="cap">The collection</span></div>
+          <h2>Five looks. <em>One strategy.</em></h2>
+        </div>
+        <div class="arrows"><button type="button" id="prevL" aria-label="Previous look">←</button><button type="button" id="nextL" aria-label="Next look">→</button></div>
+      </div>
+      <div class="runway" id="runway" tabindex="0" aria-label="Strategy looks, scroll sideways"></div>
+    </div>
+  </section>
+
+  <!-- FITTING ROOM -->
+  <section id="fitting">
+    <div class="wrap">
+      <div class="kick"><span class="n">07</span><span class="cap">Fitting room</span></div>
+      <h2>Try the strategy <em>on.</em></h2>
+      <p class="lede">Pick a customer. See how the strategy dresses them: the message, the product, the channel and the proof.</p>
+      <div class="fit mt">
+        <div class="hangers-v" id="personas" role="group" aria-label="Choose a customer"></div>
+        <div class="mirror" id="mirror" aria-live="polite"><div class="curtain l"></div><div class="curtain r"></div><div id="mirrorIn"><p class="cap" style="color:var(--muted)">Choose a customer to open the curtain.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COST PER WEAR -->
+  <section id="cpw">
+    <div class="wrap">
+      <div class="kick"><span class="n">08</span><span class="cap">Cost per wear</span></div>
+      <h2>The maths Zara <em>should be teaching.</em></h2>
+      <p class="lede">"Still Zara" moves the conversation from price tag to cost per wear. Try it: the cheaper piece isn't always the cheaper choice.</p>
+      <div class="cpw mt">
+        <div class="gar"><h4>The cheap top</h4>
+          <label for="p1"><span>Price</span><span class="mono" id="p1o">₹600</span></label><input type="range" id="p1" min="200" max="3000" step="50" value="600">
+          <label for="w1"><span>Times worn</span><span class="mono" id="w1o">4</span></label><input type="range" id="w1" min="1" max="100" step="1" value="4">
+          <div class="res" id="r1">₹150 <small>per wear</small></div>
+        </div>
+        <div class="gar"><h4>The piece you keep</h4>
+          <label for="p2"><span>Price</span><span class="mono" id="p2o">₹2,990</span></label><input type="range" id="p2" min="500" max="10000" step="50" value="2990">
+          <label for="w2"><span>Times worn</span><span class="mono" id="w2o">40</span></label><input type="range" id="w2" min="1" max="100" step="1" value="40">
+          <div class="res" id="r2">₹75 <small>per wear</small></div>
+        </div>
+      </div>
+      <div class="verdict" id="verdict" aria-live="polite"></div>
+      <p class="note">Prices are illustrative examples, not Zara's actual prices.</p>
+    </div>
+  </section>
+
+  <!-- SIZE GUIDE + SEASON -->
+  <section id="size">
+    <div class="wrap">
+      <div class="kick"><span class="n">09</span><span class="cap">Size guide</span></div>
+      <h2>How we'd know it <em>fits.</em></h2>
+      <div class="tw mt">
+        <table>
+          <thead><tr><th>Measure</th><th>What it tells us</th><th>Target, 12 months</th></tr></thead>
+          <tbody>
+            <tr><td>Quality perception</td><td>Share of shoppers who rate Zara "good quality for the price"</td><td>+8 points</td></tr>
+            <tr><td>Resale engagement</td><td>Pre-Owned listings and repairs per 1,000 customers</td><td>3× baseline</td></tr>
+            <tr><td>Designer halo</td><td>Full-price sell-through of mainline pieces during collab launches</td><td>Above non-launch weeks</td></tr>
+            <tr><td>Digital label scans</td><td>Customers scanning the care-label passport</td><td>1 in 5 buyers</td></tr>
+            <tr><td>Brand warmth</td><td>"Zara is a brand I feel good about"</td><td>+6 points</td></tr>
+            <tr><td>Business</td><td>Sales growth held above the market, gross margin stable</td><td>Maintained</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Targets are proposals for a portfolio project, to be set against Zara's internal baselines.</p>
+
+      <h3 class="mt">The season plan</h3>
+      <div class="season" style="margin-top:14px">
+        <div><span class="s">Autumn 2026</span><b>Launch</b><ul><li>"Still Zara" rides the Galliano debut</li><li>Store windows: one piece, five years of wear</li></ul></div>
+        <div><span class="s">Winter</span><b>Prove</b><ul><li>Digital care-label passport pilot on outerwear</li><li>Repair counters in 50 flagships</li></ul></div>
+        <div><span class="s">Spring 2027</span><b>Circle</b><ul><li>Pre-Owned pick-up in 500 stores</li><li>Resale credit toward new pieces</li></ul></div>
+        <div><span class="s">Summer</span><b>Report</b><ul><li>First "Still Zara" report: pieces resold, repaired, kept</li><li>Scale what worked</li></ul></div>
+      </div>
+
+      <h3 class="mt">Risks</h3>
+      <div class="tw" style="margin-top:10px">
+        <table><tbody>
+          <tr><td>"Greenwashing" backlash</td><td>Lead with measurable proof (repairs, resales, fibre data), never with vague eco claims.</td></tr>
+          <tr><td>Collabs feel like costume</td><td>Tie every designer drop to quality and longevity, not just hype.</td></tr>
+          <tr><td>Slower sales from keeping clothes longer</td><td>Resale credit and repair bring customers back into stores more often.</td></tr>
+          <tr><td>Quality claims that don't hold up</td><td>Launch the passport on the strongest categories first, such as coats and tailoring.</td></tr>
+        </tbody></table>
+      </div>
+    </div>
+  </section>
+
+  <section id="sources">
+    <div class="wrap">
+      <div class="kick"><span class="n">—</span><span class="cap">Sources</span></div>
+      <ol class="src-list">
+        <li id="s1">Oui Speak Fashion, "Inditex reports record FY2025 results", March 2026. <a href="https://ouispeakfashion.com/inditex-reports-record-fy2025-results-as-sales-reach-e39-9-billion/">Link</a></li>
+        <li id="s2">The Retail Bulletin, "Zara owner posts rise in full year sales and profit", March 2026. <a href="https://www.theretailbulletin.com/fashion/zara-owner-posts-rise-in-full-year-sales-and-profit-11-03-2026/">Link</a></li>
+        <li id="s3">Retail Insight Network via Yahoo Finance, "Zara owner Inditex reports profit growth in FY25". <a href="https://finance.yahoo.com/news/zara-owner-inditex-reports-profit-144119964.html">Link</a></li>
+        <li id="s4">Inditex, FY2025 results, 1 February 2025 to 31 January 2026. <a href="https://www.inditex.com/itxcomweb/api/media/1da2c9d1-dbca-49fb-9563-982a8a27fae6/INDITEXFullYear2025.pdf?t=1773216267196">Link</a></li>
+        <li id="s5">Howard Yu, Inc., "How Zara fought off Shein and outmaneuvered the ultra-fast fashion tide", December 2025. <a href="https://www.inc.com/howard-yu/how-zara-fought-off-shein-and-outmaneuvered-the-ultra-fast-fashion-tide/91280871">Link</a></li>
+        <li id="s6">Reuters via Yahoo News, "Shein plans first permanent stores in France, sparking backlash". <a href="https://www.yahoo.com/news/articles/shein-plans-first-permanent-stores-082818165.html">Link</a></li>
+        <li id="s7">Gentlemen Design, "Zara no longer wants to sell you cheap clothes", June 2026. <a href="https://gentlemendesign.substack.com/p/zara-no-longer-wants-to-sell-you">Link</a></li>
+        <li id="s8">Hypebae, "Should luxury and fast fashion collaborations exist?", April 2026. <a href="https://hypebae.com/2026/4/luxury-designer-fast-fashion-collaborations-zara-galliano-willy-chavarria-hm-glenn-martens">Link</a></li>
+        <li id="s9">GU Consultancy, "Zara is not selling luxury", July 2026. <a href="https://www.guconsultancy.com/post/zara-is-not-selling-luxury-it-is-selling-the-perception-of-getting-closer-to-luxury">Link</a></li>
+        <li id="s10">Young Urban Project, "Zara case study 2026", June 2026. <a href="https://www.youngurbanproject.com/zara-case-study/">Link</a></li>
+        <li id="s11">NIQ, "Shein, Zara, H&amp;M: close-up on the ultra-fast fashion market", 2023. <a href="https://nielseniq.com/global/en/insights/analysis/2023/shein-zara-hm-close-up-on-the-ultra-fast-fashion-market/">Link</a></li>
+      </ol>
+    </div>
+  </section>
+  <section id="campaign-kit">
+    <div class="wrap">
+      <div class="kick"><span class="n">10</span><span class="cap">Campaign kit</span></div>
+      <h2>The campaign, <em>made.</em></h2>
+      <p class="lede">Four kinds of assets I designed for this strategy: an Instagram carousel, Stories, widescreen pieces and a print piece. Scroll each row, or open the originals in Canva.</p>
+      <div class="ck-g">
+        <div class="ck-gh"><b>Instagram carousel</b><span><a href="https://www.canva.com/d/wro2VWFVOFnUFVB" target="_blank" rel="noopener">View in Canva ↗</a><a href="canva-kit/carousel.pdf" download>PDF</a></span></div>
+        <div class="ck-strip" tabindex="0" aria-label="Instagram carousel, scroll sideways">
+          <figure><img src="canva-kit/carousel/01.jpg" alt="Instagram carousel, Still Zara." loading="lazy"><figcaption>Still Zara.</figcaption></figure>
+          <figure><img src="canva-kit/carousel/02.jpg" alt="Instagram carousel, The squeeze" loading="lazy"><figcaption>The squeeze</figcaption></figure>
+          <figure><img src="canva-kit/carousel/03.jpg" alt="Instagram carousel, The insight" loading="lazy"><figcaption>The insight</figcaption></figure>
+          <figure><img src="canva-kit/carousel/04.jpg" alt="Instagram carousel, The care label" loading="lazy"><figcaption>The care label</figcaption></figure>
+          <figure><img src="canva-kit/carousel/05.jpg" alt="Instagram carousel, Cost per wear" loading="lazy"><figcaption>Cost per wear</figcaption></figure>
+          <figure><img src="canva-kit/carousel/06.jpg" alt="Instagram carousel, The idea" loading="lazy"><figcaption>The idea</figcaption></figure>
+        </div>
+      </div>
+      <div class="ck-g">
+        <div class="ck-gh"><b>Instagram Stories</b><span><a href="https://www.canva.com/d/lPGDYIzRceK9Lrt" target="_blank" rel="noopener">View in Canva ↗</a><a href="canva-kit/stories.pdf" download>PDF</a></span></div>
+        <div class="ck-strip" tabindex="0" aria-label="Instagram Stories, scroll sideways">
+          <figure><img src="canva-kit/stories/01.jpg" alt="Instagram Stories, One piece. Five years." loading="lazy"><figcaption>One piece. Five years.</figcaption></figure>
+          <figure><img src="canva-kit/stories/02.jpg" alt="Instagram Stories, The care-label passport" loading="lazy"><figcaption>The care-label passport</figcaption></figure>
+          <figure><img src="canva-kit/stories/03.jpg" alt="Instagram Stories, Fitting-room poll" loading="lazy"><figcaption>Fitting-room poll</figcaption></figure>
+        </div>
+      </div>
+      <div class="ck-g">
+        <div class="ck-gh"><b>Store windows and plan</b><span><a href="https://www.canva.com/d/T1OsLlKuHEyDUE-" target="_blank" rel="noopener">View in Canva ↗</a><a href="canva-kit/widescreen.pdf" download>PDF</a></span></div>
+        <div class="ck-strip" tabindex="0" aria-label="Store windows and plan, scroll sideways">
+          <figure><img src="canva-kit/widescreen/01.jpg" alt="Store windows and plan, Flagship windows" loading="lazy"><figcaption>Flagship windows</figcaption></figure>
+          <figure><img src="canva-kit/widescreen/02.jpg" alt="Store windows and plan, The season plan" loading="lazy"><figcaption>The season plan</figcaption></figure>
+        </div>
+      </div>
+      <div class="ck-g">
+        <div class="ck-gh"><b>Print: hang tag</b><span><a href="https://www.canva.com/d/295_m-yY4RvfgvM" target="_blank" rel="noopener">View in Canva ↗</a><a href="canva-kit/print.pdf" download>PDF</a></span></div>
+        <div class="ck-strip" tabindex="0" aria-label="Print: hang tag, scroll sideways">
+          <figure><img src="canva-kit/print/01.jpg" alt="Print: hang tag, Hang tag and care-label passport" loading="lazy"><figcaption>Hang tag and care-label passport</figcaption></figure>
+        </div>
+      </div>
+      <p style="margin-top:2rem"><a href="https://www.canva.com/d/84mWTID-NMi4Fmd" target="_blank" rel="noopener">See all my work ↗</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="end">Fast to make.<br><em>Slow to leave.</em></p>
+    <p style="margin-top:2rem">Strategy by <b>Akshara Singh</b>, digital marketer. <a href="mailto:Akshara.singh.marketing@gmail.com">Akshara.singh.marketing@gmail.com</a></p>
+    <p class="note" style="max-width:48rem">An unsolicited brand strategy created for portfolio purposes, using public information as of September 2026. Not affiliated with, commissioned by or endorsed by Zara or Inditex. Targets, compositions and example prices are illustrative.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  function $(id){return document.getElementById(id);}
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cs=getComputedStyle(document.documentElement);
+  function v(n){ return 'var(--'+n+')'; }
+
+  /* garment svgs */
+  var G={
+    coat:'<path d="M30 6 L50 14 L70 6 L90 22 L82 40 L76 36 L76 118 L24 118 L24 36 L18 40 L10 22 Z" fill="currentColor"/><path d="M50 14 L50 118" stroke="rgba(0,0,0,.25)" stroke-width="2"/>',
+    dress:'<path d="M38 6 L50 12 L62 6 L66 30 L60 44 L82 118 L18 118 L40 44 L34 30 Z" fill="currentColor"/>',
+    shirt:'<path d="M32 8 L50 16 L68 8 L92 24 L84 42 L74 36 L74 92 L26 92 L26 36 L16 42 L8 24 Z" fill="currentColor"/><path d="M44 14 L50 26 L56 14" fill="none" stroke="rgba(0,0,0,.25)" stroke-width="2"/>',
+    trouser:'<path d="M28 6 L72 6 L78 118 L56 118 L50 40 L44 118 L22 118 Z" fill="currentColor"/>',
+    blazer:'<path d="M30 8 L50 18 L70 8 L90 24 L82 42 L76 38 L76 104 L24 104 L24 38 L18 42 L10 24 Z" fill="currentColor"/><path d="M50 18 L40 58 L50 70 L60 58 Z" fill="rgba(255,255,255,.25)"/>',
+    knit:'<path d="M32 8 L50 12 L68 8 L94 30 L86 44 L76 38 L76 100 L24 100 L24 38 L14 44 L6 30 Z" fill="currentColor"/><path d="M24 92 L76 92" stroke="rgba(0,0,0,.25)" stroke-width="4"/>'
+  };
+  function hangerSvg(g,col){ return '<svg viewBox="0 0 100 150" aria-hidden="true" style="color:'+col+'"><path d="M50 2 q8 0 8 7 q0 6 -8 8" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--ink)"/><path d="M50 17 L14 32 L86 32 Z" fill="none" stroke="var(--ink)" stroke-width="2.5"/><g transform="translate(0,28)">'+G[g]+'</g></svg>'; }
+
+  var rack=[
+    ['coat','camel','Context','A brand that is already winning: €28bn in sales.','#context'],
+    ['dress','oxblood','The squeeze','Ultra-fast fashion below, luxury above.','#squeeze'],
+    ['shirt','stone','Care label','The brand audit, read like a garment label.','#audit'],
+    ['trouser','olive','Insight','Preloved Zara has sold for more than new ultra-fast fashion.','#insight'],
+    ['blazer','navy','The idea','Still Zara: fast to make, slow to leave.','#idea'],
+    ['knit','camel','Collection','Five strategic looks, plus a fitting room.','#collection']
+  ];
+  $('hangers').innerHTML=rack.map(function(r,i){ return '<button class="hanger" type="button" data-i="'+i+'" aria-expanded="false" aria-controls="rackCard">'+hangerSvg(r[0],v(r[1]))+'<span>'+r[2]+'</span></button>'; }).join('');
+  $('hangers').addEventListener('click',function(e){ var b=e.target.closest('.hanger'); if(!b) return; var r=rack[+b.getAttribute('data-i')];
+    document.querySelectorAll('.hanger').forEach(function(x){ x.setAttribute('aria-expanded',x===b); });
+    $('rackCard').innerHTML='<span class="sw" style="background:'+v(r[1])+'"></span><div><b>'+r[2]+'</b><span style="color:var(--muted); font-size:.9rem">'+r[3]+' <button class="jump readit" type="button" data-go="'+r[4].slice(1)+'">Read it</button></span></div>'; });
+
+  /* tags */
+  document.querySelectorAll('.tag').forEach(function(t){ t.addEventListener('click',function(e){ if(e.target.closest('.fn')) return; t.setAttribute('aria-pressed',t.getAttribute('aria-pressed')!=='true'); }); });
+
+  /* care symbols */
+  var sy=[
+    ['Wash: reputation','<svg viewBox="0 0 30 24"><path d="M3 6 L6 21 H24 L27 6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 9 q4 -3 8 0 t8 0 t8 0" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>','WASH: REPUTATION','Handle with care. Zara is widely seen as trend-right and well-priced, but "fast fashion" still sticks, and sustainability critics are loud. Rating: 3/5.'],
+    ['Iron: quality','<svg viewBox="0 0 30 24"><path d="M5 19 H26 L23 8 H11 Q6 8 5 19Z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="15" cy="15" r="1.4" fill="currentColor"/></svg>','IRON: QUALITY','Medium heat. Premium lines and collabs lift perceived quality, but everyday basics get mixed reviews. The gap between image and garment is the key risk. Rating: 3/5.'],
+    ['Dry: speed','<svg viewBox="0 0 30 24"><rect x="4" y="3" width="22" height="18" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="15" cy="12" r="6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>','TUMBLE DRY: SPEED','High heat, still best in class. Zara\u2019s trend-to-store speed and tight supply chain remain its core advantage, but ultra-fast rivals are closing in. Rating: 5/5.'],
+    ['Bleach: identity','<svg viewBox="0 0 30 24"><path d="M15 3 L27 21 H3 Z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 21 L22 5 M22 21 L8 5" stroke="currentColor" stroke-width="1.2"/></svg>','DO NOT BLEACH: IDENTITY','Don\u2019t wash out what makes Zara, Zara. Designer collabs must feel like Zara growing up, not dressing up as someone else. Rating: 4/5.'],
+    ['Dry clean: story','<svg viewBox="0 0 30 24"><circle cx="15" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><text x="15" y="16" text-anchor="middle" font-size="10" font-family="Space Mono" fill="currentColor">P</text></svg>','PROFESSIONAL CARE: STORY','Needs attention. Zara lets product and stores speak, which is efficient but leaves little emotional connection. There\u2019s no single idea people associate with the brand. Rating: 2/5.'],
+    ['Line dry: longevity','<svg viewBox="0 0 30 24"><rect x="4" y="3" width="22" height="18" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 7 q11 6 22 0" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>','LINE DRY: LONGEVITY','Untapped. Resale value and repair programs exist but aren\u2019t part of how Zara talks about itself. This is the biggest opportunity. Rating: 2/5, potential 5/5.']
+  ];
+  $('sym').innerHTML=sy.map(function(s,i){ return '<button type="button" data-s="'+i+'" aria-pressed="false">'+s[1]+'<span>'+s[0]+'</span></button>'; }).join('');
+  $('sym').addEventListener('click',function(e){ var b=e.target.closest('[data-s]'); if(!b) return; var s=sy[+b.getAttribute('data-s')];
+    document.querySelectorAll('#sym button').forEach(function(x){ x.setAttribute('aria-pressed',x===b); });
+    $('careOut').innerHTML='<b>'+s[2]+'</b><br>'+s[3]; });
+
+  /* looks */
+  var looks=[
+    ['camel','coat','Look 01','The archive, reworn','Designer drops as cultural moments.','Frame the Galliano archive reinterpretations as pieces meant to be kept, not hauled: numbered, with the story of each original on the label.','Makes designer credibility about longevity, not just hype.','Full-price sell-through of launch pieces; share of launch buyers who return.'],
+    ['olive','shirt','Look 02','The label that proves it','A digital care-label passport.','A QR code on the care label shows fibre, origin, care guide, repair options and typical resale value. Pilot on coats and tailoring first.','Turns "good quality for the price" from a claim into proof, and gets ahead of regulation on product transparency.','Scans per item sold; quality perception score.'],
+    ['oxblood','dress','Look 03','Pre-Owned at the till','Resale and repair in the store, not only online.','Customers bring back Zara pieces for store credit, repair or donation at 500 stores. Resold pieces are shown on a "Still Zara" rail.','Every return is another visit. It uses Zara\u2019s biggest asset against ultra-fast rivals: its stores.','Items taken back; credit redeemed; visit frequency.'],
+    ['navy','blazer','Look 04','Windows that tell time','Stores as the media channel.','Window displays show one piece across five years of real wear: the same coat, restyled. Content filmed in store becomes the social feed.','Keeps Zara\u2019s low-advertising model while giving the brand an emotional story.','Footfall at campaign stores; social saves and shares.'],
+    ['stone','knit','Look 05','Speed, with a reason','Reframe speed as making less waste.','Talk about small first runs and restocking only what sells: speed as precision, not overproduction.','Answers the fast-fashion critique with a true operational strength.','Unsold inventory rate; sentiment on "responsible".']
+  ];
+  $('runway').innerHTML=looks.map(function(l){ return '<article class="look"><div class="fig" style="background:'+v(l[0])+'"><svg viewBox="0 0 100 130" aria-hidden="true" style="color:rgba(255,255,255,.78)">'+G[l[1]]+'</svg><span class="no">'+l[2].slice(-2)+'</span><span class="ttl">'+l[2]+'</span></div><div class="txt"><h3>'+l[3]+'</h3><p style="margin:0; color:var(--muted)">'+l[4]+'</p><dl><dt>What</dt><dd>'+l[5]+'</dd><dt>Why</dt><dd>'+l[6]+'</dd><dt>How we measure</dt><dd>'+l[7]+'</dd></dl></div></article>'; }).join('');
+  function slide(d){ var r=$('runway'), w=r.querySelector('.look').getBoundingClientRect().width+18; r.scrollBy({left:d*w, behavior:reduce?'auto':'smooth'}); }
+  $('prevL').addEventListener('click',function(){slide(-1);}); $('nextL').addEventListener('click',function(){slide(1);});
+
+  /* fitting room */
+  var ps=[
+    ['The trend chaser','19, buys often, checks ultra-fast apps first','Why pay more?','"Still Zara": the piece that\u2019s still worth something when the trend passes.','Designer drops and resale credit: trade in last season for this one.','Reels filmed in store; TikTok resale hauls.','Resale value shown on the care-label passport.'],
+    ['The office minimalist','29, wants fewer, better clothes','Is it good enough to keep?','Build a work wardrobe that lasts five years, not five weeks.','Tailoring and coats with the passport pilot.','Store windows; the Zara app.','Fibre and care data; repair counters.'],
+    ['The luxury-curious','34, trading down from designer labels','Will it feel special?','Designer thinking without designer prices.','Galliano archive pieces, numbered and storied.','Editorial content; flagship events.','Archive story on the label; limited runs.'],
+    ['The conscious shopper','24, buys second-hand first','Isn\u2019t Zara part of the problem?','Buy it once, wear it for years, and bring it back.','Pre-Owned rail; repairs; the season report.','In-store take-back; the annual "Still Zara" report.','Numbers: pieces resold, repaired, kept.']
+  ];
+  $('personas').innerHTML=ps.map(function(p,i){ return '<button type="button" data-p="'+i+'" aria-pressed="false"><span><b>'+p[0]+'</b><small>'+p[1]+'</small></span><span aria-hidden="true">→</span></button>'; }).join('');
+  $('personas').addEventListener('click',function(e){ var b=e.target.closest('[data-p]'); if(!b) return; var p=ps[+b.getAttribute('data-p')], m=$('mirror');
+    document.querySelectorAll('#personas button').forEach(function(x){ x.setAttribute('aria-pressed',x===b); });
+    m.classList.remove('open');
+    setTimeout(function(){
+      $('mirrorIn').innerHTML='<p class="cap" style="color:var(--muted)">Fitting: '+p[0]+'</p><h3>"'+p[2]+'"</h3><div class="outfit"><div><b>The message</b>'+p[3]+'</div><div><b>The product</b>'+p[4]+'</div><div><b>The channel</b>'+p[5]+'</div><div><b>The proof</b>'+p[6]+'</div></div>';
+      m.classList.add('open');
+    }, reduce?0:(m.dataset.used?350:0));
+    m.dataset.used=1; });
+
+  /* cost per wear */
+  function inr(n){ return '₹'+Math.round(n).toLocaleString('en-IN'); }
+  function cpw(){
+    var p1=+$('p1').value, w1=+$('w1').value, p2=+$('p2').value, w2=+$('w2').value, c1=p1/w1, c2=p2/w2;
+    $('p1o').textContent=inr(p1); $('w1o').textContent=w1; $('p2o').textContent=inr(p2); $('w2o').textContent=w2;
+    $('r1').innerHTML=inr(c1)+' <small>per wear</small>'; $('r2').innerHTML=inr(c2)+' <small>per wear</small>';
+    $('verdict').textContent=c2<c1?'The pricier piece is '+Math.round((1-c2/c1)*100)+'% cheaper every time you wear it. That\u2019s the "Still Zara" argument.':(c2===c1?'Dead even. Now add resale value, and the piece you keep pulls ahead.':'Here the cheap top wins, so the kept piece has to be worn more. That\u2019s why quality proof matters.');
+  }
+  ['p1','w1','p2','w2'].forEach(function(id){ $(id).addEventListener('input',cpw); }); cpw();
+
+  /* in-page jumps (no URLs) */
+  document.addEventListener('click',function(e){ var b=e.target.closest('.jump'); if(!b) return; e.preventDefault(); var t=$(b.getAttribute('data-go')); if(!t) return; t.scrollIntoView({behavior:reduce?'auto':'smooth', block:'start'}); if(t.id.charAt(0)==='s' && t.tagName==='LI'){ t.style.background='var(--soft)'; setTimeout(function(){ t.style.background=''; },1600); } });
+
+  /* nav highlight */
+  var links={}; document.querySelectorAll('#links .navbtn').forEach(function(a){ links[a.getAttribute('data-go')]=a; });
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting) for(var k in links) links[k].classList.toggle('on',k===e.target.id); }); },{rootMargin:'-45% 0px -50% 0px'});
+    Object.keys(links).forEach(function(k){ var s=$(k); if(s) io.observe(s); });
+  }
+})();
+</script>
+<a class="as-allwork" href="../../#work" aria-label="Back to all of Akshara Singh's work">&larr; All work</a>
+<style>.as-allwork{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:2147483000;display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:999px;background:rgba(17,17,16,.88);color:#F5F2EC!important;font:600 14px/1 system-ui,-apple-system,"Segoe UI",sans-serif;text-decoration:none!important;letter-spacing:0;box-shadow:0 8px 24px rgba(0,0,0,.25);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:transform .2s}.as-allwork:hover{transform:translateY(-2px)}.as-allwork:focus-visible{outline:2px solid #E9B872;outline-offset:3px}@media print{.as-allwork{display:none}}</style>
+</body>
+</html>

@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Paper Boat: a social media strategy by Akshara Singh</title>
+<meta name="description" content="A social media strategy for Paper Boat: every generation had a paper boat. Content pillars, moment marketing, UGC growth loop, creators, community and measurement.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light dark;
+  --bg:#FFE08A; --paper:#FFFDF6; --ink:#1F2A4D; --muted:#56608A; --line:#E9DCB4; --rule:#C9DDF2;
+  --kokum:#E0527A; --jamun:#5B2A86; --teal:#1D8C8C; --mango:#FFB31A; --sky:#7CC4E8;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){ --bg:#1D1A2E; --paper:#27233B; --ink:#F4EEDC; --muted:#B9B2CF; --line:#3A3452; --rule:#343C5E; --kokum:#F0789A; --jamun:#B793E3; --teal:#4CC4C4; --mango:#FFC94D; --sky:#7CC4E8; }
+}
+:root[data-theme="dark"]{ --bg:#1D1A2E; --paper:#27233B; --ink:#F4EEDC; --muted:#B9B2CF; --line:#3A3452; --rule:#343C5E; --kokum:#F0789A; --jamun:#B793E3; --teal:#4CC4C4; --mango:#FFC94D; --sky:#7CC4E8; }
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size:17px; line-height:1.6}
+button{font:inherit; color:inherit}
+:focus-visible{outline:3px solid var(--jamun); outline-offset:3px; border-radius:8px}
+a{color:var(--jamun)}
+.hand{font-family:"Caveat",cursive; font-weight:700}
+.wrap{max-width:1120px; margin:0 auto; padding:0 clamp(16px,4vw,40px)}
+h1,h2,h3{font-weight:900; letter-spacing:-.02em; line-height:1.08; margin:0}
+h2{font-size:clamp(2rem,4.6vw,3.3rem); margin-bottom:.4em}
+h3{font-size:1.3rem; margin-bottom:.35em}
+p{margin:0 0 1em}
+.lede{font-size:clamp(1.08rem,1.8vw,1.25rem); color:var(--muted); max-width:40rem}
+.sm{font-size:.9rem; color:var(--muted)}
+.note{font-size:.8rem; color:var(--muted); margin-top:10px}
+section{padding:clamp(56px,8vw,96px) 0}
+/* notebook page */
+.page{background:var(--paper); border-radius:18px; padding:clamp(22px,4vw,48px) clamp(20px,4vw,48px) clamp(22px,4vw,48px) clamp(44px,7vw,84px); position:relative; box-shadow:0 18px 40px -26px rgba(60,40,0,.45);
+  background-image:linear-gradient(90deg,transparent calc(clamp(30px,5vw,60px) - 1px),color-mix(in srgb,var(--kokum) 55%,transparent) calc(clamp(30px,5vw,60px) - 1px),color-mix(in srgb,var(--kokum) 55%,transparent) clamp(30px,5vw,60px),transparent clamp(30px,5vw,60px)),repeating-linear-gradient(transparent 0 31px,var(--rule) 31px 32px)}
+.tab{position:absolute; top:-14px; left:clamp(44px,7vw,84px); background:var(--jamun); color:#fff; font-weight:800; font-size:.8rem; padding:4px 14px; border-radius:8px; letter-spacing:.02em}
+.chap{font-family:"Caveat",cursive; font-size:1.6rem; color:var(--kokum); font-weight:700}
+.mt{margin-top:clamp(24px,3.5vw,40px)}
+.g2{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px}
+.g3{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px}
+.g4{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px}
+.card{background:var(--paper); border:2px solid var(--line); border-radius:14px; padding:16px}
+.sticky{background:#FFF1A8; color:#1F2A4D; border-radius:4px; padding:16px; box-shadow:0 8px 16px -10px rgba(0,0,0,.35); transform:rotate(-1.2deg)}
+.sticky:nth-child(2n){transform:rotate(1deg); background:#FFD6E2}
+.sticky:nth-child(3n){background:#D6F0FF; transform:rotate(-.4deg)}
+.sticky b{display:block; font-size:1.05rem}
+.btn{border:0; border-radius:999px; background:var(--jamun); color:#fff; font-weight:800; padding:.7em 1.3em; cursor:pointer}
+.btn.alt{background:var(--kokum)}
+.btn:hover{filter:brightness(1.08)}
+.chip{border:2px solid var(--line); background:var(--paper); border-radius:999px; padding:.35em .9em; font-weight:800; font-size:.85rem; cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+.tw{overflow-x:auto}
+table{width:100%; border-collapse:collapse; font-size:.95rem}
+th,td{text-align:left; vertical-align:top; padding:10px 14px 10px 0; border-bottom:2px dashed var(--line)}
+th{font-size:.78rem; color:var(--muted); text-transform:uppercase; letter-spacing:.06em}
+td:first-child{font-weight:800}
+
+/* hero */
+.top{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:18px 0; font-weight:700; font-size:.9rem}
+.hero{padding:clamp(20px,4vw,40px) 0 0; position:relative; overflow:hidden}
+.hero h1{font-size:clamp(2.8rem,8vw,6.2rem); max-width:12ch}
+.hero h1 .hand{color:var(--jamun); font-size:1.15em; display:inline-block; transform:rotate(-3deg)}
+.pond{position:relative; height:220px; margin-top:24px}
+.waves{position:absolute; left:0; right:0; bottom:0; height:120px; background:
+  radial-gradient(40px 14px at 40px 0,transparent 98%,var(--sky) 100%) 0 0/80px 28px repeat-x,
+  linear-gradient(var(--sky),#4FA3D1)}
+.waves::after{content:""; position:absolute; left:0; right:0; top:22px; height:28px; background:radial-gradient(40px 14px at 40px 0,transparent 98%,#6BB6DE 100%) 40px 0/80px 28px repeat-x}
+.boat{position:absolute; bottom:88px; left:10%; width:140px; animation:sail 16s linear infinite, bob 2.4s ease-in-out infinite; z-index:2}
+@keyframes sail{from{left:-160px} to{left:100%}}
+@keyframes bob{50%{transform:translateY(-8px) rotate(-3deg)}}
+.drops i{position:absolute; top:-20px; width:2px; height:18px; background:linear-gradient(transparent,#5AA8D6); animation:rain 1.1s linear infinite; opacity:.7}
+@keyframes rain{to{transform:translateY(240px)}}
+.memory{display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:18px}
+.memout{font-family:"Caveat",cursive; font-size:1.9rem; color:var(--jamun); min-height:1.3em; line-height:1.1}
+
+/* matrix */
+.matrix{display:grid; grid-template-columns:120px repeat(4,minmax(0,1fr)); gap:6px; margin-top:16px}
+.matrix .h{font-weight:900; font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; display:flex; align-items:end; padding:4px}
+.matrix .rh{font-weight:900; display:flex; align-items:center; font-size:.95rem}
+.cell{border:2px solid var(--line); background:var(--paper); border-radius:10px; min-height:58px; cursor:pointer; font-size:1.3rem}
+.cell:hover{border-color:var(--jamun)}
+.cell[aria-pressed="true"]{background:var(--jamun); border-color:var(--jamun)}
+.idea{margin-top:14px; background:var(--paper); border:2px solid var(--jamun); border-radius:14px; padding:16px; min-height:120px}
+.idea .fmt{display:inline-block; font-size:.75rem; font-weight:900; background:var(--mango); color:#1F2A4D; border-radius:6px; padding:2px 8px; margin-right:6px}
+
+/* rain radar */
+.radar{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:20px; align-items:start}
+.phone{width:min(300px,100%); margin:0 auto; border:10px solid #1F2A4D; border-radius:36px; overflow:hidden; background:#fff; color:#1F2A4D}
+.phone .ph{display:flex; gap:8px; align-items:center; padding:10px 12px; font-size:.8rem; font-weight:800}
+.phone .ph i{width:26px; height:26px; border-radius:50%; background:conic-gradient(var(--mango),var(--kokum),var(--jamun),var(--mango)); display:block}
+.phone .art{aspect-ratio:4/5; display:flex; flex-direction:column; justify-content:space-between; padding:18px; color:#fff; font-weight:900; font-size:1.5rem; line-height:1.1; position:relative; overflow:hidden}
+.phone .art small{font-size:.75rem; font-weight:800; opacity:.9}
+.phone .cap{padding:10px 12px 14px; font-size:.82rem}
+.rule{background:var(--paper); border:2px dashed var(--teal); border-radius:12px; padding:12px; font-size:.9rem; margin-top:12px}
+.rule b{color:var(--teal)}
+
+/* loop */
+.loop{display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px; counter-reset:s}
+.loop button{border:2px solid var(--line); background:var(--paper); border-radius:16px; padding:14px 10px; cursor:pointer; text-align:center; font-weight:800; position:relative}
+.loop button span{display:block; font-size:1.8rem}
+.loop button[aria-pressed="true"]{border-color:var(--kokum); background:color-mix(in srgb,var(--kokum) 12%,var(--paper))}
+.loop-out{margin-top:12px; min-height:3.5em}
+
+/* pillars */
+.pillars .card{border-top:6px solid var(--c)}
+.pillars .pct{font-size:2rem; font-weight:900; color:var(--c)}
+/* replies */
+.bub{max-width:88%; border-radius:16px; padding:9px 13px; font-size:.92rem; width:fit-content; margin-top:6px}
+.bub.in{background:var(--line); color:var(--ink); border-bottom-left-radius:4px}
+.bub.out{background:var(--jamun); color:#fff; margin-left:auto; border-bottom-right-radius:4px}
+.bub small{display:block; font-size:.7rem; opacity:.75; font-weight:800}
+.kpi .v{font-size:2.2rem; font-weight:900; color:var(--jamun); line-height:1}
+.kpi .l{font-weight:800}
+.kpi .d{font-size:.85rem; color:var(--muted)}
+footer{padding:60px 0 50px}
+@media (max-width:900px){
+  .g2,.g3,.radar{grid-template-columns:1fr}
+  .g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .loop{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .matrix{grid-template-columns:84px repeat(4,minmax(0,1fr))}
+}
+@media (max-width:560px){ .g4{grid-template-columns:1fr} .kpi .v{font-size:1.8rem} .page{padding-left:40px} .card{min-width:0} }
+.card,.page{min-width:0; overflow-wrap:anywhere}
+@media (prefers-reduced-motion:reduce){ .boat,.drops i{animation:none!important} .boat{left:30%} }
+/* campaign kit */
+.ck-g{margin-top:2.4rem}
+.ck-gh{display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:8px 16px; border-top:1px solid var(--line); padding-top:14px}
+.ck-gh b{font-size:1.05rem}
+.ck-gh span{display:flex; gap:14px; font-size:.9rem}
+.ck-gh a{font-weight:700}
+.ck-strip{display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding:14px 2px 12px}
+.ck-strip figure{margin:0; flex:none; scroll-snap-align:start}
+.ck-strip img{display:block; height:min(360px,62vw); width:auto; max-width:none; border-radius:12px; border:1px solid var(--line); box-shadow:0 16px 30px -20px rgba(0,0,0,.45)}
+.ck-strip figcaption{font-size:.82rem; color:var(--muted); margin-top:8px; max-width:280px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><span>Akshara Singh, social media strategy</span><span>Proposal for Paper Boat</span></div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="chap">a social media strategy for Paper Boat</p>
+    <h1>Every generation had a <span class="hand">paper boat.</span></h1>
+    <p class="lede" style="margin-top:14px">Paper Boat built its name on 90s nostalgia. The next generation of buyers grew up in the 2000s and 2010s. This strategy makes Paper Boat the home of <b>everyone's</b> childhood memories, and turns followers into the people telling them.</p>
+    <div class="memory">
+      <button class="btn" type="button" id="fold">Fold a memory 📄</button>
+      <button class="btn alt" type="button" id="toWork">See the working files</button>
+      <span class="memout" id="memout" aria-live="polite">tap to pull a memory prompt</span>
+    </div>
+  </div>
+  <div class="pond" aria-hidden="true">
+    <div class="drops" id="drops"></div>
+    <svg class="boat" viewBox="0 0 140 80"><path d="M10 50 L130 50 L110 72 L30 72 Z" fill="#FFFDF6" stroke="#1F2A4D" stroke-width="2.5"/><path d="M40 50 L70 8 L100 50 Z" fill="#FFF3C4" stroke="#1F2A4D" stroke-width="2.5"/><path d="M70 8 L70 50" stroke="#1F2A4D" stroke-width="2"/></svg>
+    <div class="waves"></div>
+  </div>
+</header>
+
+<main>
+  <!-- 1 AUDIT -->
+  <section>
+    <div class="wrap">
+      <div class="page"><span class="tab">Chapter 1</span>
+        <p class="chap">where Paper Boat stands today</p>
+        <h2>A brand people love, with a story problem ahead.</h2>
+        <div class="g4 mt">
+          <div class="card kpi"><div class="v">₹668 cr</div><div class="l">FY25 revenue</div><div class="d">first net profit: ₹46 cr</div></div>
+          <div class="card kpi"><div class="v">2013</div><div class="l">National launch</div><div class="d">tagline: "Drinks and memories"</div></div>
+          <div class="card kpi"><div class="v">~200K</div><div class="l">Instagram followers</div><div class="d">as reported in early 2025</div></div>
+          <div class="card kpi"><div class="v">11+</div><div class="l">Ethnic drinks</div><div class="d">aam panna, jaljeera, kokum and more</div></div>
+        </div>
+        <p class="note">Sources: CB Insights and Markhub24 (FY25 revenue and profit); StartupTalky (tagline, range); D2CX newsletter (Instagram followers, January 2025).</p>
+        <div class="g3 mt">
+          <div class="sticky"><b>What's working ✅</b>Distinctive illustrated look, pouches people recognise, famous films like "Rizwan", and a single clear idea: drinks and memories.</div>
+          <div class="sticky"><b>What's missing 🟡</b>Big campaigns come and go; there's no always-on content engine or repeatable formats followers expect every week.</div>
+          <div class="sticky"><b>The risk 🔴</b>90s nostalgia speaks to millennials. Gen Z's childhood was different: cartoons, power cuts, tiffin swaps, the 2010s. If the memories don't match, the brand ages with its audience.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 STRATEGY -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="page"><span class="tab">Chapter 2</span>
+        <p class="chap">the strategy on one page</p>
+        <h2>Let followers write the memories.</h2>
+        <p class="lede">Paper Boat has always told memories. Now it collects them. Every generation's childhood becomes content, and every follower becomes a storyteller.</p>
+        <div class="tw mt"><table>
+          <tbody>
+            <tr><td>Goal</td><td>Grow Instagram from ~200K to 300K followers in 12 months, with engagement driven by saves and shares, not giveaways.</td></tr>
+            <tr><td>Audience</td><td>Core: 22–35, city-based, nostalgic snackers. Growth: 18–24 Gen Z discovering the brand through their own memories.</td></tr>
+            <tr><td>Platform roles</td><td><b>Instagram</b> for the memory engine; <b>YouTube Shorts</b> for reach; <b>LinkedIn</b> for brand and hiring; <b>WhatsApp Channel</b> for new flavours and drops.</td></tr>
+            <tr><td>Voice</td><td>Warm, lowercase, a little cheeky. Talks like an old friend who remembers everything.</td></tr>
+            <tr><td>Rhythm</td><td>5 Reels, 2 carousels and daily Stories a week; one creator collab a fortnight.</td></tr>
+          </tbody>
+        </table></div>
+        <h3 class="mt">Content pillars</h3>
+        <div class="g4 pillars" style="margin-top:10px">
+          <div class="card" style="--c:var(--jamun)"><div class="pct">30%</div><b>Memory Mondays</b><p class="sm" style="margin:0">A weekly series of shared childhood moments, across generations.</p></div>
+          <div class="card" style="--c:var(--kokum)"><div class="pct">30%</div><b>#MyPaperBoatMemory</b><p class="sm" style="margin:0">Followers' own memories, reposted with permission.</p></div>
+          <div class="card" style="--c:var(--teal)"><div class="pct">25%</div><b>Flavour stories</b><p class="sm" style="margin:0">Where each drink comes from and the moment it belongs to.</p></div>
+          <div class="card" style="--c:var(--mango)"><div class="pct">15%</div><b>Moments and drops</b><p class="sm" style="margin:0">Rain, festivals, launches and snack drops.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 CONTENT MATRIX -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="page"><span class="tab">Chapter 3</span>
+        <p class="chap">never run out of ideas</p>
+        <h2>The flavour × moment matrix.</h2>
+        <p class="lede">Every drink belongs to a memory. Pair any flavour with any moment and you get a post. This is how the team fills a calendar every month without guessing. Tap a square.</p>
+        <div class="matrix" id="matrix" role="grid" aria-label="Flavour and moment matrix"></div>
+        <div class="idea" id="ideaBox" aria-live="polite"><b>Tap a square</b><p class="sm" style="margin:6px 0 0">Each one becomes a real post idea, with a format and caption.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 RAIN RADAR -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="page"><span class="tab">Chapter 4</span>
+        <p class="chap">moment marketing</p>
+        <h2>When it rains, Paper Boat posts.</h2>
+        <p class="lede">A paper boat belongs to the rain. So when a city gets its first heavy rain of the week, Paper Boat publishes a local post and boosts it in that city only. Pick a city and the weather.</p>
+        <div class="radar mt">
+          <div>
+            <p style="font-weight:800; margin-bottom:6px">City</p>
+            <div id="cities" style="display:flex; gap:8px; flex-wrap:wrap" role="group" aria-label="City"></div>
+            <p style="font-weight:800; margin:14px 0 6px">Weather right now</p>
+            <div id="weather" style="display:flex; gap:8px; flex-wrap:wrap" role="group" aria-label="Weather"></div>
+            <div class="rule" id="rule" aria-live="polite"></div>
+          </div>
+          <div class="phone" aria-live="polite" id="phone"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 GROWTH LOOP -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="page"><span class="tab">Chapter 5</span>
+        <p class="chap">how the account grows itself</p>
+        <h2>The memory loop.</h2>
+        <p class="lede">Growth doesn't come from giveaways. It comes from a loop where every memory shared brings in someone new. Tap each step.</p>
+        <div class="loop mt" id="loop"></div>
+        <div class="loop-out" id="loopOut" aria-live="polite"></div>
+        <h3 class="mt">Creators</h3>
+        <div class="tw"><table>
+          <thead><tr><th>Tier</th><th>Who</th><th>What they make</th></tr></thead>
+          <tbody>
+            <tr><td>Home-food creators</td><td>Regional cooks, 20K–200K followers</td><td>"My mum's monsoon remedy" recipes with a Paper Boat drink.</td></tr>
+            <tr><td>Nostalgia creators</td><td>Comedy and "90s kids / 2000s kids" pages</td><td>Memory Monday collabs that split by generation.</td></tr>
+            <tr><td>Grandparent creators</td><td>Elderly creators with loyal audiences</td><td>Taste-tests: "the toughest critics in India".</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 COMMUNITY -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="page"><span class="tab">Chapter 6</span>
+        <p class="chap">community management</p>
+        <h2>Reply like an old friend.</h2>
+        <div class="g2 mt">
+          <div>
+            <div class="bub in"><small>@priya.k</small>the aam panna tastes exactly like my nani's. i'm emotional in a supermarket rn</div>
+            <div class="bub out"><small>paperboatdrinks</small>crying over aam panna is allowed here. tell us one thing your nani always said? 🥭</div>
+            <div class="bub in"><small>@rahul_24</small>bring back chilli guava or i riot</div>
+            <div class="bub out"><small>paperboatdrinks</small>noted. riot politely in our story poll this friday 🌶️</div>
+            <div class="bub in"><small>@user</small>price has gone up a lot 😕</div>
+            <div class="bub out"><small>paperboatdrinks</small>fair point, and thanks for saying it. sending you a DM with our current offers.</div>
+          </div>
+          <div class="card">
+            <h3>House rules</h3>
+            <ul style="margin:0; padding-left:1.1rem">
+              <li>Reply to every comment within the first hour after posting.</li>
+              <li>Ask a question back; memories grow in the replies.</li>
+              <li>Price or quality complaints go to DMs the same day.</li>
+              <li>Always ask before reposting someone's memory.</li>
+              <li>No "90s kids only" gatekeeping: every generation's memories count.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 MEASUREMENT -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="page"><span class="tab">Chapter 7</span>
+        <p class="chap">how we'll know</p>
+        <h2>12-month targets.</h2>
+        <div class="g4 mt">
+          <div class="card kpi"><div class="v">300K</div><div class="l">Instagram followers</div><div class="d">from ~200K</div></div>
+          <div class="card kpi"><div class="v">4%+</div><div class="l">Engagement rate by reach</div><div class="d">saves and shares weighted most</div></div>
+          <div class="card kpi"><div class="v">10K</div><div class="l">#MyPaperBoatMemory posts</div><div class="d">made by followers</div></div>
+          <div class="card kpi"><div class="v">35%</div><div class="l">Followers aged 18–24</div><div class="d">proof it's reaching a new generation</div></div>
+        </div>
+        <p class="note">Targets are proposals to be confirmed against the brand's own analytics in week one.</p>
+        <div class="sticky mt" style="max-width:640px"><b>The working files</b>This strategy comes with a 30-day content calendar, a creator tracker and a monthly report template in Excel, plus designed posts in Canva.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<style>
+.wf{--wf-card:var(--paper,var(--panel)); --wf-acc:var(--jamun,var(--indigo)); padding:clamp(56px,8vw,96px) 0}
+.wf .wf-card{background:var(--wf-card); border:2px solid var(--line); border-radius:18px; padding:clamp(18px,3vw,30px)}
+.wf h2{margin-bottom:.35em}
+.wf-tabs{display:flex; gap:8px; flex-wrap:wrap; margin:16px 0}
+.wf-tabs button,.wf-filter button{border:2px solid var(--line); background:var(--wf-card); border-radius:999px; padding:.4em .95em; font-weight:800; font-size:.86rem; cursor:pointer; color:var(--ink)}
+.wf-tabs button[aria-selected="true"],.wf-filter button[aria-pressed="true"]{background:var(--wf-acc); border-color:var(--wf-acc); color:#fff}
+.wf-filter{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px; align-items:center}
+.wf-filter span{font-size:.8rem; font-weight:800; color:var(--muted); margin-right:4px}
+.wf-panel{display:none} .wf-panel.show{display:block}
+.wf-scroll{overflow-x:auto; border:1px solid var(--line); border-radius:12px; max-height:560px; overflow-y:auto}
+.wf table{width:100%; border-collapse:collapse; font-size:.86rem; min-width:760px}
+.wf th{position:sticky; top:0; background:var(--wf-acc); color:#fff; text-align:left; padding:9px 10px; font-size:.74rem; letter-spacing:.04em; text-transform:uppercase; z-index:1}
+.wf td{padding:9px 10px; border-bottom:1px solid var(--line); vertical-align:top}
+.wf tr.calrow{cursor:pointer}
+.wf tr.calrow:hover td{background:color-mix(in srgb,var(--wf-acc) 7%,transparent)}
+.wf .cap-row td{background:color-mix(in srgb,var(--wf-acc) 6%,transparent); font-size:.9rem}
+.wf .tag{display:inline-block; border-radius:6px; padding:1px 7px; font-size:.72rem; font-weight:800; background:color-mix(in srgb,var(--wf-acc) 15%,transparent); color:var(--ink); white-space:nowrap}
+.wf .dl{display:none; margin-top:14px; border:0; border-radius:12px; background:var(--wf-acc); color:#fff; font-weight:800; padding:.7em 1.2em; text-decoration:none}
+.wf .dl.on{display:inline-block}
+.wf .wf-note{font-size:.82rem; color:var(--muted); margin-top:10px}
+.gal{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:18px}
+.gal figure{margin:0; background:var(--wf-card); border:2px solid var(--line); border-radius:16px; overflow:hidden; display:flex; flex-direction:column}
+.gal .shot{aspect-ratio:4/5; position:relative; overflow:hidden; display:flex}
+.gal .shot.story{aspect-ratio:9/13}
+.gal .shot img{width:100%; height:100%; object-fit:cover; display:block}
+.gal .mock{flex:1; display:flex; flex-direction:column; justify-content:space-between; padding:18px; font-weight:900; line-height:1.1; font-size:1.25rem}
+.gal .mock small{font-size:.72rem; font-weight:800; opacity:.9; letter-spacing:.02em}
+.gal figcaption{padding:14px}
+.gal figcaption b{display:block}
+.gal figcaption span{font-size:.85rem; color:var(--muted); display:block; margin:2px 0 10px}
+.gal .canva{display:inline-block; border-radius:999px; border:2px solid var(--wf-acc); color:var(--ink); font-weight:800; font-size:.82rem; padding:.35em .9em; text-decoration:none}
+.gal .canva:hover{background:var(--wf-acc); color:#fff}
+@media (max-width:900px){ .gal{grid-template-columns:1fr 1fr} }
+@media (max-width:560px){ .gal{grid-template-columns:1fr} }
+</style>
+
+<section class="wf" id="work">
+  <div class="wrap">
+    <div class="wf-card">
+      <h2>The working files</h2>
+      <p style="max-width:44rem; color:var(--muted)">This is what a client receives every month: the content calendar, the reporting template and the playbook. Filter the calendar, tap any post to read its caption, or download the full Excel file.</p>
+      <div class="wf-tabs" role="tablist" aria-label="Working files">
+        <button type="button" role="tab" id="wt1" aria-controls="wp1">30-day content calendar</button>
+        <button type="button" role="tab" id="wt2" aria-controls="wp2">Creator tracker</button>
+        <button type="button" role="tab" id="wt3" aria-controls="wp3">Monthly report</button>
+      </div>
+      <div class="wf-panel" id="wp1" role="tabpanel" aria-labelledby="wt1">
+        <div class="wf-filter" id="fPil" role="group" aria-label="Filter by pillar"></div>
+        <div class="wf-filter" id="fPla" role="group" aria-label="Filter by platform"></div>
+        <div class="wf-scroll"><table><thead><tr><th>Date</th><th>Platform</th><th>Format</th><th>Pillar</th><th>Post idea</th><th>Time</th><th>Goal</th></tr></thead><tbody id="calBody"></tbody></table></div>
+        <p class="wf-note" id="calCount" aria-live="polite"></p>
+      </div>
+      <div class="wf-panel" id="wp2" role="tabpanel" aria-labelledby="wt2"><div class="wf-scroll"><table><thead><tr><th>Creator</th><th>Niche</th><th>Followers</th><th>Format</th><th>Fee</th><th>Reach</th><th>Engagements</th><th>Eng. rate</th><th>Cost / engagement</th></tr></thead><tbody><tr><td>@example_homechef</td><td>Home food</td><td>48,000</td><td>Collab reel</td><td>₹15,000</td><td>62,000</td><td>4,100</td><td>6.6%</td><td>₹3.66</td></tr></tbody></table></div><p class="wf-note">Example row shown. The tracker calculates engagement rate and cost per engagement for every creator, so the brand can see which collabs are worth repeating.</p></div>
+      <div class="wf-panel" id="wp3" role="tabpanel" aria-labelledby="wt3"><div class="wf-scroll"><table style="min-width:520px"><thead><tr><th>Metric</th><th>How it is calculated</th></tr></thead><tbody><tr><td><b>Follower growth</b></td><td>(This month followers − last month) ÷ last month</td></tr><tr><td><b>Engagement rate</b></td><td>Engagements ÷ accounts reached</td></tr><tr><td><b>Save rate</b></td><td>Saves ÷ reach: is the content useful?</td></tr><tr><td><b>Share rate</b></td><td>Shares ÷ reach: is it worth passing on?</td></tr><tr><td><b>Click-through rate</b></td><td>Link clicks ÷ reach</td></tr><tr><td><b>Average reach per post</b></td><td>Reach ÷ posts published</td></tr></tbody></table></div><p class="wf-note">The Excel template calculates every rate automatically. Fill in the monthly numbers and it produces the report, plus a wins, misses and next-month section.</p></div>
+      <a class="dl" data-file="PaperBoat_Social_Media_Operations.xlsx">Download the full Excel file</a>
+    </div>
+
+    <div class="wf-card" style="margin-top:22px">
+      <h2>Designed posts</h2>
+      <p style="max-width:44rem; color:var(--muted)">Ready-to-publish creatives made in Canva, straight from the calendar above.</p>
+      <div class="gal"><figure><div class="shot" data-img="images/paperboat-memory-mondays.png" data-alt="Memory Mondays #01"><div class="mock" style="background:#FFB31A; color:#1F2A4D"><small>memory mondays #01</small><span>racing paper boats in the gutter after the rain.</span><small>who won? be honest.</small></div></div><figcaption><b>Memory Mondays #01</b><span>Weekly nostalgia series post</span><a class="canva" href="https://canva.link/7nvs8przokdqflf" target="_blank" rel="noopener">Open in Canva</a></figcaption></figure><figure><div class="shot" data-img="images/paperboat-memory-feature.png" data-alt="#MyPaperBoatMemory of the week"><div class="mock" style="background:#E0527A; color:#FFFFFF"><small>#MyPaperBoatMemory of the week</small><span>“every summer, nani made aam panna before we could go out.”</span><small>tell us yours in the comments.</small></div></div><figcaption><b>#MyPaperBoatMemory of the week</b><span>Follower memory, reposted with permission</span><a class="canva" href="https://canva.link/a86018aabeypxa4" target="_blank" rel="noopener">Open in Canva</a></figcaption></figure><figure><div class="shot story" data-img="images/paperboat-rain-story.png" data-alt="Rain trigger story: Mumbai"><div class="mock" style="background:#3FA9E0; color:#FFFFFF"><small>live in mumbai 🌧️</small><span>mumbai, it’s pouring. fold a boat. race it.</span><small>poll: tea or jaljeera?</small></div></div><figcaption><b>Rain trigger story: Mumbai</b><span>Real-time Story when it rains in a city</span><a class="canva" href="https://canva.link/d5bas499o6zpjfw" target="_blank" rel="noopener">Open in Canva</a></figcaption></figure></div>
+    </div>
+  </div>
+</section>
+<script>window.__WF={"cal": [{"date": "01 Oct", "day": "Thu", "platform": "Instagram", "format": "Reel", "pillar": "Memory Mondays", "idea": "Grandma’s summer rule: nimbu pani before anything else", "caption": "that one rule every nani had. what was yours? 🍋\n#MemoryMondays", "tags": "#PaperBoat #DrinksAndMemories #MemoryMondays", "time": "7:30 PM", "goal": "Shares"}, {"date": "02 Oct", "day": "Fri", "platform": "Instagram", "format": "Carousel", "pillar": "Flavour stories", "idea": "The story of Aam Panna, in 6 slides", "caption": "raw mango, roasted, spiced, remembered. swipe for the story in every sip.", "tags": "#AamPanna #PaperBoat #IndianFlavours", "time": "1:00 PM", "goal": "Saves"}, {"date": "03 Oct", "day": "Sat", "platform": "Instagram", "format": "Story poll", "pillar": "Community", "idea": "This or that: Jaljeera vs Aam Panna", "caption": "team jaljeera or team aam panna? vote. no fence-sitting.", "tags": "—", "time": "6:00 PM", "goal": "Replies"}, {"date": "04 Oct", "day": "Sun", "platform": "Instagram", "format": "Reel", "pillar": "Monsoon moments", "idea": "Rain in the city? The paper boat race", "caption": "it’s raining somewhere right now. fold one. race it. tag us.", "tags": "#FloatABoat #MonsoonMemories", "time": "Rain-triggered", "goal": "Reach"}, {"date": "05 Oct", "day": "Mon", "platform": "Instagram", "format": "Post", "pillar": "Community", "idea": "#MyPaperBoatMemory repost of the week", "caption": "this week’s memory, from @follower. what’s yours?", "tags": "#MyPaperBoatMemory", "time": "12:30 PM", "goal": "UGC"}, {"date": "06 Oct", "day": "Tue", "platform": "YouTube Shorts", "format": "Short", "pillar": "Memory Mondays", "idea": "Lunch break swaps: what was in your tiffin?", "caption": "the tiffin swap was the original trading market.", "tags": "#PaperBoat #Tiffin", "time": "7:00 PM", "goal": "Views"}, {"date": "07 Oct", "day": "Wed", "platform": "Instagram", "format": "Reel", "pillar": "Flavour stories", "idea": "How kokum is made, from farm to pouch", "caption": "the pink drink your coastal friends won’t shut up about.", "tags": "#Kokum #PaperBoat", "time": "7:30 PM", "goal": "Saves"}, {"date": "08 Oct", "day": "Thu", "platform": "Instagram", "format": "Reel", "pillar": "Memory Mondays", "idea": "The sound of a pressure cooker at 1 PM on a Sunday", "caption": "some sounds are basically a clock. #MemoryMondays", "tags": "#MemoryMondays #PaperBoat", "time": "7:30 PM", "goal": "Shares"}, {"date": "09 Oct", "day": "Fri", "platform": "Instagram", "format": "Carousel", "pillar": "Snack drops", "idea": "Chikki, then and now", "caption": "the chikki from the school gate, but grown up.", "tags": "#Chikki #PaperBoatSnacks", "time": "1:00 PM", "goal": "Clicks"}, {"date": "10 Oct", "day": "Sat", "platform": "Instagram", "format": "Story quiz", "pillar": "Community", "idea": "Guess the drink from the emoji", "caption": "🥭🔥🧂 = ?", "tags": "—", "time": "6:00 PM", "goal": "Replies"}, {"date": "11 Oct", "day": "Sun", "platform": "Instagram", "format": "Collab reel", "pillar": "Creators", "idea": "Creator: “my mum’s monsoon remedy”", "caption": "collab with a home-food creator", "tags": "#PaperBoat #MonsoonMemories", "time": "8:00 PM", "goal": "Reach"}, {"date": "12 Oct", "day": "Mon", "platform": "Instagram", "format": "Post", "pillar": "Community", "idea": "#MyPaperBoatMemory repost of the week", "caption": "another memory, another boat. keep them coming.", "tags": "#MyPaperBoatMemory", "time": "12:30 PM", "goal": "UGC"}, {"date": "13 Oct", "day": "Tue", "platform": "Instagram", "format": "Reel", "pillar": "Flavour stories", "idea": "Jaljeera: why it tastes like summer holidays", "caption": "cumin, black salt, mint and a lot of nostalgia.", "tags": "#Jaljeera #PaperBoat", "time": "7:30 PM", "goal": "Saves"}, {"date": "14 Oct", "day": "Wed", "platform": "LinkedIn", "format": "Post", "pillar": "Brand", "idea": "Why we still write stories on every pouch", "caption": "brand story for trade and hiring audiences", "tags": "#PaperBoat #BrandBuilding", "time": "9:00 AM", "goal": "Brand"}, {"date": "15 Oct", "day": "Thu", "platform": "Instagram", "format": "Reel", "pillar": "Memory Mondays", "idea": "The first day of school smell: new books and rain", "caption": "bottled it. almost.", "tags": "#MemoryMondays", "time": "7:30 PM", "goal": "Shares"}, {"date": "16 Oct", "day": "Fri", "platform": "Instagram", "format": "Carousel", "pillar": "Snack drops", "idea": "Festive gifting box reveal", "caption": "the gift that makes people say “where did you find this?”", "tags": "#PaperBoatGifting", "time": "1:00 PM", "goal": "Clicks"}, {"date": "17 Oct", "day": "Sat", "platform": "Instagram", "format": "Story poll", "pillar": "Community", "idea": "Which flavour should come back?", "caption": "we read every vote. seriously.", "tags": "—", "time": "6:00 PM", "goal": "Replies"}, {"date": "18 Oct", "day": "Sun", "platform": "Instagram", "format": "Reel", "pillar": "Monsoon moments", "idea": "Chai, pakode, and something tangy", "caption": "rain plan: sorted.", "tags": "#MonsoonMemories", "time": "Rain-triggered", "goal": "Reach"}, {"date": "19 Oct", "day": "Mon", "platform": "Instagram", "format": "Post", "pillar": "Community", "idea": "#MyPaperBoatMemory repost of the week", "caption": "memory of the week, from @follower.", "tags": "#MyPaperBoatMemory", "time": "12:30 PM", "goal": "UGC"}, {"date": "20 Oct", "day": "Tue", "platform": "YouTube Shorts", "format": "Short", "pillar": "Flavour stories", "idea": "Grandparents taste-test our drinks", "caption": "the toughest critics in India.", "tags": "#PaperBoat", "time": "7:00 PM", "goal": "Views"}, {"date": "21 Oct", "day": "Wed", "platform": "Instagram", "format": "Reel", "pillar": "Flavour stories", "idea": "Aam ras season, explained by a mango lover", "caption": "there are two kinds of people. this reel is for the second kind.", "tags": "#AamRas #PaperBoat", "time": "7:30 PM", "goal": "Saves"}, {"date": "22 Oct", "day": "Thu", "platform": "Instagram", "format": "Reel", "pillar": "Memory Mondays", "idea": "Games we played in power cuts", "caption": "antakshari champions, assemble.", "tags": "#MemoryMondays", "time": "7:30 PM", "goal": "Shares"}, {"date": "23 Oct", "day": "Fri", "platform": "Instagram", "format": "Carousel", "pillar": "Snack drops", "idea": "Dry fruit mix: the office drawer edition", "caption": "the 4 PM slump has a new rival.", "tags": "#PaperBoatSnacks", "time": "1:00 PM", "goal": "Clicks"}, {"date": "24 Oct", "day": "Sat", "platform": "Instagram", "format": "Story quiz", "pillar": "Community", "idea": "Finish the lyric from the ad jingle", "caption": "how well do you know us?", "tags": "—", "time": "6:00 PM", "goal": "Replies"}, {"date": "25 Oct", "day": "Sun", "platform": "Instagram", "format": "Collab reel", "pillar": "Creators", "idea": "Creator: recreate a childhood recipe with a Paper Boat drink", "caption": "collab with a recipe creator", "tags": "#PaperBoat", "time": "8:00 PM", "goal": "Reach"}, {"date": "26 Oct", "day": "Mon", "platform": "Instagram", "format": "Post", "pillar": "Community", "idea": "#MyPaperBoatMemory repost of the week", "caption": "the boat keeps sailing. share yours.", "tags": "#MyPaperBoatMemory", "time": "12:30 PM", "goal": "UGC"}, {"date": "27 Oct", "day": "Tue", "platform": "Instagram", "format": "Reel", "pillar": "Flavour stories", "idea": "Neer more: the South Indian summer secret", "caption": "buttermilk, but make it a hug.", "tags": "#NeerMore #PaperBoat", "time": "7:30 PM", "goal": "Saves"}, {"date": "28 Oct", "day": "Wed", "platform": "Instagram", "format": "Carousel", "pillar": "Brand", "idea": "This month’s memories, a thank-you", "caption": "your memories made our month. here are our favourites.", "tags": "#DrinksAndMemories", "time": "1:00 PM", "goal": "Community"}, {"date": "29 Oct", "day": "Thu", "platform": "Instagram", "format": "Reel", "pillar": "Memory Mondays", "idea": "The last day of holidays feeling", "caption": "the sunday-scaries, childhood edition.", "tags": "#MemoryMondays", "time": "7:30 PM", "goal": "Shares"}, {"date": "30 Oct", "day": "Fri", "platform": "Instagram", "format": "Story", "pillar": "Community", "idea": "Month recap and next month teaser", "caption": "see you next month. bring your memories.", "tags": "—", "time": "6:00 PM", "goal": "Retention"}]};</script>
+
+<script>
+(function(){
+  var W=window.__WF; function $(id){return document.getElementById(id);}
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  /* tabs */
+  var tabs=[].slice.call(document.querySelectorAll('.wf-tabs button'));
+  tabs.forEach(function(t,i){ t.addEventListener('click',function(){ sel(i); }); t.addEventListener('keydown',function(e){ if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ e.preventDefault(); var j=(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length; sel(j); tabs[j].focus(); } }); });
+  function sel(i){ tabs.forEach(function(t,j){ t.setAttribute('aria-selected',j===i); t.tabIndex=j===i?0:-1; document.getElementById(t.getAttribute('aria-controls')).classList.toggle('show',j===i); }); }
+  sel(0);
+  /* calendar */
+  var fP='All', fL='All';
+  function uniq(k){ var s=[]; W.cal.forEach(function(r){ if(s.indexOf(r[k])<0) s.push(r[k]); }); return s; }
+  function filt(id,vals,cur,set){ $(id).innerHTML='<span>'+(id==='fPil'?'Pillar':'Platform')+'</span>'+['All'].concat(vals).map(function(v){ return '<button type="button" aria-pressed="'+(v===cur)+'" data-v="'+esc(v)+'">'+esc(v)+'</button>'; }).join('');
+    $(id).onclick=function(e){ var b=e.target.closest('button'); if(!b) return; set(b.getAttribute('data-v')); render(); }; }
+  var open=-1;
+  function render(){
+    filt('fPil',uniq('pillar'),fP,function(v){fP=v;}); filt('fPla',uniq('platform'),fL,function(v){fL=v;});
+    var rows=W.cal.map(function(r,i){return [r,i];}).filter(function(x){ return (fP==='All'||x[0].pillar===fP)&&(fL==='All'||x[0].platform===fL); });
+    $('calBody').innerHTML=rows.map(function(x){ var r=x[0], i=x[1];
+      return '<tr class="calrow" tabindex="0" data-i="'+i+'" aria-expanded="'+(open===i)+'"><td><b>'+esc(r.date)+'</b><br><span style="color:var(--muted)">'+esc(r.day)+'</span></td><td>'+esc(r.platform)+'</td><td>'+esc(r.format)+'</td><td><span class="tag">'+esc(r.pillar)+'</span></td><td>'+esc(r.idea)+'</td><td>'+esc(r.time)+'</td><td>'+esc(r.goal)+'</td></tr>'+
+        (open===i?'<tr class="cap-row"><td></td><td colspan="6"><b>Caption draft:</b> '+esc(r.caption).replace(/\n/g,'<br>')+'<br><b>Hashtags:</b> '+esc(r.tags)+'</td></tr>':''); }).join('');
+    $('calCount').textContent=rows.length+' of '+W.cal.length+' posts shown. Tap a row to read the caption.';
+  }
+  $('calBody').addEventListener('click',function(e){ var tr=e.target.closest('tr.calrow'); if(!tr) return; var i=+tr.getAttribute('data-i'); open=open===i?-1:i; render(); var t=document.querySelector('tr.calrow[data-i="'+i+'"]'); if(t) t.focus(); });
+  $('calBody').addEventListener('keydown',function(e){ if((e.key==='Enter'||e.key===' ')&&e.target.matches('tr.calrow')){ e.preventDefault(); e.target.click(); } });
+  render();
+  /* show download button only where the file is hosted alongside the page */
+  document.querySelectorAll('.dl[data-file]').forEach(function(a){ var f=a.getAttribute('data-file');
+    try{ fetch(f,{method:'HEAD'}).then(function(r){ if(r.ok){ a.setAttribute('href',f); a.setAttribute('download',''); a.classList.add('on'); } }).catch(function(){}); }catch(e){} });
+  /* gallery images: use exported PNG if present, else keep the preview card */
+  document.querySelectorAll('.shot[data-img]').forEach(function(s){ var im=new Image(); im.alt=s.getAttribute('data-alt'); im.onload=function(){ s.innerHTML=''; s.appendChild(im); }; im.src=s.getAttribute('data-img'); });
+})();
+</script>
+
+<section id="campaign-kit">
+    <div class="wrap">
+      <div class="page"><span class="tab">Campaign kit</span>
+        <p class="chap">more memories, ready to post</p>
+        <h2>The campaign kit.</h2>
+      <p class="lede">Four kinds of assets I designed for this strategy, including new variations of the post series above: an Instagram carousel, Stories, widescreen pieces and a print piece. Scroll each row, or open the originals in Canva.</p>
+      <div class="ck-g">
+        <div class="ck-gh"><b>Instagram carousel</b><span><a href="https://www.canva.com/d/SeZ3dV8Dtnf7b7m" target="_blank" rel="noopener">View in Canva ↗</a><a href="canva-kit/carousel.pdf" download>PDF</a></span></div>
+        <div class="ck-strip" tabindex="0" aria-label="Instagram carousel, scroll sideways">
+          <figure><img src="canva-kit/carousel/01.jpg" alt="Instagram carousel, Every generation had a paper boat" loading="lazy"><figcaption>Every generation had a paper boat</figcaption></figure>
+          <figure><img src="canva-kit/carousel/02.jpg" alt="Instagram carousel, Memory Mondays #02" loading="lazy"><figcaption>Memory Mondays #02</figcaption></figure>
+          <figure><img src="canva-kit/carousel/03.jpg" alt="Instagram carousel, Memory Mondays #03" loading="lazy"><figcaption>Memory Mondays #03</figcaption></figure>
+          <figure><img src="canva-kit/carousel/04.jpg" alt="Instagram carousel, #MyPaperBoatMemory of the week" loading="lazy"><figcaption>#MyPaperBoatMemory of the week</figcaption></figure>
+          <figure><img src="canva-kit/carousel/05.jpg" alt="Instagram carousel, Flavour × moment matrix" loading="lazy"><figcaption>Flavour × moment matrix</figcaption></figure>
+          <figure><img src="canva-kit/carousel/06.jpg" alt="Instagram carousel, 12-month targets" loading="lazy"><figcaption>12-month targets</figcaption></figure>
+        </div>
+      </div>
+      <div class="ck-g">
+        <div class="ck-gh"><b>Rain-trigger Stories</b><span><a href="https://www.canva.com/d/WI3DfcUKgjualcK" target="_blank" rel="noopener">View in Canva ↗</a><a href="canva-kit/stories.pdf" download>PDF</a></span></div>
+        <div class="ck-strip" tabindex="0" aria-label="Rain-trigger Stories, scroll sideways">
+          <figure><img src="canva-kit/stories/01.jpg" alt="Rain-trigger Stories, Live in Delhi" loading="lazy"><figcaption>Live in Delhi</figcaption></figure>
+          <figure><img src="canva-kit/stories/02.jpg" alt="Rain-trigger Stories, Live in Bengaluru" loading="lazy"><figcaption>Live in Bengaluru</figcaption></figure>
+          <figure><img src="canva-kit/stories/03.jpg" alt="Rain-trigger Stories, Live in Kolkata" loading="lazy"><figcaption>Live in Kolkata</figcaption></figure>
+        </div>
+      </div>
+      <div class="ck-g">
+        <div class="ck-gh"><b>Out-of-home and strategy</b><span><a href="https://www.canva.com/d/LwMW6olZStF2NaW" target="_blank" rel="noopener">View in Canva ↗</a><a href="canva-kit/widescreen.pdf" download>PDF</a></span></div>
+        <div class="ck-strip" tabindex="0" aria-label="Out-of-home and strategy, scroll sideways">
+          <figure><img src="canva-kit/widescreen/01.jpg" alt="Out-of-home and strategy, Mumbai bus shelter, in the rain" loading="lazy"><figcaption>Mumbai bus shelter, in the rain</figcaption></figure>
+          <figure><img src="canva-kit/widescreen/02.jpg" alt="Out-of-home and strategy, The memory loop" loading="lazy"><figcaption>The memory loop</figcaption></figure>
+        </div>
+      </div>
+      <div class="ck-g">
+        <div class="ck-gh"><b>Print: fold-a-memory sheet</b><span><a href="https://www.canva.com/d/wIQYFVFXWGAvikX" target="_blank" rel="noopener">View in Canva ↗</a><a href="canva-kit/print.pdf" download>PDF</a></span></div>
+        <div class="ck-strip" tabindex="0" aria-label="Print: fold-a-memory sheet, scroll sideways">
+          <figure><img src="canva-kit/print/01.jpg" alt="Print: fold-a-memory sheet, Fold-a-memory sheet, inside every multipack" loading="lazy"><figcaption>Fold-a-memory sheet, inside every multipack</figcaption></figure>
+        </div>
+      </div>
+      <p style="margin-top:2rem"><a href="https://www.canva.com/d/84mWTID-NMi4Fmd" target="_blank" rel="noopener">See all my work ↗</a></p>
+      </div>
+    </div>
+  </section>
+
+<footer>
+  <div class="wrap">
+    <p class="hand" style="font-size:2.4rem; color:var(--jamun); margin:0">every generation had a paper boat.</p>
+    <p style="margin-top:12px"><b>Strategy by Akshara Singh</b>, digital marketer · <a href="mailto:Akshara.singh.marketing@gmail.com">Akshara.singh.marketing@gmail.com</a></p>
+    <p class="note" style="max-width:52rem">An unsolicited social media strategy created for portfolio purposes. Not affiliated with, commissioned by or endorsed by Paper Boat or Hector Beverages. Brand figures are from public sources; targets, handles and replies are illustrative.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  function $(id){return document.getElementById(id);}
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* rain drops */
+  if(!reduce){ var d=''; for(var i=0;i<26;i++){ d+='<i style="left:'+(Math.random()*100)+'%; animation-delay:'+(Math.random()*1.1).toFixed(2)+'s"></i>'; } $('drops').innerHTML=d; }
+
+  /* memory prompts */
+  var mems=['the tiffin swap at lunch break','racing paper boats in the gutter after rain','the first day of summer holidays','antakshari during a power cut','the ice-cream cart bell','cartoons before school','grandma\u2019s pickle jars on the terrace','the smell of new notebooks','waiting for dial-up to connect','sharing one earphone on the school bus'];
+  var mi=-1;
+  $('fold').addEventListener('click',function(){ mi=(mi+1+Math.floor(Math.random()*3))%mems.length; $('memout').textContent='"'+mems[mi]+'"'; });
+
+  document.getElementById('toWork').addEventListener('click',function(){ document.getElementById('work').scrollIntoView({behavior:reduce?'auto':'smooth'}); });
+
+  /* matrix */
+  var fl=['Aam panna','Jaljeera','Kokum','Chikki'];
+  var mo=[['🌧️','First rain'],['🎒','School days'],['👵','Grandma\u2019s house'],['⚡','Power cuts']];
+  var ideas={
+    '0-0':['Reel','Aam panna + the first rain: the smell of wet mud and raw mango.','"first rain, first sip. which came first for you?"'],
+    '0-1':['Carousel','"Things that were always in your school bag", ending with aam panna.','"swipe till you find your childhood."'],
+    '0-2':['Reel','Nani\u2019s summer rule: aam panna before you go out in the sun.','"every nani had one rule. what was yours?"'],
+    '0-3':['Story poll','Power cut + mango season: best way to survive?','"aam panna or a hand fan? choose one."'],
+    '1-0':['Reel','Street-side jaljeera in the rain vs the Paper Boat version.','"same memory, cleaner glass."'],
+    '1-1':['Reel','The school canteen jaljeera line, recreated.','"tag the friend who always cut the line."'],
+    '1-2':['Carousel','Grandma\u2019s digestive secrets, ranked.','"jaljeera after a big lunch: science or tradition?"'],
+    '1-3':['Reel','Power cut antakshari with a pouch of jaljeera.','"start with the letter J. go."'],
+    '2-0':['Reel','Konkan monsoon and kokum: a coastal love story.','"the pink drink your coastal friends won\u2019t stop talking about."'],
+    '2-1':['Carousel','Lunchbox map of India: what everyone drank.','"find your state. argue in the comments."'],
+    '2-2':['Reel','A Konkani grandmother makes kokum sherbet her way.','"the original recipe, and ours."'],
+    '2-3':['Story quiz','Guess the drink by colour, in the dark.','"hint: it\u2019s very pink."'],
+    '3-0':['Reel','Rain + chikki + window seat.','"crunch sounds better when it\u2019s raining."'],
+    '3-1':['Carousel','The school-gate snacks hall of fame.','"chikki was the original energy bar."'],
+    '3-2':['Reel','Grandpa\u2019s chikki stash, finally found.','"every house had a secret snack drawer."'],
+    '3-3':['Reel','Power cut snacks tier list.','"chikki is S-tier. fight us."']
+  };
+  var mh='<div class="h"></div>'+mo.map(function(m){return '<div class="h">'+m[0]+' '+m[1]+'</div>';}).join('');
+  fl.forEach(function(f,i){ mh+='<div class="rh">'+f+'</div>'+mo.map(function(m,j){ return '<button class="cell" type="button" data-k="'+i+'-'+j+'" aria-pressed="false" aria-label="'+f+' and '+m[1]+'">'+m[0]+'</button>'; }).join(''); });
+  $('matrix').innerHTML=mh;
+  $('matrix').addEventListener('click',function(e){ var b=e.target.closest('.cell'); if(!b) return; var k=b.getAttribute('data-k'), id=ideas[k], p=k.split('-');
+    document.querySelectorAll('.cell').forEach(function(x){ x.setAttribute('aria-pressed',x===b); });
+    $('ideaBox').innerHTML='<b>'+fl[+p[0]]+' × '+mo[+p[1]][1]+'</b><p style="margin:8px 0 4px"><span class="fmt">'+id[0]+'</span>'+id[1]+'</p><p class="hand" style="font-size:1.5rem; color:var(--kokum); margin:0">caption: '+id[2]+'</p>'; });
+
+  /* rain radar */
+  var cities=['Mumbai','Bengaluru','Kolkata','Delhi','Chennai'], wx=[['🌧️','Heavy rain'],['🌦️','Drizzle'],['☀️','Hot and sunny']];
+  var cur={c:0,w:0};
+  var posts={
+    '0':['#7CC4E8','mumbai, it\u2019s pouring. local train windows, vada pav, and a boat race in the gutter.','🌧️ Mumbai rain','fold a boat, send us the video. kokum on us for the best one.'],
+    '1':['#1D8C8C','bengaluru rain at 5 PM: guaranteed. like your traffic.','🌧️ Bengaluru rain','stuck in traffic? here\u2019s a memory to pass the time.'],
+    '2':['#5B2A86','kolkata rain: adda, jhalmuri, and a window to watch it from.','🌧️ Kolkata rain','tell us your favourite rain-day snack.'],
+    '3':['#E0527A','delhi finally got rain. everyone, go outside and stand in it.','🌧️ Delhi rain','this is your sign to float a boat.'],
+    '4':['#FFB31A','chennai rain, filter coffee, and a very old paper boat memory.','🌧️ Chennai rain','share your rain memory with #MyPaperBoatMemory.']
+  };
+  function chips(id,arr,key){ $(id).innerHTML=arr.map(function(a,i){ var lbl=typeof a==='string'?a:a[0]+' '+a[1]; return '<button class="chip" type="button" data-i="'+i+'" aria-pressed="'+(cur[key]===i)+'">'+lbl+'</button>'; }).join(''); }
+  function radar(){
+    chips('cities',cities,'c'); chips('weather',wx,'w');
+    var p=posts[cur.c], city=cities[cur.c];
+    if(cur.w===0){
+      $('phone').innerHTML='<div class="ph"><i></i>paperboatdrinks<span style="margin-left:auto; font-weight:600; opacity:.6">Sponsored · '+city+'</span></div><div class="art" style="background:'+p[0]+'"><small>'+p[2]+'</small><span>'+p[1]+'</span><small>🛶 paper boat</small></div><div class="cap"><b>paperboatdrinks</b> '+p[3]+' #MyPaperBoatMemory</div>';
+      $('rule').innerHTML='<b>Trigger fires ✅</b> Heavy rain detected in '+city+'. The pre-approved local post goes live and gets a small boost to people within 20 km. Budget cap per city per week.';
+    } else if(cur.w===1){
+      $('phone').innerHTML='<div class="ph"><i></i>paperboatdrinks</div><div class="art" style="background:#B8D8EA; color:#1F2A4D"><small>Story, organic</small><span>a little drizzle in '+city.toLowerCase()+'. perfect boat-folding weather.</span><small>poll: tea or jaljeera?</small></div><div class="cap">Organic Story only, no spend.</div>';
+      $('rule').innerHTML='<b>Soft trigger</b> Drizzle gets a Story and a poll, but no ad spend. We save the budget for real rain.';
+    } else {
+      $('phone').innerHTML='<div class="ph"><i></i>paperboatdrinks</div><div class="art" style="background:#FFB31A; color:#1F2A4D"><small>Regular schedule</small><span>it\u2019s hot in '+city.toLowerCase()+'. aam panna weather.</span><small>🥭</small></div><div class="cap">The normal calendar runs, with the heat angle.</div>';
+      $('rule').innerHTML='<b>No rain trigger</b> The regular content calendar runs. On hot days, the "summer cooler" posts move up the queue instead.';
+    }
+  }
+  $('cities').addEventListener('click',function(e){ var b=e.target.closest('[data-i]'); if(!b) return; cur.c=+b.getAttribute('data-i'); radar(); $('cities').querySelector('[data-i="'+cur.c+'"]').focus(); });
+  $('weather').addEventListener('click',function(e){ var b=e.target.closest('[data-i]'); if(!b) return; cur.w=+b.getAttribute('data-i'); radar(); $('weather').querySelector('[data-i="'+cur.w+'"]').focus(); });
+  radar();
+
+  /* loop */
+  var loop=[['📣','Prompt','Memory Monday asks a question: "what did you trade from your tiffin?"'],['💬','Reply','Followers answer in comments and send photos with #MyPaperBoatMemory.'],['🎨','Feature','The best memory becomes an illustrated post, credited to its author (with permission).'],['🔁','Share','The featured follower shares it with their friends. Of course they do: it\u2019s their story.'],['🆕','Follow','Their friends discover Paper Boat, follow, and answer next Monday\u2019s prompt.']];
+  $('loop').innerHTML=loop.map(function(l,i){ return '<button type="button" data-i="'+i+'" aria-pressed="false"><span aria-hidden="true">'+l[0]+'</span>'+(i+1)+'. '+l[1]+'</button>'; }).join('');
+  $('loop').addEventListener('click',function(e){ var b=e.target.closest('[data-i]'); if(!b) return; var l=loop[+b.getAttribute('data-i')];
+    document.querySelectorAll('#loop button').forEach(function(x){ x.setAttribute('aria-pressed',x===b); }); $('loopOut').innerHTML='<b>'+l[1]+':</b> '+l[2]; });
+})();
+</script>
+<a class="as-allwork" href="../../#work" aria-label="Back to all of Akshara Singh's work">&larr; All work</a>
+<style>.as-allwork{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:2147483000;display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:999px;background:rgba(17,17,16,.88);color:#F5F2EC!important;font:600 14px/1 system-ui,-apple-system,"Segoe UI",sans-serif;text-decoration:none!important;letter-spacing:0;box-shadow:0 8px 24px rgba(0,0,0,.25);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:transform .2s}.as-allwork:hover{transform:translateY(-2px)}.as-allwork:focus-visible{outline:2px solid #E9B872;outline-offset:3px}@media print{.as-allwork{display:none}}</style>
+</body>
+</html>
