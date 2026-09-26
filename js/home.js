@@ -37,10 +37,16 @@
     '<div><b>4</b><span>disciplines: campaigns, brand, social, CRM</span></div>' +
     '<div><b>100+</b><span>finished creative assets</span></div>';
 
+  // show 6 projects first; the rest on request (and whenever a filter is used)
+  var workSec = document.getElementById('work'), more = document.getElementById('moreBtn');
+  grid.querySelectorAll('.card').forEach(function (c, i) { if (i >= 6) c.classList.add('extra'); });
+  if (more) more.addEventListener('click', function () { workSec.classList.add('all'); more.setAttribute('aria-expanded', 'true'); });
+
   var btns = document.querySelectorAll('.filters button');
   btns.forEach(function (b) {
     b.addEventListener('click', function () {
       var f = b.getAttribute('data-f');
+      workSec.classList.add('all');
       btns.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
       grid.querySelectorAll('.card').forEach(function (c) {
         c.hidden = !(f === 'all' || c.getAttribute('data-type').split(' ').indexOf(f) > -1);

@@ -66,6 +66,30 @@
     });
   });
 
+  // folding sections: open on click, or when a menu link points at them
+  function openFold(sec, on) {
+    if (!sec || !sec.classList.contains('fold')) return;
+    var open = on === undefined ? !sec.classList.contains('open') : on;
+    sec.classList.toggle('open', open);
+    var b = sec.querySelector('.fold-btn');
+    if (b) b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  document.querySelectorAll('.fold-btn').forEach(function (b) {
+    b.addEventListener('click', function () { openFold(b.closest('.fold')); });
+  });
+  function fromHash() {
+    var id = location.hash.slice(1), el = id && document.getElementById(id);
+    if (el) openFold(el.classList.contains('fold') ? el : el.closest('.fold'), true);
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var el = document.getElementById(a.getAttribute('href').slice(1));
+      if (el) openFold(el.classList.contains('fold') ? el : el.closest('.fold'), true);
+    });
+  });
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+
   // campaign tabs
   var tabs = document.querySelectorAll('.tabs [role="tab"]');
   tabs.forEach(function (t) {
