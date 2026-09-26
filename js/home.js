@@ -30,7 +30,8 @@
 
   var brands = P.length, markets = {};
   P.forEach(function (p) { (p.market || '').split(/[·+]/).forEach(function (m) { m = m.trim(); if (m && m !== 'Global') markets[m] = 1; }); });
-  document.getElementById('stats').innerHTML =
+  var st = document.getElementById('stats');
+  if (st) st.innerHTML =
     '<div><b>' + brands + '</b><span>brand projects</span></div>' +
     '<div><b>' + Object.keys(markets).length + '</b><span>markets, plus global work</span></div>' +
     '<div><b>4</b><span>disciplines: campaigns, brand, social, CRM</span></div>' +
@@ -46,5 +47,5 @@
       });
     });
   });
-  document.getElementById('yr').textContent = new Date().getFullYear();
+  var yr = document.getElementById('yr'); if (yr) yr.textContent = new Date().getFullYear();
 })();
