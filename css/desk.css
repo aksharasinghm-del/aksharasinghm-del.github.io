@@ -274,6 +274,7 @@ h2{font-size:clamp(36px,4.8vw,64px);line-height:1;margin:10px 0 0}
 .goal span{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sun)}
 .goal b{display:block;font-family:var(--display);font-weight:800;font-size:56px;line-height:1;color:#fff;margin:6px 0 2px}
 .goal em{font-style:normal;display:block;font-size:15px}
+.goal.own em{font-family:var(--display);font-weight:700;font-size:18px;line-height:1.35;color:#fff;margin-top:8px}
 .goal small{display:block;margin-top:10px;font-size:12px;opacity:.75}
 .road{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:36px;border:1.5px solid var(--ink);border-radius:6px;overflow:hidden}
 .road.ev{grid-template-columns:repeat(3,minmax(0,1fr))}
