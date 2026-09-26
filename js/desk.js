@@ -22,7 +22,8 @@
     cup: function () {
       return '<svg viewBox="0 0 240 220"><circle cx="110" cy="112" r="100" fill="#F4F1EA"/><circle cx="110" cy="112" r="86" fill="none" stroke="#1D2B53" stroke-width="3" opacity=".5"/>' +
         '<rect x="160" y="100" width="62" height="26" rx="13" fill="#FBFAF7"/><circle cx="110" cy="112" r="66" fill="#FBFAF7"/><circle cx="110" cy="112" r="55" fill="#6B4226"/><circle cx="110" cy="112" r="48" fill="#8A5A36"/>' +
-        '<path d="M110 136 C84 118 86 94 102 94 C108 94 110 100 110 104 C110 100 112 94 118 94 C134 94 136 118 110 136Z" fill="#F3E3CC"/></svg>';
+        '<path d="M110 136 C84 118 86 94 102 94 C108 94 110 100 110 104 C110 100 112 94 118 94 C134 94 136 118 110 136Z" fill="#F3E3CC"/>' +
+        '<g class="steam" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"><path d="M92 70 q-10 -16 0 -30 q10 -14 0 -30"/><path d="M112 66 q-10 -16 0 -30 q10 -14 0 -30"/><path d="M132 70 q-10 -16 0 -30 q10 -14 0 -30"/></g></svg>';
     },
     pass: function () {
       return '<svg viewBox="0 0 360 150"><rect width="360" height="150" rx="12" fill="#FFFFFF"/><path d="M0 12 A12 12 0 0 1 12 0 H270 V150 H12 A12 12 0 0 1 0 138Z" fill="#FFFFFF"/>' +
