@@ -115,14 +115,14 @@
     }
     requestAnimationFrame(step);
   }
-  var watch = document.querySelectorAll('.results, .contact');
+  var watch = document.querySelectorAll('.proof, .results, .contact');
   if ('IntersectionObserver' in window && !reduce) {
     document.documentElement.classList.add('anim');
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         if (!e.isIntersecting) return;
         e.target.classList.add('seen');
-        e.target.querySelectorAll('.circ').forEach(countUp);
+        e.target.querySelectorAll('.circ, .pnum').forEach(countUp);
         io.unobserve(e.target);
       });
     }, { threshold: .3 });

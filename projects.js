@@ -49,15 +49,6 @@ window.PROJECTS = [
     url: "work/loreal/"
   },
   {
-    slug: "dove",
-    brand: "Dove Men+Care",
-    title: "Shower thoughts. Not skin thoughts.",
-    summary: "A spec campaign that meets men where they already think about themselves.",
-    type: ["campaign"],
-    market: "Global",
-    url: "work/dove/"
-  },
-  {
     slug: "zara",
     brand: "Zara",
     title: "Still Zara",
@@ -65,6 +56,15 @@ window.PROJECTS = [
     type: ["brand"],
     market: "Global",
     url: "work/zara/"
+  },
+  {
+    slug: "dove",
+    brand: "Dove Men+Care",
+    title: "Shower thoughts. Not skin thoughts.",
+    summary: "A spec campaign that meets men where they already think about themselves.",
+    type: ["campaign"],
+    market: "Global",
+    url: "work/dove/"
   },
   {
     slug: "bata",

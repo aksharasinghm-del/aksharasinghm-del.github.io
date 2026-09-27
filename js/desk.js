@@ -99,7 +99,7 @@
     { slug: 'zara', anim: 'swing', art: ART.tag(), x: 89, y: 53, w: 6.5, r: 9, note: 'still zara' },
     { slug: 'loreal', anim: 'lip', art: ART.lipstick(), x: 59, y: 80, w: 13, r: -16, note: 'unrated' },
     { slug: 'dove', anim: 'soap', art: ART.soap(), x: 46, y: 82, w: 10, r: 5, note: 'shower thoughts' },
-    { slug: 'apple', anim: 'buzz', art: ART.phone(), x: 36, y: 75, w: 5.6, r: 12, note: 'apple offline' },
+    { slug: 'apple', anim: 'buzz', art: ART.phone(), x: 35.5, y: 79, w: 5.6, r: 12, note: 'apple offline' },
     { href: '#contact', anim: 'mail', art: ART.envelope(), x: 76, y: 77, w: 13, r: -5, brand: 'Contact me', note: 'say hi' }
   ];
 

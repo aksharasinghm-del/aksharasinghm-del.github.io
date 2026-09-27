@@ -19,6 +19,7 @@
 
   var grid = document.getElementById('grid');
   P.forEach(function (p) {
+    if (p.featured) return;
     var a = document.createElement('a');
     a.className = 'card';
     a.href = p.url;
@@ -37,9 +38,9 @@
     '<div><b>4</b><span>disciplines: campaigns, brand, social, CRM</span></div>' +
     '<div><b>100+</b><span>finished creative assets</span></div>';
 
-  // show 6 projects first; the rest on request (and whenever a filter is used)
+  // show 3 projects first; the rest on request (and whenever a filter is used)
   var workSec = document.getElementById('work'), more = document.getElementById('moreBtn');
-  grid.querySelectorAll('.card').forEach(function (c, i) { if (i >= 6) c.classList.add('extra'); });
+  grid.querySelectorAll('.card').forEach(function (c, i) { if (i >= 3) c.classList.add('extra'); });
   if (more) more.addEventListener('click', function () { workSec.classList.add('all'); more.setAttribute('aria-expanded', 'true'); });
 
   var btns = document.querySelectorAll('.filters button');
