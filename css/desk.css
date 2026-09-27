@@ -537,3 +537,25 @@ html.js .work:not(.all) .card.extra{display:none}
 .ptag.open .tag-back{transform:rotateY(0deg) translateZ(1px)}
 .ptag:not(.open):hover .tag-front{background:#F6C45A}
 .ptag:focus-visible{outline:3px solid var(--ink);outline-offset:4px;border-radius:10px 40px 40px 10px}
+
+/* enquiry form */
+.enq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 22px;margin-top:40px;padding:36px;background:#fff;border:1.5px solid var(--ink);border-radius:8px;box-shadow:8px 8px 0 var(--ink);scroll-margin-top:90px}
+.enq-head{grid-column:1/-1;margin-bottom:4px}
+.enq-head h3{font-family:var(--display);font-size:clamp(26px,3vw,38px);letter-spacing:-.02em;margin:4px 0 6px}
+.enq-head p:last-child{color:var(--muted)}
+.enq label{display:grid;gap:7px}
+.enq label span{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.enq label em{font-style:normal;font-weight:400;letter-spacing:0;text-transform:none}
+.enq input,.enq select,.enq textarea{font:inherit;font-size:17px;color:var(--ink);background:var(--paper);border:1.5px solid var(--ink);border-radius:6px;padding:12px 14px;width:100%}
+.enq textarea{resize:vertical;min-height:130px}
+.enq input:focus,.enq select:focus,.enq textarea:focus{outline:3px solid var(--sun);outline-offset:1px}
+.enq .wide{grid-column:1/-1}
+.enq-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.enq-foot{display:flex;flex-wrap:wrap;align-items:center;gap:18px}
+.enq button{font:inherit;font-weight:700;font-size:17px;padding:14px 26px;background:var(--sun);color:var(--ink);border:1.5px solid var(--ink);border-radius:999px;box-shadow:4px 4px 0 var(--ink);cursor:pointer;transition:transform .2s,box-shadow .2s}
+.enq button:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.enq button:disabled{opacity:.6;cursor:wait;transform:none}
+.enq-status{font-weight:600}
+.enq-status.ok{color:var(--mat)}.enq-status.err{color:#B3261E}
+.enq.sent label,.enq.sent .enq-foot button{display:none}
+@media (max-width:760px){.enq{grid-template-columns:minmax(0,1fr);padding:26px 20px}}

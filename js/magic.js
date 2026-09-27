@@ -91,6 +91,33 @@
     });
   });
 
+  // enquiry form: send without leaving the page, and pre-pick a package when a pricing link asks for one
+  var enq = document.getElementById('enquire');
+  if (enq) {
+    var sel = document.getElementById('enqInterest'), status = enq.querySelector('.enq-status'), btn = enq.querySelector('button');
+    document.querySelectorAll('[data-interest]').forEach(function (a) {
+      a.addEventListener('click', function () { sel.value = a.getAttribute('data-interest'); });
+    });
+    enq.addEventListener('submit', function (e) {
+      if (!window.fetch) return;
+      e.preventDefault();
+      if (enq._honey.value) return;
+      btn.disabled = true; status.className = 'enq-status'; status.textContent = 'Sending…';
+      fetch(enq.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+        method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(enq)
+      }).then(function (r) { return r.json().then(function (d) { if (!r.ok || String(d.success) === 'false') throw d; }); })
+        .then(function () {
+          enq.classList.add('sent'); status.className = 'enq-status ok';
+          status.textContent = "Thank you, your enquiry is on its way. I'll reply within one working day.";
+        })
+        .catch(function () {
+          btn.disabled = false; status.className = 'enq-status err';
+          status.innerHTML = 'Something went wrong. Please email me at <a href="mailto:Akshara.singh.marketing@gmail.com">Akshara.singh.marketing@gmail.com</a>.';
+        });
+    });
+    if (location.hash === '#enquiry-sent') { enq.classList.add('sent'); status.className = 'enq-status ok'; status.textContent = "Thank you, your enquiry is on its way. I'll reply within one working day."; }
+  }
+
   // results: count up and draw the circles when the section comes into view
   function countUp(el) {
     var txt = el.textContent.trim(), m = txt.match(/^([\d.]+)(.*)$/);
