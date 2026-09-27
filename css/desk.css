@@ -518,3 +518,12 @@ html.js .work:not(.all) .card.extra{display:none}
 #how .notes{grid-template-columns:repeat(4,minmax(0,1fr))}
 @media (max-width:1000px){#how .notes{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:540px){#how .notes{grid-template-columns:minmax(0,1fr)}}
+
+.paying{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:56px;align-items:center;margin-top:64px;padding-top:48px;border-top:1.5px solid var(--ink)}
+.paying h3{font-size:clamp(26px,2.8vw,38px);line-height:1.08;margin:10px 0 20px}
+.incl{list-style:none;display:grid;gap:0}
+.incl li{font-size:16px;color:var(--muted);padding:12px 0;border-top:1px solid var(--line)}
+.incl b{color:var(--ink)}
+.paying .receipt{transform:rotate(2deg)}
+@media (max-width:1000px){.paying{grid-template-columns:minmax(0,1fr)}.paying .receipt{max-width:380px;justify-self:center}}
+.services{overflow:hidden}
