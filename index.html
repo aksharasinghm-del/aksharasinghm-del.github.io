@@ -287,8 +287,9 @@
     <input type="text" name="_honey" class="enq-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <label><span>Name</span><input name="name" required autocomplete="name"></label>
     <label><span>Email</span><input type="email" name="email" required autocomplete="email"></label>
-    <label><span>Company <em>(optional)</em></span><input name="company" autocomplete="organization"></label>
-    <label><span>I'm interested in</span><select name="interest" id="enqInterest">
+    <label><span>Company</span><input name="company" required autocomplete="organization"></label>
+    <label><span>Company website</span><input type="text" inputmode="url" name="website" required autocomplete="url" placeholder="yourcompany.com"></label>
+    <label class="wide"><span>I'm interested in</span><select name="interest" id="enqInterest">
       <option>Not sure yet</option><option>Strategy Sprint</option><option>Campaign Project</option><option>Ongoing Marketing Partner</option><option>Custom Package</option><option>Something else</option>
     </select></label>
     <label class="wide"><span>Your message</span><textarea name="message" rows="5" required placeholder="Your goals, timeline, or any question at all."></textarea></label>
