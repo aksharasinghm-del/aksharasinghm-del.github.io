@@ -25,7 +25,12 @@
   }
   list.forEach(function (p) { track.appendChild(card(p, false)); });
   if (!reduce) list.forEach(function (p) { track.appendChild(card(p, true)); });
-  if (reduce) return; // the reel simply scrolls sideways instead
+  var win = reel.querySelector('.reel-win');
+  if (reduce) { // the reel simply scrolls sideways instead; the arrows page through it
+    document.getElementById('reelPrev').addEventListener('click', function () { win.scrollBy({ left: -win.clientWidth * .8 }); });
+    document.getElementById('reelNext').addEventListener('click', function () { win.scrollBy({ left: win.clientWidth * .8 }); });
+    return;
+  }
 
   var cards = track.children, n = list.length;
   var x = 0, speed = 38, cur = 0, paused = false, hold = 0, visible = true, spin = null, last = 0, restUntil = 0;
@@ -36,8 +41,8 @@
     var W = loopW();
     if (spin) {
       var k = Math.min(1, (t - spin.t0) / spin.dur), e = 1 - Math.pow(1 - k, 4);
-      x = spin.from + spin.dist * e;
-      if (k === 1) { land(spin.idx); spin = null; }
+      x = spin.pos = spin.from + spin.dist * e;
+      if (k === 1) { if (spin.idx != null) land(spin.idx); else { cur = 0; restUntil = t + 3000; } spin = null; }
     } else {
       var want = paused || hold || !visible || t < restUntil ? 0 : speed;
       cur += (want - cur) * Math.min(1, dt * 5); // ease in and out of stops
@@ -68,6 +73,17 @@
     spin = { from: x, dist: dist, t0: performance.now(), dur: 2600, idx: idx };
     spinBtn.disabled = true; reel.classList.add('spinning');
   });
+
+  // arrows: glide one card either way, then hold still for a moment
+  function nudge(dir) {
+    if (spin && spin.idx != null) return;
+    clearWin();
+    var left = spin && spin.pos != null ? spin.from + spin.dist - spin.pos : 0; // keep stepping if clicked mid-glide
+    var stepW = cards[1].offsetLeft - cards[0].offsetLeft;
+    spin = { from: x, dist: left + dir * stepW, t0: performance.now(), dur: 450, idx: null };
+  }
+  document.getElementById('reelPrev').addEventListener('click', function () { nudge(-1); });
+  document.getElementById('reelNext').addEventListener('click', function () { nudge(1); });
 
   function setPaused(p) {
     paused = p; head.classList.toggle('paused', p);

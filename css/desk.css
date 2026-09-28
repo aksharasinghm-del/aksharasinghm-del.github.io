@@ -606,5 +606,11 @@ html.anim .mk.drawn{background-size:100% 100%}
 .rc .star{position:absolute;right:-8px;top:-8px;width:30px;height:30px;border-radius:50%;background:var(--mat);color:var(--sun);font-size:15px;display:grid;place-items:center;box-shadow:2px 2px 0 var(--ink)}
 .rc .tag{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--mat);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rc h3{font-size:17px;line-height:1.15;margin-top:4px}
+.reel-arr{position:absolute;top:calc(26px + 115px);z-index:3;width:46px;height:46px;margin-top:-23px;border-radius:50%;border:1.5px solid var(--ink);background:#fff;color:var(--ink);font:700 18px/1 var(--sans);cursor:pointer;box-shadow:3px 3px 0 var(--ink);transition:transform .2s,box-shadow .2s,background .2s}
+.reel-arr.prev{left:-14px}.reel-arr.next{right:-14px}
+.reel-arr:hover{background:var(--sun);transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink)}
+.reel-arr:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink)}
+.reel-arr:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+@media (max-width:620px){.reel-arr{top:calc(26px + 94px);width:40px;height:40px;margin-top:-20px;font-size:16px}.reel-arr.prev{left:2px}.reel-arr.next{right:2px}}
 @media (max-width:620px){.rc{flex-basis:150px}.reel-track{gap:18px}.rc h3{font-size:15.5px}}
 @media (prefers-reduced-motion: reduce){.reel-win{overflow-x:auto}.spin-btn{display:none}}
