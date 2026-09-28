@@ -150,19 +150,16 @@
   </div>
 
   <div class="spec">
-    <p class="rw-tag">Brand campaign case studies</p>
-    <div class="car" id="car" role="region" aria-roledescription="carousel" aria-label="Brand campaign case studies">
-      <div class="car-bar">
-        <p class="car-count" aria-hidden="true"><b id="carNow">01</b> / <span id="carAll">12</span></p>
-        <div class="car-progress" aria-hidden="true"><i id="carFill"></i></div>
-        <div class="car-ctl">
-          <button type="button" class="car-btn" id="carPlay" aria-label="Pause the carousel"><span class="i-pause" aria-hidden="true">❚❚</span><span class="i-play" aria-hidden="true">▶</span></button>
-          <button type="button" class="car-btn" id="carPrev" aria-label="Previous project">←</button>
-          <button type="button" class="car-btn" id="carNext" aria-label="Next project">→</button>
-        </div>
+    <div class="reel-head">
+      <p class="rw-tag">Brand campaign case studies</p>
+      <div class="reel-ctl">
+        <button type="button" class="spin-btn" id="reelSpin">Spin the reel <i aria-hidden="true">↻</i></button>
+        <button type="button" class="reel-pause" id="reelPause" aria-label="Pause the reel"><span class="i-pause" aria-hidden="true">❚❚</span><span class="i-play" aria-hidden="true">▶</span></button>
       </div>
-      <div class="car-track" id="carTrack" tabindex="0" aria-label="Projects, scroll sideways"></div>
-      <p class="car-hint hand" aria-hidden="true">drag, swipe or use the arrows</p>
+    </div>
+    <div class="reel" id="reel" role="region" aria-label="Brand campaign case studies">
+      <span class="reel-pin" aria-hidden="true"></span>
+      <div class="reel-win"><div class="reel-track" id="reelTrack"></div></div>
     </div>
   </div>
 </div></section>
@@ -323,7 +320,6 @@
 
 <footer><div class="wrap"><span>© <span id="yr">2026</span> Akshara Singh</span><span>Brand case studies are self-initiated spec work. Not affiliated with or endorsed by the brands shown.</span></div></footer>
 
-<div class="peek" id="peek" aria-hidden="true">View<br>case study</div>
 
 <script src="projects.js"></script>
 <script src="js/desk.js"></script>
