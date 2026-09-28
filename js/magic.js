@@ -131,6 +131,15 @@
     }
     requestAnimationFrame(step);
   }
+  // headline marker strokes draw in as they arrive
+  var marks = document.querySelectorAll('.mk');
+  if ('IntersectionObserver' in window && !reduce) {
+    var mio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('drawn'); mio.unobserve(e.target); } });
+    }, { threshold: 1, rootMargin: '0px 0px -15% 0px' });
+    marks.forEach(function (m) { mio.observe(m); });
+  }
+
   var watch = document.querySelectorAll('.proof, .results, .contact');
   if ('IntersectionObserver' in window && !reduce) {
     document.documentElement.classList.add('anim');

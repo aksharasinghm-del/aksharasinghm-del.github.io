@@ -57,6 +57,9 @@
   <p class="pb-note">LinkedIn content I drafted for a global B2B technology company · <a href="#results">see the detail</a></p>
 </div></section>
 
+<div class="ribbon-wrap" aria-hidden="true"><div class="ribbon"><div class="ribbon-in"><span>Strategy &amp; Campaigns</span><i>✦</i><span>Content &amp; Creative</span><i>✦</i><span>Lifecycle &amp; Growth</span><i>✦</i><span>US · UK · EU teams</span><i>✦</i><span>Strategy &amp; Campaigns</span><i>✦</i><span>Content &amp; Creative</span><i>✦</i><span>Lifecycle &amp; Growth</span><i>✦</i><span>US · UK · EU teams</span><i>✦</i></div></div></div>
+
+
 <section class="paper about" id="about">
   <div class="wrap about-grid">
     <figure class="pol-big">
@@ -77,7 +80,7 @@
 
 <section class="paper work" id="work"><div class="wrap">
   <p class="kick">Selected work</p>
-  <h2>Work that moved the numbers.</h2>
+  <h2>Work that <span class="mk">moved the numbers.</span></h2>
   <p class="lead">B2B campaign and event marketing from my current role, followed by brand campaign case studies.</p>
 
   <div class="realwork">
@@ -148,15 +151,25 @@
 
   <div class="spec">
     <p class="rw-tag">Brand campaign case studies</p>
-    <div class="feat" id="featured"></div>
-    <div class="grid" id="grid"></div>
-    <div class="more-wrap"><button class="more-btn" id="moreBtn" type="button" aria-expanded="false">Show 7 more projects <i aria-hidden="true">↓</i></button></div>
+    <div class="car" id="car" role="region" aria-roledescription="carousel" aria-label="Brand campaign case studies">
+      <div class="car-bar">
+        <p class="car-count" aria-hidden="true"><b id="carNow">01</b> / <span id="carAll">12</span></p>
+        <div class="car-progress" aria-hidden="true"><i id="carFill"></i></div>
+        <div class="car-ctl">
+          <button type="button" class="car-btn" id="carPlay" aria-label="Pause the carousel"><span class="i-pause" aria-hidden="true">❚❚</span><span class="i-play" aria-hidden="true">▶</span></button>
+          <button type="button" class="car-btn" id="carPrev" aria-label="Previous project">←</button>
+          <button type="button" class="car-btn" id="carNext" aria-label="Next project">→</button>
+        </div>
+      </div>
+      <div class="car-track" id="carTrack" tabindex="0" aria-label="Projects, scroll sideways"></div>
+      <p class="car-hint hand" aria-hidden="true">drag, swipe or use the arrows</p>
+    </div>
   </div>
 </div></section>
 
 <section class="board" id="how"><div class="wrap">
   <p class="kick">How I think</p>
-  <h2>A few rules I don't break.</h2>
+  <h2>A few rules I <span class="mk">don't break.</span></h2>
   <ol class="notes">
     <li><b>Strategy before creative</b>Audience, numbers and one clear idea come first. Then the posts.</li>
     <li><b>Success is meetings and pipeline</b>Impressions and likes are signals, not the goal. We agree what counts before we start.</li>
@@ -176,7 +189,7 @@
 
 <section class="paper services" id="services"><div class="wrap">
   <p class="kick">Services</p>
-  <h2>Three ways I help.</h2>
+  <h2>Three ways <span class="mk">I help.</span></h2>
   <div class="pillars">
     <article><p class="pl-n">01</p><h3>Strategy &amp; Campaigns</h3><p>For brands that know they need marketing but aren't sure what to say, where to show up, or why it isn't working.</p><ul><li>Brand audit &amp; competitor analysis</li><li>Positioning &amp; messaging</li><li>Campaign strategy &amp; creative concepts</li><li>Event marketing</li><li>30/60/90-day plans</li></ul></article>
     <article><p class="pl-n">02</p><h3>Content &amp; Creative</h3><p>Content and creative built around what the brand should be known for, with a clear idea behind every asset.</p><ul><li>Social strategy for LinkedIn &amp; Instagram</li><li>Content calendars &amp; copy</li><li>Founder &amp; thought-leadership content</li><li>Creative direction</li><li>Campaign assets &amp; decks in Canva</li></ul></article>
@@ -258,7 +271,7 @@
 
 <section class="paper pricing" id="pricing"><div class="wrap">
   <p class="kick">Ways to work with me</p>
-  <h2>Four ways to work together.</h2>
+  <h2>Four ways to <span class="mk">work together.</span></h2>
   <p class="lead">Every engagement starts with a free discovery call, so the scope fits your goals before anything is agreed.</p>
   <div class="pkgs four">
     <article class="pkg"><p class="pk-time">2 weeks · fixed scope</p><h3>Strategy Sprint</h3><p class="pk-desc">Audit, competitor analysis, positioning and messaging, with a 30/60/90-day plan you can act on.</p><button class="ptag" type="button" aria-expanded="false"><span class="tag-front"><span class="tf-t">View starting price</span><span class="eyes" aria-hidden="true">→</span></span><span class="tag-back"><small>from</small><b>$450</b><span class="tb-n">A clear plan in two weeks.</span></span></button></article>
@@ -271,7 +284,7 @@
 
 <section class="paper contact" id="contact"><div class="wrap">
   <p class="kick">Let's work together</p>
-  <h2>Have a campaign that needs a direction? Let's build it.</h2>
+  <h2>Have a campaign that needs a direction? <span class="mk">Let's build it.</span></h2>
   <a class="callcard" href="https://cal.com/akshara-singh/30min" target="_blank" rel="noopener">
     <span class="cc-k">Free · 30 minutes · video call</span>
     <span class="cc-t">Book a discovery call</span>
@@ -309,6 +322,8 @@
 </div></section>
 
 <footer><div class="wrap"><span>© <span id="yr">2026</span> Akshara Singh</span><span>Brand case studies are self-initiated spec work. Not affiliated with or endorsed by the brands shown.</span></div></footer>
+
+<div class="peek" id="peek" aria-hidden="true">View<br>case study</div>
 
 <script src="projects.js"></script>
 <script src="js/desk.js"></script>
