@@ -614,3 +614,5 @@ html.anim .mk.drawn{background-size:100% 100%}
 @media (max-width:620px){.reel-arr{top:calc(26px + 94px);width:40px;height:40px;margin-top:-20px;font-size:16px}.reel-arr.prev{left:2px}.reel-arr.next{right:2px}}
 @media (max-width:620px){.rc{flex-basis:150px}.reel-track{gap:18px}.rc h3{font-size:15.5px}}
 @media (prefers-reduced-motion: reduce){.reel-win{overflow-x:auto}.spin-btn{display:none}}
+.cookie-btn{font:inherit;font-size:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px;opacity:.8}
+.cookie-btn:hover{opacity:1}
